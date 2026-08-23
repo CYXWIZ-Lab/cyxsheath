@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/sheath/patch_record.schema.json",
+  "title": "Sheath Canonical Patch Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_digest", "result_digest", "extractor", "changes"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "source_digest": {"$ref": "#/$defs/digest"},
+    "result_digest": {"$ref": "#/$defs/digest"},
+    "extractor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["python_digest", "worker_digest", "worker_version"],
+      "properties": {
+        "python_digest": {"$ref": "#/$defs/digest"},
+        "worker_digest": {"$ref": "#/$defs/digest"},
+        "worker_version": {"const": "1"}
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/change"}
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "directory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {"const": "directory"}
+      }
+    },
+    "file_before": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "digest", "size_bytes"],
+      "properties": {
+        "kind": {"const": "file"},
+        "digest": {"$ref": "#/$defs/digest"},
+        "size_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "file_after": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "digest", "size_bytes", "content_base64"],
+      "properties": {
+        "kind": {"const": "file"},
+        "digest": {"$ref": "#/$defs/digest"},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "content_base64": {"type": "string", "contentEncoding": "base64"}
+      }
+    },
+    "symlink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "target"],
+      "properties": {
+        "kind": {"const": "symlink"},
+        "target": {"type": "string"}
+      }
+    },
+    "before": {
+      "oneOf": [
+        {"$ref": "#/$defs/directory"},
+        {"$ref": "#/$defs/file_before"},
+        {"$ref": "#/$defs/symlink"}
+      ]
+    },
+    "after": {
+      "oneOf": [
+        {"$ref": "#/$defs/directory"},
+        {"$ref": "#/$defs/file_after"},
+        {"$ref": "#/$defs/symlink"}
+      ]
+    },
+    "change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "operation", "before", "after"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!\\.$)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*//).+$"
+        },
+        "operation": {"enum": ["add", "modify", "delete"]},
+        "before": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/before"}]},
+        "after": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/after"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"operation": {"const": "add"}}},
+          "then": {
+            "properties": {
+              "before": {"type": "null"},
+              "after": {"$ref": "#/$defs/after"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"operation": {"const": "modify"}}},
+          "then": {
+            "properties": {
+              "before": {"$ref": "#/$defs/before"},
+              "after": {"$ref": "#/$defs/after"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"operation": {"const": "delete"}}},
+          "then": {
+            "properties": {
+              "before": {"$ref": "#/$defs/before"},
+              "after": {"type": "null"}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

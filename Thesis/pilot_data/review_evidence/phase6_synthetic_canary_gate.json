@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at": "2026-08-23T08:29:59Z",
+  "status": "free_synthetic_canary_completed_benchmark_blocked",
+  "decision_scope": "project_research_policy_not_legal_advice",
+  "historical_gate": {
+    "record": "phase6_provider_replacement_gate.json",
+    "superseded_scope": "synthetic_infrastructure_canary_only",
+    "preserved_scope": "benchmark_provider_admission"
+  },
+  "correction": {
+    "previous_error": "benchmark_grade data use requirements were applied to a wholly synthetic infrastructure canary",
+    "rule": "provider improvement use is acceptable only for public non-sensitive synthetic input authored for this canary",
+    "benchmark_rule_unchanged": true
+  },
+  "input_classification": {
+    "class": "synthetic_public_non_sensitive_non_benchmark",
+    "authored_for_canary": true,
+    "contains_user_or_thesis_data": false,
+    "contains_benchmark_data": false,
+    "contains_repository_history": false,
+    "permitted_source": "generated_local_fixture_only",
+    "prohibited_sources": [
+      "candidate_events.jsonl",
+      "SWE-bench rows",
+      "replay evidence",
+      "source snapshots",
+      "same_hello_query_plus.md"
+    ]
+  },
+  "provider": {
+    "candidate_id": "zen-mimo-v2.5-free",
+    "route": "opencode/mimo-v2.5-free",
+    "cost_class": "free",
+    "named_model": true,
+    "current_zen_listing": true,
+    "pinned_local_catalog_listing": false,
+    "provider_data_use": "may_be_used_to_improve_model",
+    "data_use_accepted_for_classification": true,
+    "credential_mode": "cyxcode_public_token_path",
+    "paid_credential_required": false,
+    "availability": "confirmed_by_canary",
+    "benchmark_submission": "blocked"
+  },
+  "configuration": {
+    "cyxcode_commit": "42676876b63ed5a18957e3318272eb0d875a95fc",
+    "catalog_sha256": "9948ade8dc8bf8da6481dfd372463d5a446ed408fb0ac4ca22929262b0e557fd",
+    "provider_source_sha256": "14b6afd08f8a5bc6f0da79fd640246f3392573a77e2a5e950a80c2d6b5f35939",
+    "zen_document_commit": "bcf1103a8c8653acd7afdd5fc2ebd9f6e5486b3c",
+    "zen_document_sha256": "7a4009299eb55513cb58d37a9bd898c74a43ad5813dc8594d0c257d54fa2129f",
+    "route_requires_explicit_config": true,
+    "network_target": "https://opencode.ai/zen/v1"
+  },
+  "execution_gate": {
+    "decision": "completed_single_attempt",
+    "maximum_attempts": 1,
+    "paid_spend_authorized": false,
+    "benchmark_input_authorized": false,
+    "raw_artifacts": ".replay_cache only",
+    "required_checks": [
+      "synthetic fixture classification",
+      "explicit free route",
+      "bounded timeout",
+      "response capture",
+      "source preservation",
+      "state and container cleanup"
+    ]
+  },
+  "outcome": {
+    "synthetic_canary_executed": true,
+    "completed_at": "2026-08-23T08:45:00Z",
+    "result": "proposal_captured",
+    "result_record": "../proposal_evidence/phase6_synthetic_free_canary.json",
+    "result_record_sha256": "b4891e6d46617852f8625d69c1746179fd1cd1cdc6f6142f0bf44d2715694829",
+    "benchmark_candidate_approved": false,
+    "next_action": "resolve_benchmark_provider_exposure_and_case_rights"
+  }
+}

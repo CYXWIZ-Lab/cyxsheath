@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at": "2026-08-20T11:09:33Z",
+  "status": "replay_passed_admission_pending",
+  "harness": {
+    "repository": "https://github.com/SWE-bench/SWE-bench",
+    "commit": "7a21e05772954cc81471ae19d56f436cecf43c54",
+    "package_version": "5.0.2",
+    "python_version": "3.12.8",
+    "docker_client_version": "29.1.3",
+    "docker_server_version": "29.1.3",
+    "requirements_lock": "../replay_requirements.lock.txt",
+    "requirements_lock_sha256": "7ae8978fe6fb452b652a9c7ba92f57756d2b63bc058efe5c96d5b2449c6ddc16",
+    "compatibility_patch": "../swebench_windows_lf.patch",
+    "compatibility_patch_sha256": "accaadc3051051477e9d377b4d4ce933ee1bc659b1804978e6f20494e5de6083"
+  },
+  "datasets": [
+    {
+      "dataset_id": "SWE-bench/SWE-bench_Multilingual",
+      "revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+      "parquet_sha256": "92abca7cb527b41a9f66d03a26ce441ff7319e3a49f985998fd56be4bb9b08b2"
+    },
+    {
+      "dataset_id": "SWE-bench/SWE-bench_Verified",
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+    }
+  ],
+  "materialization": {
+    "script": "../materialize_replay_rows.py",
+    "script_sha256": "38b4e45526100d153cedf1cc4897eb364557989beffa1009df5c503f4f140be9",
+    "row_file_sha256": "73f825bf58aea3b93a01e2577a97d48bbf5dc304ea431047fabf33d66f4b047d",
+    "baseline_predictions_sha256": "b17b0e1178df74eeb6406f35524c75fa45fbab16cca8f5a546c3146f05839b03",
+    "raw_artifact_retention": "restricted_local_cache"
+  },
+  "deviations": [
+    {
+      "id": "phase6-replay-dev-001",
+      "affected_runs": [
+        "phase6-redis-baseline",
+        "phase6-redis-gold"
+      ],
+      "finding": "The unmodified Windows host harness wrote CRLF eval.sh content for a Linux container, corrupting shell commands and test-patch application.",
+      "decision": "Exclude both runs from replay evidence, preserve their logs, force UTF-8 LF for generated patch.diff and eval.sh, and rerun under new IDs.",
+      "resolved_by": "swebench_windows_lf.patch"
+    }
+  ],
+  "cases": [
+    {
+      "candidate_id": "phase6-cal-001",
+      "instance_id": "redis__redis-10068",
+      "language": "C",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.redis_1776_redis-10068:latest",
+        "index_digest": "sha256:e95c8efc46dbf69719003407b64c29048bad6d0e7311ded805b354ec50a4dfae",
+        "linux_amd64_digest": "sha256:f4a7cd84f164f07cde8da7feacd4188035e3991749453fc3afb23def851a88c1",
+        "local_size_bytes": 264016902
+      },
+      "baseline": {
+        "run_id": "phase6-redis-baseline-lf",
+        "resolved": false,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_failed": 1,
+        "pass_to_pass_succeeded": 7,
+        "report_path": "../../../logs/run_evaluation/phase6-redis-baseline-lf/sheath-baseline-marker/redis__redis-10068/report.json",
+        "report_sha256": "7af5dcae944f132ed81d90b49a46ae6de327ce34fdbc23efe575df786fc0755a",
+        "test_output_sha256": "e1ddd9e39e9a9215f9c187605b7812beef019d19797fa491b9cba344632e0e11"
+      },
+      "gold": {
+        "run_id": "phase6-redis-gold-lf",
+        "resolved": true,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_succeeded": 1,
+        "pass_to_pass_succeeded": 7,
+        "report_path": "../../../logs/run_evaluation/phase6-redis-gold-lf/gold/redis__redis-10068/report.json",
+        "report_sha256": "5f7bbeb71624357bd2917b15862d64f74d733dd7d275b4ce34615c222f6a374a",
+        "test_output_sha256": "e381ad86d3e8ba3bc28a1dd36089f2043090d140f0986fa1c062aac611635244"
+      },
+      "replay_gate": "passed",
+      "disposition": "quarantined"
+    },
+    {
+      "candidate_id": "phase6-cal-008",
+      "instance_id": "fmtlib__fmt-1683",
+      "language": "C++",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.fmtlib_1776_fmt-1683:latest",
+        "index_digest": "sha256:7308abbea932b26f5d97901ddc751a598d0ff8ca483ce294caf2c7a779b06b31",
+        "linux_amd64_digest": "sha256:e231b3a73440dac9374d25d20f728615a9e7b8e69addf5a46b22690299bc33a5",
+        "local_size_bytes": 208348240
+      },
+      "baseline": {
+        "run_id": "phase6-fmt-baseline-lf",
+        "resolved": false,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_failed": 1,
+        "pass_to_pass_succeeded": 42,
+        "report_path": "../../../logs/run_evaluation/phase6-fmt-baseline-lf/sheath-baseline-marker/fmtlib__fmt-1683/report.json",
+        "report_sha256": "974be37e88a59460d74c067aea83d40aaecf2833f0303413836b827098c9c32f",
+        "test_output_sha256": "fe65d6c3834d72ce650d7e0fb5ac865e976f147b352d8e26e2e7a46be795fa54"
+      },
+      "gold": {
+        "run_id": "phase6-fmt-gold-lf",
+        "resolved": true,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_succeeded": 1,
+        "pass_to_pass_succeeded": 42,
+        "report_path": "../../../logs/run_evaluation/phase6-fmt-gold-lf/gold/fmtlib__fmt-1683/report.json",
+        "report_sha256": "2ffa87f7c4bdfb561243c9a58abd69fbfd2292a233a1bd6f3b4650b3d42e83d3",
+        "test_output_sha256": "d64ccb7deb4696ae6a0d5f75a60fa899e088c3e9216d11f0fc35d538348c2eaf"
+      },
+      "replay_gate": "passed",
+      "disposition": "quarantined"
+    },
+    {
+      "candidate_id": "phase6-cal-014",
+      "instance_id": "astropy__astropy-12907",
+      "language": "Python",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+        "index_digest": "sha256:e082963099ed7d5a5f75a0be46e338be36faae33b2cba5289a9ddbd505997f1f",
+        "linux_amd64_digest": "sha256:7485c1e3c8861efd0c6a4a78b952857592e541031039000d25e9481f045dc4a3",
+        "local_size_bytes": 1133602804
+      },
+      "baseline": {
+        "run_id": "phase6-astropy-baseline-lf",
+        "resolved": false,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_failed": 2,
+        "pass_to_pass_succeeded": 13,
+        "report_path": "../../../logs/run_evaluation/phase6-astropy-baseline-lf/sheath-baseline-marker/astropy__astropy-12907/report.json",
+        "report_sha256": "19c24efb55ea2708f2a762635791964546e96dde8c7bb29a0980376e6cb50eda",
+        "test_output_sha256": "3d414ca42d3c49f1f49e417ce95ebc8a3f27b721e07ce8f87e49fe2f37d6a208"
+      },
+      "gold": {
+        "run_id": "phase6-astropy-gold-lf",
+        "resolved": true,
+        "patch_applied": true,
+        "infrastructure_failure": false,
+        "fail_to_pass_succeeded": 2,
+        "pass_to_pass_succeeded": 13,
+        "report_path": "../../../logs/run_evaluation/phase6-astropy-gold-lf/gold/astropy__astropy-12907/report.json",
+        "report_sha256": "069a09dcf324a08b8292ea911d7350764c4fbba4c0a50d3cd4d62a7734099fbb",
+        "test_output_sha256": "387062e5baac66594b7513fe3a4136e9f54f7c1cb888f3651892e9ceca231935"
+      },
+      "replay_gate": "passed",
+      "disposition": "quarantined"
+    }
+  ],
+  "admission": {
+    "admitted_count": 0,
+    "remaining_quarantine_reasons": [
+      "artifact.incomplete",
+      "license.unclear",
+      "privacy.review_required"
+    ]
+  }
+}

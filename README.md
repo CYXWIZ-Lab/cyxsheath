@@ -1,70 +1,69 @@
 ﻿# CyxSheath
 
-This folder documents the research program for building a software-engineering LLM agent using CyxWiz Engine as the experiment, dataset, training, evaluation, and artifact platform.
+CyxSheath is a research system for evidence-grounded supervision of AI coding agents. It freezes the task contract, constrains execution, preserves revision-bound evidence, independently verifies proposed changes, and issues fail-closed verdicts.
 
-The goal is not only to build a model that writes code. The goal is to build an agent that can perform disciplined software engineering: understand codebases, plan changes, implement features, debug failures, write tests, review risks, reason about security, and improve software over long-running tasks.
+The long-term research goal is a dedicated residual critic built and evaluated with CyxWiz Engine. That model is not implemented yet: the current release is the deterministic **Sheath Stage 0** supervisor, with CyxCode as the first coding-agent generator integration.
 
-## Core Thesis
+## System Boundary
 
-A strong software-engineering agent is a credible path toward broader machine intelligence because software engineering combines reasoning, mathematics, systems thinking, design, security, language understanding, tool use, and applied problem solving.
+```text
+Task -> Sheath contract -> CyxCode + coding model -> proposed patch
+     -> isolated execution -> independent checks -> accept/reject/abstain
+```
 
-The first research target is narrow and measurable:
+CyxCode proposes changes. Sheath owns isolation, trusted patch extraction, evidence, verification, and the final decision. A future CyxSheath-D1 critic will be considered only if the deterministic experiment reveals a stable residual problem that rules and tests cannot resolve.
 
-- C
-- C++
-- Python
-- build systems
-- tests
-- debugging
-- code review
-- security analysis
-- documentation
-- long-running tool-using workflows
+## Quick Start
 
-Large goals such as designing a programming language, building an operating system, or producing a full game engine should be treated as late-stage stress tests, not the starting benchmark.
+Python 3.11 or newer is required. The current suite is verified on Python 3.12 and 3.14 and has no third-party runtime dependencies.
 
-## Documents
+From PowerShell:
 
-- [Thesis/README.md](Thesis/README.md): structured thesis package, implementation blueprint, dataset/model plan, experiment protocol, schemas, and paper plan.
-- [sheath/README.md](sheath/README.md): dependency-free Stage-0 implementation of contracts, state transitions, host/container executable authorization, content-addressed artifacts, a fail-closed runner, a digest-pinned Docker adapter, mandatory checks, and canonical run records.
-- [Research_Thesis.md](Research_Thesis.md): academic framing, mission, hypotheses, research questions, capability model, and safety position.
-- [CyxWiz_Implementation_Plan.md](CyxWiz_Implementation_Plan.md): how CyxWiz Engine should be used to build datasets, training graphs, evaluation graphs, checkpoints, and experiment artifacts.
-- [Evaluation_Benchmarks.md](Evaluation_Benchmarks.md): measurable tasks and scoring methods for proving progress.
+```powershell
+$env:PYTHONPATH='sheath\src'
+py -3.12 usage\examples\stage0_decision_example.py
 
-## Working Principle
+Set-Location sheath
+$env:PYTHONPATH='src'
+py -3.12 -m unittest discover -s tests -v
+```
 
-The project separates two things:
+From a POSIX shell:
 
-1. Knowledge base: the code, documentation, bugs, tests, security reports, compiler diagnostics, and engineering examples the model learns from.
-2. Thinking base: the process the model uses to turn knowledge into correct engineering action.
+```sh
+PYTHONPATH=sheath/src python usage/examples/stage0_decision_example.py
+cd sheath
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
 
-The thinking base follows a practical engineering loop:
+The example creates an immutable contract, records current evidence, and returns a deterministic verdict. It does not call a model or modify a repository. Docker and Bun are optional unless running container or CyxCode integration smokes.
 
-1. Understand the task.
-2. Form a hypothesis.
-3. Inspect evidence.
-4. Plan a small change.
-5. Implement.
-6. Run tests.
-7. Analyze failure.
-8. Correct.
-9. Verify.
-10. Document the result.
+## Current Status
 
-## Role of CyxWiz
+| Area | Status |
+|---|---|
+| Sheath Stage 0 | Implemented; 138 tests pass on Python 3.12 and 3.14 |
+| CyxCode adapter | Python boundary and deterministic fixture verified; experimental bridge remains a separate checkout |
+| Phase-6 pilot | Active; 20 candidates remain quarantined and no benchmark result is claimed |
+| CyxWiz integration | Phase-7 capability audit pending |
+| CyxSheath-D1 critic | Conditional design and training in Phases 9–10 |
 
-CyxWiz is the research engine for this work. It should support:
+## Documentation
 
-- dataset ingestion and cleaning
-- code/document/test preprocessing
-- train, validation, and test splitting
-- graph-based training workflows
-- evaluation workflows
-- experiment tracking
-- export of clean datasets and artifacts
-- training curves and benchmark visualization
-- checkpoint and model package management
+- [Usage guide](usage/README.md): setup, examples, tests, evidence validation, and operational restrictions.
+- [Thesis package](Thesis/README.md): manuscript, architecture, protocol, dataset/model plan, paper plan, and evidence records.
+- [Master roadmap](Thesis/Research_and_Implementation_Roadmap.md): authoritative completed, active, and pending work.
+- [Stage-0 package](sheath/README.md): implemented modules, test coverage, and Docker smokes.
+- [Research framing](Research_Thesis.md), [CyxWiz plan](CyxWiz_Implementation_Plan.md), and [benchmark plan](Evaluation_Benchmarks.md): source design documents retained for traceability.
+- [Publication boundary](docs/Publication_Boundary.md): what is public, what remains local, and why.
+- [Contributor guide](AGENTS.md): repository conventions and validation commands.
 
-## Research Discipline
+## Research Integrity
 
-The project must avoid vague claims such as "bug-free" or "AGI achieved" unless those claims are tied to concrete tests. Progress should be measured with reproducible datasets, fixed benchmarks, hidden tests, security checks, and logged experiment artifacts.
+Infrastructure checks are not model-quality results. Public benchmark membership excludes a case from the confirmatory test set, and quarantined cases must not be sent to a provider or used for training. Claims become findings only when supported by versioned artifacts and the frozen experiment protocol.
+
+CyxWiz Engine is the intended dataset, training, evaluation, and artifact platform for a future dedicated critic, subject to the Phase-7 capability audit. The repository does not currently claim a trained critic, completed CyxWiz graph, admitted training corpus, or improved coding-agent performance.
+
+## License Status
+
+No repository-wide license has been selected for this research checkpoint. Third-party projects, benchmark identifiers, and referenced evidence retain their own terms, and unresolved dataset rights must not be inferred from public visibility. A code-and-document licensing decision should be recorded separately before presenting CyxSheath as an open-source release.

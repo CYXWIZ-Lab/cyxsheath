@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-08-20T17:20:00Z",
+  "reviewer_id": "pilot-operator-01",
+  "cases": {
+    "phase6-cal-001": {
+      "privacy": "passed",
+      "privacy_basis": "no_identity_or_personal_data_detected",
+      "secrets": "passed",
+      "safety": "passed",
+      "safety_classification": "ordinary_defensive_bug_fix",
+      "lineage": "passed",
+      "file_scope_license": "passed",
+      "file_scope_basis": "core_source_and_project_test_paths_only",
+      "contamination": "pending",
+      "research_analysis": "unknown",
+      "artifact": "pending",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain",
+        "license.unclear"
+      ]
+    },
+    "phase6-cal-008": {
+      "privacy": "passed",
+      "privacy_basis": "no_identity_or_personal_data_detected;standards_reference_url_only",
+      "secrets": "passed",
+      "safety": "passed",
+      "safety_classification": "ordinary_defensive_bug_fix",
+      "lineage": "passed",
+      "file_scope_license": "passed",
+      "file_scope_basis": "core_source_and_project_test_paths_only",
+      "contamination": "pending",
+      "research_analysis": "unknown",
+      "artifact": "pending",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain",
+        "license.unclear"
+      ]
+    },
+    "phase6-cal-014": {
+      "privacy": "passed",
+      "privacy_basis": "no_identity_or_personal_data_detected",
+      "secrets": "passed",
+      "safety": "passed",
+      "safety_classification": "ordinary_defensive_bug_fix",
+      "lineage": "passed",
+      "file_scope_license": "passed",
+      "file_scope_basis": "core_source_and_project_test_paths_only",
+      "contamination": "pending",
+      "research_analysis": "unknown",
+      "artifact": "pending",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain",
+        "license.unclear"
+      ]
+    }
+  }
+}

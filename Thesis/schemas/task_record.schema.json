@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/sheath/task_record.schema.json",
+  "title": "Sheath Task Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "raw_request",
+    "repository",
+    "goal",
+    "constraints",
+    "success_criteria",
+    "out_of_scope",
+    "risk",
+    "allowed_tools"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_id": {"type": "string", "minLength": 1},
+    "raw_request": {"type": "string", "minLength": 1},
+    "language": {
+      "type": "string",
+      "enum": ["c", "cpp", "python", "mixed", "other"]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": ["build_repair", "bug_fix", "feature", "test", "refactor", "security", "documentation", "understanding", "other"]
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "revision", "snapshot_digest"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "snapshot_digest": {"type": "string", "minLength": 1},
+        "license": {"type": ["string", "null"]},
+        "collected_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "goal": {"type": "string", "minLength": 1},
+    "constraints": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/constraint"}
+    },
+    "success_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/criterion"}
+    },
+    "out_of_scope": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "unresolved_questions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "reasons"],
+      "properties": {
+        "level": {"enum": ["light", "standard", "deep"]},
+        "score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "required_checks": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "provenance": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "text", "hard"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["scope", "architecture", "compatibility", "security", "safety", "performance", "style", "authorization", "other"]},
+        "text": {"type": "string", "minLength": 1},
+        "hard": {"type": "boolean"},
+        "source": {"type": ["string", "null"]}
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "verification"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "verification": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

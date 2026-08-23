@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sheath-supervisor"
+version = "0.1.0"
+description = "Minimal evidence-grounded Stage-0 supervisor for repository tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

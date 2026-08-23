@@ -1,0 +1,53 @@
+# Local research inputs and working drafts
+/Hello Query.md
+/Meetup_Pitch.md
+/debate_doc2.md
+/doc2.md
+/doc3.md
+/same_hello_query_plus.md
+/sheath.md
+/tolook.md
+/usage/sheath_model_overview.md
+
+# Independent integration worktrees
+/integrations/cyxcode/
+
+# Raw or generated research artifacts
+/.replay_cache/
+/.tools/
+/logs/
+/sheath/*-artifacts/
+/sheath/tmp*/
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.venv/
+venv/
+
+# JavaScript and Bun
+node_modules/
+.bun/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+Desktop.ini

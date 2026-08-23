@@ -1,0 +1,26 @@
+{
+  "blinded_checks_in_generator_context": false,
+  "candidate_id": "phase6-cal-001",
+  "disposition": "quarantined",
+  "failure_reason": "CyxCode bridge exited 1: EACCES: permission denied, rm 'D:\\Dev\\code agent\\.replay_cache\\cyxcode-pilot-pzvp8we9\\isolation\\cyxcode-state-TWpZPI'",
+  "gold_patch_in_generator_context": false,
+  "instance_id": "redis__redis-10068",
+  "model": {
+    "input_cost": 0,
+    "input_modality": "text",
+    "model": "big-pickle",
+    "name": "Big Pickle",
+    "output_cost": 0,
+    "output_modality": "text",
+    "provider": "opencode",
+    "registry": "bundled models-snapshot.js",
+    "tool_call": true
+  },
+  "recorded_at": "2026-08-20T18:22:00Z",
+  "retained_artifacts": [],
+  "schema_version": "1.0.0",
+  "source_archive_sha256": "9c944759c334437881e2e1a5f9c5d09412b86c174ce14977fd013509c59936c4",
+  "source_directory_digest": "sha256:9f59afa2682ddd632b39f9763dd356fc6222f061f63ac901210f51c4c7480e21",
+  "status": "generator_failed",
+  "task_contract_sha256": "e67a8e53a254fd88aa60ff8cf16937a5476f058146c5b649a1b3808f5defeceb"
+}

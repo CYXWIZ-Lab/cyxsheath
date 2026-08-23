@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/sheath/dataset_manifest.schema.json",
+  "title": "Sheath Pilot Dataset Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "created_at",
+    "specification_digest",
+    "license_list_version",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "manifest_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "specification_digest": {"$ref": "#/$defs/digest"},
+    "license_list_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "admission_reason": {
+      "enum": [
+        "license.denied",
+        "privacy.personal_data",
+        "secret.detected",
+        "safety.offensive",
+        "provenance.missing",
+        "revision.unpinned",
+        "snapshot.unreplayable",
+        "evidence.missing",
+        "lineage.duplicate",
+        "scope.unsupported",
+        "artifact.malformed",
+        "license.unclear",
+        "privacy.review_required",
+        "replay.transient",
+        "label.conflict",
+        "lineage.uncertain",
+        "contamination.uncertain",
+        "artifact.incomplete"
+      ]
+    },
+    "right": {
+      "enum": ["allowed", "prohibited", "unknown"]
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "admission",
+        "source",
+        "rights",
+        "integrity",
+        "lineage",
+        "contamination",
+        "annotation",
+        "split"
+      ],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "admission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["decision", "reason_codes", "reviewed_at"],
+          "properties": {
+            "decision": {"enum": ["admitted", "quarantined", "rejected"]},
+            "reason_codes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/admission_reason"}
+            },
+            "reviewed_at": {"type": "string", "format": "date-time"}
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "uri",
+            "repository_family",
+            "revision",
+            "published_at",
+            "collected_at",
+            "language",
+            "task_type",
+            "license_expression",
+            "license_evidence_uri"
+          ],
+          "properties": {
+            "uri": {"type": "string", "format": "uri"},
+            "repository_family": {"type": "string", "minLength": 1},
+            "revision": {"type": "string", "minLength": 1},
+            "published_at": {"type": "string", "format": "date-time"},
+            "collected_at": {"type": "string", "format": "date-time"},
+            "language": {"enum": ["c", "cpp", "python", "mixed"]},
+            "task_type": {
+              "enum": [
+                "build_repair",
+                "bug_fix",
+                "feature",
+                "test",
+                "refactor",
+                "security",
+                "documentation",
+                "understanding",
+                "other"
+              ]
+            },
+            "license_expression": {"type": "string", "minLength": 1},
+            "license_evidence_uri": {"type": "string", "format": "uri"}
+          }
+        },
+        "rights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "research_analysis",
+            "redistribute_metadata",
+            "redistribute_derived_labels",
+            "redistribute_source",
+            "model_training"
+          ],
+          "properties": {
+            "research_analysis": {"$ref": "#/$defs/right"},
+            "redistribute_metadata": {"$ref": "#/$defs/right"},
+            "redistribute_derived_labels": {"$ref": "#/$defs/right"},
+            "redistribute_source": {"$ref": "#/$defs/right"},
+            "model_training": {"$ref": "#/$defs/right"}
+          }
+        },
+        "integrity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_record_digest",
+            "snapshot_digest",
+            "patch_digest",
+            "evidence_bundle_digest",
+            "environment_image_digest"
+          ],
+          "properties": {
+            "task_record_digest": {"$ref": "#/$defs/digest"},
+            "snapshot_digest": {"$ref": "#/$defs/digest"},
+            "patch_digest": {
+              "anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+            },
+            "evidence_bundle_digest": {
+              "anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+            },
+            "environment_image_digest": {
+              "anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+            }
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lineage_group",
+            "duplicate_group",
+            "normalized_task_digest",
+            "patch_fingerprint",
+            "parent_case_ids"
+          ],
+          "properties": {
+            "lineage_group": {"type": "string", "minLength": 1},
+            "duplicate_group": {"type": ["string", "null"], "minLength": 1},
+            "normalized_task_digest": {"$ref": "#/$defs/digest"},
+            "patch_fingerprint": {
+              "anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+            },
+            "parent_case_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "contamination": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["benchmark_memberships", "generator_exposure"],
+          "properties": {
+            "benchmark_memberships": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1}
+            },
+            "generator_exposure": {"enum": ["known", "none", "unknown"]}
+          }
+        },
+        "annotation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "artifact_digest", "guide_version"],
+          "properties": {
+            "status": {"enum": ["pending", "double_labeled", "adjudicated"]},
+            "artifact_digest": {
+              "anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+            },
+            "guide_version": {"type": "string", "minLength": 1}
+          }
+        },
+        "split": {
+          "enum": ["unassigned", "seed", "train", "validation", "test", "challenge"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "admission": {
+                "type": "object",
+                "properties": {"decision": {"const": "admitted"}},
+                "required": ["decision"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "admission": {
+                "type": "object",
+                "properties": {"reason_codes": {"type": "array", "maxItems": 0}}
+              },
+              "rights": {
+                "type": "object",
+                "properties": {"research_analysis": {"const": "allowed"}}
+              },
+              "integrity": {
+                "type": "object",
+                "properties": {
+                  "patch_digest": {"$ref": "#/$defs/digest"},
+                  "evidence_bundle_digest": {"$ref": "#/$defs/digest"},
+                  "environment_image_digest": {"$ref": "#/$defs/digest"}
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "admission": {
+                "type": "object",
+                "properties": {"reason_codes": {"type": "array", "minItems": 1}}
+              },
+              "split": {"const": "unassigned"}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

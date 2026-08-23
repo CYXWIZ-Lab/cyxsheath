@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at": "2026-08-23T11:13:20Z",
+  "status": "astropy_retained_free_cloud_blocked_local_path_selected",
+  "decision_scope": "project_research_policy_not_legal_advice",
+  "design_decision": {
+    "id": "phase6-generator-boundary-001",
+    "essential_capability": "produce one genuine coding proposal without granting a provider benchmark input for model improvement",
+    "decision": "local_offline_openai_compatible_primary",
+    "implementation_status": "pending_synthetic_feasibility_canary",
+    "core_change_authorized": false,
+    "fallback": "named_zero_retention_no_training_external_route_requires_separate_pin_and_authorization",
+    "rejected_now": [
+      "free_cloud_route_with_training_or_improvement_use",
+      "another broad provider comparison",
+      "benchmark_submission_before_generator_identity_and_exposure_review"
+    ]
+  },
+  "sources": {
+    "exact_dataset_cards": {
+      "multilingual_revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+      "multilingual_readme_sha256": "c8b96ca94b43344556c610bcc4e836ef6b5472e2e1f9ca561aebd5cc011e3a14",
+      "multilingual_declared_license": "MIT",
+      "verified_revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "verified_readme_sha256": "923e6b481ff75c709737251e602bdc311a9be49235b5c20107366747f5640fe4",
+      "verified_declared_license": null
+    },
+    "swebench_project": {
+      "repository": "SWE-bench/SWE-bench",
+      "revision": "7a21e05772954cc81471ae19d56f436cecf43c54",
+      "revision_date": "2026-08-18T23:53:11Z",
+      "readme_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/7a21e05772954cc81471ae19d56f436cecf43c54/README.md",
+      "readme_sha256": "7f6c99470e27965d4220a41f703766fb98ae2bf1b3bc5633deed76d6b30d1088",
+      "license_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/7a21e05772954cc81471ae19d56f436cecf43c54/LICENSE",
+      "license_sha256": "2bd2e08df7147f67a69b42c10efae09bd4bf119df397371036187d5dd1b02f57",
+      "project_statement": "code_and_data_mit_including_verified",
+      "use_inference_documented": true
+    },
+    "opencode_zen": {
+      "repository": "anomalyco/opencode",
+      "revision": "3a31c4ea801915c0b050df4b3842997ea62b6e93",
+      "revision_date": "2026-08-22T12:50:02Z",
+      "document_url": "https://raw.githubusercontent.com/anomalyco/opencode/3a31c4ea801915c0b050df4b3842997ea62b6e93/packages/web/src/content/docs/zen.mdx",
+      "document_sha256": "7a4009299eb55513cb58d37a9bd898c74a43ad5813dc8594d0c257d54fa2129f",
+      "route": "opencode/mimo-v2.5-free",
+      "input_use": "may_be_used_to_improve_model"
+    },
+    "cyxcode_local_seam": {
+      "commit": "42676876b63ed5a18957e3318272eb0d875a95fc",
+      "branch": "sheath-integration",
+      "usage_sha256": "0e1f1081fc06fbb96dd6c1e991853672a811366a3c22b692250fb3fe727b217f",
+      "provider_source_sha256": "14b6afd08f8a5bc6f0da79fd640246f3392573a77e2a5e950a80c2d6b5f35939",
+      "docker_proxy_sha256": "5d5ae1a4a42fe0ed44b6a8d26179f2edf71ba5260e9bde0a80d9d8f71239e1ff",
+      "interface": "custom_openai_compatible_base_url",
+      "documented_runtime": "ollama",
+      "runtime_observed": "not_installed",
+      "container_host_alias_present": true
+    }
+  },
+  "case_decisions": [
+    {
+      "candidate_id": "phase6-cal-001",
+      "instance_id": "redis__redis-10068",
+      "research_analysis": "allowed",
+      "model_training": "unknown",
+      "free_mimo_outbound": "blocked",
+      "preexisting_generator_exposure": "unknown",
+      "project_outbound_history": "submitted_to_big_pickle_no_model_output",
+      "contamination_gate": "pending_pinned_generator_identity",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain"
+      ]
+    },
+    {
+      "candidate_id": "phase6-cal-008",
+      "instance_id": "fmtlib__fmt-1683",
+      "research_analysis": "allowed",
+      "model_training": "unknown",
+      "free_mimo_outbound": "blocked",
+      "preexisting_generator_exposure": "unknown",
+      "project_outbound_history": "submitted_to_big_pickle_no_model_output",
+      "contamination_gate": "pending_pinned_generator_identity",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain"
+      ]
+    },
+    {
+      "candidate_id": "phase6-cal-014",
+      "instance_id": "astropy__astropy-12907",
+      "exact_card_license": "NOASSERTION",
+      "supplemental_project_license": "MIT",
+      "research_analysis": "allowed",
+      "model_training": "unknown",
+      "free_mimo_outbound": "blocked",
+      "preexisting_generator_exposure": "unknown",
+      "project_outbound_history": "not_submitted",
+      "contamination_gate": "pending_pinned_generator_identity",
+      "case_selection": "retained",
+      "ledger_event_id": "phase6-cal-review-009",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain"
+      ]
+    }
+  ],
+  "execution_boundary": {
+    "benchmark_input_authorized": false,
+    "free_mimo_benchmark_submission": "blocked",
+    "local_runtime_installation_authorized": false,
+    "next_input_class": "generated_public_non_sensitive_non_benchmark",
+    "next_action": "audit_host_capacity_then_run_one_local_synthetic_feasibility_canary_after_runtime_and_model_design_decision"
+  }
+}

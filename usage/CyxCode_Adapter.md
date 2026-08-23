@@ -1,0 +1,85 @@
+# Using the CyxCode Adapter
+
+## Role in the Thesis
+
+CyxCode is the coding-agent generator, while Sheath owns the task contract, isolation, trusted patch extraction, verification, evidence, and verdict. The Python adapter is public under `sheath/src/sheath/cyxcode.py`. The experimental full CyxCode checkout under `integrations/cyxcode/` is an independent, ignored worktree and is not vendored in this repository.
+
+The pinned integration baseline is commit `42676876b63ed5a18957e3318272eb0d875a95fc` on branch `sheath-integration`, package version 2.3.8, with Bun 1.3.11.
+
+## Data Flow and Trust Boundary
+
+1. Sheath builds a canonical, model-visible prompt from the frozen task contract.
+2. `SubprocessCyxCodeExecutor` calls the Bun bridge `sheath-bridge.ts`.
+3. `runner.ts` runs `cyxcode run` as an isolated JSON stream, explicitly exports the matching session, parses it, redacts secrets, hashes artifacts, and removes adapter state.
+4. `sheath-docker.ts` enforces the pinned image/executable, mount policy, state isolation, timeout, and container cleanup.
+5. Sheath restores protected `.cyxcode` and `.opencode` roots, then a trusted Docker extractor derives the canonical patch from the workspace delta.
+6. The proposal enters normal Sheath verification. Model text never counts as verification evidence by itself.
+
+## Public Adapter Check
+
+The dependency-free Python tests exercise envelope validation, prompt preservation, proposal mapping, artifact handling, and protected-state restoration without requiring the CyxCode checkout:
+
+```powershell
+Set-Location sheath
+$env:PYTHONPATH='src'
+py -3.12 -m unittest tests.test_cyxcode_adapter -v
+```
+
+## Maintainer-Only Integration Check
+
+The following commands require the separately maintained experimental checkout. They are retained for provenance and are not a clean-clone public reproduction path yet.
+
+Install workspace dependencies once from the integration root:
+
+```powershell
+Set-Location integrations\cyxcode
+bun install --frozen-lockfile --ignore-scripts --no-progress
+```
+
+Then use package-local checks:
+
+```powershell
+Set-Location packages\opencode
+bun typecheck
+bun test test/cyxcode-adapter.test.ts test/cyxcode-adapter-live.test.ts
+```
+
+The recorded focused result is 9 passing adapter tests with 69 assertions. Run the application typecheck separately if its code changes:
+
+```powershell
+Set-Location ..\app
+bun typecheck
+```
+
+Do not run a full test command from the CyxCode repository root. General CLI features are documented by the separate [CyxCode project](https://github.com/code3hr/cyxcode), but that guide is not evidence that every feature has been validated for Sheath.
+
+## Deterministic Adapter Smoke: Maintainer Only
+
+From `sheath/`:
+
+```powershell
+$env:PYTHONPATH='src'
+py -3.12 scripts\run_cyxcode_smoke.py --artifact-root smoke-artifacts\cyxcode-local
+```
+
+This command requires the unpublished experimental bridge files in `integrations/cyxcode/`. A clean public clone should run the public adapter test above instead. The live bridge becomes a public reproduction path only after its CyxCode revision is reviewed and released.
+
+The default Phase-5 runtime identity is image `sha256:8a797f1541bc715f362d0e42981c12d57aa599ee4b6ba38ea5e8332a4c06539a`, executable `sha256:e9e88c1635c5c357395fd2e46c211c20c5c1b99d11d81ce83ea67fce580234b0`, and patch image `python@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65`.
+
+## Phase-6 Pilot Derivative
+
+The later pilot image is `sha256:f0a466626dcb1f123645ea9a40e2e7ef55c046dd7b76b8726d603605751b560c` with executable `sha256:8c9d82ad1dc42961666470248e9a2241a45eeb1f0327fa6ec6aefe61c6c1a31e`. It makes free-quota failures terminal and supports `CYXCODE_DISABLE_STATE_CONTEXT=1` for blinded pilot isolation. It has one successful build, so these are pins, not a repeated-build reproducibility claim.
+
+## Free-Model Canary: Completed, Do Not Rerun
+
+One bounded canary used `opencode/mimo-v2.5-free` through CyxCode's public-token route. Its only input was a generated, public, non-sensitive arithmetic fixture; no paid credential or benchmark data was used. It captured a one-file proposal and preserved the source.
+
+The gate now records `completed_single_attempt`, so `run_cyxcode_synthetic_canary.py` correctly rejects a second attempt. Consult the curated [gate](../Thesis/pilot_data/review_evidence/phase6_synthetic_canary_gate.json) and [result](../Thesis/pilot_data/proposal_evidence/phase6_synthetic_free_canary.json), not transient TUI output.
+
+The genuine benchmark runner remains blocked before task access. Do not alter that guard or submit quarantined candidates until the benchmark provider-exposure and case-rights gates pass. Before operating on the Python pilot, read [What Astropy Means Here](Pilot_Data_and_Evidence.md#what-astropy-means-here).
+
+## Selected Local Path: Not Yet Runnable
+
+Design decision `phase6-generator-boundary-001` selects CyxCode's existing custom OpenAI-compatible provider seam as the primary benchmark-generation path. The integration already documents an Ollama-style endpoint and the Docker proxy exposes `host.docker.internal`; no new core abstraction is approved.
+
+This is a design selection, not an installation guide. Ollama was not installed during the audit, no local model or weights digest is pinned, and benchmark input remains blocked. The next gate must first record host capacity and an explicit runtime/model choice, then use only a generated public non-benchmark fixture for one local feasibility canary.

@@ -1,0 +1,61 @@
+# Pilot Data and Evidence
+
+## Current Phase-6 State
+
+The pilot package has frozen schemas, an append-only ledger with 29 events for 20 revision-pinned C, C++, and Python candidates, a three-case vertical replay, source snapshots, bounded non-replay review, provider-policy records, and the completed synthetic canary record. Supplemental official project evidence now permits internal analysis of the Astropy case while preserving its exact card as `NOASSERTION`. All 20 candidates remain quarantined. No genuine model-backed benchmark proposal or benchmark result is claimed.
+
+The authoritative status is [`Research_and_Implementation_Roadmap.md`](../Thesis/Research_and_Implementation_Roadmap.md). File roles and evidence boundaries are described in [`Thesis/pilot_data/README.md`](../Thesis/pilot_data/README.md).
+
+## What Astropy Means Here
+
+Astropy is an open-source Python library for astronomy and astrophysics. In this project it is an external codebase used by SWE-bench Verified to define realistic software-maintenance tasks; it is not Sheath, CyxCode, a critic model, or a training framework.
+
+The completed Python vertical slice uses `astropy__astropy-12907` (candidate `phase6-cal-014`). Its controlled baseline replay reproduced the expected failing tests, and its gold-patch replay made those tests pass. This demonstrates that the pinned evaluation harness can distinguish the known broken and repaired states. It does **not** show that CyxCode generated the repair or that Sheath solved the task.
+
+The case remains quarantined for incomplete proposal artifacts and uncertain model contamination. Internal research analysis is allowed, but redistribution and model-training rights remain unknown. Therefore:
+
+- Running the validators below only checks curated evidence records; it does not execute or submit the Astropy task.
+- Do not send its issue text, source, tests, hints, or patches to a model provider.
+- Do not run the benchmark proposal path until the candidate-admission, generator-identity, and contamination gates are recorded as passed.
+
+## Validate the Curated Records
+
+Run these dependency-free checks from the repository root:
+
+```powershell
+python Thesis\pilot_data\validate_candidate_events.py Thesis\pilot_data\candidate_events.jsonl --expect-count 20 --expect-language C=7 --expect-language 'C++=6' --expect-language Python=7
+python Thesis\pilot_data\validate_replay_evidence.py Thesis\pilot_data\replay_evidence\phase6_vertical_slice.json
+python Thesis\pilot_data\validate_non_replay_review.py Thesis\pilot_data\review_evidence\phase6_non_replay_review.json
+python Thesis\pilot_data\validate_source_snapshots.py Thesis\pilot_data\proposal_evidence\phase6_source_snapshots.json
+python Thesis\pilot_data\validate_rights_and_provider_exposure.py Thesis\pilot_data\review_evidence\phase6_rights_and_provider_exposure.json
+python Thesis\pilot_data\validate_outbound_and_astropy_decision.py Thesis\pilot_data\review_evidence\phase6_outbound_and_astropy_decision.json
+python Thesis\pilot_data\validate_provider_replacement_gate.py Thesis\pilot_data\review_evidence\phase6_provider_replacement_gate.json
+python Thesis\pilot_data\validate_synthetic_canary_gate.py Thesis\pilot_data\review_evidence\phase6_synthetic_canary_gate.json
+python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
+```
+
+The last recorded pilot-data suite passed 46 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+
+## Evidence Layers
+
+- Candidate events record discovery, review, rejection, quarantine, and later decisions without erasing history.
+- Replay evidence tests whether pinned upstream baseline and gold patches reproduce in the controlled harness.
+- Non-replay review checks bounded privacy, secret, safety, lineage, license, and file-scope properties.
+- Source snapshots bind a candidate to a content-addressed repository state.
+- Provider gates separate synthetic infrastructure permission from stricter benchmark admission.
+- Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
+
+## Adding Evidence Safely
+
+1. Identify the exact candidate, revision, source, and applicable schema.
+2. Write raw or temporary artifacts only inside the approved boundary; provider artifacts currently remain under `.replay_cache` unless a curated, redacted record is specified.
+3. Append a new candidate event instead of changing an earlier event.
+4. Create the smallest evidence record needed for the claim.
+5. Run its dedicated validator and the full pilot-data suite.
+6. Update the roadmap and a dated progress note with commands, identities, findings, limitations, and next gate.
+
+Do not regenerate the non-replay evidence during ordinary validation. Regeneration depends on the pinned PyArrow environment and dataset inputs; the committed record is intentionally validated separately.
+
+## What May Run Now
+
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The recorded primary path is CyxCode's existing local OpenAI-compatible seam, but no runtime installation or model has been approved. The next work item is a host-capacity audit and an explicit runtime/model design decision before one generated, non-benchmark local feasibility canary.

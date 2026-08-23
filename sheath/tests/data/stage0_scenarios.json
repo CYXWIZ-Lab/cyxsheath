@@ -1,0 +1,253 @@
+[
+  {
+    "id": "fixture-01-accept-current-evidence",
+    "description": "Accept when every mandatory check has current passing evidence.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "accept", "reason_codes": ["mandatory_checks.current_and_passed"]}
+  },
+  {
+    "id": "fixture-02-missing-scope",
+    "description": "Request revision when scope evidence is missing.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.missing:scope.paths"]}
+  },
+  {
+    "id": "fixture-03-missing-tests",
+    "description": "Request revision when regression-test evidence is missing.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.missing:tests.regression"]}
+  },
+  {
+    "id": "fixture-04-failed-scope",
+    "description": "Request revision when the scope check fails.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": false, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.failed:scope.paths"]}
+  },
+  {
+    "id": "fixture-05-failed-tests",
+    "description": "Request revision when regression tests fail.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": false, "source": "tool"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.failed:tests.regression"]}
+  },
+  {
+    "id": "fixture-06-missing-all-checks",
+    "description": "Report every missing mandatory check in contract order.",
+    "operations": [],
+    "expected": {
+      "verdict": "revise",
+      "reason_codes": [
+        "mandatory_check.missing:scope.paths",
+        "mandatory_check.missing:tests.regression"
+      ]
+    }
+  },
+  {
+    "id": "fixture-07-all-evidence-stale",
+    "description": "Invalidate all earlier evidence after a repository revision.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope-r1", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-r1", "check_id": "tests.regression", "passed": true, "source": "tool"},
+      {"kind": "revision", "revision": "r2"}
+    ],
+    "expected": {
+      "verdict": "revise",
+      "reason_codes": [
+        "mandatory_check.stale:scope.paths",
+        "mandatory_check.stale:tests.regression"
+      ]
+    }
+  },
+  {
+    "id": "fixture-08-partial-reverification",
+    "description": "Keep an unrepeated test check stale after only scope is reverified.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope-r1", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-r1", "check_id": "tests.regression", "passed": true, "source": "tool"},
+      {"kind": "revision", "revision": "r2"},
+      {"kind": "evidence", "id": "ev-scope-r2", "check_id": "scope.paths", "passed": true, "source": "rule"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.stale:tests.regression"]}
+  },
+  {
+    "id": "fixture-09-latest-test-fails",
+    "description": "Use the latest current result when a later test run fails.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-pass", "check_id": "tests.regression", "passed": true, "source": "tool"},
+      {"kind": "evidence", "id": "ev-tests-fail", "check_id": "tests.regression", "passed": false, "source": "tool"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.failed:tests.regression"]}
+  },
+  {
+    "id": "fixture-10-latest-test-passes",
+    "description": "Accept after a later current test run repairs an earlier failure.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-fail", "check_id": "tests.regression", "passed": false, "source": "tool"},
+      {"kind": "evidence", "id": "ev-tests-pass", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "accept", "reason_codes": ["mandatory_checks.current_and_passed"]}
+  },
+  {
+    "id": "fixture-11-full-reverification",
+    "description": "Accept after every mandatory check is rerun on a new revision.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope-r1", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-r1", "check_id": "tests.regression", "passed": true, "source": "tool"},
+      {"kind": "revision", "revision": "r2"},
+      {"kind": "evidence", "id": "ev-scope-r2", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests-r2", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "accept", "reason_codes": ["mandatory_checks.current_and_passed"]}
+  },
+  {
+    "id": "fixture-12-unresolved-contract",
+    "description": "Escalate a material requirement question before checking evidence.",
+    "task_overrides": {"unresolved_questions": ["May the public API change?"]},
+    "operations": [],
+    "expected": {"verdict": "escalate", "reason_codes": ["contract.unresolved_material_question"]}
+  },
+  {
+    "id": "fixture-13-no-required-checks",
+    "description": "Escalate a contract that defines no mandatory verification.",
+    "task_overrides": {"required_checks": []},
+    "operations": [],
+    "expected": {"verdict": "escalate", "reason_codes": ["contract.no_required_checks"]}
+  },
+  {
+    "id": "fixture-14-hard-policy-block",
+    "description": "Give a recorded hard-policy finding precedence over missing checks.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-policy", "check_id": "policy.command", "passed": false, "source": "policy"}
+    ],
+    "findings": [
+      {
+        "id": "finding-policy",
+        "category": "unsafe_action",
+        "severity": "blocking",
+        "message": "The requested command exceeds authorization.",
+        "evidence_ids": ["ev-policy"],
+        "source": "policy"
+      }
+    ],
+    "expected": {"verdict": "block", "reason_codes": ["finding.blocking:finding-policy"]}
+  },
+  {
+    "id": "fixture-15-judgment-escalation",
+    "description": "Escalate when a finding requires authority unavailable to the system.",
+    "operations": [],
+    "findings": [
+      {
+        "id": "finding-authority",
+        "category": "epistemic_gap",
+        "severity": "escalation",
+        "message": "The compatibility exception requires owner approval.",
+        "evidence_ids": [],
+        "source": "human"
+      }
+    ],
+    "expected": {"verdict": "escalate", "reason_codes": ["finding.escalation:finding-authority"]}
+  },
+  {
+    "id": "fixture-16-review-finding",
+    "description": "Request revision for a correctable finding despite passing checks.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "findings": [
+      {
+        "id": "finding-impact",
+        "category": "impact_gap",
+        "severity": "revision",
+        "message": "A downstream compatibility check is still required.",
+        "evidence_ids": [],
+        "source": "rule"
+      }
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["finding.revision:finding-impact"]}
+  },
+  {
+    "id": "fixture-17-warning-does-not-block",
+    "description": "Allow a warning to remain visible without blocking valid work.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "findings": [
+      {
+        "id": "finding-warning",
+        "category": "other",
+        "severity": "warning",
+        "message": "An optional documentation improvement is available.",
+        "evidence_ids": [],
+        "source": "human"
+      }
+    ],
+    "expected": {"verdict": "accept", "reason_codes": ["mandatory_checks.current_and_passed"]}
+  },
+  {
+    "id": "fixture-18-info-does-not-block",
+    "description": "Allow an informational finding without creating a false intervention.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "findings": [
+      {
+        "id": "finding-info",
+        "category": "no_violation",
+        "severity": "info",
+        "message": "The proposal is scoped to the requested behavior.",
+        "evidence_ids": ["ev-scope"],
+        "source": "rule"
+      }
+    ],
+    "expected": {"verdict": "accept", "reason_codes": ["mandatory_checks.current_and_passed"]}
+  },
+  {
+    "id": "fixture-19-risk-selected-check-missing",
+    "description": "Require a risk-selected security check in addition to standard checks.",
+    "task_overrides": {"required_checks": ["scope.paths", "tests.regression", "security.static"]},
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "expected": {"verdict": "revise", "reason_codes": ["mandatory_check.missing:security.static"]}
+  },
+  {
+    "id": "fixture-20-dangling-finding-evidence",
+    "description": "Escalate rather than trust a finding that cites nonexistent evidence.",
+    "operations": [
+      {"kind": "evidence", "id": "ev-scope", "check_id": "scope.paths", "passed": true, "source": "rule"},
+      {"kind": "evidence", "id": "ev-tests", "check_id": "tests.regression", "passed": true, "source": "tool"}
+    ],
+    "findings": [
+      {
+        "id": "finding-unknown",
+        "category": "evidence_gap",
+        "severity": "revision",
+        "message": "This finding cites an observation absent from the ledger.",
+        "evidence_ids": ["ev-unknown"],
+        "source": "rule"
+      }
+    ],
+    "expected": {
+      "verdict": "escalate",
+      "reason_codes": ["finding.unknown_evidence:finding-unknown:ev-unknown"]
+    }
+  }
+]

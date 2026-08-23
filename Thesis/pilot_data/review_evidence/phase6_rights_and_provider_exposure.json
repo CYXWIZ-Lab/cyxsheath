@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at": "2026-08-20T21:13:44Z",
+  "status": "rights_partially_resolved_provider_blocked",
+  "decision_scope": "project_research_policy_not_legal_advice",
+  "sources": {
+    "dataset_cards": {
+      "multilingual": {
+        "dataset_id": "SWE-bench/SWE-bench_Multilingual",
+        "revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+        "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/raw/846e647b9f33c0b51b739d005d13d85493c9af09/README.md",
+        "sha256": "c8b96ca94b43344556c610bcc4e836ef6b5472e2e1f9ca561aebd5cc011e3a14",
+        "declared_license": "MIT"
+      },
+      "verified": {
+        "dataset_id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/raw/78f471bf655a3137b2e8a75af1501690ec009ec3/README.md",
+        "sha256": "923e6b481ff75c709737251e602bdc311a9be49235b5c20107366747f5640fe4",
+        "declared_license": null
+      }
+    },
+    "provider": {
+      "model_id": "opencode/big-pickle",
+      "model_name": "Big Pickle",
+      "official_documentation": "https://opencode.ai/docs/zen",
+      "documentation_observed_at": "2026-08-21",
+      "documentation_last_updated": "2026-08-20",
+      "local_cyxcode_commit": "42676876b63ed5a18957e3318272eb0d875a95fc",
+      "local_catalog_sha256": "9948ade8dc8bf8da6481dfd372463d5a446ed408fb0ac4ca22929262b0e557fd",
+      "local_zen_document_sha256": "3f95c2e3677eca7324f75edac92f1d9b555e83a05c945dd52cba79f8e867748e"
+    }
+  },
+  "provider_assessment": {
+    "open_weights": false,
+    "underlying_model_identity_disclosed": false,
+    "weights_revision_pinned": false,
+    "training_corpus_disclosed": false,
+    "preexisting_benchmark_exposure": "unknown",
+    "free_period_prompt_use": "may_be_used_to_improve_model",
+    "further_benchmark_submission": "blocked",
+    "decision_basis": "stealth_unversioned_model_and_provider_disclosed_data_improvement_use"
+  },
+  "cases": [
+    {
+      "candidate_id": "phase6-cal-001",
+      "dataset_key": "multilingual",
+      "upstream_spdx_expression": "BSD-3-Clause",
+      "upstream_license_evidence_sha256": "97f0a15b7bbae580d2609dad2e11f1956ae167be296ab60f4691ab9c30ee9828",
+      "file_scope_license": "passed",
+      "rights": {
+        "research_analysis": "allowed",
+        "redistribute_metadata": "unknown",
+        "redistribute_derived_labels": "unknown",
+        "redistribute_source": "unknown",
+        "model_training": "unknown"
+      },
+      "contamination": {
+        "benchmark_membership": "known",
+        "generator_exposure": "unknown",
+        "outbound_submission": "submitted_no_model_output",
+        "gate": "pending"
+      },
+      "ledger_event_id": "phase6-cal-review-007",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain"
+      ]
+    },
+    {
+      "candidate_id": "phase6-cal-008",
+      "dataset_key": "multilingual",
+      "upstream_spdx_expression": "MIT",
+      "upstream_license_evidence_sha256": "825c9324e70f8c839c8ba910543dd4a7daee243b86ef960594c11381a19980b8",
+      "file_scope_license": "passed",
+      "rights": {
+        "research_analysis": "allowed",
+        "redistribute_metadata": "unknown",
+        "redistribute_derived_labels": "unknown",
+        "redistribute_source": "unknown",
+        "model_training": "unknown"
+      },
+      "contamination": {
+        "benchmark_membership": "known",
+        "generator_exposure": "unknown",
+        "outbound_submission": "submitted_no_model_output",
+        "gate": "pending"
+      },
+      "ledger_event_id": "phase6-cal-review-008",
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain"
+      ]
+    },
+    {
+      "candidate_id": "phase6-cal-014",
+      "dataset_key": "verified",
+      "upstream_spdx_expression": "BSD-3-Clause",
+      "upstream_license_evidence_sha256": "c24e11182f188ebb0ff7d92132b7d3394411816dd4eb6ecccf8e91f3dc168d8e",
+      "file_scope_license": "passed",
+      "rights": {
+        "research_analysis": "unknown",
+        "redistribute_metadata": "unknown",
+        "redistribute_derived_labels": "unknown",
+        "redistribute_source": "unknown",
+        "model_training": "unknown"
+      },
+      "contamination": {
+        "benchmark_membership": "known",
+        "generator_exposure": "unknown",
+        "outbound_submission": "not_submitted",
+        "gate": "pending"
+      },
+      "ledger_event_id": null,
+      "disposition": "quarantined",
+      "reason_codes": [
+        "artifact.incomplete",
+        "contamination.uncertain",
+        "license.unclear"
+      ]
+    }
+  ]
+}

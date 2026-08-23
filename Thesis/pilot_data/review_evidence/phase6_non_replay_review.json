@@ -1,0 +1,280 @@
+{
+  "cases": [
+    {
+      "artifacts": {
+        "artifact_gate": "pending",
+        "changed_paths": [
+          "src/t_stream.c",
+          "tests/unit/type/stream.tcl"
+        ],
+        "eval_script_sha256": "b5a3473474dc00c70c79b9254ea3b4980bd54d27a5985ad4e0304080f7dccd2c",
+        "generator_proposal_present": false,
+        "normalized_task_sha256": "ab7d1e3341ebb5bfbc840143f9168660724111baabcb148d0e2a1bb7130c458a",
+        "patch_fingerprint": {
+          "complete_git_blob_ids": true,
+          "entry_count": 2,
+          "sha256": "fdcee0a0393bb5b6cd9eef73a9321b3e855bfcea31d1d0356eccd953508f03a8"
+        },
+        "patch_sha256": "bfd6bb78c0989f447eb45cdc9a1fb3ff790d7d33313a6638d3737f4cc6858ff1",
+        "source_snapshot_digest": null,
+        "task_sha256": "715dccc041916d7c1f6ef38374cb75b97a26361e54313af3ac1fbc3972dd064f",
+        "test_patch_sha256": "c1e87f169718938c45d0e08009fcb3345ac2d4e1a69ed662fcbdc97204b3008f"
+      },
+      "automated_scan": {
+        "fields_scanned": [
+          "problem_statement",
+          "hints_text",
+          "patch",
+          "test_patch",
+          "eval_script"
+        ],
+        "raw_text_retained": false,
+        "secret_signal_total": 0,
+        "signal_counts": {
+          "account_mention": 0,
+          "aws_access_key": 0,
+          "email": 0,
+          "generic_secret_assignment": 0,
+          "github_token": 0,
+          "offensive_security": 0,
+          "private_key": 0,
+          "url": 0
+        }
+      },
+      "candidate_id": "phase6-cal-001",
+      "instance_id": "redis__redis-10068",
+      "language": "C",
+      "lineage": {
+        "automated_gate": "passed",
+        "exact_normalized_task_matches": [],
+        "exact_patch_matches": [],
+        "inventory_size": 20,
+        "maximum_other_task_jaccard": 0.0,
+        "near_duplicate_threshold": 0.85,
+        "near_task_matches": [],
+        "normalization": "UTF-8 NFC; LF; trailing spaces removed; outer whitespace trimmed",
+        "task_similarity": "lowercase alphanumeric/underscore token five-gram Jaccard"
+      },
+      "manual_review": {
+        "artifact": "pending",
+        "contamination": "pending",
+        "disposition": "quarantined",
+        "file_scope_basis": "core_source_and_project_test_paths_only",
+        "file_scope_license": "passed",
+        "lineage": "passed",
+        "privacy": "passed",
+        "privacy_basis": "no_identity_or_personal_data_detected",
+        "reason_codes": [
+          "artifact.incomplete",
+          "contamination.uncertain",
+          "license.unclear"
+        ],
+        "research_analysis": "unknown",
+        "safety": "passed",
+        "safety_classification": "ordinary_defensive_bug_fix",
+        "secrets": "passed"
+      },
+      "repository_family": "redis/redis",
+      "review_boundaries": {
+        "benchmark_dataset_license": "MIT",
+        "benchmark_membership": "known",
+        "contamination_gate": "pending",
+        "generator_exposure": "unknown",
+        "research_analysis": "unknown",
+        "upstream_license_evidence_sha256": "97f0a15b7bbae580d2609dad2e11f1956ae167be296ab60f4691ab9c30ee9828",
+        "upstream_license_evidence_uri": "https://raw.githubusercontent.com/redis/redis/e88f6acb94c77c9a5b81f0b2a8bd132b2a5c3d3c/COPYING",
+        "upstream_spdx_expression": "BSD-3-Clause"
+      }
+    },
+    {
+      "artifacts": {
+        "artifact_gate": "pending",
+        "changed_paths": [
+          "include/fmt/printf.h",
+          "test/printf-test.cc"
+        ],
+        "eval_script_sha256": "44b5ab5819d350fbd176a04e0dfa3ed83e6f302add1ff480f64148d04babaf00",
+        "generator_proposal_present": false,
+        "normalized_task_sha256": "f3101c11c319b8d0c8849c3552d1bc8aa3f47e2fae46fe22041ea1f99344654a",
+        "patch_fingerprint": {
+          "complete_git_blob_ids": true,
+          "entry_count": 2,
+          "sha256": "c888f69e79864fb8874431d3cdac26e17c5d92b27d950388217fea41895863f7"
+        },
+        "patch_sha256": "a89609408f7f1b5243e1b91d2cdd89a5cdb429598800fa4ada1178bcadd550a1",
+        "source_snapshot_digest": null,
+        "task_sha256": "4d4edd1bddc634cf7fedde375978ed6b355ff6b614e52d7b7e4cda863c026937",
+        "test_patch_sha256": "240fe771e12aebbf64d492888d6678f72fc7e15d431a359352fdcd17812b80b0"
+      },
+      "automated_scan": {
+        "fields_scanned": [
+          "problem_statement",
+          "hints_text",
+          "patch",
+          "test_patch",
+          "eval_script"
+        ],
+        "raw_text_retained": false,
+        "secret_signal_total": 0,
+        "signal_counts": {
+          "account_mention": 0,
+          "aws_access_key": 0,
+          "email": 0,
+          "generic_secret_assignment": 0,
+          "github_token": 0,
+          "offensive_security": 0,
+          "private_key": 0,
+          "url": 1
+        }
+      },
+      "candidate_id": "phase6-cal-008",
+      "instance_id": "fmtlib__fmt-1683",
+      "language": "C++",
+      "lineage": {
+        "automated_gate": "passed",
+        "exact_normalized_task_matches": [],
+        "exact_patch_matches": [],
+        "inventory_size": 20,
+        "maximum_other_task_jaccard": 0.002778,
+        "near_duplicate_threshold": 0.85,
+        "near_task_matches": [],
+        "normalization": "UTF-8 NFC; LF; trailing spaces removed; outer whitespace trimmed",
+        "task_similarity": "lowercase alphanumeric/underscore token five-gram Jaccard"
+      },
+      "manual_review": {
+        "artifact": "pending",
+        "contamination": "pending",
+        "disposition": "quarantined",
+        "file_scope_basis": "core_source_and_project_test_paths_only",
+        "file_scope_license": "passed",
+        "lineage": "passed",
+        "privacy": "passed",
+        "privacy_basis": "no_identity_or_personal_data_detected;standards_reference_url_only",
+        "reason_codes": [
+          "artifact.incomplete",
+          "contamination.uncertain",
+          "license.unclear"
+        ],
+        "research_analysis": "unknown",
+        "safety": "passed",
+        "safety_classification": "ordinary_defensive_bug_fix",
+        "secrets": "passed"
+      },
+      "repository_family": "fmtlib/fmt",
+      "review_boundaries": {
+        "benchmark_dataset_license": "MIT",
+        "benchmark_membership": "known",
+        "contamination_gate": "pending",
+        "generator_exposure": "unknown",
+        "research_analysis": "unknown",
+        "upstream_license_evidence_sha256": "825c9324e70f8c839c8ba910543dd4a7daee243b86ef960594c11381a19980b8",
+        "upstream_license_evidence_uri": "https://raw.githubusercontent.com/fmtlib/fmt/981b517ccf2d91bf3bf52c518ac43710b57b5e17/LICENSE.rst",
+        "upstream_spdx_expression": "MIT"
+      }
+    },
+    {
+      "artifacts": {
+        "artifact_gate": "pending",
+        "changed_paths": [
+          "astropy/modeling/separable.py",
+          "astropy/modeling/tests/test_separable.py"
+        ],
+        "eval_script_sha256": "229f462fcbdcae232228507f9491b8538c5aeaeede709c5fc822b586245d9460",
+        "generator_proposal_present": false,
+        "normalized_task_sha256": "63001854ac41837142acfae9d6ae102a99ceb2773567de2fc6af410ef6fe04db",
+        "patch_fingerprint": {
+          "complete_git_blob_ids": false,
+          "entry_count": 2,
+          "sha256": "dc8ae98ecaac3db02d8918ff88520911f2c9548b31e593961afa34651e8b67bf"
+        },
+        "patch_sha256": "0f3e44432ed8540e9526edff4f83793948a2f139fc3971b67c30043c1eb7964a",
+        "source_snapshot_digest": null,
+        "task_sha256": "c01334ec1b21a089c650cf2e7b96ab974469076bf1260d23885799e1f0a7551f",
+        "test_patch_sha256": "5ef90b640ffce4590bb61ef2ea0e3256416dddf41b45bf4f2c3610a6e8c53718"
+      },
+      "automated_scan": {
+        "fields_scanned": [
+          "problem_statement",
+          "hints_text",
+          "patch",
+          "test_patch",
+          "eval_script"
+        ],
+        "raw_text_retained": false,
+        "secret_signal_total": 0,
+        "signal_counts": {
+          "account_mention": 0,
+          "aws_access_key": 0,
+          "email": 0,
+          "generic_secret_assignment": 0,
+          "github_token": 0,
+          "offensive_security": 0,
+          "private_key": 0,
+          "url": 0
+        }
+      },
+      "candidate_id": "phase6-cal-014",
+      "instance_id": "astropy__astropy-12907",
+      "language": "Python",
+      "lineage": {
+        "automated_gate": "passed",
+        "exact_normalized_task_matches": [],
+        "exact_patch_matches": [],
+        "inventory_size": 20,
+        "maximum_other_task_jaccard": 0.0,
+        "near_duplicate_threshold": 0.85,
+        "near_task_matches": [],
+        "normalization": "UTF-8 NFC; LF; trailing spaces removed; outer whitespace trimmed",
+        "task_similarity": "lowercase alphanumeric/underscore token five-gram Jaccard"
+      },
+      "manual_review": {
+        "artifact": "pending",
+        "contamination": "pending",
+        "disposition": "quarantined",
+        "file_scope_basis": "core_source_and_project_test_paths_only",
+        "file_scope_license": "passed",
+        "lineage": "passed",
+        "privacy": "passed",
+        "privacy_basis": "no_identity_or_personal_data_detected",
+        "reason_codes": [
+          "artifact.incomplete",
+          "contamination.uncertain",
+          "license.unclear"
+        ],
+        "research_analysis": "unknown",
+        "safety": "passed",
+        "safety_classification": "ordinary_defensive_bug_fix",
+        "secrets": "passed"
+      },
+      "repository_family": "astropy/astropy",
+      "review_boundaries": {
+        "benchmark_dataset_license": "NOASSERTION",
+        "benchmark_membership": "known",
+        "contamination_gate": "pending",
+        "generator_exposure": "unknown",
+        "research_analysis": "unknown",
+        "upstream_license_evidence_sha256": "c24e11182f188ebb0ff7d92132b7d3394411816dd4eb6ecccf8e91f3dc168d8e",
+        "upstream_license_evidence_uri": "https://raw.githubusercontent.com/astropy/astropy/d16bfe05a744909de4b27f5875fe0d4ed41ce607/LICENSE.rst",
+        "upstream_spdx_expression": "BSD-3-Clause"
+      }
+    }
+  ],
+  "inputs": {
+    "candidate_ledger_pre_review_event_count": 23,
+    "candidate_ledger_pre_review_sha256": "ef6705d38c58809f4996c2c650dec62463850c67572c6649838646718a4ab1ba",
+    "manual_decisions": "phase6_non_replay_decisions.json",
+    "manual_decisions_sha256": "f935423abacc6d2b1532e036f81a024f2d5bdbe17f8360763904f3eaacb5a25e",
+    "multilingual_parquet_sha256": "92abca7cb527b41a9f66d03a26ce441ff7319e3a49f985998fd56be4bb9b08b2",
+    "review_script": "../review_candidate_artifacts.py",
+    "review_script_sha256": "00970a9c368042a9a98f567b30873a2226e7ca8e7a8b55f104853c614429d6d5",
+    "verified_parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "privacy_policy": "No task text, hints, patches, test bodies, scripts, or matched substrings are retained.",
+  "recorded_at": "2026-08-20T17:20:00Z",
+  "schema_version": "1.0.0",
+  "scope": {
+    "inventory_candidates": 20,
+    "reviewed_candidates": 3
+  },
+  "status": "non_replay_review_complete_admission_blocked"
+}

@@ -1,0 +1,41 @@
+{
+  "blinded_checks_in_generator_context": false,
+  "candidate_id": "phase6-cal-008",
+  "diagnosis": {
+    "http_status": 429,
+    "model_output_observed": false,
+    "provider_error_type": "FreeUsageLimitError",
+    "run_timed_out": false,
+    "state_removed": true,
+    "workspace_changed_files": 0
+  },
+  "disposition": "quarantined",
+  "failure_reason": "CyxCode execution failed: session-failed",
+  "gold_patch_in_generator_context": false,
+  "instance_id": "fmtlib__fmt-1683",
+  "model": {
+    "input_cost": 0,
+    "input_modality": "text",
+    "model": "big-pickle",
+    "name": "Big Pickle",
+    "output_cost": 0,
+    "output_modality": "text",
+    "provider": "opencode",
+    "registry": "bundled models-snapshot.js",
+    "tool_call": true
+  },
+  "recorded_at": "2026-08-20T21:03:01Z",
+  "retained_artifacts": [
+    {
+      "digest": "sha256:2b7e6b730180171732a4288ef46873ff25283aaf27cf0a6355b182e25580ca21",
+      "id": "artifact:response:2b7e6b730180171732a4288ef46873ff25283aaf27cf0a6355b182e25580ca21",
+      "kind": "response",
+      "size_bytes": 16898
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_archive_sha256": "bfbaf9054e2a71f10abf96aefc073c97ff407bac569eedb3674c1ad8ac7e857d",
+  "source_directory_digest": "sha256:6700020b8c6b11084291dcd7923f02d493f4d51ec2d31b8d9297b631e7617d52",
+  "status": "generator_failed",
+  "task_contract_sha256": "e3244458c060e2492ce718bdfb145b75993652b5d8ac1e1cf584b6c97ede7a61"
+}

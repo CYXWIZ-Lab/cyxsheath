@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "pilot-example-only",
+  "created_at": "2026-08-20T00:00:00Z",
+  "specification_digest": "sha256:6e882260d9a00afdfe8b4fed52c9bd68ce2add22f1cba8a992b5af332a547b2b",
+  "license_list_version": "3.28.0",
+  "entries": [
+    {
+      "case_id": "example-case-not-data",
+      "admission": {
+        "decision": "admitted",
+        "reason_codes": [],
+        "reviewed_at": "2026-08-20T00:00:00Z"
+      },
+      "source": {
+        "uri": "https://example.org/repository",
+        "repository_family": "example/repository",
+        "revision": "example-revision",
+        "published_at": "2026-08-01T00:00:00Z",
+        "collected_at": "2026-08-20T00:00:00Z",
+        "language": "python",
+        "task_type": "bug_fix",
+        "license_expression": "MIT",
+        "license_evidence_uri": "https://example.org/repository/license"
+      },
+      "rights": {
+        "research_analysis": "allowed",
+        "redistribute_metadata": "allowed",
+        "redistribute_derived_labels": "allowed",
+        "redistribute_source": "unknown",
+        "model_training": "unknown"
+      },
+      "integrity": {
+        "task_record_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "snapshot_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+        "patch_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "evidence_bundle_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+        "environment_image_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+      },
+      "lineage": {
+        "lineage_group": "example-lineage",
+        "duplicate_group": null,
+        "normalized_task_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+        "patch_fingerprint": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+        "parent_case_ids": []
+      },
+      "contamination": {
+        "benchmark_memberships": [],
+        "generator_exposure": "unknown"
+      },
+      "annotation": {
+        "status": "adjudicated",
+        "artifact_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "guide_version": "1.0.0"
+      },
+      "split": "seed"
+    }
+  ]
+}

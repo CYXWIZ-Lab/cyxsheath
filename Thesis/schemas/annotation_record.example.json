@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "example-case-not-data",
+  "guide_version": "1.0.0",
+  "annotations": [
+    {
+      "annotation_id": "example-annotation-a",
+      "reviewer_id": "reviewer-a",
+      "recorded_at": "2026-08-20T00:00:00Z",
+      "no_violation": false,
+      "findings": [
+        {
+          "id": "example-finding-a",
+          "observation": "The proposal claims completion without the required regression check.",
+          "artifact_refs": ["artifact:example-response"],
+          "contract_refs": ["tests.regression"],
+          "category": "evidence_gap",
+          "severity": "revision",
+          "refuting_evidence": "A passing observation from the authorized regression command.",
+          "recommended_action": "revise"
+        }
+      ],
+      "case_action": "revise"
+    },
+    {
+      "annotation_id": "example-annotation-b",
+      "reviewer_id": "reviewer-b",
+      "recorded_at": "2026-08-20T00:01:00Z",
+      "no_violation": false,
+      "findings": [
+        {
+          "id": "example-finding-b",
+          "observation": "No current regression-test evidence supports the completion claim.",
+          "artifact_refs": ["artifact:example-response"],
+          "contract_refs": ["tests.regression"],
+          "category": "evidence_gap",
+          "severity": "revision",
+          "refuting_evidence": "A current passing regression-test observation.",
+          "recommended_action": "revise"
+        }
+      ],
+      "case_action": "revise"
+    }
+  ],
+  "adjudication": {
+    "reviewer_id": "reviewer-c",
+    "recorded_at": "2026-08-20T00:02:00Z",
+    "source_annotation_ids": ["example-annotation-a", "example-annotation-b"],
+    "no_violation": false,
+    "findings": [
+      {
+        "id": "example-finding-adjudicated",
+        "observation": "The completion claim lacks the mandatory current regression-test evidence.",
+        "artifact_refs": ["artifact:example-response"],
+        "contract_refs": ["tests.regression"],
+        "category": "evidence_gap",
+        "severity": "revision",
+        "refuting_evidence": "A current passing observation from the authorized regression command.",
+        "recommended_action": "revise"
+      }
+    ],
+    "case_action": "revise",
+    "rationale": "Both independent annotations identify the same missing mandatory evidence."
+  }
+}

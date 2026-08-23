@@ -1,0 +1,30 @@
+{
+  "attempt": 1,
+  "benchmark_input_used": false,
+  "changed_paths": [
+    "arithmetic.py"
+  ],
+  "cost_class": "free",
+  "input_class": "synthetic_public_non_sensitive_non_benchmark",
+  "model": "opencode/mimo-v2.5-free",
+  "paid_credential_used": false,
+  "patch_artifact": {
+    "digest": "sha256:a5b74e102380c8325572dfa694eaab0f6be56a359797e8da4e6250961bf5178f",
+    "id": "artifact:patch:a5b74e102380c8325572dfa694eaab0f6be56a359797e8da4e6250961bf5178f",
+    "size_bytes": 889
+  },
+  "proposal_id": "proposal:cyxcode:d683c545561ea6a471072f9bda13b6dedd85339abba0a8cf35b9ae49018e1d54",
+  "raw_artifact_boundary": ".replay_cache only",
+  "recorded_at": "2026-08-23T08:45:00Z",
+  "response_artifact": {
+    "digest": "sha256:adb7d1ad2d3bd669d70ffd150b6921e4de35f5896886ae443dd628b396ab68c5",
+    "id": "artifact:response:adb7d1ad2d3bd669d70ffd150b6921e4de35f5896886ae443dd628b396ab68c5",
+    "size_bytes": 54143
+  },
+  "result_directory_digest": "sha256:1c2304e2313ad62c51d65da3b46cefdbecb14c1a6a35c02612b364c8b5fed438",
+  "schema_version": "1.0.0",
+  "source_directory_digest": "sha256:28b641c0fd59a4490555f37f552f211823d2bfaa45404e6e10d951a2814e18f3",
+  "source_preserved": true,
+  "status": "proposal_captured",
+  "task_contract_sha256": "b6d7632aba51d5a91d2f517ca83127891b9288387d2d64b8f8b533f0a0c069c4"
+}

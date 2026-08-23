@@ -1,0 +1,69 @@
+{
+  "cases": [
+    {
+      "base_object_type": "commit",
+      "base_revision": "e88f6acb94c77c9a5b81f0b2a8bd132b2a5c3d3c",
+      "base_tree_sha1": "d8da3bf4f76dcc17fa05280f74ac16b33e636f1d",
+      "candidate_id": "phase6-cal-001",
+      "container_head": "e88f6acb94c77c9a5b81f0b2a8bd132b2a5c3d3c",
+      "git_version": "2.34.1",
+      "head_matches_base_revision": true,
+      "image_linux_amd64_digest": "sha256:f4a7cd84f164f07cde8da7feacd4188035e3991749453fc3afb23def851a88c1",
+      "image_reference": "swebench/sweb.eval.x86_64.redis_1776_redis-10068:latest",
+      "instance_id": "redis__redis-10068",
+      "language": "C",
+      "repository": "redis/redis",
+      "snapshot_gate": "passed",
+      "source_archive_sha256": "9c944759c334437881e2e1a5f9c5d09412b86c174ce14977fd013509c59936c4"
+    },
+    {
+      "base_object_type": "commit",
+      "base_revision": "981b517ccf2d91bf3bf52c518ac43710b57b5e17",
+      "base_tree_sha1": "8ccd12ea7ab379e67dacb1ab7b1b0dcd8ef8113a",
+      "candidate_id": "phase6-cal-008",
+      "container_head": "981b517ccf2d91bf3bf52c518ac43710b57b5e17",
+      "git_version": "2.34.1",
+      "head_matches_base_revision": true,
+      "image_linux_amd64_digest": "sha256:e231b3a73440dac9374d25d20f728615a9e7b8e69addf5a46b22690299bc33a5",
+      "image_reference": "swebench/sweb.eval.x86_64.fmtlib_1776_fmt-1683:latest",
+      "instance_id": "fmtlib__fmt-1683",
+      "language": "C++",
+      "repository": "fmtlib/fmt",
+      "snapshot_gate": "passed",
+      "source_archive_sha256": "bfbaf9054e2a71f10abf96aefc073c97ff407bac569eedb3674c1ad8ac7e857d"
+    },
+    {
+      "base_object_type": "commit",
+      "base_revision": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "base_tree_sha1": "4d9ea46e57a9bc539b358a59c526dfd933f98aba",
+      "candidate_id": "phase6-cal-014",
+      "container_head": "d350420dae50c80ca33b845734c31428d62af0a8",
+      "git_version": "2.34.1",
+      "head_matches_base_revision": false,
+      "image_linux_amd64_digest": "sha256:7485c1e3c8861efd0c6a4a78b952857592e541031039000d25e9481f045dc4a3",
+      "image_reference": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+      "instance_id": "astropy__astropy-12907",
+      "language": "Python",
+      "repository": "astropy/astropy",
+      "snapshot_gate": "passed",
+      "source_archive_sha256": "02c679de5f990f4963ff09230f46bfcc9fa859fda6f9a95be6d4e1d0a76d3b38"
+    }
+  ],
+  "inputs": {
+    "candidate_ledger": "../candidate_events.jsonl",
+    "candidate_ledger_prefix_sha256": "6ba422c28830bee79b93741cc86eb04790763924ced1f6948798780e23150c15",
+    "candidate_ledger_through": 26,
+    "replay_evidence": "../replay_evidence/phase6_vertical_slice.json",
+    "replay_evidence_sha256": "704021c2ba6eda889cc72ce9187867cd6a2f1d9425243135d6a79eaa06e1b0eb"
+  },
+  "method": {
+    "archive_command": "git archive --format=tar <base_revision>",
+    "digest": "SHA-256 over exact tar bytes emitted by the pinned image",
+    "network": "none",
+    "raw_source_retained": false,
+    "workspace": "/testbed"
+  },
+  "recorded_at": "2026-08-20T18:00:00Z",
+  "schema_version": "1.0.0",
+  "status": "source_snapshots_content_addressed_proposals_pending"
+}
