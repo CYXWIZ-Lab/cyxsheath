@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "status": "daemon_lifecycle_harness_failure_final_retry_authorized_once",
+  "recorded_at": "2026-08-23T16:05:51Z",
+  "decision_scope": "capture_spawned_daemon_readiness_and_cleanup_before_model_load",
+  "baseline_commit": "81c0c5543353b0e9568f555d5d0cf165aa44b53a",
+  "prior_recovery_decision": {
+    "record": "phase6_local_model_load_health_recovery_decision.json",
+    "sha256": "4a574af1d6035255db84c3e3615e73057ce564ba68a4365d04dc66d3cf46e480",
+    "status": "preload_measurement_failure_retry_authorized_once"
+  },
+  "attempt_2": {
+    "started_at": "2026-08-23T16:02:49Z",
+    "completed_at": "2026-08-23T16:03:01Z",
+    "runner_sha256": "233ce7812f1bf4ff0fa7651c322e1a26395c279d0e0de632bb53932012e3ba46",
+    "status": "daemon_cli_nonzero_after_service_spawn",
+    "classification": "daemon_lifecycle_harness_failure_not_model_health_result",
+    "preload_available_memory_bytes": 30648418304,
+    "preload_gpu_used_memory_mib": 0,
+    "gpu_measurement_passed": true,
+    "daemon_cli_exit_zero": false,
+    "daemon_service_process_tree_created": true,
+    "daemon_process_count": 5,
+    "load_command_started": false,
+    "model_loaded": false,
+    "observation_samples": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "port_1234_listener_present": false,
+    "automatic_cleanup_passed": false,
+    "raw_cli_output_deleted": true
+  },
+  "manual_cleanup": {
+    "scope": "exact_spawned_service_root_and_four_children",
+    "graceful_root_stop_attempted": true,
+    "forced_cleanup_required": false,
+    "activation_processes_absent_after": true,
+    "port_1234_listener_absent_after": true,
+    "partial_weight_absent_after": true
+  },
+  "correction": {
+    "corrected_runner_sha256": "33b15352737b224a60ced1369a2005e55ab6b0374fef7fad7c488f090fd144ee",
+    "capture_exact_service_root_after_daemon_command_regardless_of_exit": true,
+    "nonzero_daemon_cli_exit_alone_proves_readiness": false,
+    "readiness_requires_exact_service_root_count": 1,
+    "readiness_requires_empty_loaded_inventory": true,
+    "readiness_requires_port_1234_absent": true,
+    "cleanup_captures_exact_service_root_on_all_exit_paths": true,
+    "all_original_model_resource_and_security_settings_unchanged": true,
+    "new_dependency_added": false
+  },
+  "authorization": {
+    "reason": "two_attempts_ended_before_load_and_exact_cleanup_is_now_fail_safe",
+    "maximum_final_recovery_attempts": 1,
+    "executed_final_recovery_attempts_at_decision": 0,
+    "different_model_or_load_settings_authorized": false,
+    "http_server_start_authorized": false,
+    "inference_request_authorized": false,
+    "synthetic_canary_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "execution_gate": {
+    "final_recovery_load_health_check_authorized_once": true,
+    "original_contract_controls": true,
+    "no_further_automatic_retry": true,
+    "next_action": "execute_final_corrected_load_only_monitor_once_and_record_result"
+  }
+}

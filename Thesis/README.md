@@ -39,6 +39,7 @@ For practical setup, commands, component behavior, and operating boundaries, see
 - [Progress_Notes/2026-08-23_phase6_local_model_activation_preflight.md](Progress_Notes/2026-08-23_phase6_local_model_activation_preflight.md): verified weight download, symbolic import, estimate anomaly, cleanup, and load-health handoff.
 - [Progress_Notes/2026-08-23_phase6_local_model_load_health_decision.md](Progress_Notes/2026-08-23_phase6_local_model_load_health_decision.md): one-shot CPU-only load contract, observed resource ceilings, zero-inference boundary, and cleanup gate.
 - [Progress_Notes/2026-08-23_phase6_local_model_load_health_recovery.md](Progress_Notes/2026-08-23_phase6_local_model_load_health_recovery.md): fail-closed preload measurement attempt, read-only diagnostic, and one bounded recovery decision.
+- [Progress_Notes/2026-08-23_phase6_local_model_daemon_recovery.md](Progress_Notes/2026-08-23_phase6_local_model_daemon_recovery.md): pre-load daemon lifecycle failure, exact manual cleanup, and final fail-safe root-capture decision.
 - [Tolook_Source_Review.md](Tolook_Source_Review.md): verified review of `tolook.md`, separating useful DeepSeek Harness/Cordis ideas from unsupported or premature additions.
 - [References.md](References.md): working bibliography of primary research and project sources.
 - [schemas/task_record.schema.json](schemas/task_record.schema.json): machine-readable task and constraint contract.

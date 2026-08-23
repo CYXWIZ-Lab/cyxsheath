@@ -36,10 +36,11 @@ python Thesis\pilot_data\validate_local_runtime_model_decision.py Thesis\pilot_d
 python Thesis\pilot_data\validate_local_model_activation_preflight.py Thesis\pilot_data\review_evidence\phase6_local_model_activation_preflight.json
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 python Thesis\pilot_data\validate_local_model_load_health_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_recovery_decision.json
+python Thesis\pilot_data\validate_local_model_load_health_daemon_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_daemon_recovery_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The last recorded pilot-data suite passed 81 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The last recorded pilot-data suite passed 88 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -53,6 +54,7 @@ The last recorded pilot-data suite passed 81 tests. Validation proves structural
 - The activation preflight binds the verified local weight, symbolic import, inventory, low-confidence estimate, and cleanup while explicitly blocking model load, prompts, and benchmark input.
 - The load-health decision authorizes one exact CPU-only memory activation with observed resource and cleanup gates while retaining zero inference and zero HTTP-server permission.
 - The recovery decision classifies the first preload measurement failure without calling it a model failure and authorizes one measurement-only correction while inheriting the original contract.
+- The daemon-recovery decision records attempt 2's pre-load service-lifecycle failure and requires exact root/readiness capture and cleanup for one final attempt under the unchanged contract.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -68,4 +70,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The exact local Qwen2.5-Coder weight is checksum-verified and symbolically imported, and its estimate-only total passes the 12 GiB ceiling. The first load-health attempt stopped before activation when GPU measurement was unavailable; one corrected recovery attempt is authorized. It permits no prompt, HTTP server, CyxCode call, or Docker container. The synthetic canary remains unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The exact local Qwen2.5-Coder weight is checksum-verified and symbolically imported, and its estimate-only total passes the 12 GiB ceiling. Two monitored attempts ended before load: the first on missing GPU data, the second on daemon lifecycle handling. One final corrected attempt is authorized with exact service readiness and cleanup capture. It permits no prompt, HTTP server, CyxCode call, or Docker container. The synthetic canary remains unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.
