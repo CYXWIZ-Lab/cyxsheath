@@ -77,7 +77,13 @@ Validate the curated activation record without hashing or loading the local weig
 python Thesis\pilot_data\validate_local_model_activation_preflight.py Thesis\pilot_data\review_evidence\phase6_local_model_activation_preflight.json
 ```
 
-The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its confidence was `LOW` and it labeled 4.36 GiB as GPU memory despite 0% offload. No model or HTTP server remained active. Do not run `lms load` or a model prompt yet: the next step is a separately recorded load-only health gate with observed RAM/VRAM and cleanup checks.
+The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its confidence was `LOW` and it labeled 4.36 GiB as GPU memory despite 0% offload. No model or HTTP server remained active. A one-attempt load-only health decision now freezes the exact command, observed RAM/VRAM ceilings, timeout, and cleanup requirements:
+
+```powershell
+python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
+```
+
+Do not run `lms load` manually or send a model prompt. The authorized check is an evidence-producing operation that must monitor the full activation process tree and clean up on every exit path. HTTP serving remains unauthorized.
 
 ## Troubleshooting
 

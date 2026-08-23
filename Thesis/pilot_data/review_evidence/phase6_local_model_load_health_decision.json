@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "status": "load_only_health_check_authorized_once",
+  "recorded_at": "2026-08-23T15:46:33Z",
+  "decision_scope": "one_shot_local_model_load_health_without_inference_or_http_server",
+  "baseline_commit": "94692dc9a033c11d86337f36b11d85531f6eb60a",
+  "activation_preflight": {
+    "record": "phase6_local_model_activation_preflight.json",
+    "sha256": "016902be4d622353c3a2ed717748c27e0388f73f10062e164b3085252d611353",
+    "status": "activation_preflight_complete_load_health_gate_pending"
+  },
+  "authorization": {
+    "operator_proceed_recorded": true,
+    "maximum_attempts": 1,
+    "executed_attempts_at_decision": 0,
+    "different_model_or_settings_authorized": false
+  },
+  "model": {
+    "model_key": "qwen2.5-coder-7b-instruct",
+    "load_identifier": "cyxsheath-qwen25-coder-7b-q4km",
+    "repository": "Qwen/Qwen2.5-Coder-7B-Instruct-GGUF",
+    "revision": "13fb94bfda8c8cf22497dc57b78f391a9acb426a",
+    "file": "qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "relative_path": ".local_models/qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "exact_bytes": 4683073536,
+    "sha256": "509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c"
+  },
+  "load_contract": {
+    "runtime": "LM Studio",
+    "cli_version": "1.3.3",
+    "daemon_version": "0.4.21+2",
+    "command": "lms load qwen2.5-coder-7b-instruct --gpu off --context-length 8192 --parallel 1 --ttl 600 --no-speculative-draft-mtp --identifier cyxsheath-qwen25-coder-7b-q4km --yes",
+    "context_length_tokens": 8192,
+    "gpu_offload": "off",
+    "parallel_predictions": 1,
+    "idle_ttl_seconds": 600,
+    "speculative_decoding": false,
+    "load_timeout_seconds": 600,
+    "daemon_start_timeout_seconds": 180,
+    "post_load_observation_seconds": 15,
+    "sample_interval_seconds": 1
+  },
+  "host_baseline_at_decision": {
+    "total_physical_memory_bytes": 51387342848,
+    "available_physical_memory_bytes": 30894665728,
+    "gpu_total_memory_mib": 4096,
+    "gpu_used_memory_mib": 0,
+    "drive_d_free_bytes": 40144719872,
+    "activation_process_count": 0,
+    "port_1234_listener_present": false
+  },
+  "observation_contract": {
+    "memory_source": "windows_cim_operating_system_and_activation_process_tree",
+    "gpu_source": "nvidia_smi_total_used_memory",
+    "minimum_preload_available_memory_bytes": 21474836480,
+    "minimum_observed_available_memory_bytes": 17179869184,
+    "maximum_available_memory_drop_bytes": 12884901888,
+    "maximum_activation_tree_private_bytes": 12884901888,
+    "maximum_activation_tree_working_set_bytes": 12884901888,
+    "maximum_gpu_used_memory_delta_mib": 512,
+    "new_gpu_process_inventory": "informational_privacy_minimized_basenames_only",
+    "http_port": 1234,
+    "http_listener_allowed_during_check": false,
+    "model_inventory_after_load": "exactly_one_expected_identifier_and_model_key",
+    "inference_request_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0
+  },
+  "acceptance_contract": {
+    "load_command_exit_zero": true,
+    "exact_loaded_identity_required": true,
+    "resource_ceilings_all_pass": true,
+    "observation_window_complete": true,
+    "no_http_listener": true,
+    "no_inference": true,
+    "cleanup_all_pass": true,
+    "fail_closed_on_missing_measurement": true
+  },
+  "cleanup_contract": {
+    "unload_command": "lms unload cyxsheath-qwen25-coder-7b-q4km",
+    "unload_timeout_seconds": 120,
+    "loaded_model_inventory_after_unload": "empty",
+    "stop_only_activation_process_tree": true,
+    "graceful_stop_before_force": true,
+    "activation_process_tree_absent_after": true,
+    "port_1234_listener_absent_after": true,
+    "partial_weight_absent_after": true
+  },
+  "security_and_retention": {
+    "http_server_start_authorized": false,
+    "inference_request_authorized": false,
+    "synthetic_prompt_authorized": false,
+    "benchmark_or_thesis_content_authorized": false,
+    "mcp_authorized": false,
+    "raw_cli_output_in_curated_evidence": false,
+    "curated_process_data": "aggregate_memory_and_process_basenames_only",
+    "temporary_output_location": "repository_root/.replay_cache/local_model_load_health",
+    "temporary_output_git_ignored": true
+  },
+  "execution_gate": {
+    "load_health_check_authorized_once": true,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "execute_exact_load_only_contract_once_and_record_result"
+  }
+}
