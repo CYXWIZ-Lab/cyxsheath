@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "status": "model_activation_observed_protocol_acceptance_failed",
+  "recorded_at": "2026-08-23T16:12:59Z",
+  "decision_scope": "final_load_health_result_not_inference_or_canary_admission",
+  "baseline_commit": "07e756e4bd7f2ecaaff916ed649b8e030ac4b5c1",
+  "final_recovery_decision": {
+    "record": "phase6_local_model_load_health_daemon_recovery_decision.json",
+    "sha256": "b9d72187f51a71252a91ed8d4ad48c85913083b640dd46c81cdc1812cbcc87cc",
+    "status": "daemon_lifecycle_harness_failure_final_retry_authorized_once"
+  },
+  "attempt_3": {
+    "started_at": "2026-08-23T16:10:44Z",
+    "completed_at": "2026-08-23T16:11:38Z",
+    "runner_sha256": "33b15352737b224a60ced1369a2005e55ab6b0374fef7fad7c488f090fd144ee",
+    "model_key": "qwen2.5-coder-7b-instruct",
+    "load_identifier": "cyxsheath-qwen25-coder-7b-q4km",
+    "weight_file": "qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "weight_bytes": 4683073536,
+    "load_command_exit_zero": false,
+    "model_activation_observed_in_service_log": true,
+    "service_log_weight_identity_matches": true,
+    "service_log_context_length_tokens": 8192,
+    "service_log_gpu_offload_layers": 0,
+    "service_log_unload_observed": true,
+    "exact_post_load_inventory_captured": false,
+    "observation_samples": 13,
+    "required_observation_samples": 15,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0
+  },
+  "observed_resources": {
+    "preload_available_memory_bytes": 27237957632,
+    "minimum_available_memory_bytes": 19214118912,
+    "minimum_required_available_memory_bytes": 17179869184,
+    "maximum_available_memory_drop_bytes": 8023838720,
+    "allowed_available_memory_drop_bytes": 12884901888,
+    "peak_activation_tree_private_bytes": 1932574720,
+    "allowed_activation_tree_private_bytes": 12884901888,
+    "peak_activation_tree_working_set_bytes": 6329212928,
+    "allowed_activation_tree_working_set_bytes": 12884901888,
+    "preload_gpu_used_memory_mib": 584,
+    "maximum_gpu_used_memory_delta_mib": 271,
+    "allowed_gpu_used_memory_delta_mib": 512,
+    "http_listener_observed": false,
+    "all_observed_resource_ceilings_passed": true
+  },
+  "runtime_drift": {
+    "approved_engine_package": "llama.cpp-win-x86_64-nvidia-cuda-avx2-2.28.2",
+    "active_engine_preference": "llama.cpp-win-x86_64-nvidia-cuda-avx2-2.29.1",
+    "active_preference_file_sha256": "7448caf18fc92b7e0769924b6cdf1f437279765ff33d2ad7bebccaf22c9857c7",
+    "active_engine_file_count": 20,
+    "active_engine_total_bytes": 558082098,
+    "engine_identity_matches_decision": false,
+    "engine_change_authorized": false,
+    "treatment": "protocol_failure_requires_new_runtime_identity_decision"
+  },
+  "cli_lifecycle_failure": {
+    "classification": "lms_self_extraction_lock_after_service_side_load",
+    "locked_component": "lms.exe",
+    "error_family": "EPERM_operation_not_permitted_unlink",
+    "recorded_retry_count": 5,
+    "load_client_exit_zero": false,
+    "unload_client_exit_zero": false,
+    "service_side_load_observed": true,
+    "service_side_unload_observed": true,
+    "treatment": "wrapper_failure_does_not_override_frozen_exit_and_inventory_gates"
+  },
+  "cleanup": {
+    "loaded_inventory_empty_after_unload": true,
+    "graceful_service_stop_attempted": true,
+    "forced_cleanup_required": false,
+    "activation_processes_absent_after": true,
+    "port_1234_listener_absent_after": true,
+    "partial_weight_absent_after": true,
+    "raw_cli_output_deleted": true,
+    "post_cleanup_available_memory_bytes": 27087790080,
+    "post_cleanup_gpu_used_memory_mib": 596
+  },
+  "local_log_evidence": {
+    "server_log_sha256_at_inspection": "ae783cc58c944c6a373c2063937cf82570bfe145210dbf7a857efe5a11bc2066",
+    "application_log_sha256_at_inspection": "52bed9e6665e1881c4be2428f097c9fa189d10f6ca56401a9e865656752be7f7",
+    "retained_content": "derived_event_types_counts_identities_and_digests_only",
+    "raw_log_content_in_curated_evidence": false
+  },
+  "acceptance": {
+    "model_activation_observed": true,
+    "resource_gate_passed": true,
+    "cleanup_gate_passed": true,
+    "load_command_exit_gate_passed": false,
+    "exact_loaded_inventory_gate_passed": false,
+    "observation_window_gate_passed": false,
+    "approved_engine_identity_gate_passed": false,
+    "load_health_gate_passed": false,
+    "scientific_model_health_conclusion_allowed": false
+  },
+  "execution_gate": {
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_explicit_engine_drift_and_cli_lifecycle_design_decision_before_further_activation"
+  }
+}
