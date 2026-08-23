@@ -2,7 +2,7 @@
 
 ## Project Structure & Document Roles
 
-This repository combines a thesis package, executable Stage-0 research core, and isolated integrations. `Thesis/` contains the manuscript, master roadmap, schemas, experiment protocol, and curated evidence records. `sheath/src/sheath/` contains the dependency-free Python core; `sheath/tests/` contains unit, scenario, and Docker-adapter tests. `usage/` contains public operator instructions. `integrations/` documents external boundaries; the optional `integrations/cyxcode/` worktree is deliberately ignored and maintained separately. Local raw context files are not part of the public repository.
+This repository combines a thesis package, executable Stage-0 research core, and isolated integrations. `docs/` contains living development decisions and conceptual boundaries; `Thesis/` contains the manuscript, master roadmap, schemas, experiment protocol, and curated evidence records; `usage/` contains public operator instructions. `sheath/src/sheath/` contains the dependency-free Python core; `sheath/tests/` contains unit, scenario, and Docker-adapter tests. `integrations/` documents external boundaries; the optional `integrations/cyxcode/` worktree is deliberately ignored and maintained separately. Local raw context files are not part of the public repository.
 
 ## Development and Validation Commands
 

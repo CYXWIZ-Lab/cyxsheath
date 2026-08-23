@@ -6,6 +6,7 @@ Decision `publication-boundary-001`, accepted 2026-08-23, defines the smallest r
 
 - `sheath/src/`, `sheath/tests/`, and `sheath/scripts/`: dependency-free Stage-0 implementation, fixtures, and smoke entry points.
 - `usage/`: operator instructions and runnable examples.
+- `docs/`: living development decisions and conceptual boundaries linked to authoritative research and operating records.
 - `Thesis/`: the manuscript, protocol, roadmap, schemas, validators, and curated evidence records.
 - Root research plans referenced by the thesis, contributor guidance, and repository configuration.
 - `integrations/README.md`: the public integration boundary.

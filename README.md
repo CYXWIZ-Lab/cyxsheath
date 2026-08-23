@@ -50,6 +50,7 @@ The example creates an immutable contract, records current evidence, and returns
 
 ## Documentation
 
+- [Development documentation](docs/README.md): living architecture decisions, model/evidence boundaries, and research-to-production explanations.
 - [Usage guide](usage/README.md): setup, examples, tests, evidence validation, and operational restrictions.
 - [Thesis package](Thesis/README.md): manuscript, architecture, protocol, dataset/model plan, paper plan, and evidence records.
 - [Master roadmap](Thesis/Research_and_Implementation_Roadmap.md): authoritative completed, active, and pending work.
