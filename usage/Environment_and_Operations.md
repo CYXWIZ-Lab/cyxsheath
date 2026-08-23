@@ -85,6 +85,12 @@ python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pil
 
 Do not run `lms load` manually or send a model prompt. The authorized check is an evidence-producing operation that must monitor the full activation process tree and clean up on every exit path. HTTP serving remains unauthorized.
 
+The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
+
+```powershell
+python Thesis\pilot_data\validate_local_model_load_health_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_recovery_decision.json
+```
+
 ## Troubleshooting
 
 `ModuleNotFoundError: No module named 'sheath'` means `PYTHONPATH` is missing or relative to the wrong working directory. From the root use `sheath\src`; from `sheath/` use `src`.

@@ -40,9 +40,9 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | A validator-backed one-attempt load-health decision freezes the exact Qwen2.5-Coder identity, CPU-only 8,192-token load, observed RAM/VRAM ceilings, zero-inference/zero-server boundary, timeout, and cleanup requirements. |
+| Last completed milestone | The first load-health attempt failed closed at its initial GPU measurement before daemon or model activation. Cleanup passed; two read-only diagnostics succeeded, and one recovery attempt is authorized with only bounded GPU-sample retries changed. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Execute the authorized load-only contract once. Measure observed RAM/VRAM, prove the exact loaded identity, keep inference and the HTTP server inactive, then unload and verify inventory/process/port cleanup. |
+| Next implementation slice | Execute the corrected load-only monitor once under the unchanged model/resource contract. Prove exact identity, resource ceilings, zero inference/server activity, unload, and process/port cleanup. |
 | Then | If load health passes, record the authenticated-server gate and separately authorize at most one generated public non-benchmark local feasibility canary. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
@@ -75,6 +75,7 @@ Completed work to preserve:
 - the explicit local decision reuses LM Studio CLI 1.3.3 and its installed llama.cpp CUDA/AVX2 backend 2.28.2, and pins the first-party Qwen2.5-Coder-7B-Instruct Q4_K_M file by revision, Apache-2.0 license, and weight SHA-256. It limits the path to a synthetic canary and defers Qwen3-Coder 30B; and
 - the approved weight download and activation preflight passed exact size/digest, ignored storage, one-copy symbolic import, conservative context, and the 12 GiB total-memory estimate ceiling. The estimator's `LOW` confidence and GPU-memory label despite 0% offload are retained, so model load, HTTP serving, synthetic prompts, and benchmark input remain separately gated.
 - a one-attempt load-health decision now authorizes only the exact CPU-only memory activation. It freezes process/host memory ceilings, a GPU-memory delta ceiling, exact inventory, observation, timeout, unload, and cleanup requirements while keeping inference, HTTP serving, CyxCode, Docker, and benchmark input forbidden.
+- the first monitored attempt stopped before daemon start when its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repeats succeeded. A recovery decision classifies this as a measurement-harness failure and authorizes one retry with at most three one-second reads per GPU sample; all original model, resource, and security settings remain unchanged.
 
 The exact next slice is:
 
@@ -89,7 +90,7 @@ The exact next slice is:
 9. Completed: separate the infrastructure-canary gate from benchmark admission. Authorize one free MiMo-V2.5 attempt only for a generated public non-benchmark fixture, and add a bounded runner plus mutation tests.
 10. Completed: run that one free synthetic canary. CyxCode captured response and patch artifacts for a change limited to `arithmetic.py`; source preservation and post-run container absence passed. This does not authorize benchmark input.
 11. Completed: preserve the exact-card decisions, pin supplemental official project evidence, retain Astropy for internal analysis, block free-cloud training-use routes, and select the existing local OpenAI-compatible seam without installing a runtime.
-12. Active: the host audit, runtime/model selection, exact weight download, verification, symbolic import, inventory, estimate-only preflight, and one-attempt load-health decision are complete. The authorized load-only execution must now pass before any model prompt or synthetic canary.
+12. Active: the host audit, runtime/model selection, weight activation preflight, original load-health decision, fail-closed preload attempt, diagnostic, and recovery decision are complete. The one corrected load-only execution must now pass before any model prompt or synthetic canary.
 13. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
 14. Replay and review the remaining 17 only after step 13 yields an operational admission path.
 15. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
@@ -161,10 +162,11 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Local runtime/model decision:** [phase6_local_runtime_model_decision.json](pilot_data/review_evidence/phase6_local_runtime_model_decision.json) pins the installed LM Studio/llama.cpp identities, CyxCode seam, exact first-party Qwen2.5-Coder Q4_K_M weight and license, resource/security ceilings, and uncertain benchmark contamination. Seven mutation tests reject raw content, digest drift, widened resources, disabled authentication, benchmark use, and premature canary authorization; the full pilot suite is 60/60.
 - **Local activation preflight:** [phase6_local_model_activation_preflight.json](pilot_data/review_evidence/phase6_local_model_activation_preflight.json) binds the verified 4,683,073,536-byte weight and SHA-256, one-copy symbolic import, conservative inventory, low-confidence 4.36 GiB estimate, retained GPU-label conflict, and cleanup. Seven mutation tests reject digest or identity drift, duplicate copying, capability/context overclaims, anomaly concealment, and premature canary authorization; the full pilot suite is 67/67.
 - **Load-health decision:** [phase6_local_model_load_health_decision.json](pilot_data/review_evidence/phase6_local_model_load_health_decision.json) authorizes one exact CPU-only activation and freezes observed resource, identity, zero-inference, and cleanup gates. Seven mutation tests reject inference/server widening, GPU offload, increased memory ceilings, weakened cleanup, and premature canary authorization; the full pilot suite is 74/74.
+- **Load-health recovery:** [phase6_local_model_load_health_recovery_decision.json](pilot_data/review_evidence/phase6_local_model_load_health_recovery_decision.json) records the attempt-1 preload measurement failure and clean zero-activation exit, then authorizes one measurement-only correction under the unchanged contract. Seven mutation tests reject model-failure overclaims, widened reads, missing-measurement fallback, changed load settings, cleanup failure, and premature canary authorization; the full pilot suite is 81/81.
 
 ## Immediate Work Queue
 
-1. Execute the authorized load-only gate once and fail closed on identity, memory, GPU-use, timeout, unload, or process/port-cleanup drift. Do not send a prompt, start the HTTP server, invoke CyxCode, or run Docker.
+1. Execute the one corrected load-only gate and fail closed on missing GPU data, identity, memory, GPU-use, timeout, unload, or process/port-cleanup drift. Do not send a prompt, start the HTTP server, invoke CyxCode, or run Docker.
 2. If load health passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary. Do not use candidate, replay, source-snapshot, or thesis content.
 3. If the synthetic local gate passes, resolve case-and-model contamination before any replayed candidate proposal.
 4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
