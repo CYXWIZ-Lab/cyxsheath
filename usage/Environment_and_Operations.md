@@ -61,7 +61,7 @@ The completed privacy-minimized audit is a curated record, not a command to rede
 python Thesis\pilot_data\validate_host_capacity_and_connectivity.py Thesis\pilot_data\review_evidence\phase6_host_capacity_and_connectivity.json
 ```
 
-The recorded Docker-to-host TCP probe passed. LM Studio CLI was installed but not ready, Ollama was absent, and the audit itself authorized no runtime installation or model download. The subsequent decision selects the installed llama.cpp backend and one exact Qwen2.5-Coder weight but does not claim that the model is present or runnable.
+The recorded Docker-to-host TCP probe passed. LM Studio CLI was installed but not ready, Ollama was absent, and the audit itself authorized no runtime installation or model download. The subsequent decision selected the installed llama.cpp backend and one exact Qwen2.5-Coder weight. The separately approved activation preflight has now downloaded and verified that weight without running inference.
 
 Validate that decision without downloading anything:
 
@@ -69,7 +69,15 @@ Validate that decision without downloading anything:
 python Thesis\pilot_data\validate_local_runtime_model_decision.py Thesis\pilot_data\review_evidence\phase6_local_runtime_model_decision.json
 ```
 
-The decision reserves ignored `.local_models/` on `D:` and caps it at 8 GiB because the audit found only 9.48 GiB free on `C:` and 41.87 GiB on `D:`. Do not run a download command until operator approval. Do not change the pinned revision, filename, quantization, or digest. After an approved download, verify SHA-256 before symbolic import and use `lms load --estimate-only` before any actual load; the activation record must pass before a canary is authorized.
+The verified weight is stored at `D:\Dev\code agent\.local_models\qwen2.5-coder-7b-instruct-q4_k_m.gguf`. It is 4,683,073,536 bytes, Git-ignored, and pinned to SHA-256 `509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c`. LM Studio's existing `D:\Open_models` tree contains only a symbolic link to that file, so there is no second 4.68 GB copy. Do not redownload, rename, replace, move, or commit the weight.
+
+Validate the curated activation record without hashing or loading the local weight:
+
+```powershell
+python Thesis\pilot_data\validate_local_model_activation_preflight.py Thesis\pilot_data\review_evidence\phase6_local_model_activation_preflight.json
+```
+
+The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its confidence was `LOW` and it labeled 4.36 GiB as GPU memory despite 0% offload. No model or HTTP server remained active. Do not run `lms load` or a model prompt yet: the next step is a separately recorded load-only health gate with observed RAM/VRAM and cleanup checks.
 
 ## Troubleshooting
 

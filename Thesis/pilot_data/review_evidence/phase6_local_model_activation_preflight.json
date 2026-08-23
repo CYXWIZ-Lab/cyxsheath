@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "status": "activation_preflight_complete_load_health_gate_pending",
+  "recorded_at": "2026-08-23T14:55:41Z",
+  "decision_scope": "local_activation_preflight_not_inference_or_benchmark_admission",
+  "baseline_commit": "23a33ce065329379e5c0811a6cd4ac78062c35c7",
+  "decision_evidence": {
+    "record": "phase6_local_runtime_model_decision.json",
+    "sha256": "085945e8e8d6ae446a603fc2bbcdc31c753506dc6db73546f92b9437926fe212",
+    "status": "runtime_model_selected_download_pending_synthetic_only"
+  },
+  "download": {
+    "attempts": 1,
+    "transport": "https_resumable_partial_then_atomic_rename",
+    "source_revision": "13fb94bfda8c8cf22497dc57b78f391a9acb426a",
+    "file": "qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "final_relative_path": ".local_models/qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "exact_bytes": 4683073536,
+    "expected_sha256": "509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c",
+    "actual_sha256": "509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c",
+    "digest_verified_before_import": true,
+    "partial_absent_after": true,
+    "download_ceiling_bytes": 6442450944,
+    "final_free_bytes": 40203341824,
+    "minimum_free_after_bytes": 34359738368,
+    "git_ignored": true
+  },
+  "import": {
+    "mode": "symbolic_link",
+    "configured_model_root": "D:/Open_models",
+    "imported_relative_path": "Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "link_target": "repository_root/.local_models/qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    "duplicate_weight_copy_created": false,
+    "source_and_import_digest_match": true
+  },
+  "runtime_activation": {
+    "runtime": "LM Studio",
+    "daemon_version": "0.4.21+2",
+    "existing_installation_only": true,
+    "installation_or_update_performed": false,
+    "daemon_started_for_inventory": true,
+    "http_server_started": false,
+    "model_loaded": false,
+    "daemon_stopped_after": true,
+    "activation_process_tree_absent_after": true,
+    "port_1234_listener_absent_after": true
+  },
+  "inventory": {
+    "model_key": "qwen2.5-coder-7b-instruct",
+    "format": "gguf",
+    "architecture": "qwen2",
+    "quantization": "Q4_K_M",
+    "size_bytes": 4683073536,
+    "parameter_label": "7B",
+    "vision": false,
+    "trained_for_tool_use": false,
+    "runtime_reported_max_context_tokens": 131072,
+    "authoritative_gguf_card_limit_tokens": 32768,
+    "effective_canary_ceiling_tokens": 8192,
+    "max_context_discrepancy_retained": true,
+    "exact_tool_seam_status": "unverified_default_tool_path"
+  },
+  "estimate": {
+    "command_mode": "estimate_only",
+    "context_length_tokens": 8192,
+    "maximum_output_tokens_for_future_canary": 2048,
+    "gpu_offload_percent": 0,
+    "parallel_predictions": 1,
+    "idle_ttl_seconds": 600,
+    "reported_gpu_memory_gib": 4.36,
+    "reported_total_memory_gib": 4.36,
+    "confidence": "LOW",
+    "total_memory_ceiling_gib": 12,
+    "total_memory_ceiling_passed": true,
+    "gpu_label_conflict_retained": true,
+    "interpretation": "low_confidence_estimator_label_requires_observed_load_health_gate",
+    "host_context_repeat_clean": true,
+    "model_loaded": false
+  },
+  "protocol_deviations": [
+    {
+      "event": "inventory_probe_timed_out_before_explicit_daemon_start",
+      "effect": "no_model_or_http_server_started",
+      "resolution": "started_existing_daemon_for_inventory_only"
+    },
+    {
+      "event": "sandbox_estimate_could_not_write_cli_preferences",
+      "effect": "estimate_output_was_not_used_as_sole_evidence",
+      "resolution": "repeated_exact_estimate_in_host_context_with_clean_exit"
+    },
+    {
+      "event": "daemon_down_refused_while_hosted_by_desktop_service",
+      "effect": "http_server_and_model_remained_inactive",
+      "resolution": "gracefully_stopped_only_the_exact_activation_process_tree"
+    }
+  ],
+  "execution_gate": {
+    "exact_weight_download_complete": true,
+    "symbolic_import_complete": true,
+    "estimate_gate_passed": true,
+    "load_health_check_authorized": false,
+    "synthetic_canary_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "record_bounded_load_only_health_and_authenticated_server_gate"
+  }
+}
