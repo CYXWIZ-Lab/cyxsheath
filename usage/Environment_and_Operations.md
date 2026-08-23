@@ -53,6 +53,16 @@ py -3.12 scripts\run_snapshot_smoke.py --image <digest-pinned-image> --artifact-
 
 Research records belong under `Thesis/pilot_data/`; disposable caches and raw provider artifacts remain outside the curated evidence set, normally under `.replay_cache`.
 
+## Phase-6 Capacity Check
+
+The completed privacy-minimized audit is a curated record, not a command to redetect or change the host. Validate it from the repository root:
+
+```powershell
+python Thesis\pilot_data\validate_host_capacity_and_connectivity.py Thesis\pilot_data\review_evidence\phase6_host_capacity_and_connectivity.json
+```
+
+The recorded Docker-to-host TCP probe passed. LM Studio CLI was installed but not ready, Ollama was absent, and no runtime installation or model download was authorized. Do not infer that a model is available merely because `lms` is on `PATH`. The next runtime/model decision must keep weights and caches on `D:` under an explicit size ceiling because the audit found only 9.48 GiB free on `C:` and 41.87 GiB on `D:`.
+
 ## Troubleshooting
 
 `ModuleNotFoundError: No module named 'sheath'` means `PYTHONPATH` is missing or relative to the wrong working directory. From the root use `sheath\src`; from `sheath/` use `src`.

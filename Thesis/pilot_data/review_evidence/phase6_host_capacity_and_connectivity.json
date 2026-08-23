@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "status": "capacity_audited_connectivity_passed_runtime_decision_pending",
+  "recorded_at": "2026-08-23T13:06:04Z",
+  "decision_scope": "project_runtime_feasibility_not_benchmark_authorization",
+  "baseline_commit": "b273a80f5dc068a4f66f210fce533a5c2595d44b",
+  "privacy": {
+    "retained": [
+      "cpu_model",
+      "core_counts",
+      "memory_bytes",
+      "gpu_model",
+      "vram_mib",
+      "driver",
+      "compute_capability",
+      "drive_capacity",
+      "docker_limits",
+      "runtime_status",
+      "boolean_connectivity"
+    ],
+    "excluded": [
+      "hostname",
+      "machine_id",
+      "serial_numbers",
+      "usernames",
+      "mac_addresses",
+      "resolved_ip",
+      "credentials"
+    ],
+    "resolved_address_retained": false
+  },
+  "host": {
+    "os_family": "Windows",
+    "os_version": "10.0.26200.0",
+    "architecture": "AMD64",
+    "cpu": {
+      "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "physical_cores": 6,
+      "logical_processors": 12
+    },
+    "memory": {
+      "total_bytes": 51387342848,
+      "available_bytes_at_audit": 30565523456
+    },
+    "gpu": {
+      "model": "NVIDIA GeForce GTX 1050 Ti",
+      "vram_total_mib": 4096,
+      "vram_free_mib_at_audit": 4007,
+      "driver_version": "581.57",
+      "compute_capability": "6.1"
+    },
+    "storage": [
+      {
+        "drive": "C:",
+        "total_bytes": 255192985600,
+        "free_bytes_at_audit": 10184474624
+      },
+      {
+        "drive": "D:",
+        "total_bytes": 2000381014016,
+        "free_bytes_at_audit": 44961120256
+      }
+    ]
+  },
+  "docker": {
+    "client_version": "29.1.3",
+    "server_version": "29.1.3",
+    "platform": "Docker Desktop",
+    "architecture": "x86_64",
+    "logical_processors": 12,
+    "memory_limit_bytes": 25123037184,
+    "storage_driver": "overlayfs",
+    "runtime": "runc",
+    "probe_image": {
+      "reference": "python@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65",
+      "image_id": "sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65"
+    },
+    "connectivity": {
+      "network": "bridge",
+      "host_alias": "host.docker.internal",
+      "alias_resolved": true,
+      "resolved_address_retained": false,
+      "tcp_connected": true,
+      "host_listener_accepted": true,
+      "container_absent_after": true,
+      "benchmark_data_used": false,
+      "model_data_used": false
+    }
+  },
+  "runtimes": {
+    "surveyed": [
+      "ollama",
+      "llama-server",
+      "llama-cli",
+      "lmstudio",
+      "lms",
+      "koboldcpp",
+      "llamafile"
+    ],
+    "ollama": {
+      "installed": false
+    },
+    "lm_studio_cli": {
+      "installed": true,
+      "cli_commit": "71bd99c",
+      "server_running_before": false,
+      "model_inventory_status": "timed_out_waking_service",
+      "inventory_timeout_seconds": 30,
+      "server_running_after": false,
+      "process_observed_after": false,
+      "ready": false
+    }
+  },
+  "capacity_assessment": {
+    "gpu_model_fit": "small_or_partial_offload_only",
+    "cpu_quantized_model_fit": "plausible_requires_synthetic_canary",
+    "storage_status": "constrained_requires_workspace_drive_and_ceiling",
+    "runtime_readiness": "not_ready",
+    "decision": "pending_separate_runtime_model_record"
+  },
+  "protocol_deviations": [
+    {
+      "id": "docker-format-preflight-001",
+      "container_created": false,
+      "impact": "none",
+      "resolution": "corrected_identity_format_then_probe_passed"
+    }
+  ],
+  "execution_boundary": {
+    "runtime_installation_authorized": false,
+    "model_download_authorized": false,
+    "model_selected": false,
+    "local_canary_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "record_explicit_runtime_model_decision"
+  }
+}

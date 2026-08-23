@@ -31,10 +31,11 @@ python Thesis\pilot_data\validate_rights_and_provider_exposure.py Thesis\pilot_d
 python Thesis\pilot_data\validate_outbound_and_astropy_decision.py Thesis\pilot_data\review_evidence\phase6_outbound_and_astropy_decision.json
 python Thesis\pilot_data\validate_provider_replacement_gate.py Thesis\pilot_data\review_evidence\phase6_provider_replacement_gate.json
 python Thesis\pilot_data\validate_synthetic_canary_gate.py Thesis\pilot_data\review_evidence\phase6_synthetic_canary_gate.json
+python Thesis\pilot_data\validate_host_capacity_and_connectivity.py Thesis\pilot_data\review_evidence\phase6_host_capacity_and_connectivity.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The last recorded pilot-data suite passed 46 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The last recorded pilot-data suite passed 53 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -43,6 +44,7 @@ The last recorded pilot-data suite passed 46 tests. Validation proves structural
 - Non-replay review checks bounded privacy, secret, safety, lineage, license, and file-scope properties.
 - Source snapshots bind a candidate to a content-addressed repository state.
 - Provider gates separate synthetic infrastructure permission from stricter benchmark admission.
+- Capacity evidence records privacy-minimized host limits, runtime readiness, and Docker-to-host connectivity without selecting or downloading a model.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -58,4 +60,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The recorded primary path is CyxCode's existing local OpenAI-compatible seam, but no runtime installation or model has been approved. The next work item is a host-capacity audit and an explicit runtime/model design decision before one generated, non-benchmark local feasibility canary.
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The recorded primary path is CyxCode's existing local OpenAI-compatible seam. Its capacity and Docker connectivity audit passed, but no runtime installation, model download, or model identity has been approved. The next work item is the explicit runtime/model design decision before one generated, non-benchmark local feasibility canary.

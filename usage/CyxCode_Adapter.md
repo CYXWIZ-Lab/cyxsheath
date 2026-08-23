@@ -78,8 +78,10 @@ The gate now records `completed_single_attempt`, so `run_cyxcode_synthetic_canar
 
 The genuine benchmark runner remains blocked before task access. Do not alter that guard or submit quarantined candidates until the benchmark provider-exposure and case-rights gates pass. Before operating on the Python pilot, read [What Astropy Means Here](Pilot_Data_and_Evidence.md#what-astropy-means-here).
 
-## Selected Local Path: Not Yet Runnable
+## Selected Local Path: Capacity Audited, Not Yet Runnable
 
 Design decision `phase6-generator-boundary-001` selects CyxCode's existing custom OpenAI-compatible provider seam as the primary benchmark-generation path. The integration already documents an Ollama-style endpoint and the Docker proxy exposes `host.docker.internal`; no new core abstraction is approved.
 
-This is a design selection, not an installation guide. Ollama was not installed during the audit, no local model or weights digest is pinned, and benchmark input remains blocked. The next gate must first record host capacity and an explicit runtime/model choice, then use only a generated public non-benchmark fixture for one local feasibility canary.
+This is a design selection, not an installation guide. The capacity audit found 47.86 GiB host RAM, 4 GiB VRAM, constrained storage, and a working Docker-to-host TCP path. LM Studio's CLI is installed but its service and model inventory are not ready; Ollama is absent. Small quantized CPU inference is plausible but unproven, and GPU use is limited to a small model or partial offload. No local model or weights digest is pinned, and benchmark input remains blocked.
+
+The next gate is a separate runtime/model decision. It must pin the runtime and model/weights identity, license, context and tool capability, RAM/VRAM/disk ceilings, cache location on `D:`, and contamination treatment. Only after that record may a generated public non-benchmark fixture be considered for one local feasibility canary.
