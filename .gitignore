@@ -14,6 +14,7 @@
 
 # Raw or generated research artifacts
 /.replay_cache/
+/.local_models/
 /.tools/
 /logs/
 /sheath/*-artifacts/

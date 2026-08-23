@@ -61,7 +61,15 @@ The completed privacy-minimized audit is a curated record, not a command to rede
 python Thesis\pilot_data\validate_host_capacity_and_connectivity.py Thesis\pilot_data\review_evidence\phase6_host_capacity_and_connectivity.json
 ```
 
-The recorded Docker-to-host TCP probe passed. LM Studio CLI was installed but not ready, Ollama was absent, and no runtime installation or model download was authorized. Do not infer that a model is available merely because `lms` is on `PATH`. The next runtime/model decision must keep weights and caches on `D:` under an explicit size ceiling because the audit found only 9.48 GiB free on `C:` and 41.87 GiB on `D:`.
+The recorded Docker-to-host TCP probe passed. LM Studio CLI was installed but not ready, Ollama was absent, and the audit itself authorized no runtime installation or model download. The subsequent decision selects the installed llama.cpp backend and one exact Qwen2.5-Coder weight but does not claim that the model is present or runnable.
+
+Validate that decision without downloading anything:
+
+```powershell
+python Thesis\pilot_data\validate_local_runtime_model_decision.py Thesis\pilot_data\review_evidence\phase6_local_runtime_model_decision.json
+```
+
+The decision reserves ignored `.local_models/` on `D:` and caps it at 8 GiB because the audit found only 9.48 GiB free on `C:` and 41.87 GiB on `D:`. Do not run a download command until operator approval. Do not change the pinned revision, filename, quantization, or digest. After an approved download, verify SHA-256 before symbolic import and use `lms load --estimate-only` before any actual load; the activation record must pass before a canary is authorized.
 
 ## Troubleshooting
 

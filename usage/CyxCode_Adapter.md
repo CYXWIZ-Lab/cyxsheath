@@ -78,10 +78,14 @@ The gate now records `completed_single_attempt`, so `run_cyxcode_synthetic_canar
 
 The genuine benchmark runner remains blocked before task access. Do not alter that guard or submit quarantined candidates until the benchmark provider-exposure and case-rights gates pass. Before operating on the Python pilot, read [What Astropy Means Here](Pilot_Data_and_Evidence.md#what-astropy-means-here).
 
-## Selected Local Path: Capacity Audited, Not Yet Runnable
+## Selected Local Path: Exact Model Chosen, Not Yet Runnable
 
 Design decision `phase6-generator-boundary-001` selects CyxCode's existing custom OpenAI-compatible provider seam as the primary benchmark-generation path. The integration already documents an Ollama-style endpoint and the Docker proxy exposes `host.docker.internal`; no new core abstraction is approved.
 
-This is a design selection, not an installation guide. The capacity audit found 47.86 GiB host RAM, 4 GiB VRAM, constrained storage, and a working Docker-to-host TCP path. LM Studio's CLI is installed but its service and model inventory are not ready; Ollama is absent. Small quantized CPU inference is plausible but unproven, and GPU use is limited to a small model or partial offload. No local model or weights digest is pinned, and benchmark input remains blocked.
+The capacity audit found 47.86 GiB host RAM, 4 GiB VRAM, constrained storage, and a working Docker-to-host TCP path. The decision reuses LM Studio CLI 1.3.3 and its installed llama.cpp CUDA/AVX2 backend 2.28.2; no Ollama installation or new CyxCode abstraction is needed.
 
-The next gate is a separate runtime/model decision. It must pin the runtime and model/weights identity, license, context and tool capability, RAM/VRAM/disk ceilings, cache location on `D:`, and contamination treatment. Only after that record may a generated public non-benchmark fixture be considered for one local feasibility canary.
+The selected synthetic model is first-party `Qwen/Qwen2.5-Coder-7B-Instruct-GGUF` at revision `13fb94b`, file `qwen2.5-coder-7b-instruct-q4_k_m.gguf`, SHA-256 `509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c`, under Apache-2.0. Its GGUF context limit is 32,768 tokens, but the first canary is capped at 8,192 context and 2,048 output tokens with GPU off, one prediction, and a 12 GiB estimated-memory ceiling. The exact Coder model's tool behavior through CyxCode remains unverified.
+
+Nothing has been downloaded or loaded. After operator approval, the one 4.68 GB file may be stored in ignored `.local_models/` on `D:`, verified, and symbolically imported to avoid another copy on `C:`. LM Studio's estimate-only check must pass before model load. The server must require a per-run token because Docker access requires a non-loopback bind; CORS and MCP remain off, and the model, server, port, and container must be gone after the bounded run.
+
+Qwen3-Coder 30B A3B is deferred unless the 7B canary fails for a demonstrated model-capability reason and a new decision approves the added cost. Both models remain blocked from benchmark input until contamination is separately resolved.

@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The privacy-minimized host audit passed the Docker-to-host TCP gate. The host has 47.86 GiB RAM and 4 GiB VRAM; small quantized CPU inference is plausible but unproven, GPU use is limited to a small model or partial offload, and storage is constrained. LM Studio CLI is installed but not ready. No model is selected and all cases remain quarantined. |
+| Last completed milestone | The local synthetic runtime/model decision selects the installed LM Studio llama.cpp backend 2.28.2 and first-party Qwen2.5-Coder-7B-Instruct Q4_K_M at a pinned revision and weight digest. The exact download is pending operator approval; no model was downloaded or loaded, no canary is yet authorized, benchmark input remains blocked, and all cases remain quarantined. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Record an explicit local runtime/model decision with identity, weights digest, license, context/tool capability, RAM/VRAM/disk ceilings, cache location on `D:`, and contamination treatment. Do not install or download within the decision step. |
-| Then | Run one generated public non-benchmark local feasibility canary. Only after it passes may a separate gate consider benchmark input. |
+| Next implementation slice | With operator approval, download the single pinned 4.68 GB Q4_K_M file to ignored `.local_models/` on `D:`, verify SHA-256, symbolically import it, and run LM Studio's estimate-only check. Do not load the model if the 12 GiB ceiling fails. |
+| Then | Record the activation preflight. Only if it passes may a separate gate authorize one generated public non-benchmark local feasibility canary. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -72,6 +72,7 @@ Completed work to preserve:
 - a superseding synthetic-only gate corrects the earlier conflation of infrastructure and benchmark requirements. One zero-cost MiMo-V2.5 Free attempt used only a generated public fixture through CyxCode's public-token path and captured a one-file proposal. The separate runner has no candidate, ledger, dataset, or source-evidence inputs; benchmark admission is unchanged; and
 - design decision `phase6-generator-boundary-001` blocks free MiMo benchmark use and selects the already-supported local OpenAI-compatible CyxCode seam. Ollama is not installed, no local model is selected, and installation remains outside the completed decision.
 - a privacy-minimized capacity record confirms 6 CPU cores/12 threads, 47.86 GiB host RAM, 4 GiB VRAM, constrained disk space, and a passed pinned-image Docker-to-host TCP probe. LM Studio CLI is installed but its service and model inventory are not ready; no runtime installation, model download, or canary is authorized.
+- the explicit local decision reuses LM Studio CLI 1.3.3 and its installed llama.cpp CUDA/AVX2 backend 2.28.2, and pins the first-party Qwen2.5-Coder-7B-Instruct Q4_K_M file by revision, Apache-2.0 license, and weight SHA-256. It limits the path to a synthetic canary, defers Qwen3-Coder 30B, and keeps the exact download, memory estimate, canary, and benchmark gates separate.
 
 The exact next slice is:
 
@@ -86,14 +87,14 @@ The exact next slice is:
 9. Completed: separate the infrastructure-canary gate from benchmark admission. Authorize one free MiMo-V2.5 attempt only for a generated public non-benchmark fixture, and add a bounded runner plus mutation tests.
 10. Completed: run that one free synthetic canary. CyxCode captured response and patch artifacts for a change limited to `arithmetic.py`; source preservation and post-run container absence passed. This does not authorize benchmark input.
 11. Completed: preserve the exact-card decisions, pin supplemental official project evidence, retain Astropy for internal analysis, block free-cloud training-use routes, and select the existing local OpenAI-compatible seam without installing a runtime.
-12. Active: the host-capacity and Docker-to-host audit is complete; make the separate explicit runtime/model decision. Only a generated public non-benchmark fixture may enter the first local feasibility canary after that decision.
+12. Active: the host audit and explicit runtime/model selection are complete. The exact weight download, digest verification, symbolic import, and estimate-only preflight remain; the model cannot load and the synthetic canary cannot run until those checks pass in a separate record.
 13. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
 14. Replay and review the remaining 17 only after step 13 yields an operational admission path.
 15. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
-Do **not** start another cloud-provider comparison, repeat the completed cloud canary, install a local runtime before its design decision, begin CyxWiz graph work, train a critic, or add MoE/continual learning in the next slice. Continue only through the frozen capacity, local-generator, contamination, replay, and admission gates.
+Do **not** start another cloud-provider comparison, repeat the completed cloud canary, install another local runtime, substitute a model or quantization, begin CyxWiz graph work, train a critic, or add MoE/continual learning in the next slice. Continue only through the pinned local-generator activation, synthetic, contamination, replay, and admission gates.
 
 Baseline restart commands:
 
@@ -121,7 +122,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — local generator gate pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The free synthetic CyxCode canary passed its infrastructure purpose but its route remains blocked for benchmark input. The existing local OpenAI-compatible seam is selected and the capacity/connectivity audit passed; runtime/model, synthetic feasibility, and contamination gates remain. |
+| 6 | Pilot data specification | **Active — local generator gate pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The free synthetic CyxCode canary passed its infrastructure purpose but its route remains blocked for benchmark input. The local seam, capacity, runtime, and exact Qwen2.5-Coder weight are selected; download/estimate, synthetic feasibility, and contamination gates remain. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -155,15 +156,17 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Synthetic-canary correction:** [phase6_synthetic_canary_gate.json](pilot_data/review_evidence/phase6_synthetic_canary_gate.json) supersedes only the synthetic portion of the earlier decision. One free public-token attempt with generated local input captured a proposal changing only `arithmetic.py`; source preservation passed, no matching container remained, and the benchmark block is unchanged. The full pilot suite is 40/40.
 - **Outbound/Astropy decision:** [phase6_outbound_and_astropy_decision.json](pilot_data/review_evidence/phase6_outbound_and_astropy_decision.json) pins the supplemental SWE-bench and current OpenCode evidence, retains Astropy, blocks free MiMo benchmark use, and selects the existing local seam without claiming runtime readiness. Its six mutation tests pass; the full pilot suite is 46/46.
 - **Host capacity/connectivity:** [phase6_host_capacity_and_connectivity.json](pilot_data/review_evidence/phase6_host_capacity_and_connectivity.json) records privacy-minimized CPU, RAM, GPU, storage, Docker limits, runtime observations, and a passed pinned-image Docker-to-host TCP probe. Seven mutation tests reject sensitive keys, failed connectivity/cleanup, and readiness or capability overclaims; the full pilot suite is 53/53.
+- **Local runtime/model decision:** [phase6_local_runtime_model_decision.json](pilot_data/review_evidence/phase6_local_runtime_model_decision.json) pins the installed LM Studio/llama.cpp identities, CyxCode seam, exact first-party Qwen2.5-Coder Q4_K_M weight and license, resource/security ceilings, and uncertain benchmark contamination. Seven mutation tests reject raw content, digest drift, widened resources, disabled authentication, benchmark use, and premature canary authorization; the full pilot suite is 60/60.
 
 ## Immediate Work Queue
 
-1. Record an explicit local runtime/model decision with model and weights identity, license, context/tool capability, RAM/VRAM/disk ceilings, `D:` cache location, and contamination treatment. Do not install or download during this decision step.
-2. After that decision, run exactly one generated public non-benchmark local feasibility canary. Do not use candidate, replay, source-snapshot, or thesis content.
-3. If the local gate passes, generate and independently verify one replayed candidate proposal; keep blinded checks and gold artifacts outside model context.
-4. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-5. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-6. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Obtain operator approval for one exact 4.68 GB download to ignored `.local_models/` on `D:`; verify SHA-256 before symbolic import. Do not accept another revision, file, or quantization.
+2. Run LM Studio's estimate-only check at 8,192 context tokens, CPU-only, one prediction, and a 12 GiB ceiling. Record runtime/model inventory and fail closed before load if any identity or resource check differs.
+3. If activation passes, separately authorize and run exactly one generated public non-benchmark local feasibility canary. Do not use candidate, replay, source-snapshot, or thesis content.
+4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+5. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+6. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
+7. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
