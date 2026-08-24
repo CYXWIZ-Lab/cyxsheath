@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | A dependency-free synchronous Python CLI transport now returns numeric zero/nonzero exits, rejects timeouts and excess retained output, and preserves literal arguments without a shell. Sixteen focused fixture/decision tests pass on both Python versions; LM Studio was not invoked. |
+| Last completed milestone | The one authorized temporary-client `lms --help` probe returned numeric exit `0` with bounded output, unchanged client identity, no runtime process or listener, no forced cleanup, and complete temporary deletion. No daemon or model command ran. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Execute the one authorized temporary-client `lms --help` probe and record its numeric exit, bounded-output digests, process/port baseline, identity preservation, and cleanup. No daemon or model command is permitted. |
-| Then | Only if the help probe passes, make a separate decision for another bounded load-health execution. A future passing load-health result would still require an authenticated-server decision before any synthetic local canary. |
+| Next implementation slice | Make an explicit load-health transport-integration decision covering synchronous CLI calls, activation monitoring, output retention, timeouts, service-root ownership, inventory checks, and cleanup. Do not execute a daemon or model command before that record passes. |
+| Then | Only if that design passes, separately authorize one bounded load-health execution. A future passing result would still require an authenticated-server decision before any synthetic local canary. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -81,6 +81,7 @@ Completed work to preserve:
 - a validator-backed recovery decision resolves that design gate by adopting the already installed 2.29.1 engine and staging one digest-identical `lms.exe` 1.3.3 copy under ignored `.replay_cache`. This keeps the canonical extraction target unlocked, changes no model or resource setting, and authorizes exactly one fresh load-health execution while prompts and HTTP serving remain blocked.
 - the authorized recovery execution started the service through the temporary client but stopped before model load because `Start-Process` exposed no numeric daemon-client exit. No current-window extraction error was recorded, but that absence is not treated as proof of resolution. Forced process cleanup removed all runtime state, identities remained pinned, and no prompt, server, CyxCode, or Docker operation ran.
 - a new 3.1 KiB standard-library CLI transport replaces the unreliable PowerShell exit observation without changing the Sheath core or adding dependencies. Eight transport fixtures and eight decision mutations pass on Python 3.12 and 3.14. Only one temporary-client `--help` probe is authorized; daemon, load, inference, and server commands remain blocked.
+- the authorized temporary-client `--help` probe passed with numeric exit 0, 1,207 stdout bytes, zero stderr, no process/listener before or after, unchanged canonical identity, and no forced cleanup. The temporary client and raw output were removed. This proves only the CLI transport seam, not daemon or model health.
 
 The exact next slice is:
 
@@ -99,10 +100,11 @@ The exact next slice is:
 13. Completed: adopt the installed 2.29.1 engine, pin its exact inventory, and authorize one temporary-CLI load-health execution under unchanged resource and zero-inference gates.
 14. Completed: execute that exact contract once. It stopped before model load on missing numeric daemon-exit evidence, completed safety cleanup, and authorized no retry.
 15. Completed: select and fixture-test a synchronous, no-shell, timeout-bound Python transport for reliable numeric CLI exits.
-16. Active: execute the authorized temporary-client `--help` probe once; do not start the daemon or load the model.
-17. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
-18. Replay and review the remaining 17 only after step 17 yields an operational admission path.
-19. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+16. Completed: execute the authorized temporary-client `--help` probe once and record a numeric zero exit, bounded output, clean process/port state, and complete cleanup.
+17. Active: design the synchronous transport's integration with activation monitoring before any daemon or model command.
+18. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
+19. Replay and review the remaining 17 only after step 18 yields an operational admission path.
+20. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -134,7 +136,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — CLI help probe authorized** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. A dependency-free synchronous transport passes fixture and mutation tests; one identity-only `lms --help` probe is authorized while daemon, model, synthetic feasibility, and contamination gates remain blocked. |
+| 6 | Pilot data specification | **Active — load-health transport integration pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The synchronous transport and identity-only `lms --help` probe pass, but daemon/model execution requires a separate integration decision; synthetic feasibility and contamination gates remain blocked. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -177,11 +179,12 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Engine/CLI recovery decision:** [phase6_local_engine_cli_recovery_decision.json](pilot_data/review_evidence/phase6_local_engine_cli_recovery_decision.json) pins the already installed llama.cpp 2.29.1 inventory and one digest-identical temporary `lms.exe` copy. Eight mutation tests reject downgrade or installation, canonical-client invocation, unverified copies, widened attempts, inference, and premature canary authorization; the full pilot suite is 103/103 on Python 3.12 and 3.14.
 - **Engine/CLI recovery result:** [phase6_local_engine_cli_recovery_result.json](pilot_data/review_evidence/phase6_local_engine_cli_recovery_result.json) records service startup, missing numeric daemon-exit evidence, zero model-load invocations, complete final safety cleanup, forced-cleanup protocol failure, and a blocked retry. Eight mutation tests reject prelaunch misclassification, exit or activation overclaims, lock-resolution overclaim, forced-cleanup concealment, unsupported resource conclusions, and automatic retry; the full pilot suite is 111/111 on Python 3.12 and 3.14.
 - **CLI exit transport decision:** [phase6_cli_exit_transport_decision.json](pilot_data/review_evidence/phase6_cli_exit_transport_decision.json) pins a dependency-free synchronous transport, its known post-completion output-bound limit, 16/16 focused fixture/decision tests on Python 3.12 and 3.14, and one identity-only help probe. Daemon and model operations remain blocked; the full pilot suite is 127/127 on both Python versions.
+- **CLI exit transport result:** [phase6_cli_exit_transport_result.json](pilot_data/review_evidence/phase6_cli_exit_transport_result.json) records numeric exit 0, bounded output digests, clean process/port state, unchanged client identity, and complete temporary cleanup. Eight mutation tests reject exit, output, retention, runtime, cleanup, model-health, and load-health overclaims; the full pilot suite is 135/135 on Python 3.12 and 3.14.
 
 ## Immediate Work Queue
 
-1. Execute the exact one-shot `lms --help` probe through the pinned synchronous transport. Require a numeric zero exit, bounded output, no new LM Studio process or listener, unchanged identities, and complete temporary cleanup.
-2. Only if that probe passes, make a new decision before any daemon or load-health execution. Do not infer, start the HTTP server, invoke CyxCode, or run Docker.
+1. Specify how synchronous CLI calls coexist with concurrent activation monitoring, exact service-root capture, output bounds, command timeouts, inventory reads, graceful unload/down, and forced cleanup. Record the design without invoking LM Studio.
+2. Only if that design passes, separately authorize one bounded load-health execution. Do not infer, start the HTTP server, invoke CyxCode, or run Docker.
 3. If a later load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary. If it fails, stop without automatic retry.
 4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
 5. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.

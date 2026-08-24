@@ -60,6 +60,7 @@ The last recorded pilot-data suite passed 95 tests. Validation proves structural
 - The engine/CLI recovery decision adopts the installed 2.29.1 engine and authorizes one new load-health execution through a digest-identical temporary client; it does not authorize inference or another automatic retry.
 - The recovery result records service startup, missing numeric daemon-exit evidence, zero model-load invocations, complete final safety cleanup, protocol failure, and a consumed attempt.
 - The CLI exit-transport decision fixture-tests a dependency-free synchronous numeric-exit seam and authorizes one identity-only `lms --help` probe; it does not authorize the daemon or model.
+- The CLI exit-transport result records numeric exit 0, bounded output digests, clean process/port state, unchanged client identity, complete temporary cleanup, and a consumed probe.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -75,4 +76,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. An earlier local attempt observed service-side Qwen load/unload and passing resource/cleanup bounds but failed protocol acceptance. The temporary-client recovery then stopped before model load on missing numeric exit evidence. A fixture-tested synchronous transport now authorizes only one `lms --help` identity probe. No daemon, model load, prompt, HTTP serving, CyxCode, or Docker invocation is authorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. An earlier local attempt observed service-side Qwen load/unload and passing resource/cleanup bounds but failed protocol acceptance. The synchronous transport and identity-only help probe now pass, but that probe is consumed. No daemon, model load, prompt, HTTP serving, CyxCode, or Docker invocation is authorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.

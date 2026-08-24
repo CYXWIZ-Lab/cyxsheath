@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "status": "cli_help_probe_passed_numeric_exit_observed",
+  "recorded_at": "2026-08-24T14:44:35Z",
+  "decision_scope": "final_cli_help_probe_result_not_daemon_model_or_load_health_authorization",
+  "baseline_commit": "f69e8adba0ca344d4a844b9cb66f2e2220c59585",
+  "transport_decision": {
+    "record": "phase6_cli_exit_transport_decision.json",
+    "sha256": "c6fe02d933dfb85d70476032caf1da2798f87db885f8afe40bf3103b440369ae",
+    "status": "synchronous_transport_verified_cli_help_probe_authorized_once"
+  },
+  "execution_identity": {
+    "runner": "../run_cli_exit_probe.py",
+    "runner_bytes": 9639,
+    "runner_sha256": "63f383304c79bc7891c4f86e3b6447c7212ec93db0c60adabf4a42976a0742ea",
+    "transport": "../cli_transport.py",
+    "transport_sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+    "ignored_result_sha256": "72cb6a622a1159e0d84df0dca9fc25c0c0e27c1e9bcfaaa4b3e33097c1fac4c4"
+  },
+  "cli_probe": {
+    "version": "1.3.3",
+    "bytes": 120772792,
+    "sha256": "976d4389f97b2cf95b38a4eb673855d8a846f2db21a20eb4fe5e79f7179722f5",
+    "temporary_copy_staged": true,
+    "command": "temporary_lms_exe --help",
+    "timeout_seconds": 30,
+    "maximum_combined_output_bytes": 1048576,
+    "numeric_exit_code": 0,
+    "elapsed_milliseconds": 13828
+  },
+  "output_evidence": {
+    "stdout_bytes": 1207,
+    "stderr_bytes": 0,
+    "combined_bytes": 1207,
+    "stdout_sha256": "5b195232216c6d4e81516e1ee0bd61a078a65171f1d61f546023bfa85fb13b75",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_nonempty": true,
+    "raw_output_retained": false
+  },
+  "runtime_boundary": {
+    "baseline_process_count": 0,
+    "baseline_port_1234_listener": false,
+    "daemon_command_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "post_process_count": 0,
+    "post_port_1234_listener": false
+  },
+  "cleanup": {
+    "forced_cleanup_required": false,
+    "canonical_cli_identity_matches_after": true,
+    "temporary_cli_deleted": true,
+    "raw_output_absent": true,
+    "cleanup_gate_passed": true
+  },
+  "acceptance": {
+    "pinned_cli_identity_gate_passed": true,
+    "numeric_zero_exit_gate_passed": true,
+    "bounded_output_gate_passed": true,
+    "clean_process_and_port_gate_passed": true,
+    "temporary_cleanup_gate_passed": true,
+    "cli_transport_probe_passed": true,
+    "daemon_health_conclusion_allowed": false,
+    "model_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false,
+    "load_health_gate_passed": false
+  },
+  "execution_gate": {
+    "cli_help_probe_consumed": true,
+    "automatic_probe_retry_authorized": false,
+    "load_health_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_explicit_load_health_transport_integration_decision_before_any_daemon_or_model_command"
+  }
+}
