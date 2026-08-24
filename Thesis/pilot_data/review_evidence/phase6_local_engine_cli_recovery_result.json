@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "status": "daemon_started_model_load_not_attempted_protocol_failed",
+  "recorded_at": "2026-08-24T06:34:56Z",
+  "decision_scope": "final_one_shot_engine_cli_recovery_result_not_retry_or_inference_admission",
+  "baseline_commit": "d1e19d7c50182ae168b92d6dd574572210715038",
+  "recovery_decision": {
+    "record": "phase6_local_engine_cli_recovery_decision.json",
+    "sha256": "d891c4a318ff2da696cb84b9b9aee27da407ec677a4f4e65f04a36a470f40831",
+    "status": "engine_2_29_1_repinned_temporary_cli_copy_retry_authorized_once"
+  },
+  "prelaunch_event": {
+    "classification": "host_powershell_execution_policy_blocked_before_runner_start",
+    "runner_started": false,
+    "daemon_or_model_process_started": false,
+    "temporary_cli_staged": false,
+    "counts_as_authorized_attempt": false,
+    "treatment": "relaunched_unchanged_runner_with_process_local_execution_policy_bypass"
+  },
+  "authorized_attempt": {
+    "started_at": "2026-08-24T06:30:59Z",
+    "completed_at": "2026-08-24T06:32:00Z",
+    "runner_sha256": "b04ccd1b13031433c03598f794eda900f7e4363b2e89719f9589c388976e3d40",
+    "runner_bytes": 22036,
+    "temporary_cli_staged": true,
+    "daemon_service_root_observed": true,
+    "daemon_client_numeric_exit_captured": false,
+    "daemon_client_exit_code": null,
+    "model_load_command_invocation_count": 0,
+    "model_activation_observed": false,
+    "load_observation_samples": 0,
+    "post_load_observation_samples": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0
+  },
+  "pinned_identity_outcome": {
+    "engine_package": "llama.cpp-win-x86_64-nvidia-cuda-avx2-2.29.1",
+    "engine_inventory_sha256": "389f3fc28e5ec80ec69a3b904ec844f51dadb789162000532c0b0db738c78561",
+    "engine_identity_matches_after": true,
+    "engine_preference_sha256": "7448caf18fc92b7e0769924b6cdf1f437279765ff33d2ad7bebccaf22c9857c7",
+    "engine_preference_matches_after": true,
+    "cli_version": "1.3.3",
+    "cli_sha256": "976d4389f97b2cf95b38a4eb673855d8a846f2db21a20eb4fe5e79f7179722f5",
+    "canonical_cli_matches_after": true,
+    "temporary_cli_deleted_after": true
+  },
+  "cli_lifecycle_outcome": {
+    "temporary_copy_mechanism_executed": true,
+    "bounded_application_log_eperm_event_count": 0,
+    "bounded_application_log_failed_extraction_event_count": 0,
+    "extraction_lock_resolution_conclusion_allowed": false,
+    "numeric_exit_evidence_missing": true,
+    "treatment": "missing_numeric_daemon_exit_fails_closed_before_model_load"
+  },
+  "resource_observation": {
+    "preload_available_memory_bytes": 34636341248,
+    "post_cleanup_available_memory_bytes": 34530279424,
+    "preload_gpu_used_memory_mib": 0,
+    "post_cleanup_gpu_used_memory_mib": 0,
+    "activation_resource_samples": 0,
+    "resource_gate_conclusion_allowed": false
+  },
+  "cleanup": {
+    "forced_cleanup_required": true,
+    "activation_processes_absent_after": true,
+    "port_1234_listener_absent_after": true,
+    "partial_weight_absent_after": true,
+    "temporary_cli_absent_after": true,
+    "raw_runner_output_absent_after": true,
+    "loaded_inventory_empty_after": true,
+    "safety_cleanup_complete": true,
+    "protocol_cleanup_gate_passed": false
+  },
+  "local_evidence": {
+    "ignored_result_sha256": "aa653c71b0d7ba9d556d102cc58221b593926e9580f73b65abf2e0684b0db0bc",
+    "application_log_sha256_at_inspection": "8e628cb2ebc4b91805dd6db9314c68034b680972df0d5b1b55db987638d958bf",
+    "application_log_bytes_at_inspection": 99467,
+    "bounded_window_line_count": 11,
+    "retained_content": "derived_counts_timestamps_identities_resources_and_digests_only",
+    "raw_log_or_cli_content_in_curated_evidence": false
+  },
+  "acceptance": {
+    "engine_identity_gate_passed": true,
+    "temporary_cli_integrity_gate_passed": true,
+    "daemon_client_exit_gate_passed": false,
+    "model_load_gate_executed": false,
+    "exact_loaded_inventory_gate_passed": false,
+    "observation_window_gate_passed": false,
+    "resource_gate_passed": false,
+    "cleanup_safety_outcome_passed": true,
+    "protocol_cleanup_gate_passed": false,
+    "load_health_gate_passed": false,
+    "model_health_conclusion_allowed": false
+  },
+  "execution_gate": {
+    "authorized_attempt_consumed": true,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_explicit_cli_exit_observation_design_decision_before_any_further_runtime_execution"
+  }
+}

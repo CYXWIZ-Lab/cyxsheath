@@ -83,7 +83,7 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms load` manually or send a model prompt. The authorized check is an evidence-producing operation that must monitor the full activation process tree and clean up on every exit path. HTTP serving remains unauthorized.
+Do not run `lms` manually, load the model, or send a prompt. The latest authorized temporary-client attempt is consumed and no retry is authorized. HTTP serving remains unauthorized.
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
 
@@ -91,11 +91,12 @@ The first monitored attempt failed closed before daemon start because its initia
 python Thesis\pilot_data\validate_local_model_load_health_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_recovery_decision.json
 ```
 
-The final recovery reached service-side load and unload, but the gate failed: `lms.exe` self-extraction produced an `EPERM` lock and nonzero clients, the observation/inventory proof was incomplete, and LM Studio's active llama.cpp preference had drifted from approved 2.28.2 to unapproved 2.29.1. Resource and cleanup ceilings passed. A subsequent design decision adopts the already installed 2.29.1 package and authorizes exactly one new load-health execution using a hash-verified temporary copy of the unchanged client. This is not permission to run prompts or start the HTTP server. Validate both records with:
+The earlier final recovery reached service-side load and unload, but the gate failed on CLI extraction, observation/inventory proof, and engine identity. The subsequent temporary-client execution recorded no bounded-window extraction-lock event but stopped before model load because no numeric daemon-client exit was observable. Final safety cleanup passed, while forced cleanup and missing exit evidence failed the protocol. Validate the result chain with:
 
 ```powershell
 python Thesis\pilot_data\validate_local_model_load_health_result.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_result.json
 python Thesis\pilot_data\validate_local_engine_cli_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_engine_cli_recovery_decision.json
+python Thesis\pilot_data\validate_local_engine_cli_recovery_result.py Thesis\pilot_data\review_evidence\phase6_local_engine_cli_recovery_result.json
 ```
 
 Do not retry, change the engine preference, update the CLI, or start the HTTP server without a new explicit design decision.
