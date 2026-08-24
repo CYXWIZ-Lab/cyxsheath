@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "status": "load_health_transport_integration_designed_runner_implementation_authorized",
+  "recorded_at": "2026-08-24T14:57:46Z",
+  "decision_scope": "design_and_fixture_implementation_only_no_lm_studio_runtime_authorization",
+  "baseline_commit": "d9173182a9d3b1b9e0495700534bd3085f1319a7",
+  "passed_cli_probe_result": {
+    "record": "phase6_cli_exit_transport_result.json",
+    "sha256": "b52d869571f897d7775d7ecb808abc3fac1ae671b99fc0c7d7a34ccd636d0309",
+    "status": "cli_help_probe_passed_numeric_exit_observed"
+  },
+  "essential_capability": "observe_numeric_cli_exits_while_sampling_one_owned_activation_tree_and_failing_closed",
+  "structural_decision": {
+    "short_command_module": "../cli_transport.py",
+    "short_command_module_sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+    "planned_activation_runner": "../run_local_model_load_health.py",
+    "new_dependency_count": 0,
+    "core_sheath_change_required": false,
+    "thread_count": 0,
+    "general_purpose_process_framework": false,
+    "reason": "short_low_output_controls_fit_the_verified_synchronous_transport_but_model_load_requires_one_owned_child_and_one_monitoring_loop"
+  },
+  "command_mapping": {
+    "synchronous_transport": [
+      "temporary_lms_exe daemon up --json",
+      "temporary_lms_exe ps --json",
+      "temporary_lms_exe unload cyxsheath-qwen25-coder-7b-q4km",
+      "temporary_lms_exe daemon down"
+    ],
+    "monitored_transport": "temporary_lms_exe load qwen2.5-coder-7b-instruct --gpu off --context-length 8192 --parallel 1 --ttl 600 --no-speculative-draft-mtp --identifier cyxsheath-qwen25-coder-7b-q4km --yes",
+    "control_timeout_seconds": {
+      "daemon_up": 180,
+      "inventory": 120,
+      "unload": 120,
+      "daemon_down": 120
+    },
+    "load_timeout_seconds": 600,
+    "maximum_control_combined_output_bytes": 1048576,
+    "automatic_retry_count": 0
+  },
+  "monitored_load_contract": {
+    "implementation": "python_standard_library_subprocess_popen",
+    "shell": false,
+    "stdin": "null_device",
+    "stdout_and_stderr": "separate_git_ignored_temporary_binary_files",
+    "single_same_thread_monitor_loop": true,
+    "sample_interval_seconds": 1,
+    "maximum_each_temporary_output_file_bytes": 1048576,
+    "output_limit_kind": "sampled_file_size_abort_threshold_not_zero_overshoot_guarantee",
+    "output_size_checked_each_monitor_iteration": true,
+    "numeric_returncode_required_after_wait": true,
+    "post_load_observation_samples": 15,
+    "fail_closed_on_timeout_output_breach_measurement_gap_or_nonzero_exit": true
+  },
+  "service_ownership_contract": {
+    "clean_baseline_requires_zero_lm_studio_or_lms_processes": true,
+    "clean_baseline_requires_port_1234_absent": true,
+    "capture_after_daemon_command_on_every_exit_path": true,
+    "readiness_requires_exact_service_root_count": 1,
+    "service_root_match": "LM Studio.exe_with_run_as_service_command_line",
+    "owned_root_identity": "process_id_and_creation_timestamp",
+    "monitor_only_owned_root_descendants_plus_direct_load_child": true,
+    "ambient_process_adoption_allowed": false,
+    "force_cleanup_scope": "captured_owned_process_tree_only"
+  },
+  "resource_and_inventory_contract": {
+    "minimum_preload_available_memory_bytes": 21474836480,
+    "minimum_observed_available_memory_bytes": 17179869184,
+    "maximum_available_memory_drop_bytes": 12884901888,
+    "maximum_activation_tree_private_bytes": 12884901888,
+    "maximum_activation_tree_working_set_bytes": 12884901888,
+    "maximum_gpu_used_memory_delta_mib": 512,
+    "gpu_sample_attempts": 3,
+    "gpu_sample_retry_interval_seconds": 1,
+    "http_listener_allowed": false,
+    "inventory_before_load": "empty",
+    "inventory_after_load": "exactly_one_expected_identifier_model_key_and_context",
+    "inventory_after_unload": "empty",
+    "missing_measurement_or_inventory": "fail_closed"
+  },
+  "identity_contract": {
+    "cli_version": "1.3.3",
+    "cli_bytes": 120772792,
+    "cli_sha256": "976d4389f97b2cf95b38a4eb673855d8a846f2db21a20eb4fe5e79f7179722f5",
+    "verify_temporary_cli_before_each_command": true,
+    "engine_package": "llama.cpp-win-x86_64-nvidia-cuda-avx2-2.29.1",
+    "engine_inventory_sha256": "389f3fc28e5ec80ec69a3b904ec844f51dadb789162000532c0b0db738c78561",
+    "engine_preference_sha256": "7448caf18fc92b7e0769924b6cdf1f437279765ff33d2ad7bebccaf22c9857c7",
+    "weight_bytes": 4683073536,
+    "weight_sha256": "509287f78cb4d4cf6b3843734733b914b2c158e43e22a7f4bf5e963800894d3c"
+  },
+  "cleanup_contract": {
+    "finally_path_required": true,
+    "graceful_unload_before_daemon_down": true,
+    "verify_empty_inventory_after_unload": true,
+    "graceful_daemon_down_before_force": true,
+    "wait_for_owned_service_root_exit": true,
+    "force_only_captured_owned_tree_if_graceful_cleanup_fails": true,
+    "temporary_cli_and_raw_output_deleted": true,
+    "canonical_cli_engine_preference_and_weight_identity_rechecked": true,
+    "process_port_partial_weight_and_inventory_absence_required": true,
+    "forced_cleanup_fails_protocol_acceptance": true
+  },
+  "fixture_plan": {
+    "lm_studio_invocation_count": 0,
+    "use_only_temporary_python_child_processes": true,
+    "required_behaviors": [
+      "numeric_zero_and_nonzero_exit_observation",
+      "timeout_terminates_owned_direct_child",
+      "sampled_output_threshold_aborts_child",
+      "monitor_callback_runs_while_child_is_live",
+      "measurement_failure_aborts_child",
+      "literal_arguments_do_not_use_a_shell",
+      "temporary_output_is_removed",
+      "unowned_process_is_never_terminated"
+    ]
+  },
+  "security_and_research_boundary": {
+    "daemon_command_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "synthetic_prompt_authorized": false,
+    "benchmark_or_thesis_content_authorized": false,
+    "raw_cli_output_in_curated_evidence": false,
+    "model_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "execution_gate": {
+    "activation_runner_implementation_authorized": true,
+    "fixture_test_execution_authorized": true,
+    "lm_studio_runtime_execution_authorized": false,
+    "load_health_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "implement_and_fixture_test_exact_activation_runner_without_invoking_lm_studio"
+  }
+}

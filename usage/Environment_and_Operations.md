@@ -83,7 +83,7 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe has passed and its one-shot authorization is consumed. Daemon commands, model load, and HTTP serving remain unauthorized pending a transport-integration decision.
+Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe has passed and its one-shot authorization is consumed. The load-health transport-integration design also passes, but it authorizes only runner implementation and fixtures using temporary Python child processes. Daemon commands, model load, inference, and HTTP serving remain unauthorized until the implemented runner is pinned and a separate execution decision passes.
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
 
@@ -106,10 +106,11 @@ The synchronous transport decision may be validated without invoking LM Studio:
 ```powershell
 python Thesis\pilot_data\validate_cli_exit_transport_decision.py Thesis\pilot_data\review_evidence\phase6_cli_exit_transport_decision.json
 python Thesis\pilot_data\validate_cli_exit_transport_result.py Thesis\pilot_data\review_evidence\phase6_cli_exit_transport_result.json
+python Thesis\pilot_data\validate_load_health_transport_integration_decision.py Thesis\pilot_data\review_evidence\phase6_load_health_transport_integration_decision.json
 python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_validate_cli_exit_transport_decision -v
 ```
 
-These validation commands do not repeat the consumed `lms --help` probe.
+These validation commands do not repeat the consumed `lms --help` probe or invoke LM Studio. The next development command is the ordinary pilot-data unit-test discovery command after `run_local_model_load_health.py` and its Python-child fixtures are implemented; there is currently no authorized runtime command to document.
 
 ## Troubleshooting
 
