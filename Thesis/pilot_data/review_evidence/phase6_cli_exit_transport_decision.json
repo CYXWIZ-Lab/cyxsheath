@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synchronous_transport_verified_cli_help_probe_authorized_once",
+  "recorded_at": "2026-08-24T10:56:11Z",
+  "decision_scope": "cli_exit_transport_and_identity_probe_not_runtime_or_model_activation",
+  "baseline_commit": "ec7940748bbe442f32a84101f28156e4c1758c41",
+  "failed_recovery_result": {
+    "record": "phase6_local_engine_cli_recovery_result.json",
+    "sha256": "bd7a92348b31d2ff0bd4b5d079c1566491d41d9b48ff99c9f9b659a6140f57ef",
+    "status": "daemon_started_model_load_not_attempted_protocol_failed"
+  },
+  "structural_decision": {
+    "new_module": "../cli_transport.py",
+    "responsibility": "execute_one_local_cli_child_and_return_an_observable_numeric_exit",
+    "reason_not_cyxcode_executor": "cyxcode_executor_owns_generation_bridge_payload_and_snapshot_semantics",
+    "reason_not_docker_runner": "docker_runner_owns_container_streaming_abort_and_cleanup_semantics",
+    "new_dependency_count": 0,
+    "core_sheath_change_required": false
+  },
+  "transport_identity": {
+    "module": "../cli_transport.py",
+    "bytes": 3114,
+    "sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+    "test_module": "../test_cli_transport.py",
+    "test_bytes": 2935,
+    "test_sha256": "6157ee9ffc527675fdd213f56d9f4de27f2f6d76577c2ac2debd2f2c3c244e79"
+  },
+  "transport_contract": {
+    "implementation": "python_standard_library_subprocess_run",
+    "argv_type": "non_empty_tuple_of_non_empty_text",
+    "absolute_existing_executable_required": true,
+    "absolute_existing_working_directory_required": true,
+    "shell": false,
+    "stdin": "null_device",
+    "stdout": "captured_bytes",
+    "stderr": "captured_bytes",
+    "numeric_returncode_required": true,
+    "nonzero_returncode_is_returned_to_caller": true,
+    "timeout_required_positive_finite": true,
+    "combined_output_retention_limit_required": true,
+    "windows_no_console_flag": true,
+    "elapsed_time_source": "monotonic_clock",
+    "environment_override_supported": false
+  },
+  "failure_contract": {
+    "invalid_input": "fail_before_process_start",
+    "os_start_failure": "normalized_transport_error_without_exit_claim",
+    "timeout": "direct_child_terminated_by_subprocess_run_and_no_exit_claim_returned",
+    "output_over_limit": "completed_result_rejected",
+    "nonzero_exit": "numeric_result_returned_and_caller_must_fail_closed",
+    "external_service_tree_cleanup": "owned_by_calling_activation_runner_not_transport"
+  },
+  "known_limit": {
+    "output_limit_kind": "post_completion_combined_retention_acceptance_bound",
+    "streaming_memory_limit_enforced": false,
+    "treatment": "use_only_for_low_output_lms_control_commands_with_one_mebibyte_probe_ceiling",
+    "general_purpose_process_runner_claimed": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 8,
+      "tests_passed": 8
+    },
+    "python_3_14": {
+      "tests_run": 8,
+      "tests_passed": 8
+    },
+    "verified_behaviors": [
+      "zero_exit_and_separate_outputs",
+      "numeric_nonzero_exit",
+      "no_shell_argument_interpretation",
+      "timeout_failure_without_exit_claim",
+      "combined_output_rejection",
+      "relative_executable_rejection",
+      "invalid_limit_rejection",
+      "missing_executable_rejection"
+    ],
+    "lm_studio_invocation_count": 0
+  },
+  "authorized_cli_probe": {
+    "maximum_attempts": 1,
+    "canonical_cli_relative_path": "lmstudio_home/bin/lms.exe",
+    "canonical_cli_bytes": 120772792,
+    "canonical_cli_sha256": "976d4389f97b2cf95b38a4eb673855d8a846f2db21a20eb4fe5e79f7179722f5",
+    "temporary_cli_relative_path": ".replay_cache/local_cli_transport_probe/lms.exe",
+    "temporary_copy_count": 1,
+    "command": "temporary_lms_exe --help",
+    "timeout_seconds": 30,
+    "maximum_combined_output_bytes": 1048576,
+    "required_exit_code": 0,
+    "nonempty_stdout_required": true,
+    "raw_output_retained": false,
+    "temporary_cli_deleted_after": true,
+    "clean_process_and_port_baseline_required": true,
+    "new_lm_studio_process_after_allowed": false,
+    "port_1234_listener_allowed": false
+  },
+  "security_and_research_boundary": {
+    "daemon_command_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "benchmark_or_thesis_content_authorized": false,
+    "model_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "execution_gate": {
+    "cli_help_probe_authorized_once": true,
+    "load_health_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "execute_exact_cli_help_probe_once_and_record_numeric_exit_cleanup_and_identity_result"
+  }
+}

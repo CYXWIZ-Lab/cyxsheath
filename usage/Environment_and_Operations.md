@@ -83,7 +83,7 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms` manually, load the model, or send a prompt. The latest authorized temporary-client attempt is consumed and no retry is authorized. HTTP serving remains unauthorized.
+Do not run `lms` manually, load the model, or send a prompt. The only current authorization is one evidence-producing temporary-client `--help` probe through the pinned synchronous transport. Daemon commands, model load, and HTTP serving remain unauthorized.
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
 
@@ -100,6 +100,15 @@ python Thesis\pilot_data\validate_local_engine_cli_recovery_result.py Thesis\pil
 ```
 
 Do not retry, change the engine preference, update the CLI, or start the HTTP server without a new explicit design decision.
+
+The synchronous transport decision may be validated without invoking LM Studio:
+
+```powershell
+python Thesis\pilot_data\validate_cli_exit_transport_decision.py Thesis\pilot_data\review_evidence\phase6_cli_exit_transport_decision.json
+python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_validate_cli_exit_transport_decision -v
+```
+
+These commands test Python fixture processes only. They do not execute the separately authorized `lms --help` probe.
 
 ## Troubleshooting
 
