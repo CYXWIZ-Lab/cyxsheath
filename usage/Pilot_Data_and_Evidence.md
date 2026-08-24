@@ -57,6 +57,7 @@ The last recorded pilot-data suite passed 95 tests. Validation proves structural
 - The recovery decision classifies the first preload measurement failure without calling it a model failure and authorizes one measurement-only correction while inheriting the original contract.
 - The daemon-recovery decision records attempt 2's pre-load service-lifecycle failure and requires exact root/readiness capture and cleanup for one final attempt under the unchanged contract.
 - The final load-health result separates observed service-side activation and passing resource/cleanup bounds from failed protocol acceptance caused by CLI lifecycle and engine-identity drift.
+- The engine/CLI recovery decision adopts the installed 2.29.1 engine and authorizes one new load-health execution through a digest-identical temporary client; it does not authorize inference or another automatic retry.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -72,4 +73,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The final local attempt observed service-side Qwen load/unload and passing resource/cleanup bounds without inference or HTTP serving, but protocol acceptance failed on CLI self-extraction and unapproved engine drift. No automatic retry is authorized. The synthetic canary remains unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. The final local attempt observed service-side Qwen load/unload and passing resource/cleanup bounds without inference or HTTP serving, but protocol acceptance failed on CLI self-extraction and unapproved engine drift. A new decision authorizes one exact temporary-CLI load-health execution only; it does not authorize prompts, HTTP serving, CyxCode, Docker, or an automatic retry after that attempt. The synthetic canary remains unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.

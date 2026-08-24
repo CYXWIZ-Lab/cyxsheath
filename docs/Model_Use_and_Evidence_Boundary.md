@@ -50,7 +50,7 @@ Qwen2.5-Coder-7B-Instruct Q4_K_M was selected as a small, code-specialized, repr
 
 Local execution does not solve benchmark contamination: Qwen's exact training membership is undisclosed. It must first pass runtime and synthetic gates, then receive a separate contamination decision before any quarantined candidate is exposed.
 
-Current evidence records verified download/import and observed service-side load/unload within resource limits, but the load-health protocol remains failed. LM Studio's active llama.cpp preference drifted from approved 2.28.2 to 2.29.1, and an `lms.exe` self-extraction lock caused nonzero clients and incomplete inventory/window proof. No inference, HTTP server, or local synthetic canary is yet authorized. See the [load-health result](../Thesis/pilot_data/review_evidence/phase6_local_model_load_health_result.json).
+Current evidence records verified download/import and observed service-side load/unload within resource limits, but the completed load-health protocol remains failed. The recovery decision adopts the already installed llama.cpp `2.29.1` package and authorizes one new load-health attempt using a hash-verified temporary copy of the unchanged `lms.exe` 1.3.3 client. This keeps the canonical extraction target unlocked without installing another runtime or changing the model. No inference, HTTP server, or local synthetic canary is yet authorized. See the [failed result](../Thesis/pilot_data/review_evidence/phase6_local_model_load_health_result.json) and [recovery decision](../Thesis/pilot_data/review_evidence/phase6_local_engine_cli_recovery_decision.json).
 
 ## Production Use of Frontier Models
 

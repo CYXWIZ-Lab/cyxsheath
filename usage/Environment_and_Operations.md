@@ -91,10 +91,11 @@ The first monitored attempt failed closed before daemon start because its initia
 python Thesis\pilot_data\validate_local_model_load_health_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_recovery_decision.json
 ```
 
-The final recovery reached service-side load and unload, but the gate failed: `lms.exe` self-extraction produced an `EPERM` lock and nonzero clients, the observation/inventory proof was incomplete, and LM Studio's active llama.cpp preference had drifted from approved 2.28.2 to unapproved 2.29.1. Resource and cleanup ceilings passed. Validate the final record with:
+The final recovery reached service-side load and unload, but the gate failed: `lms.exe` self-extraction produced an `EPERM` lock and nonzero clients, the observation/inventory proof was incomplete, and LM Studio's active llama.cpp preference had drifted from approved 2.28.2 to unapproved 2.29.1. Resource and cleanup ceilings passed. A subsequent design decision adopts the already installed 2.29.1 package and authorizes exactly one new load-health execution using a hash-verified temporary copy of the unchanged client. This is not permission to run prompts or start the HTTP server. Validate both records with:
 
 ```powershell
 python Thesis\pilot_data\validate_local_model_load_health_result.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_result.json
+python Thesis\pilot_data\validate_local_engine_cli_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_engine_cli_recovery_decision.json
 ```
 
 Do not retry, change the engine preference, update the CLI, or start the HTTP server without a new explicit design decision.

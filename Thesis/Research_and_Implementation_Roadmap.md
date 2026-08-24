@@ -4,7 +4,7 @@
 
 This is the master progress tracker for the Sheath thesis and paper. Detailed design remains in the linked supporting documents; this file records sequence, status, dependencies, evidence, and exit gates. Update a phase to **Complete** only when its gate is supported by versioned artifacts. **Conditional** work begins only when its stated evidence justifies the added complexity.
 
-Status as of **2026-08-23**:
+Status as of **2026-08-24**:
 
 - **Complete:** gate passed with repository evidence.
 - **Active:** source material exists and the gate is being implemented or audited.
@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The final attempt observed exact Qwen service-side load/unload with zero offload layers and passing resource/cleanup bounds, but protocol acceptance failed on nonzero CLI clients, incomplete inventory/window proof, and unapproved engine drift from 2.28.2 to 2.29.1. |
+| Last completed milestone | A validator-backed recovery decision adopts the already installed llama.cpp 2.29.1 package and uses one hash-verified temporary copy of `lms.exe` 1.3.3 so LM Studio's canonical extraction target is not locked. No runtime installation, inference, or HTTP serving is authorized. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Make an explicit design decision for the active llama.cpp 2.29.1 drift and `lms.exe` self-extraction lock. Do not retry, change runtime state, or start the HTTP server before that record passes. |
-| Then | If load health passes, record the authenticated-server gate and separately authorize at most one generated public non-benchmark local feasibility canary. |
+| Next implementation slice | Execute the exact temporary-CLI load-health contract once and record its result. Do not infer, start the HTTP server, invoke CyxCode, or run Docker. |
+| Then | If load health passes, record the authenticated-server gate and separately authorize at most one generated public non-benchmark local feasibility canary. If it fails, record the failure without automatic retry. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -78,6 +78,7 @@ Completed work to preserve:
 - the first monitored attempt stopped before daemon start when its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repeats succeeded. A recovery decision classifies this as a measurement-harness failure and authorizes one retry with at most three one-second reads per GPU sample; all original model, resource, and security settings remain unchanged.
 - the second monitored attempt passed GPU sampling but stopped before load when the daemon client returned nonzero after spawning the service. Exact manual cleanup passed. A final recovery captures the exact service root on every exit and accepts readiness only with one root, empty model inventory, and no port-1234 listener; no further automatic retry is allowed.
 - the final attempt reached service-side load and unload at 8,192 context with zero offload layers. Observed memory/GPU and cleanup bounds passed without inference or HTTP serving. The frozen load-health gate still failed because the CLI self-extraction lock caused nonzero clients, exact post-load inventory and the full observation window were absent, and LM Studio's active backend preference drifted from approved 2.28.2 to unapproved 2.29.1. No retry is authorized.
+- a validator-backed recovery decision resolves that design gate by adopting the already installed 2.29.1 engine and staging one digest-identical `lms.exe` 1.3.3 copy under ignored `.replay_cache`. This keeps the canonical extraction target unlocked, changes no model or resource setting, and authorizes exactly one fresh load-health execution while prompts and HTTP serving remain blocked.
 
 The exact next slice is:
 
@@ -92,10 +93,12 @@ The exact next slice is:
 9. Completed: separate the infrastructure-canary gate from benchmark admission. Authorize one free MiMo-V2.5 attempt only for a generated public non-benchmark fixture, and add a bounded runner plus mutation tests.
 10. Completed: run that one free synthetic canary. CyxCode captured response and patch artifacts for a change limited to `arithmetic.py`; source preservation and post-run container absence passed. This does not authorize benchmark input.
 11. Completed: preserve the exact-card decisions, pin supplemental official project evidence, retain Astropy for internal analysis, block free-cloud training-use routes, and select the existing local OpenAI-compatible seam without installing a runtime.
-12. Active: activation preflight and three load-health attempts are complete. The final attempt observed load/unload and passing resource/cleanup bounds, but the protocol failed on CLI lifecycle, incomplete proof, and unapproved engine drift. A new engine/CLI design decision is required before further activation; prompts and the synthetic canary remain blocked.
-13. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
-14. Replay and review the remaining 17 only after step 13 yields an operational admission path.
-15. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+12. Completed: preserve the failed final load-health result without overclaiming activation health, engine identity, CLI success, or observation completeness.
+13. Completed: adopt the installed 2.29.1 engine, pin its exact inventory, and authorize one temporary-CLI load-health execution under unchanged resource and zero-inference gates.
+14. Active: execute that exact contract once and record pass or fail without automatic retry.
+15. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
+16. Replay and review the remaining 17 only after step 15 yields an operational admission path.
+17. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -127,7 +130,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — runtime drift decision pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The local Qwen weight passes identity/import preflight and observed service load/unload stayed within resource bounds, but load-health protocol acceptance failed on CLI lifecycle, incomplete proof, and engine drift. Synthetic feasibility and contamination gates remain. |
+| 6 | Pilot data specification | **Active — recovery load-health execution authorized** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The local Qwen weight passes identity/import preflight. The installed 2.29.1 engine and temporary-CLI recovery mechanism are now pinned for one load-health execution; synthetic feasibility and contamination gates remain. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -167,16 +170,16 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Load-health recovery:** [phase6_local_model_load_health_recovery_decision.json](pilot_data/review_evidence/phase6_local_model_load_health_recovery_decision.json) records the attempt-1 preload measurement failure and clean zero-activation exit, then authorizes one measurement-only correction under the unchanged contract. Seven mutation tests reject model-failure overclaims, widened reads, missing-measurement fallback, changed load settings, cleanup failure, and premature canary authorization; the full pilot suite is 81/81.
 - **Daemon recovery:** [phase6_local_model_load_health_daemon_recovery_decision.json](pilot_data/review_evidence/phase6_local_model_load_health_daemon_recovery_decision.json) records attempt 2's pre-load daemon lifecycle failure and exact cleanup, then freezes service-root readiness and fail-safe cleanup for one final unchanged-contract attempt. Seven mutation tests reject model-health overclaims, exit-only readiness, widened root counts, cleanup failure, changed settings, and premature canary authorization; the full pilot suite is 88/88.
 - **Load-health result:** [phase6_local_model_load_health_result.json](pilot_data/review_evidence/phase6_local_model_load_health_result.json) separates observed exact load/unload and passing resource/cleanup bounds from failed CLI, inventory/window, and engine-identity gates. Seven mutation tests reject concealed engine drift, exit or window overclaims, cleanup failure, retry, and premature canary authorization; the full pilot suite is 95/95.
+- **Engine/CLI recovery decision:** [phase6_local_engine_cli_recovery_decision.json](pilot_data/review_evidence/phase6_local_engine_cli_recovery_decision.json) pins the already installed llama.cpp 2.29.1 inventory and one digest-identical temporary `lms.exe` copy. Eight mutation tests reject downgrade or installation, canonical-client invocation, unverified copies, widened attempts, inference, and premature canary authorization; the full pilot suite is 103/103 on Python 3.12 and 3.14.
 
 ## Immediate Work Queue
 
-1. Decide whether to re-pin the observed llama.cpp 2.29.1 package or restore 2.28.2, and how to remove the `lms.exe` self-extraction lock without adding another runtime. Record exact identities and rollback/cleanup rules before changing anything.
-2. Only if that design passes, authorize a fresh load-health execution with complete inventory and observation proof. Do not infer, start the HTTP server, invoke CyxCode, or run Docker.
-3. If load health later passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-5. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-6. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-7. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Execute the one authorized temporary-CLI load-health contract and record complete engine, client, inventory, observation, resource, and cleanup evidence. Do not infer, start the HTTP server, invoke CyxCode, or run Docker.
+2. If load health passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary. If it fails, stop without automatic retry.
+3. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+4. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+5. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
+6. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
