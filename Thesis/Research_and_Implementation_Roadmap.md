@@ -217,6 +217,7 @@ CyxCode acquisition and dataset-protocol work may proceed in parallel, but datas
 - Do not add an experimental condition unless it answers a research question.
 - Do not treat passing infrastructure fixtures as evidence that Sheath improves coding-agent outcomes.
 - Do not write empirical conclusions before immutable confirmatory records and analysis exist.
+- Do not copy, vendor, or integrate AGPL-licensed Odysseus code before CyxSheath's repository-wide licensing decision. Treat its approval, escalation, context, and security mechanisms as cited prior art unless a later measured need justifies a separately reviewed adapter.
 - Do not switch agent hosts or add Cordis lifecycle machinery unless the completed CyxCode baseline exposes a specific limitation that those mechanisms solve.
 
 ## Supporting Documents
@@ -229,3 +230,4 @@ CyxCode acquisition and dataset-protocol work may proceed in parallel, but datas
 - [Experiment_Protocol.md](Experiment_Protocol.md): conditions, fairness rules, outcomes, statistics, and preregistration checklist.
 - [Paper_Plan.md](Paper_Plan.md): publication structure and empirical submission gate.
 - [Tolook_Source_Review.md](Tolook_Source_Review.md): source correction and adopt/defer/reject decisions for the DeepSeek Harness, Cordis, and DeepSeek-R1 material in `tolook.md`.
+- [Odysseus_Source_Review.md](Odysseus_Source_Review.md): pinned related-implementation review covering exact approvals, teacher escalation, context budgeting, security gaps, and the AGPL boundary.

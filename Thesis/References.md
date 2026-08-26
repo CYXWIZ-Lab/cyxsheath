@@ -44,6 +44,13 @@ The manuscript uses numeric citations. Entries below prioritize primary papers a
 32. Z.ai, “GLM-5.2: Built for Long-Horizon Tasks,” 2026, accessed August 23, 2026. [Official release record](https://z.ai/blog/glm-5.2).
 33. Z.ai, “GLM-5.2,” official open-weight model repository, accessed August 23, 2026. [Model card](https://huggingface.co/zai-org/GLM-5.2).
 
+34. Odysseus contributors, "Odysseus: Self-hosted AI workspace," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official repository](https://github.com/odysseus-dev/odysseus/tree/7026cf40b5f96f166f6b76e4236527d7dce243b1).
+35. Odysseus contributors, "Threat Model," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official source](https://github.com/odysseus-dev/odysseus/blob/7026cf40b5f96f166f6b76e4236527d7dce243b1/THREAT_MODEL.md).
+36. Odysseus contributors, "Opaque Exact-Action Tool Approvals," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official source](https://github.com/odysseus-dev/odysseus/blob/7026cf40b5f96f166f6b76e4236527d7dce243b1/src/tool_approvals.py).
+37. Odysseus contributors, "Teacher Escalation," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official source](https://github.com/odysseus-dev/odysseus/blob/7026cf40b5f96f166f6b76e4236527d7dce243b1/src/teacher_escalation.py).
+38. Odysseus contributors, "Adaptive Input-Token Budget," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official source](https://github.com/odysseus-dev/odysseus/blob/7026cf40b5f96f166f6b76e4236527d7dce243b1/src/context_budget.py).
+39. Odysseus contributors, "Roadmap / Help Wanted," `dev` commit `7026cf40b5f96f166f6b76e4236527d7dce243b1`, accessed August 26, 2026. [Official source](https://github.com/odysseus-dev/odysseus/blob/7026cf40b5f96f166f6b76e4236527d7dce243b1/ROADMAP.md).
+
 ## Citation Notes
 
 - Cite the debate documents only as design provenance, never as empirical evidence that the taxonomy is valid.
@@ -51,5 +58,6 @@ The manuscript uses numeric citations. Entries below prioritize primary papers a
 - Replace statements about contemporary model performance with results from the frozen models and benchmark versions actually used in the experiment.
 - Do not cite promotional meetup language as scientific evidence.
 - Treat DeepSeek Harness as a rapidly changing implementation source and pin a commit before empirical use. Treat the Cordis manuscript as an actively revised preprint; do not infer Sheath correctness or effectiveness from its composition results.
+- Treat Odysseus as contemporary implementation prior art, not evidence for the Sheath hypothesis. Its official code is AGPL-3.0-or-later; do not copy, vendor, or integrate it before the separate CyxSheath licensing decision.
 - Use SPDX/OSI identifiers as license evidence, not as an automatic decision that research analysis, redistribution, or model training is permitted for a specific artifact; record those uses separately.
 - Treat a benchmark dataset license and the licenses of its upstream repositories as separate evidence. Pin both the dataset revision and each source revision before admission or replay.

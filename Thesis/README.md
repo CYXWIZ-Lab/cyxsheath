@@ -50,6 +50,7 @@ For practical setup, commands, component behavior, and operating boundaries, see
 - [Progress_Notes/2026-08-26_phase6_load_health_runner_one_shot_correction.md](Progress_Notes/2026-08-26_phase6_load_health_runner_one_shot_correction.md): atomic retained claim, immutable prior-result gate, corrected identity chain, and fresh-decision handoff.
 - [Progress_Notes/2026-08-26_phase6_load_health_runner_fresh_execution_decision.md](Progress_Notes/2026-08-26_phase6_load_health_runner_fresh_execution_decision.md): blocked fresh decision, PowerShell/Python engine-inventory ordering mismatch, and narrow canonicalization-correction handoff.
 - [Tolook_Source_Review.md](Tolook_Source_Review.md): verified review of `tolook.md`, separating useful DeepSeek Harness/Cordis ideas from unsupported or premature additions.
+- [Odysseus_Source_Review.md](Odysseus_Source_Review.md): pinned review of Odysseus approvals, teacher escalation, context/security patterns, AGPL boundary, and adopt/defer/reject decisions.
 - [References.md](References.md): working bibliography of primary research and project sources.
 - [schemas/task_record.schema.json](schemas/task_record.schema.json): machine-readable task and constraint contract.
 - [schemas/run_record.schema.json](schemas/run_record.schema.json): machine-readable proposals, execution, evidence, decisions, and artifacts.

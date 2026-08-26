@@ -125,6 +125,12 @@ LoRA provides a parameter-efficient way to adapt a pretrained model [10]. Sparse
 
 DeepSeek Harness is a developer-preview agent host in which model adapters, tools, session logging, and the agent loop are replaceable plugins with typed request and tool interception points [20]. It is built on Cordis, which studies reversible effects and reactive dependencies for dynamically composed software [21]. These mechanisms are relevant deployment infrastructure: they can provide native seams for pre-flight, in-flight, and post-flight supervision, and their append-only session design reinforces the requirement that model-visible context be reconstructable. They do not establish that a supervisory policy is correct or improves software outcomes. Sheath therefore remains host-neutral; DeepSeek Harness is a conditional integration option rather than part of the causal claim or current implementation dependency.
 
+### 3.7 Self-Hosted Workspaces, Approvals, and Teacher Escalation
+
+Odysseus is a self-hosted AI workspace combining local and API models with agent tools, skills, memory, research, documents, and model-serving workflows [34]. Its exact-action approval mechanism cryptographically binds server-owned action state, scope, workspace, effects, and integrity metadata before a one-time claim [36]. Its teacher-escalation path detects a weaker agent's apparent failure, calls a configured stronger model, and may persist a generalized skill after additional checks [37]. These are relevant examples of authorization and model-assisted learning in a deployed agent workspace.
+
+The comparison also clarifies the research gap. A teacher's response, regex detector, or generated procedure is not external proof that a repository task is correct, and persistent guidance can amplify untrusted trace content if provenance and verification fail. Odysseus explicitly wraps untrusted inputs and documents security gaps including unsandboxed shell/filesystem tools [35]. CyxSheath instead evaluates immutable task constraints, fresh executable evidence, false interventions, and replayable decisions; D1 adds a residual critic only after D0 exposes a stable ambiguous task. Adaptive context budgeting [38] is useful future adapter practice, but neither the Odysseus workspace nor its AGPL implementation enters the current system or experimental conditions.
+
 ## 4. Research Questions and Hypotheses
 
 ### 4.1 Research Questions
