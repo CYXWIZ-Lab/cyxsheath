@@ -12,6 +12,10 @@ from validate_load_health_runner_one_shot_correction_result import (
     LoadHealthRunnerOneShotCorrectionError,
     validate as validate_one_shot_correction,
 )
+from validate_load_health_runner_execution_decision import (
+    LoadHealthRunnerExecutionDecisionError,
+    validate as validate_execution_decision,
+)
 
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
@@ -35,6 +39,11 @@ CORRECTION_RESULT = (
     Path(__file__).parent
     / "review_evidence"
     / "phase6_load_health_runner_one_shot_correction_result.json"
+)
+EXECUTION_DECISION = (
+    Path(__file__).parent
+    / "review_evidence"
+    / "phase6_load_health_runner_execution_decision.json"
 )
 
 
@@ -78,12 +87,44 @@ def expect_file(base: Path, record: dict, *, role: str | None = None) -> None:
             ) from error
         transitions = {item["path"]: item for item in correction["code_transition"]}
         transition = transitions.get(record["path"])
-        expect(
-            transition is not None
-            and transition["previous"] == historical
-            and transition["corrected"] == actual,
-            f"file digest drift without validated correction: {record['path']}",
-        )
+        needs_successor = False
+        if transition is not None and transition["previous"] == historical:
+            if transition["corrected"] == actual:
+                transition = None
+            else:
+                historical = transition["corrected"]
+                needs_successor = True
+        elif record["path"] == "../lm_studio_windows.py":
+            needs_successor = True
+        else:
+            expect(False, f"file digest drift without validated correction: {record['path']}")
+        if needs_successor:
+            try:
+                execution = validate_execution_decision(EXECUTION_DECISION)
+            except (
+                OSError,
+                KeyError,
+                TypeError,
+                json.JSONDecodeError,
+                LoadHealthRunnerExecutionDecisionError,
+            ) as error:
+                raise LoadHealthRunnerImplementationResultError(
+                    f"validated execution correction unavailable: {record['path']}"
+                ) from error
+            labels = {
+                "../lm_studio_windows.py": "windows_adapter",
+                "../run_local_model_load_health.py": "runner",
+                "../test_run_local_model_load_health.py": "runner_test",
+            }
+            successor = execution["canonicalization_correction"]["source_transition"].get(
+                labels.get(record["path"], "")
+            )
+            expect(
+                successor is not None
+                and successor["previous_sha256"] == historical["sha256"]
+                and successor["corrected_sha256"] == actual["sha256"],
+                f"file digest drift without validated correction: {record['path']}",
+            )
     if role is not None:
         expect(record["role"] == role, f"module role drift: {record['path']}")
 

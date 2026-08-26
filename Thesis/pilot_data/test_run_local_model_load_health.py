@@ -186,24 +186,36 @@ class LocalModelLoadHealthRunnerTests(unittest.TestCase):
     def test_engine_inventory_digest_is_canonical(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "b.bin").write_bytes(b"b")
-            (root / "a.bin").write_bytes(b"a")
+            (root / "ggml_llamacpp.dll").write_bytes(b"underscore")
+            (root / "ggml-base.dll").write_bytes(b"hyphen")
+            (root / "VCRUNTIME140.dll").write_bytes(b"upper")
+            (root / "backend-manifest.json").write_bytes(b"lower")
             entries = [
                 {
-                    "path": "a.bin",
-                    "bytes": 1,
-                    "sha256": hashlib.sha256(b"a").hexdigest(),
+                    "path": "VCRUNTIME140.dll",
+                    "bytes": 5,
+                    "sha256": hashlib.sha256(b"upper").hexdigest(),
                 },
                 {
-                    "path": "b.bin",
-                    "bytes": 1,
-                    "sha256": hashlib.sha256(b"b").hexdigest(),
+                    "path": "backend-manifest.json",
+                    "bytes": 5,
+                    "sha256": hashlib.sha256(b"lower").hexdigest(),
+                },
+                {
+                    "path": "ggml-base.dll",
+                    "bytes": 6,
+                    "sha256": hashlib.sha256(b"hyphen").hexdigest(),
+                },
+                {
+                    "path": "ggml_llamacpp.dll",
+                    "bytes": 10,
+                    "sha256": hashlib.sha256(b"underscore").hexdigest(),
                 },
             ]
             expected = hashlib.sha256(
                 json.dumps(entries, separators=(",", ":")).encode()
             ).hexdigest()
-            self.assertEqual((2, 2, expected), runner.engine_identity(root))
+            self.assertEqual((4, 26, expected), runner.engine_identity(root))
 
 
 if __name__ == "__main__":

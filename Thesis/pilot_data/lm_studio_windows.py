@@ -64,7 +64,7 @@ def assert_file_identity(path: Path, size: int, digest: str, label: str) -> None
 
 def engine_identity(engine_root: Path) -> tuple[int, int, str]:
     entries: list[dict[str, Any]] = []
-    for path in sorted((item for item in engine_root.rglob("*") if item.is_file())):
+    for path in (item for item in engine_root.rglob("*") if item.is_file()):
         entries.append(
             {
                 "path": path.relative_to(engine_root).as_posix(),
@@ -72,6 +72,7 @@ def engine_identity(engine_root: Path) -> tuple[int, int, str]:
                 "sha256": file_sha256(path),
             }
         )
+    entries.sort(key=lambda item: item["path"].encode("utf-8"))
     encoded = json.dumps(entries, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     return len(entries), sum(item["bytes"] for item in entries), hashlib.sha256(encoded).hexdigest()
 

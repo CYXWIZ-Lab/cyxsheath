@@ -83,7 +83,7 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe has passed and its one-shot authorization is consumed. The load-health runner now preserves prior evidence and exclusively retains a digest-bound execution claim before host access, closing the reviewed one-shot defect. The required `phase6_load_health_runner_execution_decision.json` still does not exist. The fresh review did not approve it: PowerShell culture-aware ordering produced the recorded engine digest, while the runner's Python Windows-path ordering produces a different digest for the same 20 files. Daemon commands, model load, inference, and HTTP serving remain unauthorized until that canonicalization is corrected, repinned, tested, and reviewed again.
+Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe and the later Python load-health execution have both consumed their one-shot authorizations. Engine inventory now uses normalized relative POSIX paths ordered by raw UTF-8 bytes. The authorized CPU-only run loaded the exact model, captured the exact 8,192-token inventory, completed all 15 samples, passed RAM/GPU ceilings, and unloaded successfully without inference or an HTTP listener. Overall acceptance still failed because `daemon down` returned 1 and bounded forced cleanup was required. Final and independent process/port checks passed, but no retry, prompt, HTTP server, CyxCode invocation, or benchmark input is authorized.
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
 
@@ -111,11 +111,13 @@ python Thesis\pilot_data\validate_load_health_runner_implementation_result.py Th
 python Thesis\pilot_data\validate_load_health_runner_execution_review.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_review.json
 python Thesis\pilot_data\validate_load_health_runner_one_shot_correction_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_one_shot_correction_result.json
 python Thesis\pilot_data\validate_load_health_runner_fresh_execution_decision.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_fresh_execution_decision.json
+python Thesis\pilot_data\validate_load_health_runner_execution_decision.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_decision.json
+python Thesis\pilot_data\validate_load_health_runner_execution_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_result.json
 python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_validate_cli_exit_transport_decision -v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat the consumed `lms --help` probe or invoke LM Studio. Running `run_local_model_load_health.py` now exits with code 2 before host access or cache creation because its digest-bound execution authorization is absent. There is currently no authorized runtime command to document. The next action is the narrow locale-independent engine-inventory correction, followed by another decision—not manual `lms` use.
+These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. The next action is a source-and-evidence review of daemon-down exit and root-liveness behavior, followed by a separate decision if another diagnostic or correction is justified—not manual `lms` use.
 
 ## Troubleshooting
 

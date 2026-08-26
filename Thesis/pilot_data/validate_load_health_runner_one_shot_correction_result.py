@@ -72,6 +72,36 @@ def identity(path: Path) -> dict:
     }
 
 
+def successor_transition(base: Path, record: dict, relative: str) -> dict:
+    canonical_path = base / "phase6_load_health_runner_one_shot_correction_result.json"
+    canonical = json.loads(canonical_path.read_text(encoding="utf-8"))
+    if relative == "../lm_studio_windows.py":
+        expect(
+            record["unchanged_boundaries"]["windows_adapter_sha256"]
+            == canonical["unchanged_boundaries"]["windows_adapter_sha256"],
+            "Windows-adapter boundary drift",
+        )
+    else:
+        canonical_item = next(item for item in canonical["code_transition"] if item["path"] == relative)
+        item = next(item for item in record["code_transition"] if item["path"] == relative)
+        expect(item["corrected"] == canonical_item["corrected"], f"corrected identity drift: {relative}")
+
+    fresh_path = base / "phase6_load_health_runner_fresh_execution_decision.json"
+    fresh = json.loads(fresh_path.read_text(encoding="utf-8"))
+    correction_ref = fresh["reviewed_evidence"]["one_shot_correction"]
+    expect(correction_ref["sha256"] == digest(canonical_path), "one-shot supersession digest drift")
+    successor_path = base / "phase6_load_health_runner_execution_decision.json"
+    successor = json.loads(successor_path.read_text(encoding="utf-8"))
+    prior = successor["prior_blocking_decision"]
+    expect(prior["sha256"] == digest(fresh_path), "fresh-decision supersession digest drift")
+    labels = {
+        "../run_local_model_load_health.py": "runner",
+        "../test_run_local_model_load_health.py": "runner_test",
+        "../lm_studio_windows.py": "windows_adapter",
+    }
+    return successor["canonicalization_correction"]["source_transition"][labels[relative]]
+
+
 def validate(path: Path) -> dict:
     record = json.loads(path.read_text(encoding="utf-8"))
     check_forbidden(record)
@@ -121,7 +151,17 @@ def validate(path: Path) -> dict:
         expect(item["previous"] == historical_files[relative], f"historical linkage drift: {relative}")
         target = (path.parent / relative).resolve()
         expect(target.is_file(), f"corrected file missing: {relative}")
-        expect(item["corrected"] == identity(target), f"corrected identity drift: {relative}")
+        current = identity(target)
+        if item["corrected"] != current:
+            successor = successor_transition(path.parent, record, relative)
+            expect(
+                successor["previous_sha256"] == item["corrected"]["sha256"],
+                f"corrected identity drift: {relative}",
+            )
+            expect(
+                successor["corrected_sha256"] == current["sha256"],
+                f"successor identity drift: {relative}",
+            )
         for state in ("previous", "corrected"):
             expect(DIGEST.fullmatch(item[state]["sha256"]) is not None, f"malformed {state} digest")
 
@@ -131,10 +171,21 @@ def validate(path: Path) -> dict:
         unchanged["monitored_process_sha256"] == digest(pilot / "monitored_process.py"),
         "monitored-process boundary drift",
     )
-    expect(
-        unchanged["windows_adapter_sha256"] == digest(pilot / "lm_studio_windows.py"),
-        "Windows-adapter boundary drift",
-    )
+    current_adapter = digest(pilot / "lm_studio_windows.py")
+    if unchanged["windows_adapter_sha256"] != current_adapter:
+        successor = successor_transition(
+            path.parent,
+            record,
+            "../lm_studio_windows.py",
+        )
+        expect(
+            successor["previous_sha256"] == unchanged["windows_adapter_sha256"],
+            "Windows-adapter boundary drift",
+        )
+        expect(
+            successor["corrected_sha256"] == current_adapter,
+            "Windows-adapter successor drift",
+        )
     expect(unchanged["new_dependency_count"] == 0, "dependency growth admitted")
     expect(unchanged["new_thread_count"] == 0, "concurrency growth admitted")
     expect(unchanged["core_sheath_change_required"] is False, "core expansion admitted")

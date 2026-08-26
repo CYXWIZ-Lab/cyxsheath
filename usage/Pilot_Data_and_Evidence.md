@@ -38,10 +38,12 @@ python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pil
 python Thesis\pilot_data\validate_local_model_load_health_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_recovery_decision.json
 python Thesis\pilot_data\validate_local_model_load_health_daemon_recovery_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_daemon_recovery_decision.json
 python Thesis\pilot_data\validate_local_model_load_health_result.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_result.json
+python Thesis\pilot_data\validate_load_health_runner_execution_decision.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_decision.json
+python Thesis\pilot_data\validate_load_health_runner_execution_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The last recorded pilot-data suite passed 95 tests. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The last recorded pilot-data suite passed 222 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -61,6 +63,8 @@ The last recorded pilot-data suite passed 95 tests. Validation proves structural
 - The recovery result records service startup, missing numeric daemon-exit evidence, zero model-load invocations, complete final safety cleanup, protocol failure, and a consumed attempt.
 - The CLI exit-transport decision fixture-tests a dependency-free synchronous numeric-exit seam and authorizes one identity-only `lms --help` probe; it does not authorize the daemon or model.
 - The CLI exit-transport result records numeric exit 0, bounded output digests, clean process/port state, unchanged client identity, complete temporary cleanup, and a consumed probe.
+- The corrected runner execution decision pins raw UTF-8 engine ordering, corrected source identities, the clean baseline, exact CPU-only settings, and one execution while retaining zero-inference and zero-server boundaries.
+- The corrected runner result records successful exact load/inventory observation and passing resource ceilings, but rejects overall acceptance because graceful daemon shutdown failed and forced cleanup was required. Final safety cleanup passed and the retry is blocked.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely

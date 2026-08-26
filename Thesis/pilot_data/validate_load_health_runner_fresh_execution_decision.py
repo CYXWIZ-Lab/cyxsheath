@@ -63,6 +63,23 @@ def expect_evidence(base: Path, item: dict, name: str, status: str) -> dict:
     return evidence
 
 
+def expect_superseded_source(base: Path, item: dict, key: str, target: Path) -> None:
+    current = file_digest(target)
+    if current == item["sha256"]:
+        return
+    canonical_path = base / "phase6_load_health_runner_fresh_execution_decision.json"
+    canonical = json.loads(canonical_path.read_text(encoding="utf-8"))
+    expect(item == canonical["reviewed_evidence"][key], f"{key}: source digest drift")
+    successor_path = base / "phase6_load_health_runner_execution_decision.json"
+    successor = json.loads(successor_path.read_text(encoding="utf-8"))
+    prior = successor["prior_blocking_decision"]
+    expect(prior["record"] == canonical_path.name, f"{key}: supersession record drift")
+    expect(prior["sha256"] == file_digest(canonical_path), f"{key}: supersession digest drift")
+    transition = successor["canonicalization_correction"]["source_transition"][key]
+    expect(transition["previous_sha256"] == item["sha256"], f"{key}: superseded source drift")
+    expect(transition["corrected_sha256"] == current, f"{key}: successor source drift")
+
+
 def validate(path: Path) -> dict:
     record = json.loads(path.read_text(encoding="utf-8"))
     check_forbidden(record)
@@ -111,7 +128,7 @@ def validate(path: Path) -> dict:
         expect(DIGEST.fullmatch(item["sha256"]) is not None, f"{key}: malformed digest")
         target = (path.parent / relative).resolve()
         expect(target.is_file(), f"{key}: source missing")
-        expect(file_digest(target) == item["sha256"], f"{key}: source digest drift")
+        expect_superseded_source(path.parent, item, key, target)
     expect(reviewed["runner"]["sha256"] == code["../run_local_model_load_health.py"]["sha256"], "runner correction linkage drift")
     expect(
         reviewed["windows_adapter"]["sha256"]
