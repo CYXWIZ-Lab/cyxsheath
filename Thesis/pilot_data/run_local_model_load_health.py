@@ -40,6 +40,7 @@ EXECUTION_AUTHORIZATION = (
 )
 CACHE = ROOT / ".replay_cache" / "local_model_load_health_python"
 OUTPUT = CACHE / "result.json"
+EXECUTION_CLAIM = CACHE / "execution_claim.json"
 TEMPORARY_CLI = CACHE / "lms.exe"
 LOAD_STDOUT = CACHE / "load.stdout.bin"
 LOAD_STDERR = CACHE / "load.stderr.bin"
@@ -141,7 +142,8 @@ def _authorization_settings() -> dict[str, Any]:
     }
 
 
-def validate_execution_authorization(path: Path = EXECUTION_AUTHORIZATION) -> dict[str, Any]:
+def validate_execution_authorization(path: Path | None = None) -> dict[str, Any]:
+    path = EXECUTION_AUTHORIZATION if path is None else path
     if not path.is_file():
         raise ActivationError("load_health_runtime_not_authorized")
     try:
@@ -163,6 +165,34 @@ def validate_execution_authorization(path: Path = EXECUTION_AUTHORIZATION) -> di
         if record.get(key) != value:
             raise ActivationError(f"execution_authorization_{key}_mismatch")
     return record
+
+
+def claim_execution(authorization: dict[str, Any]) -> str:
+    if OUTPUT.exists():
+        raise ActivationError("prior_load_health_result_present")
+    if EXECUTION_CLAIM.exists():
+        raise ActivationError("load_health_execution_already_claimed")
+    try:
+        CACHE.mkdir(parents=True, exist_ok=False)
+    except FileExistsError as error:
+        raise ActivationError("activation_cache_present_at_baseline") from error
+    except OSError as error:
+        raise ActivationError("execution_claim_cache_creation_failed") from error
+    claim = {
+        "schema_version": "1.0.0-local",
+        "status": "load_health_execution_claimed_once",
+        "claimed_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "authorization_sha256": file_sha256(EXECUTION_AUTHORIZATION),
+        "authorization_status": authorization["status"],
+        "runner_sha256": file_sha256(Path(__file__)),
+    }
+    try:
+        with EXECUTION_CLAIM.open("x", encoding="utf-8", newline="\n") as handle:
+            json.dump(claim, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+    except OSError as error:
+        raise ActivationError("execution_claim_write_failed") from error
+    return file_sha256(EXECUTION_CLAIM)
 
 
 def assert_temporary_cli() -> None:
@@ -301,7 +331,7 @@ def write_result(record: dict[str, Any]) -> None:
     )
 
 
-def run_attempt(authorization: dict[str, Any]) -> int:
+def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> int:
     authorization_sha256 = file_sha256(EXECUTION_AUTHORIZATION)
     home = Path(os.environ["USERPROFILE"])
     canonical_cli = home / ".lmstudio" / "bin" / "lms.exe"
@@ -317,10 +347,7 @@ def run_attempt(authorization: dict[str, Any]) -> int:
     state = AttemptState()
     stats: ResourceStats | None = None
     started_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    CACHE.mkdir(parents=True, exist_ok=True)
     try:
-        if OUTPUT.exists():
-            raise ActivationError("prior_load_health_result_present")
         if TEMPORARY_CLI.exists() or LOAD_STDOUT.exists() or LOAD_STDERR.exists():
             raise ActivationError("temporary_activation_artifact_present_at_baseline")
         baseline = host_snapshot(cwd=ROOT)
@@ -547,6 +574,8 @@ def run_attempt(authorization: dict[str, Any]) -> int:
             "authorization_record": EXECUTION_AUTHORIZATION.name,
             "authorization_sha256": authorization_sha256,
             "authorization_status": authorization["status"],
+            "execution_claim_record": EXECUTION_CLAIM.name,
+            "execution_claim_sha256": execution_claim_sha256,
             "runner_sha256": file_sha256(Path(__file__)),
             "monitored_process_sha256": file_sha256(PILOT / "monitored_process.py"),
             "windows_adapter_sha256": file_sha256(PILOT / "lm_studio_windows.py"),
@@ -603,10 +632,11 @@ def run_attempt(authorization: dict[str, Any]) -> int:
 def main() -> int:
     try:
         authorization = validate_execution_authorization()
+        execution_claim_sha256 = claim_execution(authorization)
     except ActivationError as error:
         print(f"BLOCKED: {error}")
         return 2
-    return run_attempt(authorization)
+    return run_attempt(authorization, execution_claim_sha256)
 
 
 if __name__ == "__main__":

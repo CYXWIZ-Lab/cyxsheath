@@ -8,6 +8,11 @@ import json
 import re
 from pathlib import Path
 
+from validate_load_health_runner_one_shot_correction_result import (
+    LoadHealthRunnerOneShotCorrectionError,
+    validate as validate_one_shot_correction,
+)
+
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
@@ -26,6 +31,11 @@ FORBIDDEN = {
     "test_patch",
     "eval_script",
 }
+CORRECTION_RESULT = (
+    Path(__file__).parent
+    / "review_evidence"
+    / "phase6_load_health_runner_one_shot_correction_result.json"
+)
 
 
 class LoadHealthRunnerImplementationResultError(ValueError):
@@ -52,10 +62,28 @@ def expect_file(base: Path, record: dict, *, role: str | None = None) -> None:
     path = (base / record["path"]).resolve()
     expect(path.is_file(), f"implementation file missing: {record['path']}")
     content = path.read_bytes()
-    expect(record["bytes"] == len(content), f"file size drift: {record['path']}")
-    expect(record["lines"] == len(content.decode("utf-8").splitlines()), f"line count drift: {record['path']}")
     expect(DIGEST.fullmatch(record["sha256"]) is not None, f"malformed digest: {record['path']}")
-    expect(hashlib.sha256(content).hexdigest() == record["sha256"], f"file digest drift: {record['path']}")
+    actual = {
+        "bytes": len(content),
+        "lines": len(content.decode("utf-8").splitlines()),
+        "sha256": hashlib.sha256(content).hexdigest(),
+    }
+    historical = {key: record[key] for key in ("bytes", "lines", "sha256")}
+    if actual != historical:
+        try:
+            correction = validate_one_shot_correction(CORRECTION_RESULT)
+        except (OSError, KeyError, TypeError, json.JSONDecodeError, LoadHealthRunnerOneShotCorrectionError) as error:
+            raise LoadHealthRunnerImplementationResultError(
+                f"validated correction unavailable: {record['path']}"
+            ) from error
+        transitions = {item["path"]: item for item in correction["code_transition"]}
+        transition = transitions.get(record["path"])
+        expect(
+            transition is not None
+            and transition["previous"] == historical
+            and transition["corrected"] == actual,
+            f"file digest drift without validated correction: {record['path']}",
+        )
     if role is not None:
         expect(record["role"] == role, f"module role drift: {record['path']}")
 

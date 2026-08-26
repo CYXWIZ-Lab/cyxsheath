@@ -83,7 +83,7 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe has passed and its one-shot authorization is consumed. The load-health integration design and exact Python runner implementation pass fixtures, but execution review found that its prior-result error is caught and the finalizer can overwrite earlier evidence. The required `phase6_load_health_runner_execution_decision.json` does not exist. Daemon commands, model load, inference, and HTTP serving remain unauthorized until that gate is corrected, regression-tested, repinned, and approved by a new decision.
+Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe has passed and its one-shot authorization is consumed. The load-health runner now preserves prior evidence and exclusively retains a digest-bound execution claim before host access, closing the reviewed one-shot defect. The required `phase6_load_health_runner_execution_decision.json` still does not exist. Daemon commands, model load, inference, and HTTP serving remain unauthorized until a fresh validator-backed decision approves the corrected runner digest.
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
 
@@ -109,11 +109,12 @@ python Thesis\pilot_data\validate_cli_exit_transport_result.py Thesis\pilot_data
 python Thesis\pilot_data\validate_load_health_transport_integration_decision.py Thesis\pilot_data\review_evidence\phase6_load_health_transport_integration_decision.json
 python Thesis\pilot_data\validate_load_health_runner_implementation_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_implementation_result.json
 python Thesis\pilot_data\validate_load_health_runner_execution_review.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_review.json
+python Thesis\pilot_data\validate_load_health_runner_one_shot_correction_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_one_shot_correction_result.json
 python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_validate_cli_exit_transport_decision -v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat the consumed `lms --help` probe or invoke LM Studio. Running `run_local_model_load_health.py` now exits with code 2 before host access or cache creation because its digest-bound execution authorization is absent. There is currently no authorized runtime command to document. The next action is the narrow prior-result preservation correction and fixture; only then may a fresh one-shot execution decision be made.
+These validation commands do not repeat the consumed `lms --help` probe or invoke LM Studio. Running `run_local_model_load_health.py` now exits with code 2 before host access or cache creation because its digest-bound execution authorization is absent. There is currently no authorized runtime command to document. The next action is a fresh one-shot execution decision for the corrected runner, not manual `lms` use.
 
 ## Troubleshooting
 
