@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "status": "activation_runner_implemented_fixtures_passed_runtime_blocked",
+  "recorded_at": "2026-08-26T07:33:00Z",
+  "decision_scope": "implementation_and_python_child_fixtures_only_no_lm_studio_runtime_authorization",
+  "baseline_commit": "4a47102a4877fa36a0cbf8d1d424ef00a5816338",
+  "integration_decision": {
+    "record": "phase6_load_health_transport_integration_decision.json",
+    "sha256": "d235ea8fbc4920dd98584cef54496641799fef6834db43bc791800185c78a290",
+    "status": "load_health_transport_integration_designed_runner_implementation_authorized"
+  },
+  "implementation_identity": {
+    "modules": [
+      {
+        "path": "../monitored_process.py",
+        "role": "one_owned_child_lifecycle_sampling_timeout_output_and_direct_child_cleanup",
+        "bytes": 7026,
+        "lines": 182,
+        "sha256": "c13a16ca725ab38d4e089a59654fb8b8e3170215f2d907a73c356091640400ca"
+      },
+      {
+        "path": "../lm_studio_windows.py",
+        "role": "windows_host_inventory_identity_resource_and_exact_process_adapter",
+        "bytes": 8280,
+        "lines": 251,
+        "sha256": "ad2a752bfc7247e53d3ec618462851a4fa8934a712fdfbedb152c24e1a4a3c37"
+      },
+      {
+        "path": "../run_local_model_load_health.py",
+        "role": "frozen_lm_studio_load_health_protocol_and_privacy_minimized_local_result",
+        "bytes": 25825,
+        "lines": 613,
+        "sha256": "1e035cb7da151240a86723a52d52993b45ba4374781e931096dfd0f577c57b0e"
+      }
+    ],
+    "tests": [
+      {
+        "path": "../test_monitored_process.py",
+        "bytes": 5640,
+        "lines": 149,
+        "sha256": "52252ed0ceec2ca62c03d10b3b4ecba14259e211e9df2a2a69798719168720a1"
+      },
+      {
+        "path": "../test_run_local_model_load_health.py",
+        "bytes": 5216,
+        "lines": 133,
+        "sha256": "52f40a3c106ed04ebbd45787f2eafa01886ae3ec440e36285318657e8366a57d"
+      }
+    ],
+    "existing_short_command_module": "../cli_transport.py",
+    "existing_short_command_module_sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+    "new_dependency_count": 0,
+    "core_sheath_change_required": false,
+    "thread_count": 0
+  },
+  "module_boundary": {
+    "monitored_process_owns": "one_direct_child_from_start_through_numeric_exit_or_termination_and_raw_output_deletion",
+    "windows_adapter_owns": "privacy_minimized_windows_observation_identity_and_pid_creation_time_checked_force_stop",
+    "activation_runner_owns": "exact_lm_studio_command_sequence_resource_policy_cleanup_acceptance_and_result",
+    "cli_transport_owns": "short_low_output_control_commands",
+    "duplicate_transport_implementation_added": false,
+    "general_purpose_framework_added": false
+  },
+  "frozen_runtime_contract": {
+    "daemon_up": "temporary_lms_exe daemon up --json",
+    "inventory": "temporary_lms_exe ps --json",
+    "load": "temporary_lms_exe load qwen2.5-coder-7b-instruct --gpu off --context-length 8192 --parallel 1 --ttl 600 --no-speculative-draft-mtp --identifier cyxsheath-qwen25-coder-7b-q4km --yes",
+    "unload": "temporary_lms_exe unload cyxsheath-qwen25-coder-7b-q4km",
+    "daemon_down": "temporary_lms_exe daemon down",
+    "short_commands_use_synchronous_transport": true,
+    "load_uses_one_popen_child": true,
+    "single_same_thread_monitor_loop": true,
+    "load_timeout_seconds": 600,
+    "sample_interval_seconds": 1,
+    "maximum_each_load_output_file_bytes": 1048576,
+    "post_load_observation_samples": 15,
+    "automatic_retry_count": 0
+  },
+  "ownership_and_cleanup": {
+    "clean_process_and_port_baseline_required": true,
+    "exact_service_root_pid_and_creation_time_required": true,
+    "monitor_owned_descendants_plus_direct_load_child": true,
+    "ambient_process_adoption_allowed": false,
+    "graceful_unload_and_down_before_force": true,
+    "force_scope": "captured_pid_and_creation_time_identities_only",
+    "forced_cleanup_fails_acceptance": true,
+    "temporary_cli_and_raw_output_deleted": true,
+    "identity_process_port_partial_weight_and_inventory_cleanup_required": true
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 14,
+      "tests_passed": 14
+    },
+    "python_3_14": {
+      "tests_run": 14,
+      "tests_passed": 14
+    },
+    "monitored_process_behaviors": [
+      "numeric_zero_and_nonzero_exit_observation",
+      "timeout_terminates_owned_direct_child",
+      "sampled_output_threshold_aborts_child",
+      "monitor_callback_runs_while_child_is_live",
+      "measurement_failure_aborts_child",
+      "literal_arguments_do_not_use_a_shell",
+      "temporary_output_is_removed",
+      "unowned_process_is_never_terminated"
+    ],
+    "runner_behaviors": [
+      "missing_authorization_blocks_before_host_access_or_cache_creation",
+      "exact_cpu_only_non_serving_load_arguments",
+      "authorization_setting_drift_rejected",
+      "exact_pid_and_creation_time_tree_ownership",
+      "privacy_minimized_inventory_parsing",
+      "canonical_engine_inventory_digest"
+    ],
+    "lm_studio_invocation_count": 0,
+    "model_load_command_count": 0,
+    "host_snapshot_invocation_count_in_blocked_runner_test": 0
+  },
+  "runtime_gate": {
+    "required_execution_authorization_record": "phase6_load_health_runner_execution_decision.json",
+    "execution_authorization_present_at_checkpoint": false,
+    "missing_authorization_exit_code": 2,
+    "cache_created_when_authorization_missing": false,
+    "runner_monitor_and_windows_adapter_digests_must_match_future_authorization": true,
+    "one_existing_result_blocks_another_attempt": true,
+    "runtime_execution_authorized": false
+  },
+  "known_limits": {
+    "windows_host_adapter_exercised_live_at_checkpoint": false,
+    "lm_studio_command_sequence_exercised_at_checkpoint": false,
+    "sampled_output_limit_is_a_zero_overshoot_disk_quota": false,
+    "single_thread_timeout_can_interrupt_an_in_progress_monitor_callback": false,
+    "load_health_or_model_quality_conclusion_allowed": false
+  },
+  "security_and_research_boundary": {
+    "daemon_command_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "synthetic_prompt_authorized": false,
+    "benchmark_or_thesis_content_authorized": false,
+    "raw_cli_output_in_curated_evidence": false
+  },
+  "execution_gate": {
+    "runner_implementation_complete": true,
+    "fixture_gate_passed": true,
+    "load_health_execution_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_separate_validator_backed_one_shot_execution_decision_for_exact_pinned_runner_or_stop"
+  }
+}
