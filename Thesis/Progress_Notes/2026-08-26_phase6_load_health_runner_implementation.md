@@ -12,7 +12,7 @@ This split was made after the first concrete runner reached 799 lines. The final
 
 ## Safety Gate
 
-The runner requires a future `phase6_load_health_runner_execution_decision.json` whose integration, runner, monitor, and Windows-adapter digests and exact settings match. That record does not exist. Without it, `main()` returns exit code 2 before host access or cache creation. An existing result also blocks another attempt.
+The runner requires a future `phase6_load_health_runner_execution_decision.json` whose integration, runner, monitor, and Windows-adapter digests and exact settings match. That record does not exist. Without it, `main()` returns exit code 2 before host access or cache creation. This checkpoint originally claimed that an existing result also blocks another attempt; the later [execution review](2026-08-26_phase6_load_health_runner_execution_review.md) supersedes that claim after finding the result-overwrite path.
 
 ## Validation and Limits
 

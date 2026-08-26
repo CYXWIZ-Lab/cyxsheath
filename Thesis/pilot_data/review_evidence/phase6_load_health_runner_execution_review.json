@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "status": "runner_execution_not_authorized_one_shot_gate_invalid",
+  "recorded_at": "2026-08-26T14:01:24Z",
+  "decision_scope": "source_and_evidence_review_only_no_lm_studio_runtime_authorization",
+  "baseline_commit": "90c99cbebdffd3a1333116de00ee24bb9c9535c4",
+  "reviewed_evidence": {
+    "integration_decision": {
+      "record": "phase6_load_health_transport_integration_decision.json",
+      "sha256": "d235ea8fbc4920dd98584cef54496641799fef6834db43bc791800185c78a290",
+      "status": "load_health_transport_integration_designed_runner_implementation_authorized"
+    },
+    "implementation_result": {
+      "record": "phase6_load_health_runner_implementation_result.json",
+      "sha256": "03383f0f90dc60b1428fe5a330ed2d1b0267ae7ab7304b9e95e5d427074f0b55",
+      "status": "activation_runner_implemented_fixtures_passed_runtime_blocked"
+    },
+    "runner": {
+      "path": "../run_local_model_load_health.py",
+      "sha256": "1e035cb7da151240a86723a52d52993b45ba4374781e931096dfd0f577c57b0e"
+    },
+    "monitored_process": {
+      "path": "../monitored_process.py",
+      "sha256": "c13a16ca725ab38d4e089a59654fb8b8e3170215f2d907a73c356091640400ca"
+    },
+    "windows_adapter": {
+      "path": "../lm_studio_windows.py",
+      "sha256": "ad2a752bfc7247e53d3ec618462851a4fa8934a712fdfbedb152c24e1a4a3c37"
+    }
+  },
+  "essential_invariant": "one_authorization_can_produce_at_most_one_immutable_attempt_result",
+  "blocking_finding": {
+    "finding_id": "phase6-runner-review-001",
+    "severity": "protocol_blocking",
+    "expected_behavior": "a_prior_result_blocks_before_host_access_and_preserves_the_prior_result_bytes",
+    "observed_control_flow": {
+      "prior_result_check_location": "inside_run_attempt_try_block",
+      "raised_error": "ActivationError_prior_load_health_result_present",
+      "caught_by_existing_handler": "WindowsHostError_handler_catches_ActivationError_subclass",
+      "finally_writes_result_after_catch": true,
+      "existing_result_preservation_fixture_present": false
+    },
+    "consequence": "a_second_invocation_can_replace_prior_evidence_instead_of_failing_before_attempt_handling",
+    "one_shot_contract_satisfied": false
+  },
+  "frozen_execution_contract": {
+    "maximum_runner_invocations": 1,
+    "maximum_model_load_attempts": 1,
+    "automatic_retry_count": 0,
+    "model_key": "qwen2.5-coder-7b-instruct",
+    "identifier": "cyxsheath-qwen25-coder-7b-q4km",
+    "context_length_tokens": 8192,
+    "gpu_offload": "off",
+    "parallel_predictions": 1,
+    "idle_ttl_seconds": 600,
+    "load_timeout_seconds": 600,
+    "sample_interval_seconds": 1,
+    "post_load_observation_samples": 15
+  },
+  "security_and_research_boundary": {
+    "lm_studio_invocation_count_at_review": 0,
+    "model_load_command_count_at_review": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "synthetic_prompt_authorized": false,
+    "benchmark_or_thesis_content_authorized": false,
+    "model_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "decision_checkpoint": {
+    "required_authorization_record": "phase6_load_health_runner_execution_decision.json",
+    "authorization_record_present": false,
+    "runner_cache_present": false,
+    "matching_runtime_process_count": 0,
+    "port_1234_listener_count": 0
+  },
+  "decision_gate": {
+    "load_health_execution_authorized": false,
+    "execution_authorization_record_creation_authorized": false,
+    "narrow_one_shot_gate_correction_authorized": true,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "correct_prior_result_fail_closed_behavior_add_preservation_fixture_and_repin_runner_before_new_execution_decision"
+  }
+}
