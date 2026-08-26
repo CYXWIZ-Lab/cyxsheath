@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The one-shot gate is corrected and repinned. Prior result/claim/cache state now blocks before host access, and an exclusive retained claim prevents second or crash retries. Nine runner fixtures and ten correction mutations pass per Python version; no LM Studio command ran. |
+| Last completed milestone | The fresh execution decision failed closed before authorization. The recorded engine digest uses PowerShell culture-aware ordering, while the runner hashes the same 20 files in Python Windows-path order; this known mismatch would consume the one-shot claim before daemon start. Ten decision mutations pass per Python version; no LM Studio command ran. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Make a fresh validator-backed decision on whether corrected runner SHA-256 `e55394eabe43ccf7937e3428f3d7e3f80d8b5e15528ce0c719a829f8bbcf30b8` may execute once. Freeze the unchanged model, resource, zero-inference, claim, and cleanup contract. |
-| Then | Only if that decision passes, create the exact digest-bound authorization and execute the runner in a later step without automatic retry. |
+| Next implementation slice | Select one explicit locale-independent engine-inventory order, repin the adapter, runner, and fixtures, and preserve the unchanged model, resource, zero-inference, claim, and cleanup contract. |
+| Then | Repeat the validator-backed execution decision. Only if it passes may a later step create the exact digest-bound authorization and execute once without automatic retry. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -109,11 +109,12 @@ The exact next slice is:
 18. Completed: implement and fixture-test the exact activation runner using temporary Python child processes only, then pin its monitored-child, Windows-adapter, runner, and test identities without invoking LM Studio.
 19. Completed: review the pinned runner and block execution after finding that its prior-result path can overwrite earlier evidence. Preserve the unchanged CPU-only, zero-inference contract and create no authorization record.
 20. Completed: correct prior-result handling, add a retained exclusive execution claim, prove preservation and second-invocation blocking with fixtures, and repin the corrected runner without invoking LM Studio.
-21. Active: make a new validator-backed decision for the corrected runner. Only a passing decision may create the exact digest-bound one-shot authorization record.
-22. Execute the corrected runner once only if step 21 passes, preserve the result, and do not retry automatically.
-23. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
-24. Replay and review the remaining 17 only after step 23 yields an operational admission path.
-25. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+21. Completed: make a fresh validator-backed execution decision. It blocked authorization after proving that PowerShell culture-aware inventory ordering and Python Windows-path ordering produce different digests for the same 20 engine files.
+22. Active: select a locale-independent inventory order, repin the adapter/runner/fixtures, and repeat the execution decision without invoking LM Studio.
+23. Execute the corrected runner once only if the repeated decision passes, preserve the result, and do not retry automatically.
+24. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after the synthetic local gate passes.
+25. Replay and review the remaining 17 only after step 24 yields an operational admission path.
+26. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -193,16 +194,18 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Activation-runner implementation:** [phase6_load_health_runner_implementation_result.json](pilot_data/review_evidence/phase6_load_health_runner_implementation_result.json) pins the monitored-child primitive, privacy-minimized Windows adapter, runtime-blocked protocol runner, and fixtures. Fourteen implementation fixtures plus ten result mutations pass; the full pilot suite is 170/170 on Python 3.12 and 3.14. The Windows adapter and LM Studio sequence were not exercised live, no authorization file exists, and no runtime or model-health conclusion is allowed.
 - **Activation-runner execution review:** [phase6_load_health_runner_execution_review.json](pilot_data/review_evidence/phase6_load_health_runner_execution_review.json) records a protocol-blocking one-shot defect: the prior-result exception is caught and the finalizer can replace prior evidence. Ten mutations reject digest drift, finding concealment, fixture or one-shot overclaims, retry/inference widening, authorization creation, and synthetic permission; the full pilot suite is 180/180 on Python 3.12 and 3.14. No authorization file was created and no LM Studio operation ran.
 - **One-shot runner correction:** [phase6_load_health_runner_one_shot_correction_result.json](pilot_data/review_evidence/phase6_load_health_runner_one_shot_correction_result.json) links the blocked historical runner to the corrected digest, freezes exclusive retained-claim semantics, and records prior-result/cache preservation fixtures. Nine runner fixtures and ten correction mutations pass; the full pilot suite is 193/193 on Python 3.12 and 3.14. No authorization file was created and no LM Studio operation ran.
+- **Fresh runner execution decision:** [phase6_load_health_runner_fresh_execution_decision.json](pilot_data/review_evidence/phase6_load_health_runner_fresh_execution_decision.json) blocks authorization because the recorded PowerShell-ordered engine digest and runner-computed Python-ordered digest differ for the same 20 files. Ten mutations reject identity, ordering, claim-sequence, runtime, and permission overclaims; the full pilot suite is 203/203 on Python 3.12 and 3.14. No authorization file was created and no LM Studio operation ran.
 
 ## Immediate Work Queue
 
-1. Make a fresh validator-backed one-shot decision for corrected runner SHA-256 `e55394eabe43ccf7937e3428f3d7e3f80d8b5e15528ce0c719a829f8bbcf30b8`. Do not create the authorization record or invoke LM Studio in that review step.
-2. Only if the new decision passes, execute the exact runner once and record the result. Do not infer, start the HTTP server, invoke CyxCode, or run Docker; do not retry automatically.
-3. If a later load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary. If it fails, stop without automatic retry.
-4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-5. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-6. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-7. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Correct only the engine-inventory canonicalization mismatch: use one explicit locale-independent relative-path order, repin the adapter/runner/fixtures, and do not invoke LM Studio.
+2. Make another validator-backed execution decision for the newly pinned runner. Do not create the runtime authorization in that review step.
+3. Only if the repeated decision passes, execute the exact runner once and record the result. Do not infer, start the HTTP server, invoke CyxCode, or run Docker; do not retry automatically.
+4. If a later load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary. If it fails, stop without automatic retry.
+5. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+6. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+7. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
+8. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
