@@ -8,6 +8,10 @@ import json
 import re
 from pathlib import Path
 
+from validate_shutdown_observation_implementation_result import (
+    historical_source_has_successor,
+)
+
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
@@ -55,7 +59,14 @@ def expect_source(base: Path, item: dict, label: str) -> None:
     target = (base / item["path"]).resolve()
     expect(target.is_file(), f"{label}: source missing")
     expect(DIGEST.fullmatch(item["corrected_sha256"]) is not None, f"{label}: malformed digest")
-    expect(file_digest(target) == item["corrected_sha256"], f"{label}: source digest drift")
+    current = file_digest(target)
+    if current != item["corrected_sha256"]:
+        expect(
+            historical_source_has_successor(
+                item["path"], item["corrected_sha256"], current
+            ),
+            f"{label}: source digest drift",
+        )
     expect(item["previous_sha256"] != item["corrected_sha256"], f"{label}: transition concealed")
 
 
@@ -76,13 +87,27 @@ def validate(path: Path) -> dict:
     integration = base / "phase6_load_health_transport_integration_decision.json"
     expect(file_digest(integration) == record["integration_decision_sha256"], "integration digest drift")
     sources = {
-        "runner_sha256": base.parent / "run_local_model_load_health.py",
-        "monitored_process_sha256": base.parent / "monitored_process.py",
-        "windows_adapter_sha256": base.parent / "lm_studio_windows.py",
+        "runner_sha256": (
+            base.parent / "run_local_model_load_health.py",
+            "../run_local_model_load_health.py",
+        ),
+        "monitored_process_sha256": (
+            base.parent / "monitored_process.py",
+            "../monitored_process.py",
+        ),
+        "windows_adapter_sha256": (
+            base.parent / "lm_studio_windows.py",
+            "../lm_studio_windows.py",
+        ),
     }
-    for key, target in sources.items():
+    for key, (target, relative) in sources.items():
         expect(DIGEST.fullmatch(record[key]) is not None, f"{key}: malformed digest")
-        expect(file_digest(target) == record[key], f"{key}: source digest drift")
+        current = file_digest(target)
+        expect(
+            current == record[key]
+            or historical_source_has_successor(relative, record[key], current),
+            f"{key}: source digest drift",
+        )
 
     prior = record["prior_blocking_decision"]
     expect(prior["record"] == "phase6_load_health_runner_fresh_execution_decision.json", "prior record drift")

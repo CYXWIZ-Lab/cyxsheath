@@ -11,6 +11,16 @@ import time
 from typing import Any
 
 from cli_transport import CliTransportError, CliTransportTimeout, run_cli
+from lm_studio_lifecycle import (
+    ControlObservation,
+    DaemonInfo,
+    LifecycleError,
+    ShutdownObservation,
+    observe_control,
+    observe_standalone_shutdown,
+    parse_daemon_up,
+    require_standalone_start,
+)
 from lm_studio_windows import (
     HostSnapshot,
     OwnedRoot,
@@ -102,9 +112,13 @@ class AttemptState:
     owned_identities: set[tuple[int, str]] = field(default_factory=set)
     temporary_copy_staged: bool = False
     daemon_up_exit_code: int | None = None
+    daemon_up_observation: ControlObservation | None = None
+    daemon_info: DaemonInfo | None = None
     load_exit_code: int | None = None
+    load_command_started: bool = False
     unload_exit_code: int | None = None
     daemon_down_exit_code: int | None = None
+    shutdown_observation: ShutdownObservation | None = None
     inventory_after_load: list[dict[str, Any]] = field(default_factory=list)
     inventory_after_unload: list[dict[str, Any]] = field(default_factory=list)
     loaded_identity_passed: bool = False
@@ -158,6 +172,7 @@ def validate_execution_authorization(path: Path | None = None) -> dict[str, Any]
         "runner_sha256": file_sha256(Path(__file__)),
         "monitored_process_sha256": file_sha256(PILOT / "monitored_process.py"),
         "windows_adapter_sha256": file_sha256(PILOT / "lm_studio_windows.py"),
+        "lifecycle_sha256": file_sha256(PILOT / "lm_studio_lifecycle.py"),
         "maximum_attempts": 1,
         "settings": _authorization_settings(),
     }
@@ -384,20 +399,27 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
                 "daemon", "up", "--json", timeout_seconds=180, require_zero=False
             )
             state.daemon_up_exit_code = daemon_result.returncode
+            state.daemon_up_observation = observe_control("daemon_up_json", daemon_result)
+            state.daemon_info = parse_daemon_up(daemon_result)
         finally:
             snapshot = host_snapshot(cwd=ROOT)
-            state.root = capture_owned_root(snapshot)
+            state.root = capture_owned_root(
+                snapshot,
+                expected_pid=(state.daemon_info.pid if state.daemon_info is not None else None),
+            )
             state.owned_identities.update(
                 (item.pid, item.created) for item in process_tree(snapshot, state.root)
             )
         if daemon_result is None or daemon_result.returncode != 0:
             raise ActivationError("daemon_up_exit_nonzero")
+        require_standalone_start(state.daemon_info, owned_root_pid=state.root.pid)
         if read_inventory():
             raise ActivationError("loaded_inventory_not_empty_before_load")
         if host_snapshot(cwd=ROOT).port_1234_listening:
             raise ActivationError("http_listener_started_with_daemon")
 
         assert_temporary_cli()
+        state.load_command_started = True
         load_result = run_monitored_process(
             (str(TEMPORARY_CLI.resolve()), *LOAD_ARGS),
             cwd=ROOT,
@@ -430,8 +452,12 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
     except MonitoredProcessError as error:
         cause = error.__cause__
         state.fail(str(cause) if isinstance(cause, WindowsHostError) else type(error).__name__)
-    except (WindowsHostError, CliTransportError, CliTransportTimeout) as error:
-        state.fail(str(error) if isinstance(error, WindowsHostError) else type(error).__name__)
+    except (WindowsHostError, LifecycleError, CliTransportError, CliTransportTimeout) as error:
+        state.fail(
+            str(error)
+            if isinstance(error, (WindowsHostError, LifecycleError))
+            else type(error).__name__
+        )
     except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError):
         state.fail("unexpected_activation_exception")
     finally:
@@ -442,7 +468,7 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
                 except WindowsHostError:
                     state.root = None
             if state.root is not None and _root_alive(state.root, host_snapshot(cwd=ROOT)):
-                if TEMPORARY_CLI.is_file():
+                if TEMPORARY_CLI.is_file() and state.load_command_started:
                     try:
                         unload = run_control(
                             "unload", IDENTIFIER, timeout_seconds=120, require_zero=False
@@ -452,21 +478,53 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
                             state.fail("unload_exit_nonzero")
                     except (WindowsHostError, CliTransportError, CliTransportTimeout):
                         state.fail("unload_command_failed")
+                if TEMPORARY_CLI.is_file():
                     try:
                         state.inventory_after_unload = read_inventory()
                         if state.inventory_after_unload:
                             state.fail("loaded_inventory_not_empty_after_unload")
                     except (WindowsHostError, CliTransportError, CliTransportTimeout):
                         state.fail("post_unload_inventory_failed")
-                    try:
-                        down = run_control(
-                            "daemon", "down", timeout_seconds=120, require_zero=False
-                        )
-                        state.daemon_down_exit_code = down.returncode
-                        if down.returncode != 0:
-                            state.fail("daemon_down_exit_nonzero")
-                    except (WindowsHostError, CliTransportError, CliTransportTimeout):
-                        state.fail("daemon_down_command_failed")
+                    if state.daemon_info is not None and state.daemon_info.is_daemon:
+                        try:
+                            state.shutdown_observation = observe_standalone_shutdown(
+                                status_reader=lambda: run_control(
+                                    "daemon",
+                                    "status",
+                                    "--json",
+                                    timeout_seconds=120,
+                                    require_zero=False,
+                                ),
+                                down_runner=lambda: run_control(
+                                    "daemon", "down", timeout_seconds=120, require_zero=False
+                                ),
+                                expected_pid=state.root.pid,
+                                timeout_seconds=10,
+                                poll_interval_seconds=0.25,
+                            )
+                            state.daemon_down_exit_code = (
+                                state.shutdown_observation.daemon_down_control.returncode
+                            )
+                            if state.daemon_down_exit_code != 0:
+                                state.fail("daemon_down_exit_nonzero")
+                            if state.shutdown_observation.status_after.status != "not-running":
+                                state.fail("daemon_status_not_stopped")
+                            before = state.shutdown_observation.status_before
+                            if before.pid != state.root.pid or before.is_daemon is not True:
+                                state.fail("daemon_status_owned_root_mismatch")
+                        except (
+                            WindowsHostError,
+                            LifecycleError,
+                            CliTransportError,
+                            CliTransportTimeout,
+                        ) as error:
+                            state.fail(
+                                str(error)
+                                if isinstance(error, (WindowsHostError, LifecycleError))
+                                else "daemon_down_command_failed"
+                            )
+                    else:
+                        state.fail("standalone_daemon_mode_not_proven_for_shutdown")
                 deadline = time.monotonic() + 10
                 while time.monotonic() < deadline and _root_alive(
                     state.root, host_snapshot(cwd=ROOT)
@@ -476,7 +534,7 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
                     state.forced_cleanup_required = True
                     force_owned_processes(state)
                     time.sleep(2)
-        except (WindowsHostError, CliTransportError, CliTransportTimeout, OSError):
+        except (WindowsHostError, LifecycleError, CliTransportError, CliTransportTimeout, OSError):
             state.fail("cleanup_exception")
 
         try:
@@ -536,12 +594,16 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
             and stats is not None
             and state.temporary_copy_staged
             and state.daemon_up_exit_code == 0
+            and state.daemon_info is not None
+            and state.daemon_info.is_daemon
             and state.load_exit_code == 0
             and state.loaded_identity_passed
             and stats.post_load_samples == 15
             and state.unload_exit_code == 0
             and not state.inventory_after_unload
             and state.daemon_down_exit_code == 0
+            and state.shutdown_observation is not None
+            and state.shutdown_observation.status_after.status == "not-running"
             and state.activation_processes_absent
             and state.port_absent_after
             and state.partial_weight_absent_after
@@ -579,6 +641,7 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
             "runner_sha256": file_sha256(Path(__file__)),
             "monitored_process_sha256": file_sha256(PILOT / "monitored_process.py"),
             "windows_adapter_sha256": file_sha256(PILOT / "lm_studio_windows.py"),
+            "lifecycle_sha256": file_sha256(PILOT / "lm_studio_lifecycle.py"),
             "engine": {
                 "package": "llama.cpp-win-x86_64-nvidia-cuda-avx2-2.29.1",
                 "inventory_sha256": ENGINE_SHA256,
@@ -591,9 +654,22 @@ def run_attempt(authorization: dict[str, Any], execution_claim_sha256: str) -> i
                 "sha256": CLI_SHA256,
                 "temporary_copy_staged": state.temporary_copy_staged,
                 "daemon_up_exit_code": state.daemon_up_exit_code,
+                "daemon_up_observation": (
+                    state.daemon_up_observation.to_record()
+                    if state.daemon_up_observation is not None
+                    else None
+                ),
+                "daemon_info": (
+                    state.daemon_info.to_record() if state.daemon_info is not None else None
+                ),
                 "load_exit_code": state.load_exit_code,
                 "unload_exit_code": state.unload_exit_code,
                 "daemon_down_exit_code": state.daemon_down_exit_code,
+                "shutdown_observation": (
+                    state.shutdown_observation.to_record()
+                    if state.shutdown_observation is not None
+                    else None
+                ),
                 "canonical_identity_matches_after": state.canonical_cli_matches_after,
                 "temporary_copy_deleted": state.temporary_copy_deleted,
             },

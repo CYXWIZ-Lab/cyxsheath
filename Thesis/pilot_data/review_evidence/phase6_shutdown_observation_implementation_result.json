@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0.0",
+  "status": "shutdown_observation_implemented_fixtures_passed_runtime_blocked",
+  "recorded_at": "2026-08-27T09:28:46Z",
+  "decision_scope": "mode_aware_lifecycle_implementation_and_python_fixtures_only_no_lm_studio_runtime_authorization",
+  "baseline_commit": "34604eac5c9b12a7bac885568669698f5f8b3388",
+  "reviewed_decision": {
+    "record": "phase6_shutdown_contract_review_decision.json",
+    "sha256": "fe06403f747f06a6c43e34228c6b71479d0cc61737427ac749ee97941c0c5490",
+    "status": "shutdown_contract_review_complete_correction_implementation_authorized_runtime_blocked"
+  },
+  "source_transition": [
+    {
+      "path": "../cli_transport.py",
+      "role": "bounded_no_shell_process_execution",
+      "change": "unchanged",
+      "previous_sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+      "bytes": 3114,
+      "lines": 90,
+      "sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5"
+    },
+    {
+      "path": "../lm_studio_lifecycle.py",
+      "role": "vendor_json_mode_control_evidence_and_shutdown_status_polling",
+      "change": "new",
+      "previous_sha256": null,
+      "bytes": 8559,
+      "lines": 247,
+      "sha256": "22a048c28c63fc186690fec5521884ab04a0c98b44a9b99970ed04b498e00c03"
+    },
+    {
+      "path": "../lm_studio_windows.py",
+      "role": "windows_host_inventory_and_vendor_pid_owned_root_capture",
+      "change": "corrected",
+      "previous_sha256": "957dea4b298fe18f7016f804008bbca27704b900cc3337d283408d340697bcfb",
+      "bytes": 8774,
+      "lines": 264,
+      "sha256": "745b86f61b3bb47c64ea0c297b35ddeaad7cc759dd2e0d6d5da870c9463896ff"
+    },
+    {
+      "path": "../run_local_model_load_health.py",
+      "role": "mode_aware_load_health_protocol_orchestration_and_result_projection",
+      "change": "corrected",
+      "previous_sha256": "014dc055b573f7ce19f53825c9fba1c0a0281c210973d82177d1090cec2b25f2",
+      "bytes": 31018,
+      "lines": 719,
+      "sha256": "544cda75c08a27e44ba13ba735d8252b88541c8559311134fbb985a04e7317e7"
+    },
+    {
+      "path": "../test_lm_studio_lifecycle.py",
+      "role": "vendor_lifecycle_success_failure_privacy_and_ownership_fixtures",
+      "change": "new",
+      "previous_sha256": null,
+      "bytes": 6608,
+      "lines": 177,
+      "sha256": "06c97d1ec5fd2d7b11a6735f8988cef391ad569443199d9fd82b621d1dee3da6"
+    },
+    {
+      "path": "../test_run_local_model_load_health.py",
+      "role": "runner_authority_mode_and_owned_root_boundary_fixtures",
+      "change": "corrected",
+      "previous_sha256": "694153f4a25561cf86a4f8228f308a8cf47921fc402628707976cc5e1a249779",
+      "bytes": 10933,
+      "lines": 242,
+      "sha256": "54f2540e65f4acff7449e0cf4344cf331d361242abf0ab29c354e4f38556064c"
+    }
+  ],
+  "module_boundary": {
+    "transport_owns_process_execution_only": true,
+    "lifecycle_module_owns_vendor_json_mode_diagnostics_and_polling": true,
+    "windows_adapter_owns_pid_creation_time_and_force_scope": true,
+    "runner_owns_protocol_orchestration_only": true,
+    "new_dependency_count": 0,
+    "new_thread_count": 0,
+    "core_sheath_change_required": false
+  },
+  "startup_contract": {
+    "command": "temporary_lms_exe daemon up --json",
+    "required_fields": [
+      "status",
+      "pid",
+      "isDaemon",
+      "version"
+    ],
+    "required_status": "running",
+    "required_is_daemon": true,
+    "owned_root_source": "vendor_reported_pid_plus_allowed_service_root_name",
+    "allowed_service_root_names": [
+      "LM Studio.exe",
+      "llmster.exe"
+    ],
+    "desktop_service_action": "fail_before_model_load"
+  },
+  "control_evidence_contract": {
+    "numeric_exit_retained": true,
+    "stdout_stderr_lengths_retained": true,
+    "stdout_stderr_sha256_retained": true,
+    "allowlisted_diagnostic_code_retained": true,
+    "raw_control_output_retained": false,
+    "unknown_output_code": "unclassified"
+  },
+  "shutdown_contract": {
+    "sequence": [
+      "unload_exact_identifier_if_load_started",
+      "require_empty_loaded_inventory",
+      "require_running_standalone_status_with_owned_pid",
+      "run_daemon_down_once",
+      "poll_daemon_status_until_not_running_or_timeout",
+      "require_owned_root_exit_and_zero_runtime_artifacts",
+      "use_exact_owned_tree_force_only_as_failed_safety_fallback"
+    ],
+    "daemon_down_exit_zero_required": true,
+    "final_status_not_running_required": true,
+    "owned_root_exit_required": true,
+    "empty_inventory_required": true,
+    "port_1234_absent_required": true,
+    "forced_cleanup_accepted": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 252,
+      "tests_passed": 252
+    },
+    "python_3_14": {
+      "tests_run": 252,
+      "tests_passed": 252
+    },
+    "focused_lifecycle_tests": 10,
+    "focused_runner_tests": 11,
+    "implementation_decision_mutation_tests": 8,
+    "lm_studio_invocation_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0
+  },
+  "decision_gate": {
+    "shutdown_observation_implementation_complete": true,
+    "fixture_gate_passed": true,
+    "lm_studio_runtime_execution_authorized": false,
+    "standalone_llmster_installation_authorized": false,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_a_separate_validator_backed_runtime_selection_decision_before_any_lm_studio_operation"
+  }
+}

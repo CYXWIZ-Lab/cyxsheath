@@ -8,6 +8,10 @@ import json
 import re
 from pathlib import Path
 
+from validate_shutdown_observation_implementation_result import (
+    historical_source_has_successor,
+)
+
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
@@ -100,12 +104,17 @@ def validate(path: Path) -> dict:
     expect(attempt["daemon_down_exit_code"] == 1, "daemon-down result drift")
     expect(attempt["failures"] == ["daemon_down_exit_nonzero", "forced_cleanup_required"], "failure inventory drift")
     source_paths = {
-        "runner_sha256": path.parent.parent / "run_local_model_load_health.py",
-        "windows_adapter_sha256": path.parent.parent / "lm_studio_windows.py",
-        "monitored_process_sha256": path.parent.parent / "monitored_process.py",
+        "runner_sha256": (path.parent.parent / "run_local_model_load_health.py", "../run_local_model_load_health.py"),
+        "windows_adapter_sha256": (path.parent.parent / "lm_studio_windows.py", "../lm_studio_windows.py"),
+        "monitored_process_sha256": (path.parent.parent / "monitored_process.py", "../monitored_process.py"),
     }
-    for key, target in source_paths.items():
-        expect(file_digest(target) == attempt[key], f"{key}: source digest drift")
+    for key, (target, relative) in source_paths.items():
+        current = file_digest(target)
+        if current != attempt[key]:
+            expect(
+                historical_source_has_successor(relative, attempt[key], current),
+                f"{key}: source digest drift",
+            )
 
     model = record["model_observation"]
     expect(model["model_key"] == "qwen2.5-coder-7b-instruct", "model key drift")

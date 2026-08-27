@@ -16,6 +16,9 @@ from validate_load_health_runner_execution_decision import (
     LoadHealthRunnerExecutionDecisionError,
     validate as validate_execution_decision,
 )
+from validate_shutdown_observation_implementation_result import (
+    historical_source_has_successor,
+)
 
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
@@ -119,12 +122,20 @@ def expect_file(base: Path, record: dict, *, role: str | None = None) -> None:
             successor = execution["canonicalization_correction"]["source_transition"].get(
                 labels.get(record["path"], "")
             )
+            expect(successor is not None, f"file digest drift without validated correction: {record['path']}")
             expect(
-                successor is not None
-                and successor["previous_sha256"] == historical["sha256"]
-                and successor["corrected_sha256"] == actual["sha256"],
+                successor["previous_sha256"] == historical["sha256"],
                 f"file digest drift without validated correction: {record['path']}",
             )
+            if successor["corrected_sha256"] != actual["sha256"]:
+                expect(
+                    historical_source_has_successor(
+                        record["path"],
+                        successor["corrected_sha256"],
+                        actual["sha256"],
+                    ),
+                    f"file digest drift without validated correction: {record['path']}",
+                )
     if role is not None:
         expect(record["role"] == role, f"module role drift: {record['path']}")
 

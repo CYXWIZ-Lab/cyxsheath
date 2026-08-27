@@ -27,6 +27,9 @@ class LocalModelLoadHealthRunnerTests(unittest.TestCase):
             "windows_adapter_sha256": runner.file_sha256(
                 Path(runner.__file__).parent / "lm_studio_windows.py"
             ),
+            "lifecycle_sha256": runner.file_sha256(
+                Path(runner.__file__).parent / "lm_studio_lifecycle.py"
+            ),
             "maximum_attempts": 1,
             "settings": runner._authorization_settings(),
         }
@@ -73,6 +76,10 @@ class LocalModelLoadHealthRunnerTests(unittest.TestCase):
             path.write_text(json.dumps(record), encoding="utf-8")
             with self.assertRaisesRegex(runner.ActivationError, "settings_mismatch"):
                 runner.validate_execution_authorization(path)
+
+    def test_consumed_historical_authorization_cannot_run_corrected_source(self) -> None:
+        with self.assertRaisesRegex(runner.ActivationError, "runner_sha256_mismatch"):
+            runner.validate_execution_authorization(runner.EXECUTION_AUTHORIZATION)
 
     def test_prior_result_blocks_before_host_access_and_is_preserved(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -160,6 +167,19 @@ class LocalModelLoadHealthRunnerTests(unittest.TestCase):
         self.assertEqual({10, 11, 12}, {item.pid for item in tree})
         with self.assertRaisesRegex(runner.WindowsHostError, "identity_missing"):
             runner.process_tree(snapshot, runner.OwnedRoot(10, "wrong"))
+
+    def test_vendor_reported_pid_captures_standalone_llmster_root(self) -> None:
+        processes = (
+            runner.ProcessEntry(10, 1, "a", "LM Studio.exe", "--run-as-service", 1, 2),
+            runner.ProcessEntry(30, 1, "b", "llmster.exe", "", 3, 4),
+        )
+        snapshot = runner.HostSnapshot(30_000_000_000, False, processes)
+        self.assertEqual(
+            runner.OwnedRoot(30, "b"),
+            runner.capture_owned_root(snapshot, expected_pid=30),
+        )
+        with self.assertRaisesRegex(runner.WindowsHostError, "root_count_0"):
+            runner.capture_owned_root(snapshot, expected_pid=99)
 
     def test_inventory_parser_keeps_only_frozen_identity_fields(self) -> None:
         payload = json.dumps(

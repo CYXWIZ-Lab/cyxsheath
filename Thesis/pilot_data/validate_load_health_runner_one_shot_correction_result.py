@@ -8,6 +8,10 @@ import json
 import re
 from pathlib import Path
 
+from validate_shutdown_observation_implementation_result import (
+    historical_source_has_successor,
+)
+
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
@@ -158,10 +162,13 @@ def validate(path: Path) -> dict:
                 successor["previous_sha256"] == item["corrected"]["sha256"],
                 f"corrected identity drift: {relative}",
             )
-            expect(
-                successor["corrected_sha256"] == current["sha256"],
-                f"successor identity drift: {relative}",
-            )
+            if successor["corrected_sha256"] != current["sha256"]:
+                expect(
+                    historical_source_has_successor(
+                        relative, successor["corrected_sha256"], current["sha256"]
+                    ),
+                    f"corrected identity drift: {relative}",
+                )
         for state in ("previous", "corrected"):
             expect(DIGEST.fullmatch(item[state]["sha256"]) is not None, f"malformed {state} digest")
 
@@ -182,10 +189,15 @@ def validate(path: Path) -> dict:
             successor["previous_sha256"] == unchanged["windows_adapter_sha256"],
             "Windows-adapter boundary drift",
         )
-        expect(
-            successor["corrected_sha256"] == current_adapter,
-            "Windows-adapter successor drift",
-        )
+        if successor["corrected_sha256"] != current_adapter:
+            expect(
+                historical_source_has_successor(
+                    "../lm_studio_windows.py",
+                    successor["corrected_sha256"],
+                    current_adapter,
+                ),
+                "Windows-adapter boundary drift",
+            )
     expect(unchanged["new_dependency_count"] == 0, "dependency growth admitted")
     expect(unchanged["new_thread_count"] == 0, "concurrency growth admitted")
     expect(unchanged["core_sheath_change_required"] is False, "core expansion admitted")

@@ -8,6 +8,10 @@ import json
 import re
 from pathlib import Path
 
+from validate_shutdown_observation_implementation_result import (
+    historical_source_has_successor,
+)
+
 
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
@@ -77,7 +81,13 @@ def expect_superseded_source(base: Path, item: dict, key: str, target: Path) -> 
     expect(prior["sha256"] == file_digest(canonical_path), f"{key}: supersession digest drift")
     transition = successor["canonicalization_correction"]["source_transition"][key]
     expect(transition["previous_sha256"] == item["sha256"], f"{key}: superseded source drift")
-    expect(transition["corrected_sha256"] == current, f"{key}: successor source drift")
+    if transition["corrected_sha256"] != current:
+        expect(
+            historical_source_has_successor(
+                item["path"], transition["corrected_sha256"], current
+            ),
+            f"{key}: source digest drift",
+        )
 
 
 def validate(path: Path) -> dict:

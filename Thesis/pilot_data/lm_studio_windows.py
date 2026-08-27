@@ -14,7 +14,8 @@ from typing import Any
 from cli_transport import CliTransportError, CliTransportTimeout, run_cli
 
 
-PROCESS_NAMES = {"lm studio.exe", "lms.exe"}
+PROCESS_NAMES = {"lm studio.exe", "llmster.exe", "lms.exe"}
+SERVICE_ROOT_NAMES = {"lm studio.exe", "llmster.exe"}
 
 
 class WindowsHostError(RuntimeError):
@@ -173,12 +174,23 @@ def matching_runtime_processes(snapshot: HostSnapshot) -> tuple[ProcessEntry, ..
     return tuple(item for item in snapshot.processes if item.name.lower() in PROCESS_NAMES)
 
 
-def capture_owned_root(snapshot: HostSnapshot) -> OwnedRoot:
-    roots = [
-        item
-        for item in snapshot.processes
-        if item.name.lower() == "lm studio.exe" and "--run-as-service" in item.command
-    ]
+def capture_owned_root(snapshot: HostSnapshot, *, expected_pid: int | None = None) -> OwnedRoot:
+    if expected_pid is not None:
+        roots = [
+            item
+            for item in snapshot.processes
+            if item.pid == expected_pid and item.name.lower() in SERVICE_ROOT_NAMES
+        ]
+    else:
+        roots = [
+            item
+            for item in snapshot.processes
+            if item.name.lower() == "llmster.exe"
+            or (
+                item.name.lower() == "lm studio.exe"
+                and "--run-as-service" in item.command
+            )
+        ]
     if len(roots) != 1:
         raise WindowsHostError(f"activation_root_count_{len(roots)}")
     return OwnedRoot(roots[0].pid, roots[0].created)

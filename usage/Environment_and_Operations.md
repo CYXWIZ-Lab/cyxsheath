@@ -83,12 +83,13 @@ The CPU-only estimate reported 4.36 GiB total, below the 12 GiB ceiling, but its
 python Thesis\pilot_data\validate_local_model_load_health_decision.py Thesis\pilot_data\review_evidence\phase6_local_model_load_health_decision.json
 ```
 
-Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe and the later Python load-health execution have both consumed their one-shot authorizations. Engine inventory now uses normalized relative POSIX paths ordered by raw UTF-8 bytes. The authorized CPU-only run loaded the exact model, captured the exact 8,192-token inventory, completed all 15 samples, passed RAM/GPU ceilings, and unloaded successfully without inference or an HTTP listener. Overall acceptance still failed because `daemon down` returned 1 and bounded forced cleanup was required. Official CLI behavior and the earlier preflight make a desktop-service/standalone-daemon mismatch the likely cause: `daemon down` is not defined to stop LM Studio when `isDaemon` is false. Because raw output was not retained, the exact exit branch remains unproved. The next authorized work is fixture-only mode and status observation; no retry, standalone installation, prompt, HTTP server, CyxCode invocation, or benchmark input is authorized.
+Do not run `lms` manually, load the model, or send a prompt. The temporary-client `--help` probe and the later Python load-health execution have both consumed their one-shot authorizations. Engine inventory now uses normalized relative POSIX paths ordered by raw UTF-8 bytes. The authorized CPU-only run loaded the exact model, captured the exact 8,192-token inventory, completed all 15 samples, passed RAM/GPU ceilings, and unloaded successfully without inference or an HTTP listener. Overall acceptance still failed because `daemon down` returned 1 and bounded forced cleanup was required. The corrected fixture path now requires standalone `isDaemon: true` status and vendor PID ownership before load; shutdown requires empty inventory, one down call, and a final `not-running` status. Desktop mode fails before load. This implementation has not run against LM Studio, and the consumed failure is unchanged. No retry, standalone installation, prompt, HTTP server, CyxCode invocation, or benchmark input is authorized.
 
 Validate the shutdown decision without touching LM Studio:
 
 ```powershell
 python Thesis\pilot_data\validate_shutdown_contract_review_decision.py Thesis\pilot_data\review_evidence\phase6_shutdown_contract_review_decision.json
+python Thesis\pilot_data\validate_shutdown_observation_implementation_result.py Thesis\pilot_data\review_evidence\phase6_shutdown_observation_implementation_result.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
@@ -123,7 +124,7 @@ python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. The next action is a source-and-evidence review of daemon-down exit and root-liveness behavior, followed by a separate decision if another diagnostic or correction is justified—not manual `lms` use.
+These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. The next action is a validator-backed runtime-selection decision; it must precede standalone installation, a live diagnostic, or another load-health attempt.
 
 ## Troubleshooting
 
