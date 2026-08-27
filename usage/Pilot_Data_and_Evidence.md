@@ -42,10 +42,11 @@ python Thesis\pilot_data\validate_load_health_runner_execution_decision.py Thesi
 python Thesis\pilot_data\validate_load_health_runner_execution_result.py Thesis\pilot_data\review_evidence\phase6_load_health_runner_execution_result.json
 python Thesis\pilot_data\validate_shutdown_observation_implementation_result.py Thesis\pilot_data\review_evidence\phase6_shutdown_observation_implementation_result.json
 python Thesis\pilot_data\validate_runtime_lifecycle_selection_decision.py Thesis\pilot_data\review_evidence\phase6_runtime_lifecycle_selection_decision.json
+python Thesis\pilot_data\validate_llmster_acquisition_preflight_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_acquisition_preflight_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The last recorded pilot-data suite passed 262 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The last recorded pilot-data suite passed 273 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -69,6 +70,7 @@ The last recorded pilot-data suite passed 262 tests on Python 3.12 and 3.14. Val
 - The corrected runner result records successful exact load/inventory observation and passing resource ceilings, but rejects overall acceptance because graceful daemon shutdown failed and forced cleanup was required. Final safety cleanup passed and the retry is blocked.
 - The shutdown-observation implementation record pins the mode-aware parser, PID ownership, bounded diagnostics, and status-confirmed shutdown fixtures while keeping runtime and standalone installation blocked.
 - The runtime-lifecycle selection record chooses standalone `llmster`, rejects incompatible alternatives, and requires a pinned acquisition preflight before any installer or archive download.
+- The llmster acquisition preflight pins one direct archive and its published SHA-512, preserves existing identities, and authorizes only an acquisition module plus fixtures—not a download or extraction.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely

@@ -91,6 +91,7 @@ Validate the shutdown decision without touching LM Studio:
 python Thesis\pilot_data\validate_shutdown_contract_review_decision.py Thesis\pilot_data\review_evidence\phase6_shutdown_contract_review_decision.json
 python Thesis\pilot_data\validate_shutdown_observation_implementation_result.py Thesis\pilot_data\review_evidence\phase6_shutdown_observation_implementation_result.json
 python Thesis\pilot_data\validate_runtime_lifecycle_selection_decision.py Thesis\pilot_data\review_evidence\phase6_runtime_lifecycle_selection_decision.json
+python Thesis\pilot_data\validate_llmster_acquisition_preflight_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_acquisition_preflight_decision.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
@@ -125,7 +126,7 @@ python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` is selected, but do not run the official `irm ... | iex` installer. The next action is a pinned acquisition-preflight decision covering installer/archive/checksum identities, shared-home overwrite scope, disabled PATH mutation, and rollback.
+These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned, but do not run the official installer or download the archive manually. The next action is fixture-only implementation of the bounded acquisition module; archive download requires another decision.
 
 ## Troubleshooting
 
