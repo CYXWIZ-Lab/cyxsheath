@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | Mode-aware lifecycle observation is implemented and validator-backed. Fixtures prove standalone-mode/PID checks before load, privacy-minimized diagnostics, and status-confirmed shutdown while preserving failed acceptance for nonzero exit or forced cleanup. No runtime ran; the complete pilot suite passes 252/252 on both Python versions. |
+| Last completed milestone | Standalone `llmster` is selected as the only reviewed lifecycle satisfying vendor-supported start, stop, JSON status, PID ownership, and no-GUI requirements. Desktop retry and force-kill success are rejected. No artifact or runtime operation ran; the complete pilot suite passes 262/262 on both Python versions. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Make a separate validator-backed runtime-selection decision comparing the compatible lifecycle choices; do not install or invoke LM Studio while deciding. |
-| Then | Only an explicitly authorized lifecycle diagnostic may test the selected path. Standalone `llmster`, another load-health execution, and the synthetic canary remain blocked. |
+| Next implementation slice | Make a pinned `llmster` acquisition-preflight decision: freeze installer/archive/checksum identities, prove overwrite scope, disable PATH mutation, and define rollback without downloading or installing. |
+| Then | Only an explicitly authorized acquisition/install attempt may establish the selected runtime. A live diagnostic, load-health execution, and synthetic canary remain separately blocked. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -90,6 +90,7 @@ Completed work to preserve:
 - that one-shot execution loaded the exact model and inventory, completed all 15 samples, and passed the frozen RAM/GPU ceilings without inference or an HTTP listener. Unload succeeded, but `daemon down` returned 1 and the service required bounded owned-process cleanup, so graceful shutdown and overall load-health acceptance failed. Final and independent cleanup checks passed, the claim is retained, no retry or canary is authorized, and the pilot suite passes 222/222 on Python 3.12 and 3.14.
 - a validator-backed shutdown review identifies a lifecycle-mode mismatch as the likely failure: the runner owned `LM Studio.exe --run-as-service`, while official CLI behavior reserves `daemon down` for `isDaemon: true` standalone `llmster`. The deleted raw output prevents claiming the exact exit branch. The decision authorizes mode-aware/status-aware implementation and fixtures only; no runtime, installation, or retry is authorized.
 - the mode-aware correction is implemented behind a dedicated lifecycle module. Ten lifecycle fixtures and eleven runner fixtures prove standalone JSON/PID admission, desktop fail-before-load behavior, privacy-minimized diagnostics, and status-confirmed shutdown. Its implementation record and eight negative mutations pass; the full pilot suite is 252/252 on Python 3.12 and 3.14 without invoking LM Studio.
+- a validator-backed lifecycle decision selects standalone `llmster`, rejects desktop-service retry, force-kill success, and a parallel direct-llama.cpp path, and records why the mutable Windows installer cannot yet run. Nine negative mutations pass; the full pilot suite is 262/262 on both Python versions without any download, installation, or LM Studio invocation.
 
 The exact next slice is:
 
@@ -118,10 +119,12 @@ The exact next slice is:
 23. Completed: execute the corrected runner once. Exact load, inventory, observation, and resource gates passed; graceful shutdown required forced cleanup, so overall acceptance failed and the retry remains blocked.
 24. Completed: review the daemon-down exit and root-liveness contract from retained evidence and official source. Preserve the failed result and identify desktop-service versus standalone-daemon mode as the missing lifecycle distinction.
 25. Completed: implement and fixture-test JSON daemon-mode discovery, allowlisted shutdown diagnostics, PID ownership, and a `daemon status --json` postcondition without invoking LM Studio.
-26. Active: make a validator-backed runtime-selection decision, then authorize at most the exact compatible lifecycle diagnostic selected by that decision.
-27. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
-28. Replay and review the remaining 17 only after step 27 yields an operational admission path.
-29. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+26. Completed: select standalone `llmster` as the compatible lifecycle while rejecting desktop retry, force-kill success, direct-runtime expansion, installation, and invocation.
+27. Active: make a pinned acquisition-preflight decision covering exact installer/archive/checksum identities, shared-home overwrite scope, PATH isolation, and rollback before any artifact download or installation.
+28. Establish and diagnose the selected lifecycle only through later, separately authorized bounded operations; then repeat load health only if the diagnostic passes.
+29. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
+30. Replay and review the remaining 17 only after step 29 yields an operational admission path.
+31. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -153,7 +156,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — runtime lifecycle selection pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The corrected one-shot runner observed exact load/inventory and passing resource gates, but graceful shutdown failed. Mode-aware startup/shutdown handling now passes fixtures; no live correction has run, and runtime selection, retry, synthetic feasibility, and contamination gates remain blocked. |
+| 6 | Pilot data specification | **Active — standalone acquisition preflight pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. The corrected one-shot runner observed exact load/inventory and passing resource gates, but graceful shutdown failed. Mode-aware handling passes fixtures and standalone `llmster` is selected; acquisition, installation, live diagnosis, retry, synthetic feasibility, and contamination gates remain blocked. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -206,16 +209,18 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **Corrected runner execution result:** [phase6_load_health_runner_execution_result.json](pilot_data/review_evidence/phase6_load_health_runner_execution_result.json) records successful load, exact inventory, all 15 samples, passing resource ceilings, successful unload, failed graceful daemon shutdown, bounded forced cleanup, and a consumed attempt. Ten mutations reject artifact drift, success/failure concealment, resource or cleanup overclaims, retry, and inference. The complete pilot suite is 222/222 on Python 3.12 and 3.14.
 - **Shutdown-contract review:** [phase6_shutdown_contract_review_decision.json](pilot_data/review_evidence/phase6_shutdown_contract_review_decision.json) links the failed result, earlier desktop-service refusal, local log digest, and official LM Studio mode semantics. Eight mutations reject exact-message, timing-only, mode, postcondition, cleanup, runtime, and canary overclaims. The complete pilot suite is 231/231 on Python 3.12 and 3.14. No LM Studio operation ran.
 - **Shutdown-observation implementation:** [phase6_shutdown_observation_implementation_result.json](pilot_data/review_evidence/phase6_shutdown_observation_implementation_result.json) pins the lifecycle boundary, corrected sources, standalone/PID startup gate, bounded control evidence, and status-confirmed shutdown contract. Eight mutations reject source, mode, privacy, postcondition, dependency, runtime, and installation overclaims. The complete pilot suite is 252/252 on Python 3.12 and 3.14. No LM Studio operation ran.
+- **Runtime-lifecycle selection:** [phase6_runtime_lifecycle_selection_decision.json](pilot_data/review_evidence/phase6_runtime_lifecycle_selection_decision.json) selects standalone `llmster`, rejects incompatible or expanded alternatives, reviews the Windows installer's mutable execution/checksum behavior, and requires a pinned acquisition preflight. Nine mutations reject evidence, lifecycle, cleanup, installer, checksum, permission, health, and model overclaims. The complete pilot suite is 262/262 on both Python versions. No artifact or runtime operation ran.
 
 ## Immediate Work Queue
 
-1. Make a separate source-and-evidence decision selecting a compatible lifecycle. Compare standalone `llmster` with any justified alternative without installing or invoking LM Studio.
-2. Only if that decision authorizes it, perform the exact bounded diagnostic it specifies; do not treat fixture success as runtime acceptance.
-3. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-4. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-5. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-6. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-7. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Make a pinned `llmster` acquisition-preflight decision without downloading or installing: freeze identities and URLs, require checksum failure-closed, prove existing-home overwrite scope, disable PATH mutation, and define rollback.
+2. Only if a later decision authorizes it, acquire and install exactly the pinned artifact once, preserve the existing desktop/model state, and record a post-install inventory before any daemon command.
+3. Separately authorize a zero-model lifecycle diagnostic; do not treat selection or installation as runtime acceptance.
+4. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
+5. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+6. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+7. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
+8. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
