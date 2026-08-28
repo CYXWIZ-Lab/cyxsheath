@@ -44,7 +44,7 @@ The example creates an immutable contract, records current evidence, and returns
 |---|---|
 | Sheath Stage 0 | Implemented; 138 tests pass on Python 3.12 and 3.14 |
 | CyxCode adapter | Python boundary and deterministic fixture verified; experimental bridge remains a separate checkout |
-| Phase-6 pilot | Active; acquisition module fixture-proven, 20 candidates quarantined, no benchmark result claimed |
+| Phase-6 pilot | Active; archive request storage-blocked, 20 candidates quarantined, no benchmark result claimed |
 | CyxWiz integration | Phase-7 capability audit pending |
 | CyxSheath-D1 critic | Conditional design and training in Phases 9–10 |
 

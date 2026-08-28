@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_download_not_authorized_storage_preflight_failed",
+  "recorded_at": "2026-08-28T08:35:53Z",
+  "decision_scope": "one_download_execution_review_without_archive_request_extraction_installation_or_runtime",
+  "baseline_commit": "ea97ff2169e85e9764a118e528e3d6082df0607c",
+  "reviewed_implementation": {
+    "record": "phase6_llmster_acquisition_implementation_result.json",
+    "sha256": "c36f45a1d7ce8d62cd654e5874562f9462cc12fbaf2f866f20143473ce400aa1",
+    "status": "llmster_acquisition_module_implemented_fixtures_passed_download_blocked"
+  },
+  "module_identity": {
+    "path": "../llmster_archive_acquisition.py",
+    "bytes": 7947,
+    "lines": 227,
+    "sha256": "64919082bc30d031bccd3920270c5769b1598906378597ed8fdd4c98d3d2770a"
+  },
+  "frozen_request": {
+    "archive_url": "https://llmster.lmstudio.ai/download/0.0.21-2-win32-x64.full.zip",
+    "expected_sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "destination_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "maximum_attempts": 1,
+    "redirects_allowed": false,
+    "maximum_archive_bytes": 1073741824,
+    "minimum_free_bytes_after": 34359738368
+  },
+  "storage_observation": {
+    "measurement_method": "python_3_12_shutil_disk_usage_repository_root",
+    "observed_free_bytes": 28902416384,
+    "required_free_bytes_before_request": 35433480192,
+    "deficit_bytes": 6531063808,
+    "destination_present": false,
+    "partial_present": false,
+    "replay_cache_exactly_git_ignored": true,
+    "storage_gate_passed": false,
+    "fresh_measurement_required_before_later_authorization": true
+  },
+  "failure_boundary": {
+    "module_rejects_storage_failure_before_opening_response": true,
+    "archive_request_performed": false,
+    "automatic_cleanup_authorized": false,
+    "automatic_relocation_authorized": false,
+    "model_or_research_evidence_deletion_authorized": false,
+    "destination_contract_change_authorized": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 306,
+      "tests_passed": 306
+    },
+    "python_3_14": {
+      "tests_run": 306,
+      "tests_passed": 306
+    },
+    "download_execution_review_tests": 10,
+    "fixture_network_request_count": 0
+  },
+  "security_and_research_boundary": {
+    "installer_download_count": 0,
+    "archive_request_count": 0,
+    "archive_download_count": 0,
+    "archive_extraction_count": 0,
+    "executable_launch_count": 0,
+    "lm_studio_invocation_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "benchmark_or_thesis_content_exposed": false,
+    "runtime_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "decision_gate": {
+    "implementation_identity_verified": true,
+    "clean_destination_gate_passed": true,
+    "storage_gate_passed": false,
+    "archive_download_authorized": false,
+    "archive_extraction_authorized": false,
+    "standalone_llmster_installation_authorized": false,
+    "lm_studio_runtime_execution_authorized": false,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_at_least_35433480192_free_bytes_available_on_the_repository_volume_then_make_a_fresh_execution_decision"
+  }
+}
