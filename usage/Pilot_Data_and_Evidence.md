@@ -45,10 +45,11 @@ python Thesis\pilot_data\validate_runtime_lifecycle_selection_decision.py Thesis
 python Thesis\pilot_data\validate_llmster_acquisition_preflight_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_acquisition_preflight_decision.json
 python Thesis\pilot_data\validate_llmster_acquisition_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_acquisition_implementation_result.json
 python Thesis\pilot_data\validate_llmster_download_execution_review.py Thesis\pilot_data\review_evidence\phase6_llmster_download_execution_review.json
+python Thesis\pilot_data\validate_llmster_download_execution_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_download_execution_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The last recorded pilot-data suite passed 306 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The last recorded pilot-data suite passed 316 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -75,6 +76,7 @@ The last recorded pilot-data suite passed 306 tests on Python 3.12 and 3.14. Val
 - The llmster acquisition preflight pins one direct archive and its published SHA-512, preserves existing identities, and authorizes only an acquisition module plus fixtures—not a download or extraction.
 - The llmster acquisition implementation result pins the dependency-free module and network-free fixtures for bounded streaming, identity checks, partial ownership, and atomic placement while keeping download, extraction, and execution blocked.
 - The llmster download execution review records a clean destination but blocks authorization because observed storage is below the frozen pre-request floor; no request or cleanup occurred.
+- The superseding llmster download decision records the approved ignored-dependency cleanup, a fresh passing storage baseline, and one exact request authorization while keeping extraction and runtime blocked.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -90,4 +92,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The acquisition module may be exercised only through its injected in-memory fixtures. Storage remediation requires an explicit safe operator action, and a fresh decision must pass before any archive request. The completed cloud synthetic canary should not be repeated. Free MiMo benchmark submission remains blocked. An earlier local attempt observed service-side Qwen load/unload and passing resource/cleanup bounds but failed protocol acceptance. The synchronous transport and identity-only help probe now pass, but that probe is consumed. No archive request, daemon, model load, prompt, HTTP serving, CyxCode, or Docker invocation is authorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path.
+Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. Exactly one archive request is authorized through the pinned acquisition function; it is consumed when the function call begins and cannot retry automatically. Archive inventory, extraction, installation, daemon, model load, prompt, HTTP serving, CyxCode, and Docker invocation remain unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path. The completed cloud synthetic canary and identity-only help probe must not be repeated.

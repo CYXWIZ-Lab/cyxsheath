@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_download_authorized_once_extraction_blocked",
+  "recorded_at": "2026-08-28T12:41:09Z",
+  "decision_scope": "one_exact_archive_request_through_pinned_module_without_extraction_installation_or_runtime",
+  "baseline_commit": "90aaf6ab8c9a4ec916de9995b7a198c2145bf446",
+  "reviewed_blocking_decision": {
+    "record": "phase6_llmster_download_execution_review.json",
+    "sha256": "015fb2282c17d5aa480d94df290a8abeedaa05efb1283a3b0519bbc45e5f8220",
+    "status": "llmster_archive_download_not_authorized_storage_preflight_failed"
+  },
+  "reviewed_implementation": {
+    "record": "phase6_llmster_acquisition_implementation_result.json",
+    "sha256": "c36f45a1d7ce8d62cd654e5874562f9462cc12fbaf2f866f20143473ce400aa1",
+    "status": "llmster_acquisition_module_implemented_fixtures_passed_download_blocked"
+  },
+  "module_identity": {
+    "path": "../llmster_archive_acquisition.py",
+    "bytes": 7947,
+    "lines": 227,
+    "sha256": "64919082bc30d031bccd3920270c5769b1598906378597ed8fdd4c98d3d2770a"
+  },
+  "storage_remediation": {
+    "approved_target_relative_path": "integrations/cyxcode/node_modules",
+    "classification": "git_ignored_rebuildable_dependency_tree",
+    "logical_bytes_before": 7007221349,
+    "target_present_after": false,
+    "rebuild_command": "bun install --frozen-lockfile --ignore-scripts --no-progress",
+    "cyxcode_source_or_git_history_removed": false,
+    "project_model_or_research_evidence_removed": false
+  },
+  "fresh_storage_baseline": {
+    "measurement_method": "python_3_12_shutil_disk_usage_repository_root",
+    "observed_free_bytes": 36168814592,
+    "maximum_archive_bytes": 1073741824,
+    "minimum_free_bytes_after": 34359738368,
+    "required_free_bytes_before_request": 35433480192,
+    "margin_bytes": 735334400,
+    "destination_present": false,
+    "partial_present": false,
+    "replay_cache_exactly_git_ignored": true,
+    "storage_gate_passed": true,
+    "module_must_remeasure_before_and_after_stream": true
+  },
+  "frozen_request": {
+    "archive_url": "https://llmster.lmstudio.ai/download/0.0.21-2-win32-x64.full.zip",
+    "expected_sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "destination_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "maximum_attempts": 1,
+    "redirects_allowed": false
+  },
+  "one_shot_contract": {
+    "authorization_must_validate_before_function_call": true,
+    "module": "Thesis.pilot_data.llmster_archive_acquisition",
+    "function": "acquire_exact_archive",
+    "maximum_function_invocations": 1,
+    "automatic_retry_count": 0,
+    "decision_consumed_at_function_entry": true,
+    "fresh_decision_required_after_success_failure_or_interruption": true
+  },
+  "future_result_requirements": {
+    "record_numeric_http_status": true,
+    "record_final_url_scheme_and_host_only": true,
+    "record_exact_bytes_sha256_and_sha512": true,
+    "require_published_sha512_match": true,
+    "require_size_within_ceiling": true,
+    "require_storage_reserve_after": true,
+    "require_destination_present": true,
+    "require_partial_absent_after": true,
+    "require_existing_cli_engine_and_weight_identities_unchanged": true,
+    "retain_archive_git_ignored": true,
+    "archive_inventory_or_extraction_allowed": false,
+    "runtime_or_model_health_conclusion_allowed": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 316,
+      "tests_passed": 316
+    },
+    "python_3_14": {
+      "tests_run": 316,
+      "tests_passed": 316
+    },
+    "download_execution_decision_tests": 10,
+    "fixture_network_request_count": 0
+  },
+  "security_and_research_boundary": {
+    "installer_download_count_at_decision": 0,
+    "archive_request_count_at_decision": 0,
+    "archive_download_count_at_decision": 0,
+    "archive_extraction_count": 0,
+    "executable_launch_count": 0,
+    "lm_studio_invocation_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "benchmark_or_thesis_content_exposed": false,
+    "runtime_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "decision_gate": {
+    "implementation_identity_verified": true,
+    "storage_remediation_verified": true,
+    "clean_destination_gate_passed": true,
+    "storage_gate_passed": true,
+    "archive_download_authorized": true,
+    "maximum_authorized_archive_requests": 1,
+    "archive_extraction_authorized": false,
+    "standalone_llmster_installation_authorized": false,
+    "lm_studio_runtime_execution_authorized": false,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "invoke_the_pinned_acquisition_function_once_and_preserve_the_result_without_extraction"
+  }
+}

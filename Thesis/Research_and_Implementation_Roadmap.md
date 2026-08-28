@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The one-download review failed closed: 28,902,416,384 free bytes were below the required 35,433,480,192-byte pre-request floor. No archive request ran; the complete pilot suite passes 306/306 on both Python versions. |
+| Last completed milestone | Approved cleanup removed only CyxCode's ignored dependency tree. A fresh 36,168,814,592-byte free-space baseline passes the frozen floor, and one exact archive request is validator-authorized; the suite passes 316/316 on both Python versions. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Make at least 35,433,480,192 bytes free on the repository volume without deleting project/model evidence, then make a fresh execution decision. |
-| Then | If the fresh decision authorizes acquisition, request the archive once and record the result; separately inventory and review it before extraction or installation. |
+| Next implementation slice | Invoke the pinned acquisition function exactly once and preserve the result without archive inventory, extraction, installation, or execution. |
+| Then | If acquisition succeeds, separately review ZIP inventory, traversal safety, signatures, overwrite scope, and rollback before any extraction or installation. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -94,6 +94,7 @@ Completed work to preserve:
 - the acquisition preflight bypasses the mutable installer and pins the exact `0.0.21-2` Windows x64 full archive plus its published SHA-512. It preserves existing CLI/engine/model identities and authorizes only a dependency-free acquisition module and fixtures. Ten negative mutations pass; the full pilot suite is 273/273 on both Python versions with zero archive bytes downloaded.
 - the dependency-free acquisition module now enforces the pinned URL, no redirects, one attempt, size and storage bounds, streaming SHA-256/SHA-512, ownership-scoped partial cleanup, and atomic placement. Thirteen in-memory fixtures plus ten result-validator tests pass; the full pilot suite is 296/296 on both Python versions with zero network requests and zero archive bytes downloaded.
 - the one-download execution review is validator-backed and blocked by storage: 28,902,416,384 observed free bytes are 6,531,063,808 bytes below the frozen pre-request floor. Ten negative mutations pass; the full pilot suite is 306/306 on both Python versions with zero archive requests and no inferred cleanup.
+- approved cleanup removed only the ignored 7,007,221,349-byte CyxCode dependency tree. The fresh storage baseline passes by 735,334,400 bytes, and a validator-backed decision authorizes one pinned acquisition-function call while extraction and every runtime/research operation remain blocked. Ten mutations pass; the suite is 316/316 on both Python versions with zero archive requests at decision time.
 
 The exact next slice is:
 
@@ -126,11 +127,12 @@ The exact next slice is:
 27. Completed: bypass the mutable installer; pin the exact archive URL and published SHA-512, preserve existing state, and freeze a no-extraction acquisition contract.
 28. Completed: implement and fixture-test the exact archive acquisition module without network access, extraction, execution, dependencies, or changes to lifecycle/load-health code.
 29. Completed: review one-download execution and block authorization because the repository volume fails the frozen storage floor; perform no archive request or automatic cleanup.
-30. Active: make at least 35,433,480,192 bytes free without deleting project/model evidence, then make a fresh validator-backed download decision.
-31. Acquire, inventory, and install the selected lifecycle only through later, separately authorized bounded operations; then run a zero-model lifecycle diagnostic before repeating load health.
-32. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
-33. Replay and review the remaining 17 only after step 32 yields an operational admission path.
-34. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+30. Completed: remove only the approved ignored dependency tree, remeasure a passing storage baseline, and authorize one exact archive request through the pinned module.
+31. Active: invoke the acquisition function once and preserve the result without inventory, extraction, installation, or execution.
+32. Review archive inventory, traversal safety, signatures, overwrite scope, and rollback before separately authorizing installation; then run a separately authorized zero-model lifecycle diagnostic.
+33. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
+34. Replay and review the remaining 17 only after step 33 yields an operational admission path.
+35. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -162,7 +164,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — storage remediation pending** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. Standalone `llmster` is selected and its acquisition module passes 13 network-free fixtures, but the one-download review failed the storage floor by 6,531,063,808 bytes. No archive request occurred; download, extraction, installation, diagnosis, retry, synthetic feasibility, and contamination remain gated. |
+| 6 | Pilot data specification | **Active — one archive request authorized** | Version 1.0.0 and strict schemas are frozen. The 29-event ledger contains 20 quarantined candidates; three pinned C/C++/Python cases pass replay, five non-replay gates, source-snapshot capture, and internal research-analysis review. Standalone `llmster` is selected, its acquisition module passes 13 network-free fixtures, and the remediated storage baseline authorizes one exact request. No archive request has occurred yet; inventory, extraction, installation, diagnosis, retry, synthetic feasibility, and contamination remain gated. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -219,19 +221,18 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **llmster acquisition preflight:** [phase6_llmster_acquisition_preflight_decision.json](pilot_data/review_evidence/phase6_llmster_acquisition_preflight_decision.json) pins the exact direct archive and published SHA-512, preserves existing CLI/engine/model identities, and authorizes acquisition-module fixtures only. Ten mutations reject evidence, checksum, installer, redirect, retry, storage, side-effect, extraction, download, and runtime overclaims. The complete pilot suite is 273/273 on both Python versions. No archive or executable ran.
 - **llmster acquisition implementation:** [phase6_llmster_acquisition_implementation_result.json](pilot_data/review_evidence/phase6_llmster_acquisition_implementation_result.json) pins the dependency-free module and 13 in-memory fixtures for exact URL/status checks, bounded streaming, hashes, storage reserves, ownership-scoped cleanup, and atomic placement. Ten result mutations reject source/decision drift and boundary weakening. The complete pilot suite is 296/296 on both Python versions. No network request, archive download, extraction, or executable launch occurred.
 - **llmster download execution review:** [phase6_llmster_download_execution_review.json](pilot_data/review_evidence/phase6_llmster_download_execution_review.json) binds the exact module and archive contract, records a clean destination, and blocks the request because observed free space is below the frozen floor. Ten mutations reject identity, storage, network, download, and extraction overclaims. The complete pilot suite is 306/306 on both Python versions. No request or cleanup ran.
+- **llmster download execution decision:** [phase6_llmster_download_execution_decision.json](pilot_data/review_evidence/phase6_llmster_download_execution_decision.json) records the approved ignored-dependency cleanup, fresh passing storage baseline, exact module identity, and one-shot request authorization. Ten mutations reject evidence, source, storage, destination, retry, extraction, and benchmark widening. The complete pilot suite is 316/316 on both Python versions. No request ran at decision time.
 
 ## Immediate Work Queue
 
-1. Make at least 35,433,480,192 bytes free on the repository volume without deleting project, model, or research evidence; the recorded deficit is 6,531,063,808 bytes but free space must be measured again.
-2. Make a fresh validator-backed one-download decision bound to the implemented module and frozen archive identity; do not request the archive before that decision passes.
-3. If authorized, invoke the module once and record final URL scheme/host, exact bytes, SHA-256/SHA-512, storage reserve, placement, partial absence, and preserved CLI/engine/model identities.
-4. After a successful acquisition record, review archive inventory, traversal safety, signature, overwrite scope, and rollback before separately authorizing installation.
-5. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
-6. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-7. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-8. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-9. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-10. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Invoke the pinned acquisition function once and record final URL scheme/host, exact bytes, SHA-256/SHA-512, storage reserve, placement, partial absence, and preserved CLI/engine/model identities.
+2. After a successful acquisition record, review archive inventory, traversal safety, signature, overwrite scope, and rollback before separately authorizing installation.
+3. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
+4. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
+5. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+6. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+7. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
+8. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
