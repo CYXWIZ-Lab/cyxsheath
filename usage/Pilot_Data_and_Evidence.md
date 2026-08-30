@@ -77,6 +77,7 @@ The last recorded pilot-data suite passed 316 tests on Python 3.12 and 3.14. Val
 - The llmster acquisition implementation result pins the dependency-free module and network-free fixtures for bounded streaming, identity checks, partial ownership, and atomic placement while keeping download, extraction, and execution blocked.
 - The llmster download execution review records a clean destination but blocks authorization because observed storage is below the frozen pre-request floor; no request or cleanup occurred.
 - The superseding llmster download decision records the approved ignored-dependency cleanup, a fresh passing storage baseline, and one exact request authorization while keeping extraction and runtime blocked.
+- The storage-policy supersession retires that unused authorization and authorizes only the versioned policy module for one request. It preserves the 1-GiB ceiling and requires 8 GiB free afterward; extraction and runtime remain blocked.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely

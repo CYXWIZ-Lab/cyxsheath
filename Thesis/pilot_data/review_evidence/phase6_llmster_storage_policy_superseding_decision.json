@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_download_authorized_once_revised_storage_policy_extraction_blocked",
+  "recorded_at": "2026-08-30T08:30:00Z",
+  "decision_scope": "supersede_only_the_archive_storage_reserve_and_authorize_one_exact_request_without_extraction_installation_or_runtime",
+  "baseline_commit": "4cc551f7a1dbb1c51069ef32885c1bd1dce267f1",
+  "reviewed_prior_decision": {
+    "record": "phase6_llmster_download_execution_decision.json",
+    "sha256": "7fe619ac817587a7c72f88f396f37d0abad9dc118fc9ae8e9fa5a210a0b1c709",
+    "status": "llmster_archive_download_authorized_once_extraction_blocked",
+    "request_was_invoked": false,
+    "authorization_disposition": "unconsumed_and_superseded_not_executable"
+  },
+  "reviewed_implementation": {
+    "record": "phase6_llmster_acquisition_implementation_result.json",
+    "sha256": "c36f45a1d7ce8d62cd654e5874562f9462cc12fbaf2f866f20143473ce400aa1",
+    "status": "llmster_acquisition_module_implemented_fixtures_passed_download_blocked"
+  },
+  "shared_implementation_identity": {
+    "path": "../llmster_archive_acquisition.py",
+    "bytes": 7947,
+    "lines": 227,
+    "sha256": "64919082bc30d031bccd3920270c5769b1598906378597ed8fdd4c98d3d2770a"
+  },
+  "revised_policy_module_identity": {
+    "path": "../llmster_archive_acquisition_v2.py",
+    "bytes": 4220,
+    "lines": 111,
+    "sha256": "8954c90e708515bef3ccc0b66d8cecb2e1ca616fadce003223b6c28130bb3feb"
+  },
+  "storage_policy_decision": {
+    "maximum_archive_bytes": 1073741824,
+    "minimum_free_bytes_after": 8589934592,
+    "required_free_bytes_before_request": 9663676416,
+    "reserve_to_archive_ratio": 8,
+    "prior_minimum_free_bytes_after": 34359738368,
+    "prior_policy_superseded": true,
+    "archive_is_written_once_to_partial_then_renamed_on_same_volume": true,
+    "atomic_rename_does_not_duplicate_archive_bytes": true,
+    "archive_extraction_or_installation_is_authorized": false,
+    "runtime_or_model_execution_is_authorized": false,
+    "existing_model_weight_is_already_present_and_not_duplicated": true,
+    "rationale": "the_operation_can_add_at_most_one_gibibyte_and_cannot_extract_install_or_run;an_eight_gibibyte_final_reserve_is_eight_times_the_bounded_write_and_preserves_a_large_non_operation_buffer"
+  },
+  "fresh_storage_baseline": {
+    "measurement_method": "python_3_12_shutil_disk_usage_repository_root",
+    "observed_free_bytes": 21203013632,
+    "required_free_bytes_before_request": 9663676416,
+    "margin_bytes": 11539337216,
+    "destination_present": false,
+    "partial_present": false,
+    "replay_cache_exactly_git_ignored": true,
+    "storage_gate_passed": true,
+    "module_must_remeasure_before_and_after_stream": true
+  },
+  "frozen_request": {
+    "archive_url": "https://llmster.lmstudio.ai/download/0.0.21-2-win32-x64.full.zip",
+    "expected_sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "destination_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "maximum_archive_bytes": 1073741824,
+    "minimum_free_bytes_after": 8589934592,
+    "maximum_attempts": 1,
+    "redirects_allowed": false
+  },
+  "one_shot_contract": {
+    "authorization_must_validate_before_function_call": true,
+    "module": "Thesis.pilot_data.llmster_archive_acquisition_v2",
+    "function": "acquire_exact_archive",
+    "prior_module_maximum_invocations_after_supersession": 0,
+    "current_module_maximum_invocations": 1,
+    "maximum_combined_archive_requests": 1,
+    "automatic_retry_count": 0,
+    "decision_consumed_at_function_entry": true,
+    "fresh_decision_required_after_success_failure_or_interruption": true
+  },
+  "future_result_requirements": {
+    "record_numeric_http_status": true,
+    "record_final_url_scheme_and_host_only": true,
+    "record_exact_bytes_sha256_and_sha512": true,
+    "require_published_sha512_match": true,
+    "require_size_within_ceiling": true,
+    "require_storage_reserve_after": true,
+    "require_destination_present": true,
+    "require_partial_absent_after": true,
+    "require_existing_cli_engine_and_weight_identities_unchanged": true,
+    "retain_archive_git_ignored": true,
+    "archive_inventory_or_extraction_allowed": false,
+    "runtime_or_model_health_conclusion_allowed": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 331,
+      "tests_passed": 331
+    },
+    "python_3_14": {
+      "tests_run": 331,
+      "tests_passed": 331
+    },
+    "revised_policy_module_tests": 5,
+    "superseding_decision_tests": 10,
+    "fixture_network_request_count": 0
+  },
+  "security_and_research_boundary": {
+    "archive_request_count_at_decision": 0,
+    "archive_download_count_at_decision": 0,
+    "archive_extraction_count": 0,
+    "executable_launch_count": 0,
+    "lm_studio_invocation_count": 0,
+    "model_load_command_count": 0,
+    "inference_request_count": 0,
+    "http_server_start_count": 0,
+    "cyxcode_invocation_count": 0,
+    "docker_container_count": 0,
+    "benchmark_or_thesis_content_exposed": false,
+    "runtime_health_conclusion_allowed": false,
+    "model_quality_conclusion_allowed": false
+  },
+  "decision_gate": {
+    "prior_authorization_superseded": true,
+    "shared_implementation_identity_verified": true,
+    "revised_policy_module_identity_verified": true,
+    "clean_destination_gate_passed": true,
+    "revised_storage_gate_passed": true,
+    "archive_download_authorized": true,
+    "maximum_authorized_archive_requests": 1,
+    "archive_extraction_authorized": false,
+    "standalone_llmster_installation_authorized": false,
+    "lm_studio_runtime_execution_authorized": false,
+    "automatic_retry_authorized": false,
+    "synthetic_canary_authorized": false,
+    "authenticated_http_server_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "validate_this_superseding_decision_then_invoke_the_revised_policy_acquisition_function_once_without_extraction"
+  }
+}

@@ -95,6 +95,7 @@ python Thesis\pilot_data\validate_llmster_acquisition_preflight_decision.py Thes
 python Thesis\pilot_data\validate_llmster_acquisition_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_acquisition_implementation_result.json
 python Thesis\pilot_data\validate_llmster_download_execution_review.py Thesis\pilot_data\review_evidence\phase6_llmster_download_execution_review.json
 python Thesis\pilot_data\validate_llmster_download_execution_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_download_execution_decision.json
+python Thesis\pilot_data\validate_llmster_storage_policy_superseding_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_storage_policy_superseding_decision.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
@@ -129,7 +130,7 @@ python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned. Its bounded acquisition module is implemented, but it intentionally has no general-purpose CLI entry point. Approved removal of only `integrations\cyxcode\node_modules` produced a passing storage baseline, and the fresh decision authorizes one controlled call to the pinned function. Do not run the installer or download manually. Inventory, extraction, installation, runtime, and retry remain unauthorized.
+These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned. The original acquisition module remains unchanged. The superseding decision makes its unused authorization non-executable and permits one call only through `llmster_archive_acquisition_v2`, with a 1-GiB write ceiling, 9-GiB pre-request floor, and 8-GiB final reserve. Do not run the installer or download manually. Inventory, extraction, installation, runtime, and retry remain unauthorized.
 
 ## Troubleshooting
 

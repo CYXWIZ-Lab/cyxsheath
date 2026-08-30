@@ -40,7 +40,7 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | Approved cleanup removed only CyxCode's ignored dependency tree. A fresh 36,168,814,592-byte free-space baseline passes the frozen floor, and one exact archive request is validator-authorized; the suite passes 316/316 on both Python versions. |
+| Last completed milestone | A validator-backed superseding decision replaces the unused 32-GiB archive reserve with a bounded 8-GiB final reserve while preserving the 1-GiB ceiling, checksum, and one-request/no-retry contract; the suite passes 331/331 on both Python versions. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
 | Next implementation slice | Invoke the pinned acquisition function exactly once and preserve the result without archive inventory, extraction, installation, or execution. |
 | Then | If acquisition succeeds, separately review ZIP inventory, traversal safety, signatures, overwrite scope, and rollback before any extraction or installation. |
@@ -94,7 +94,7 @@ Completed work to preserve:
 - the acquisition preflight bypasses the mutable installer and pins the exact `0.0.21-2` Windows x64 full archive plus its published SHA-512. It preserves existing CLI/engine/model identities and authorizes only a dependency-free acquisition module and fixtures. Ten negative mutations pass; the full pilot suite is 273/273 on both Python versions with zero archive bytes downloaded.
 - the dependency-free acquisition module now enforces the pinned URL, no redirects, one attempt, size and storage bounds, streaming SHA-256/SHA-512, ownership-scoped partial cleanup, and atomic placement. Thirteen in-memory fixtures plus ten result-validator tests pass; the full pilot suite is 296/296 on both Python versions with zero network requests and zero archive bytes downloaded.
 - the one-download execution review is validator-backed and blocked by storage: 28,902,416,384 observed free bytes are 6,531,063,808 bytes below the frozen pre-request floor. Ten negative mutations pass; the full pilot suite is 306/306 on both Python versions with zero archive requests and no inferred cleanup.
-- approved cleanup removed only the ignored 7,007,221,349-byte CyxCode dependency tree. The fresh storage baseline passes by 735,334,400 bytes, and a validator-backed decision authorizes one pinned acquisition-function call while extraction and every runtime/research operation remain blocked. Ten mutations pass; the suite is 316/316 on both Python versions with zero archive requests at decision time.
+- the unused 32-GiB final-reserve authorization is superseded by a versioned policy module that retains the exact archive, 1-GiB ceiling, streaming/checksum controls, and one-request/no-retry boundary. Its 8-GiB final reserve is eight times the maximum write; the 21,203,013,632-byte baseline passes the 9,663,676,416-byte pre-request gate. Fifteen focused fixtures and the complete 331/331 suite pass on both Python versions with zero archive requests at decision time.
 
 The exact next slice is:
 
@@ -128,11 +128,12 @@ The exact next slice is:
 28. Completed: implement and fixture-test the exact archive acquisition module without network access, extraction, execution, dependencies, or changes to lifecycle/load-health code.
 29. Completed: review one-download execution and block authorization because the repository volume fails the frozen storage floor; perform no archive request or automatic cleanup.
 30. Completed: remove only the approved ignored dependency tree, remeasure a passing storage baseline, and authorize one exact archive request through the pinned module.
-31. Active: invoke the acquisition function once and preserve the result without inventory, extraction, installation, or execution.
-32. Review archive inventory, traversal safety, signatures, overwrite scope, and rollback before separately authorizing installation; then run a separately authorized zero-model lifecycle diagnostic.
-33. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
-34. Replay and review the remaining 17 only after step 33 yields an operational admission path.
-35. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+31. Completed: supersede the unconsumed 32-GiB reserve with a validator-backed 8-GiB final reserve, preserve the original content-addressed module, and authorize only the revised module for one request.
+32. Active: invoke the revised acquisition function once and preserve the result without inventory, extraction, installation, or execution.
+33. Review archive inventory, traversal safety, signatures, overwrite scope, and rollback before separately authorizing installation; then run a separately authorized zero-model lifecycle diagnostic.
+34. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
+35. Replay and review the remaining 17 only after step 34 yields an operational admission path.
+36. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -222,10 +223,11 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **llmster acquisition implementation:** [phase6_llmster_acquisition_implementation_result.json](pilot_data/review_evidence/phase6_llmster_acquisition_implementation_result.json) pins the dependency-free module and 13 in-memory fixtures for exact URL/status checks, bounded streaming, hashes, storage reserves, ownership-scoped cleanup, and atomic placement. Ten result mutations reject source/decision drift and boundary weakening. The complete pilot suite is 296/296 on both Python versions. No network request, archive download, extraction, or executable launch occurred.
 - **llmster download execution review:** [phase6_llmster_download_execution_review.json](pilot_data/review_evidence/phase6_llmster_download_execution_review.json) binds the exact module and archive contract, records a clean destination, and blocks the request because observed free space is below the frozen floor. Ten mutations reject identity, storage, network, download, and extraction overclaims. The complete pilot suite is 306/306 on both Python versions. No request or cleanup ran.
 - **llmster download execution decision:** [phase6_llmster_download_execution_decision.json](pilot_data/review_evidence/phase6_llmster_download_execution_decision.json) records the approved ignored-dependency cleanup, fresh passing storage baseline, exact module identity, and one-shot request authorization. Ten mutations reject evidence, source, storage, destination, retry, extraction, and benchmark widening. The complete pilot suite is 316/316 on both Python versions. No request ran at decision time.
+- **llmster storage-policy supersession:** [phase6_llmster_storage_policy_superseding_decision.json](pilot_data/review_evidence/phase6_llmster_storage_policy_superseding_decision.json) makes the unused prior authorization non-executable and authorizes only the versioned policy module for one request. It retains the 1-GiB ceiling and requires 8 GiB free afterward. Five policy fixtures and ten decision mutations pass; the complete suite is 331/331 on both Python versions. No request ran at decision time.
 
 ## Immediate Work Queue
 
-1. Invoke the pinned acquisition function once and record final URL scheme/host, exact bytes, SHA-256/SHA-512, storage reserve, placement, partial absence, and preserved CLI/engine/model identities.
+1. Invoke the revised-policy acquisition function once and record final URL scheme/host, exact bytes, SHA-256/SHA-512, storage reserve, placement, partial absence, and preserved CLI/engine/model identities.
 2. After a successful acquisition record, review archive inventory, traversal safety, signature, overwrite scope, and rollback before separately authorizing installation.
 3. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
 4. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
