@@ -40,7 +40,7 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | A validator-backed superseding decision replaces the unused 32-GiB archive reserve with a bounded 8-GiB final reserve while preserving the 1-GiB ceiling, checksum, and one-request/no-retry contract; the suite passes 331/331 on both Python versions. |
+| Last completed milestone | The one authorized llmster request acquired and independently verified the 867,394,409-byte archive against its published SHA-512 while preserving CLI, engine, and model identities; the suite passes 341/341 on both Python versions. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
 | Next implementation slice | Invoke the pinned acquisition function exactly once and preserve the result without archive inventory, extraction, installation, or execution. |
 | Then | If acquisition succeeds, separately review ZIP inventory, traversal safety, signatures, overwrite scope, and rollback before any extraction or installation. |
@@ -95,6 +95,7 @@ Completed work to preserve:
 - the dependency-free acquisition module now enforces the pinned URL, no redirects, one attempt, size and storage bounds, streaming SHA-256/SHA-512, ownership-scoped partial cleanup, and atomic placement. Thirteen in-memory fixtures plus ten result-validator tests pass; the full pilot suite is 296/296 on both Python versions with zero network requests and zero archive bytes downloaded.
 - the one-download execution review is validator-backed and blocked by storage: 28,902,416,384 observed free bytes are 6,531,063,808 bytes below the frozen pre-request floor. Ten negative mutations pass; the full pilot suite is 306/306 on both Python versions with zero archive requests and no inferred cleanup.
 - the unused 32-GiB final-reserve authorization is superseded by a versioned policy module that retains the exact archive, 1-GiB ceiling, streaming/checksum controls, and one-request/no-retry boundary. Its 8-GiB final reserve is eight times the maximum write; the 21,203,013,632-byte baseline passes the 9,663,676,416-byte pre-request gate. Fifteen focused fixtures and the complete 331/331 suite pass on both Python versions with zero archive requests at decision time.
+- the single revised-policy request succeeded with HTTP 200 and 867,394,409 bytes. Independent hashing confirms SHA-256 `e6556e8...` and the pinned published SHA-512; no partial remains, the final 8-GiB reserve passes, and CLI, engine, and model identities are unchanged. The authorization is consumed, no retry is allowed, and the archive remains ignored and sealed. Ten result mutations and the complete 341/341 suite pass on both Python versions.
 
 The exact next slice is:
 
@@ -129,8 +130,8 @@ The exact next slice is:
 29. Completed: review one-download execution and block authorization because the repository volume fails the frozen storage floor; perform no archive request or automatic cleanup.
 30. Completed: remove only the approved ignored dependency tree, remeasure a passing storage baseline, and authorize one exact archive request through the pinned module.
 31. Completed: supersede the unconsumed 32-GiB reserve with a validator-backed 8-GiB final reserve, preserve the original content-addressed module, and authorize only the revised module for one request.
-32. Active: invoke the revised acquisition function once and preserve the result without inventory, extraction, installation, or execution.
-33. Review archive inventory, traversal safety, signatures, overwrite scope, and rollback before separately authorizing installation; then run a separately authorized zero-model lifecycle diagnostic.
+32. Completed: invoke the revised acquisition function once, verify the exact archive and final reserve independently, preserve existing identities, and consume the no-retry authorization without inventory or execution.
+33. Active: make a separate archive-review decision, then review inventory, traversal safety, signatures, overwrite scope, and rollback without executing the archive.
 34. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
 35. Replay and review the remaining 17 only after step 34 yields an operational admission path.
 36. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
@@ -224,11 +225,12 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **llmster download execution review:** [phase6_llmster_download_execution_review.json](pilot_data/review_evidence/phase6_llmster_download_execution_review.json) binds the exact module and archive contract, records a clean destination, and blocks the request because observed free space is below the frozen floor. Ten mutations reject identity, storage, network, download, and extraction overclaims. The complete pilot suite is 306/306 on both Python versions. No request or cleanup ran.
 - **llmster download execution decision:** [phase6_llmster_download_execution_decision.json](pilot_data/review_evidence/phase6_llmster_download_execution_decision.json) records the approved ignored-dependency cleanup, fresh passing storage baseline, exact module identity, and one-shot request authorization. Ten mutations reject evidence, source, storage, destination, retry, extraction, and benchmark widening. The complete pilot suite is 316/316 on both Python versions. No request ran at decision time.
 - **llmster storage-policy supersession:** [phase6_llmster_storage_policy_superseding_decision.json](pilot_data/review_evidence/phase6_llmster_storage_policy_superseding_decision.json) makes the unused prior authorization non-executable and authorizes only the versioned policy module for one request. It retains the 1-GiB ceiling and requires 8 GiB free afterward. Five policy fixtures and ten decision mutations pass; the complete suite is 331/331 on both Python versions. No request ran at decision time.
+- **llmster archive acquisition result:** [phase6_llmster_archive_acquisition_result.json](pilot_data/review_evidence/phase6_llmster_archive_acquisition_result.json) records the sole HTTP 200 request, exact 867,394,409-byte archive, published SHA-512 match, clean atomic placement, passing final reserve, preserved CLI/engine/model identities, and consumed authorization. Ten mutations reject result and permission overclaims; the complete suite is 341/341 on both Python versions. No archive inventory, extraction, installation, or execution occurred.
 
 ## Immediate Work Queue
 
-1. Invoke the revised-policy acquisition function once and record final URL scheme/host, exact bytes, SHA-256/SHA-512, storage reserve, placement, partial absence, and preserved CLI/engine/model identities.
-2. After a successful acquisition record, review archive inventory, traversal safety, signature, overwrite scope, and rollback before separately authorizing installation.
+1. Make a validator-backed archive-review decision before reading ZIP inventory; keep extraction, installation, and execution blocked.
+2. Under that decision, review archive inventory, traversal safety, signature, overwrite scope, and rollback before separately authorizing installation.
 3. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
 4. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
 5. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
