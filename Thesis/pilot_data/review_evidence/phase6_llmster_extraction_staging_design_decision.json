@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_owned_extraction_staging_fixture_implementation_authorized_real_extraction_blocked",
+  "decision_scope": "design_and_generated_fixture_implementation_of_owned_extraction_staging_without_reading_member_contents_from_or_extracting_the_real_llmster_archive",
+  "recorded_at": "2026-08-31T17:48:21Z",
+  "baseline_commit": "2cf7719aa56153ab8eeba5594dfce80e5b50115d",
+  "accepted_inventory": {
+    "path": "phase6_llmster_archive_inventory_v2_result.json",
+    "sha256": "850ee82ba972f68be84bc5d0ef99da4c1eb80532be75acc9a88a2fb4d2eefd93",
+    "status": "llmster_archive_metadata_inventory_v2_accepted_extraction_blocked",
+    "entry_count": 3614,
+    "total_uncompressed_bytes": 1791678266,
+    "canonical_inventory_sha256": "bea264bc3b7f2368f485a40591ad9e4ef831690aeb0f55482df5ccf15ddac3cd"
+  },
+  "module_boundary": {
+    "new_module": "Thesis.pilot_data.llmster_archive_staging",
+    "path": "../llmster_archive_staging.py",
+    "role": "exclusive_owned_staging_lifecycle_and_streamed_extraction_only",
+    "inventory_module_remains_metadata_policy_owner": true,
+    "installation_or_runtime_responsibility_added": false,
+    "new_dependencies_allowed": false
+  },
+  "ownership_contract": {
+    "parent_repository_relative_path": ".replay_cache/llmster_staging",
+    "parent_must_exist_be_absolute_and_not_be_symlink": true,
+    "child_name_pattern": "llmster-[0-9a-f]{32}",
+    "child_must_not_exist": true,
+    "child_created_exclusively": true,
+    "ownership_marker": ".cyxsheath-staging-owner.json",
+    "ownership_marker_created_exclusively_before_member_writes": true,
+    "rollback_requires_exact_parent_child_pattern_and_matching_marker": true,
+    "rollback_may_remove_only_the_owned_child": true,
+    "archive_and_parent_must_be_retained": true
+  },
+  "storage_and_write_contract": {
+    "declared_uncompressed_bytes": 1791678266,
+    "minimum_free_bytes_after": 4294967296,
+    "minimum_free_bytes_before": 6086645562,
+    "stream_chunk_bytes_maximum": 8388608,
+    "canonical_destination_must_remain_under_owned_child": true,
+    "links_and_special_members_rejected": true,
+    "existing_destination_overwrite_count_maximum": 0,
+    "written_file_size_must_match_declared_size": true,
+    "total_written_bytes_must_match_inventory_total": true,
+    "per_file_sha256_and_canonical_content_manifest_digest_required": true,
+    "raw_member_names_retained_in_curated_result": false
+  },
+  "success_and_failure_contract": {
+    "success_retains_owned_staging_for_separate_signature_review": true,
+    "failure_removes_owned_staging_after_marker_verification": true,
+    "cleanup_failure_must_be_reported_and_cannot_be_concealed": true,
+    "automatic_retry_count_maximum": 0,
+    "binary_launch_count_maximum": 0,
+    "installer_invocation_count_maximum": 0,
+    "network_request_count_maximum": 0
+  },
+  "signature_review_boundary": {
+    "candidate_suffixes": [".dll", ".exe", ".node", ".ps1"],
+    "signature_verification_occurs_only_after_separate_real_staging_decision": true,
+    "signature_tool_may_not_execute_target_binaries": true,
+    "unsigned_invalid_unknown_and_tool_error_are_distinct_results": true,
+    "metadata_inventory_does_not_claim_authenticode": true
+  },
+  "fixture_requirements": {
+    "success_and_explicit_owned_cleanup": true,
+    "existing_child_rejected_without_modification": true,
+    "insufficient_storage_rejected_before_child_creation": true,
+    "traversal_link_collision_and_overwrite_rejected": true,
+    "declared_and_actual_size_mismatch_rejected": true,
+    "write_failure_triggers_owned_cleanup": true,
+    "wrong_or_missing_marker_blocks_public_rollback": true,
+    "archive_and_parent_preserved_on_every_path": true,
+    "no_binary_execution_or_network_boundary_reachable": true,
+    "generated_archives_only": true
+  },
+  "execution_gate": {
+    "source_and_generated_fixture_edits_authorized": true,
+    "generated_fixture_extraction_authorized": true,
+    "real_archive_identity_or_member_read_authorized": false,
+    "real_archive_extraction_authorized": false,
+    "authenticode_tool_invocation_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "implement_and_fixture_test_the_owned_staging_boundary_then_record_source_identities_before_any_real_extraction_decision"
+}
