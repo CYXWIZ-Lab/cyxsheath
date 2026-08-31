@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_metadata_inventory_authorized_once_extraction_blocked",
+  "decision_scope": "one_read_only_identity_and_central_directory_inventory_of_the_exact_acquired_archive_without_member_content_reads_extraction_installation_or_execution",
+  "recorded_at": "2026-08-31T06:18:35Z",
+  "baseline_commit": "c38ff57aeba339a6c6b19b19b116ea512e288608",
+  "acquisition_result": {
+    "path": "phase6_llmster_archive_acquisition_result.json",
+    "sha256": "1f2480dff564b38f5fbaf28d49e16826798e0536a27ce7e0e2fe25ec304ac9e2",
+    "status": "llmster_archive_acquired_verified_extraction_blocked"
+  },
+  "implementation": {
+    "module": {
+      "path": "../llmster_archive_inventory.py",
+      "bytes": 13831,
+      "lines": 340,
+      "sha256": "640bfa66adb9775dd670fda097a540555d8a7b2f32435859e829f83438510fc9"
+    },
+    "fixtures": {
+      "path": "../test_llmster_archive_inventory.py",
+      "bytes": 6014,
+      "lines": 144,
+      "sha256": "cbf350610f2c90ae9fe18b41f1aee9e0c48a4fac80fa1231ef2538e863711543",
+      "tests_per_python": 15
+    },
+    "predecision_complete_suite": {
+      "python_3_12": "356_passed",
+      "python_3_14": "356_passed"
+    }
+  },
+  "archive_identity": {
+    "repository_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "bytes": 867394409,
+    "sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff"
+  },
+  "metadata_contract": {
+    "allowed_reads": [
+      "archive_bytes_for_sha256_and_sha512_identity",
+      "end_of_central_directory_tail",
+      "zip_central_directory_metadata"
+    ],
+    "member_content_read_count_maximum": 0,
+    "extraction_count_maximum": 0,
+    "maximum_entries": 50000,
+    "maximum_central_directory_bytes": 33554432,
+    "maximum_total_uncompressed_bytes": 4294967296,
+    "maximum_entry_uncompressed_bytes": 2147483648,
+    "maximum_compression_ratio_milli": 500000,
+    "maximum_path_characters": 1024,
+    "allowed_compression_methods": [0, 8],
+    "reject_zip64": true,
+    "reject_multi_disk": true,
+    "reject_encrypted_members": true,
+    "reject_symlinks_and_special_members": true,
+    "reject_absolute_traversal_unsafe_or_case_colliding_paths": true
+  },
+  "one_shot": {
+    "module": "Thesis.pilot_data.llmster_archive_inventory",
+    "function": "inspect_exact_archive",
+    "maximum_function_invocations": 1,
+    "authorization_consumed_at": "function_entry",
+    "automatic_retry_count_maximum": 0,
+    "fresh_decision_required_after_success_failure_or_interruption": true
+  },
+  "required_result": {
+    "record_status_on_acceptance": "llmster_archive_metadata_inventory_accepted_extraction_blocked",
+    "record_status_on_rejection": "llmster_archive_metadata_inventory_rejected_extraction_blocked",
+    "record_identity_and_entry_aggregates": true,
+    "record_top_level_components": true,
+    "record_sensitive_suffix_counts_and_path_digest_without_member_contents": true,
+    "record_canonical_inventory_digest": true,
+    "record_archive_unchanged": true,
+    "member_paths_may_be_recorded_individually": false,
+    "member_contents_may_be_recorded": false
+  },
+  "deferred_review": {
+    "authenticode_verification": "not_possible_from_central_directory_metadata_and_requires_a_separate_extraction_staging_decision",
+    "overwrite_scope": "infer_only_top_level_components_and_canonical_path_digest_no_install_target_authorized",
+    "rollback": "no_files_created_by_inventory_future_staging_must_be_owned_and_deletable_archive_is_retained"
+  },
+  "execution_gate": {
+    "metadata_inventory_authorized_once": true,
+    "member_content_reads_authorized": false,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "validate_and_commit_this_decision_then_invoke_the_exact_metadata_inventory_function_once_and_record_the_result"
+}

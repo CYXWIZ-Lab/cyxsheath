@@ -51,6 +51,7 @@ python Thesis\pilot_data\validate_llmster_download_execution_review.py Thesis\pi
 python Thesis\pilot_data\validate_llmster_download_execution_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_download_execution_decision.json
 python Thesis\pilot_data\validate_llmster_storage_policy_superseding_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_storage_policy_superseding_decision.json
 python Thesis\pilot_data\validate_llmster_archive_acquisition_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_acquisition_result.json
+python Thesis\pilot_data\validate_llmster_archive_inventory_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -71,3 +72,5 @@ Source-snapshot capture covers 20 quarantined calibration candidates; three have
 Superseding update (2026-08-30): the earlier request authorization above was never invoked and is now non-executable. Only `llmster_archive_acquisition_v2` is authorized for one request. It retains the 1-GiB archive ceiling, requires 9 GiB free before and 8 GiB after the write, and permits no retry or extraction. The complete suite passes 331/331 on both supported Python versions.
 
 Acquisition result (2026-08-30): that one request succeeded. The 867,394,409-byte ignored archive independently matches SHA-256 `e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c` and the published SHA-512. The final reserve and preserved-state checks pass, no partial remains, and the authorization is consumed. The complete suite passes 341/341 on both Python versions. Do not inspect, extract, install, or execute the ZIP before the next validator-backed decision.
+
+Inventory decision (2026-08-31): one exact identity-plus-central-directory inspection is authorized after commit and immediate revalidation. Fifteen adversarial fixtures enforce zero member-content reads, zero extraction, traversal/collision/link rejection, supported compression, and bounded declared expansion. Authenticode, extraction, installation, execution, networking, and benchmark use remain blocked.
