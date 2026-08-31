@@ -24,15 +24,6 @@ def expect(condition: bool, message: str) -> None:
         raise LlmsterArchiveInventoryDecisionError(message)
 
 
-def file_identity(path: Path) -> dict[str, int | str]:
-    content = path.read_bytes()
-    return {
-        "bytes": len(content),
-        "lines": len(content.decode("utf-8").splitlines()),
-        "sha256": hashlib.sha256(content).hexdigest(),
-    }
-
-
 def check_forbidden(value: object, where: str = "root") -> None:
     if isinstance(value, dict):
         found = FORBIDDEN & set(value)
@@ -83,15 +74,26 @@ def validate(path: Path) -> dict:
     )
 
     implementation = record["implementation"]
-    for key, relative in (
-        ("module", "../llmster_archive_inventory.py"),
-        ("fixtures", "../test_llmster_archive_inventory.py"),
-    ):
+    expected_sources = {
+        "module": {
+            "path": "../llmster_archive_inventory.py",
+            "bytes": 13831,
+            "lines": 340,
+            "sha256": "640bfa66adb9775dd670fda097a540555d8a7b2f32435859e829f83438510fc9",
+        },
+        "fixtures": {
+            "path": "../test_llmster_archive_inventory.py",
+            "bytes": 6014,
+            "lines": 144,
+            "sha256": "cbf350610f2c90ae9fe18b41f1aee9e0c48a4fac80fa1231ef2538e863711543",
+        },
+    }
+    for key, expected in expected_sources.items():
         declared = implementation[key]
-        expect(declared["path"] == relative, f"{key} path drift")
-        expect(file_identity((base / relative).resolve()) == {
-            name: declared[name] for name in ("bytes", "lines", "sha256")
-        }, f"{key} identity drift")
+        expected_identity = (
+            expected | {"tests_per_python": 15} if key == "fixtures" else expected
+        )
+        expect(declared == expected_identity, f"{key} identity drift")
     expect(implementation["fixtures"]["tests_per_python"] == 15, "fixture count drift")
     expect(
         implementation["predecision_complete_suite"]

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_separator_canonicalization_fixtures_authorized_real_inventory_blocked",
+  "decision_scope": "fixture_only_correction_of_zip_member_separator_canonicalization_without_reading_the_real_archive_or_authorizing_extraction_installation_or_execution",
+  "recorded_at": "2026-08-31T16:36:59Z",
+  "baseline_commit": "58d6ff5e3cf2543e8092d46b5dd4d85bf4631869",
+  "prior_result": {
+    "path": "phase6_llmster_archive_inventory_result.json",
+    "sha256": "dfc2778c5d4b5341f94fd60b02b1dab1d0e3002fb8eced6990752b189706a098",
+    "status": "llmster_archive_metadata_inventory_rejected_extraction_blocked",
+    "error_code": "member_backslash_rejected"
+  },
+  "current_sources": {
+    "module": {
+      "path": "../llmster_archive_inventory.py",
+      "bytes": 13831,
+      "lines": 340,
+      "sha256": "640bfa66adb9775dd670fda097a540555d8a7b2f32435859e829f83438510fc9"
+    },
+    "fixtures": {
+      "path": "../test_llmster_archive_inventory.py",
+      "bytes": 6014,
+      "lines": 144,
+      "sha256": "cbf350610f2c90ae9fe18b41f1aee9e0c48a4fac80fa1231ef2538e863711543"
+    }
+  },
+  "boundary_decision": {
+    "owner": "existing_llmster_archive_inventory_path_policy",
+    "new_module_allowed": false,
+    "new_dependency_allowed": false,
+    "backslash_meaning": "path_separator_equivalent_to_forward_slash",
+    "canonical_separator": "/",
+    "directory_marker_inputs": ["/", "\\"],
+    "unicode_policy": "require_raw_nfc_and_do_not_silently_normalize_unicode",
+    "canonical_output_retains_raw_member_name": false,
+    "required_rejections": [
+      "leading_forward_or_backslash_absolute_path",
+      "drive_prefixed_path",
+      "empty_dot_or_dotdot_segment_after_separator_canonicalization",
+      "raw_or_canonical_path_over_length_ceiling",
+      "directory_marker_mismatch",
+      "windows_trailing_dot_or_space_control_colon_or_device_segment",
+      "raw_to_canonical_duplicate_unicode_or_casefold_collision"
+    ]
+  },
+  "fixture_requirements": {
+    "accept_backslash_file_path": true,
+    "accept_backslash_directory_marker": true,
+    "accept_mixed_safe_separators": true,
+    "reject_backslash_parent_traversal": true,
+    "reject_leading_backslash_and_unc": true,
+    "reject_repeated_or_mixed_empty_segments": true,
+    "reject_forward_backslash_canonical_collision": true,
+    "reject_casefold_collision_after_canonicalization": true,
+    "prove_member_content_open_count_zero": true,
+    "use_generated_fixtures_only": true
+  },
+  "execution_gate": {
+    "source_and_fixture_edits_authorized": true,
+    "generated_fixture_execution_authorized": true,
+    "real_archive_identity_read_authorized": false,
+    "real_archive_central_directory_read_authorized": false,
+    "fresh_real_inventory_authorized": false,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "implement_and_fixture_test_only_then_record_the_corrected_source_identity_before_any_fresh_real_inventory_decision"
+}

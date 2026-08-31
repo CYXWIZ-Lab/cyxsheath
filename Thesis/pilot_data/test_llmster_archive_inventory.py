@@ -32,6 +32,12 @@ class LlmsterArchiveInventoryTests(unittest.TestCase):
             for name, payload in members:
                 target.writestr(name, payload)
 
+    @staticmethod
+    def raw_name(name: str) -> ZipInfo:
+        info = ZipInfo("placeholder")
+        info.filename = name
+        return info
+
     def inspect(self):
         payload = self.archive.read_bytes()
         return inventory.inspect_archive(
@@ -75,10 +81,68 @@ class LlmsterArchiveInventoryTests(unittest.TestCase):
         self.assert_rejected("member_absolute_path_rejected")
 
     def test_backslash_path_is_rejected(self) -> None:
-        self.write_archive([("..\\escape.txt", b"x")])
-        # zipfile normalizes Windows separators before exposing the name; the
-        # resulting parent traversal must still fail closed.
+        self.write_archive([(self.raw_name("..\\escape.txt"), b"x")])
         self.assert_rejected("member_traversal_segment_rejected")
+
+    def test_backslash_file_path_is_canonicalized(self) -> None:
+        self.write_archive([(self.raw_name("package\\app.exe"), b"x")])
+        result = self.inspect()
+        self.assertEqual(("package",), result.top_level_components)
+        self.assertEqual(((".exe", 1),), result.sensitive_suffix_counts)
+        self.assertNotIn("raw_name", result.to_record())
+
+    def test_separator_spellings_have_same_canonical_inventory_digest(self) -> None:
+        self.write_archive([(self.raw_name("package/app.exe"), b"x")])
+        forward_digest = self.inspect().canonical_inventory_sha256
+        self.write_archive([(self.raw_name("package\\app.exe"), b"x")])
+        self.assertEqual(forward_digest, self.inspect().canonical_inventory_sha256)
+
+    def test_backslash_directory_marker_is_canonicalized(self) -> None:
+        self.write_archive([(self.raw_name("package\\"), b"")])
+        result = self.inspect()
+        self.assertEqual(1, result.directory_count)
+        self.assertEqual(("package",), result.top_level_components)
+
+    def test_mixed_safe_separators_are_canonicalized(self) -> None:
+        self.write_archive([(self.raw_name("package\\bin/app.exe"), b"x")])
+        result = self.inspect()
+        self.assertEqual(("package",), result.top_level_components)
+
+    def test_leading_backslash_is_rejected(self) -> None:
+        self.write_archive([(self.raw_name("\\escape.txt"), b"x")])
+        self.assert_rejected("member_absolute_path_rejected")
+
+    def test_unc_path_is_rejected(self) -> None:
+        self.write_archive([(self.raw_name("\\\\server\\share\\file.txt"), b"x")])
+        self.assert_rejected("member_absolute_path_rejected")
+
+    def test_repeated_backslash_creating_empty_segment_is_rejected(self) -> None:
+        self.write_archive([(self.raw_name("package\\\\app.exe"), b"x")])
+        self.assert_rejected("member_traversal_segment_rejected")
+
+    def test_mixed_separators_creating_empty_segment_are_rejected(self) -> None:
+        self.write_archive([(self.raw_name("package\\/app.exe"), b"x")])
+        self.assert_rejected("member_traversal_segment_rejected")
+
+    def test_forward_and_backslash_canonical_collision_is_rejected(self) -> None:
+        self.write_archive(
+            [("package/app.exe", b"a"), (self.raw_name("package\\app.exe"), b"b")]
+        )
+        self.assert_rejected("duplicate_or_case_colliding_member_rejected")
+
+    def test_casefold_collision_after_canonicalization_is_rejected(self) -> None:
+        self.write_archive(
+            [(self.raw_name("Package\\App.exe"), b"a"), ("package/app.exe", b"b")]
+        )
+        self.assert_rejected("duplicate_or_case_colliding_member_rejected")
+
+    def test_non_nfc_raw_name_is_rejected(self) -> None:
+        self.write_archive([(self.raw_name("package\\e\u0301.txt"), b"x")])
+        self.assert_rejected("member_name_not_nfc")
+
+    def test_directory_marker_mismatch_is_rejected(self) -> None:
+        with self.assertRaisesRegex(inventory.ArchiveInventoryError, "directory_marker_mismatch"):
+            inventory._safe_path("package\\", False)
 
     def test_drive_path_is_rejected(self) -> None:
         self.write_archive([("C:escape.txt", b"x")])

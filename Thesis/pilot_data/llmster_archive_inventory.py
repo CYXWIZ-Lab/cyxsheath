@@ -151,13 +151,15 @@ def _safe_path(raw_name: str, is_directory: bool) -> tuple[str, tuple[str, ...]]
         raise ArchiveInventoryError("member_name_not_nfc")
     if len(raw_name) > MAXIMUM_PATH_CHARACTERS:
         raise ArchiveInventoryError("member_path_too_long")
-    if "\\" in raw_name:
-        raise ArchiveInventoryError("member_backslash_rejected")
-    if raw_name.startswith("/") or DRIVE_PREFIX.match(raw_name):
+    if raw_name.startswith(("/", "\\")) or DRIVE_PREFIX.match(raw_name):
         raise ArchiveInventoryError("member_absolute_path_rejected")
-    if is_directory != raw_name.endswith("/"):
+    has_directory_marker = raw_name.endswith(("/", "\\"))
+    if is_directory != has_directory_marker:
         raise ArchiveInventoryError("directory_marker_mismatch")
-    body = raw_name[:-1] if is_directory else raw_name
+    canonical_name = raw_name.replace("\\", "/")
+    if len(canonical_name) > MAXIMUM_PATH_CHARACTERS:
+        raise ArchiveInventoryError("member_path_too_long")
+    body = canonical_name[:-1] if is_directory else canonical_name
     if not body:
         raise ArchiveInventoryError("member_root_entry_rejected")
     parts = tuple(body.split("/"))
