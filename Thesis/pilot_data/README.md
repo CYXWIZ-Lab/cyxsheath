@@ -53,6 +53,8 @@ python Thesis\pilot_data\validate_llmster_storage_policy_superseding_decision.py
 python Thesis\pilot_data\validate_llmster_archive_acquisition_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_acquisition_result.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_decision.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_result.json
+python Thesis\pilot_data\validate_llmster_separator_canonicalization_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_decision.json
+python Thesis\pilot_data\validate_llmster_separator_canonicalization_result.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -77,3 +79,5 @@ Acquisition result (2026-08-30): that one request succeeded. The 867,394,409-byt
 Inventory decision (2026-08-31): one exact identity-plus-central-directory inspection is authorized after commit and immediate revalidation. Fifteen adversarial fixtures enforce zero member-content reads, zero extraction, traversal/collision/link rejection, supported compression, and bounded declared expansion. Authenticode, extraction, installation, execution, networking, and benchmark use remain blocked.
 
 Inventory result (2026-08-31): the sole authorization was consumed and rejected on `member_backslash_rejected` after archive identity and central-directory preflight passed. No member contents were read and nothing was extracted, written, installed, executed, or submitted. Do not retry. A fresh validator-backed design must define separator canonicalization and collision/traversal behavior before another inventory decision.
+
+Separator correction (2026-08-31): safe backslashes now canonicalize to `/` in generated fixtures; traversal, absolute paths, empty segments, non-NFC names, and canonical/case-folded collisions still fail closed. The real archive was not read. A fresh one-shot decision remains mandatory before another inventory.

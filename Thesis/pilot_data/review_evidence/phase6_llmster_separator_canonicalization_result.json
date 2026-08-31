@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_separator_canonicalization_fixture_verified_real_inventory_blocked",
+  "result_scope": "fixture_verified_separator_canonicalization_and_historical_validator_correction_without_real_archive_reads_extraction_installation_or_execution",
+  "recorded_at": "2026-08-31T16:48:58Z",
+  "implementation_commit": "c99f5cdaf0706df2fe16aca4b4212ff6989fca87",
+  "decision": {
+    "path": "phase6_llmster_separator_canonicalization_decision.json",
+    "sha256": "e4d1cbd71a0b1091b9c5677be6860efdace9247b4323439493920d2ad35779dd",
+    "status": "llmster_archive_separator_canonicalization_fixtures_authorized_real_inventory_blocked"
+  },
+  "corrected_sources": {
+    "inventory_module": {
+      "path": "../llmster_archive_inventory.py",
+      "bytes": 13980,
+      "lines": 342,
+      "sha256": "b039b81b1f6229b015f68e741d41fbf51e979de8da04b3b1e4090d78cb6e134c"
+    },
+    "inventory_fixtures": {
+      "path": "../test_llmster_archive_inventory.py",
+      "bytes": 9111,
+      "lines": 208,
+      "sha256": "7d8d5e8055bceca22a73f6c9e2cb2b2b1b12eb5e3d22838f0e62bc45dcda6f91"
+    },
+    "historical_inventory_decision_validator": {
+      "path": "../validate_llmster_archive_inventory_decision.py",
+      "bytes": 7579,
+      "lines": 188,
+      "sha256": "73f549c1e1152458b2308be57012112a6b84a0169943b6906a6d52a3af020f38"
+    }
+  },
+  "implemented_contract": {
+    "safe_forward_and_backslash_separators_canonicalize_to_forward_slash": true,
+    "forward_and_backslash_spellings_produce_same_canonical_inventory_digest": true,
+    "backslash_directory_marker_supported": true,
+    "leading_separator_drive_traversal_empty_segment_and_unsafe_windows_names_rejected": true,
+    "mixed_separator_casefold_and_canonical_collisions_rejected": true,
+    "non_nfc_raw_names_rejected_without_silent_normalization": true,
+    "raw_member_names_retained_in_result": false,
+    "member_content_open_count": 0,
+    "new_dependencies": 0,
+    "new_runtime_modules": 0
+  },
+  "validation": {
+    "inventory_fixture_tests_per_python": 27,
+    "decision_mutation_tests_per_python": 10,
+    "pre_result_complete_suite_python_3_12": "398_passed",
+    "pre_result_complete_suite_python_3_14": "398_passed",
+    "historical_inventory_decision_valid": true,
+    "historical_inventory_result_valid": true
+  },
+  "real_archive_operations": {
+    "identity_reads": 0,
+    "central_directory_reads": 0,
+    "member_content_reads": 0,
+    "extractions": 0,
+    "installations": 0,
+    "binary_executions": 0,
+    "network_requests": 0
+  },
+  "result_gate": {
+    "fixture_implementation_accepted": true,
+    "fresh_real_inventory_authorized": false,
+    "fresh_validator_backed_inventory_decision_required": true,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "review_this_corrected_checkpoint_then_make_a_separate_one_shot_real_metadata_inventory_decision_if_the_boundary_is_accepted"
+}
