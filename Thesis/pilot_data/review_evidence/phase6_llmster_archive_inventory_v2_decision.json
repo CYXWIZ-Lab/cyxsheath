@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_metadata_inventory_v2_authorized_once_extraction_blocked",
+  "decision_scope": "one_fresh_identity_and_central_directory_inventory_using_fixture_verified_separator_canonicalization_without_member_content_reads_extraction_installation_or_execution",
+  "recorded_at": "2026-08-31T17:10:17Z",
+  "baseline_commit": "c57643930627817935791c00198bd481c98ebcbb",
+  "prior_consumed_result": {
+    "path": "phase6_llmster_archive_inventory_result.json",
+    "sha256": "dfc2778c5d4b5341f94fd60b02b1dab1d0e3002fb8eced6990752b189706a098",
+    "status": "llmster_archive_metadata_inventory_rejected_extraction_blocked",
+    "prior_function_invocation_count": 1,
+    "reusable": false
+  },
+  "canonicalization_result": {
+    "path": "phase6_llmster_separator_canonicalization_result.json",
+    "sha256": "c56f2de607719eb9685466701ce8f283636d6009d30e6821388deef756ffd334",
+    "status": "llmster_archive_separator_canonicalization_fixture_verified_real_inventory_blocked",
+    "implementation_commit": "c99f5cdaf0706df2fe16aca4b4212ff6989fca87"
+  },
+  "implementation": {
+    "module": {
+      "path": "../llmster_archive_inventory.py",
+      "bytes": 13980,
+      "lines": 342,
+      "sha256": "b039b81b1f6229b015f68e741d41fbf51e979de8da04b3b1e4090d78cb6e134c"
+    },
+    "fixtures": {
+      "path": "../test_llmster_archive_inventory.py",
+      "bytes": 9111,
+      "lines": 208,
+      "sha256": "7d8d5e8055bceca22a73f6c9e2cb2b2b1b12eb5e3d22838f0e62bc45dcda6f91",
+      "tests_per_python": 27
+    },
+    "predecision_complete_suite": {
+      "python_3_12": "408_passed",
+      "python_3_14": "408_passed"
+    }
+  },
+  "archive_identity": {
+    "repository_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "bytes": 867394409,
+    "sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff"
+  },
+  "metadata_contract": {
+    "allowed_reads": [
+      "archive_bytes_for_sha256_and_sha512_identity",
+      "end_of_central_directory_tail",
+      "zip_central_directory_metadata"
+    ],
+    "separator_policy": "safe_forward_and_backslash_separators_canonicalize_to_forward_slash_before_segment_and_collision_checks",
+    "raw_member_names_retained": false,
+    "member_content_read_count_maximum": 0,
+    "extraction_count_maximum": 0,
+    "maximum_entries": 50000,
+    "maximum_central_directory_bytes": 33554432,
+    "maximum_total_uncompressed_bytes": 4294967296,
+    "maximum_entry_uncompressed_bytes": 2147483648,
+    "maximum_compression_ratio_milli": 500000,
+    "maximum_path_characters": 1024,
+    "allowed_compression_methods": [0, 8],
+    "reject_zip64_multi_disk_encryption_links_special_members": true,
+    "reject_absolute_traversal_empty_unsafe_non_nfc_or_colliding_paths": true
+  },
+  "one_shot": {
+    "module": "Thesis.pilot_data.llmster_archive_inventory",
+    "function": "inspect_exact_archive",
+    "fresh_function_invocation_count_maximum": 1,
+    "total_historical_function_invocation_count_after_maximum": 2,
+    "authorization_consumed_at": "function_entry",
+    "automatic_retry_count_maximum": 0,
+    "fresh_decision_required_after_success_failure_or_interruption": true
+  },
+  "required_result": {
+    "record_acceptance_or_exact_rejection": true,
+    "record_identity_and_aggregate_inventory_only": true,
+    "record_top_level_components_suffix_counts_and_canonical_digests": true,
+    "record_archive_unchanged": true,
+    "individual_raw_or_canonical_member_paths_may_be_recorded": false,
+    "member_contents_may_be_recorded": false
+  },
+  "execution_gate": {
+    "metadata_inventory_v2_authorized_once": true,
+    "member_content_reads_authorized": false,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "validate_commit_and_revalidate_this_decision_then_invoke_inspect_exact_archive_once_and_record_the_result_without_retry"
+}

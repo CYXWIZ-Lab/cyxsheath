@@ -101,6 +101,7 @@ python Thesis\pilot_data\validate_llmster_archive_inventory_decision.py Thesis\p
 python Thesis\pilot_data\validate_llmster_archive_inventory_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_result.json
 python Thesis\pilot_data\validate_llmster_separator_canonicalization_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_decision.json
 python Thesis\pilot_data\validate_llmster_separator_canonicalization_result.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_result.json
+python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_decision.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
