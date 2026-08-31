@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_metadata_inventory_rejected_extraction_blocked",
+  "result_scope": "one_consumed_metadata_inventory_invocation_rejected_on_member_path_safety_without_member_content_reads_extraction_installation_or_execution",
+  "recorded_at": "2026-08-31T06:50:16Z",
+  "baseline_commit": "f77eff72d5b21d13908d3b2d59e07fe5cdd6f68b",
+  "authorization": {
+    "record": "phase6_llmster_archive_inventory_decision.json",
+    "sha256": "26d65d45e0219846d1e11411d980a233f7a1e8cff4d9d2e9b471afc5319465f1",
+    "status": "llmster_archive_metadata_inventory_authorized_once_extraction_blocked",
+    "validated_immediately_before_function_call": true,
+    "consumed": true,
+    "function_invocation_count": 1,
+    "automatic_retry_count": 0
+  },
+  "archive": {
+    "repository_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "bytes": 867394409,
+    "sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "identity_verified_by_function_before_rejection": true,
+    "exists_after": true,
+    "bytes_after": 867394409,
+    "last_write_time_utc_after": "2026-08-30T11:14:51.4814096Z",
+    "unchanged_by_inventory_function": true
+  },
+  "inventory_observation": {
+    "accepted": false,
+    "error_type": "ArchiveInventoryError",
+    "error_code": "member_backslash_rejected",
+    "rejection_phase": "central_directory_member_path_safety_validation",
+    "end_of_central_directory_preflight_passed": true,
+    "central_directory_parsed": true,
+    "aggregate_inventory_completed": false,
+    "entry_counts_or_member_paths_claimed": false,
+    "interpretation": "at_least_one_central_directory_member_name_uses_a_backslash_and_the_frozen_contract_rejects_backslash_paths_without_normalization"
+  },
+  "operation_counts": {
+    "member_content_reads": 0,
+    "extractions": 0,
+    "files_written_by_inventory": 0,
+    "installations": 0,
+    "binary_executions": 0,
+    "network_requests": 0,
+    "benchmark_submissions": 0
+  },
+  "security_and_research_conclusion": {
+    "fail_closed_behavior_confirmed": true,
+    "archive_safe_to_extract_claimed": false,
+    "authenticode_verified_claimed": false,
+    "overwrite_scope_known_claimed": false,
+    "runtime_health_claimed": false,
+    "model_quality_claimed": false,
+    "backslash_normalization_accepted_claimed": false
+  },
+  "result_gate": {
+    "inventory_accepted": false,
+    "same_authorization_reusable": false,
+    "automatic_retry_authorized": false,
+    "fresh_path_normalization_design_decision_required": true,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "preserve_this_rejection_then_design_and_fixture_review_a_separate_fail_closed_windows_separator_canonicalization_contract_before_any_fresh_inventory_decision"
+}

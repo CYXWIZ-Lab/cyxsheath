@@ -52,6 +52,7 @@ python Thesis\pilot_data\validate_llmster_download_execution_decision.py Thesis\
 python Thesis\pilot_data\validate_llmster_storage_policy_superseding_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_storage_policy_superseding_decision.json
 python Thesis\pilot_data\validate_llmster_archive_acquisition_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_acquisition_result.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_decision.json
+python Thesis\pilot_data\validate_llmster_archive_inventory_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -74,3 +75,5 @@ Superseding update (2026-08-30): the earlier request authorization above was nev
 Acquisition result (2026-08-30): that one request succeeded. The 867,394,409-byte ignored archive independently matches SHA-256 `e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c` and the published SHA-512. The final reserve and preserved-state checks pass, no partial remains, and the authorization is consumed. The complete suite passes 341/341 on both Python versions. Do not inspect, extract, install, or execute the ZIP before the next validator-backed decision.
 
 Inventory decision (2026-08-31): one exact identity-plus-central-directory inspection is authorized after commit and immediate revalidation. Fifteen adversarial fixtures enforce zero member-content reads, zero extraction, traversal/collision/link rejection, supported compression, and bounded declared expansion. Authenticode, extraction, installation, execution, networking, and benchmark use remain blocked.
+
+Inventory result (2026-08-31): the sole authorization was consumed and rejected on `member_backslash_rejected` after archive identity and central-directory preflight passed. No member contents were read and nothing was extracted, written, installed, executed, or submitted. Do not retry. A fresh validator-backed design must define separator canonicalization and collision/traversal behavior before another inventory decision.
