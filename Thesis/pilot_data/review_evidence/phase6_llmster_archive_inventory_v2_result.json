@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_archive_metadata_inventory_v2_accepted_extraction_blocked",
+  "recorded_at": "2026-08-31T17:17:59Z",
+  "baseline_commit": "c956a3f55c4b94986aa53f0134913206660370b2",
+  "authorization": {
+    "record": "phase6_llmster_archive_inventory_v2_decision.json",
+    "sha256": "a265ddcb5293d48b89123a569a69d79c0f5608a409d0d28c2e0179d8986ca2ef",
+    "validated_immediately_before_function_call": true,
+    "consumed": true,
+    "fresh_function_invocation_count": 1,
+    "automatic_retry_count": 0
+  },
+  "archive": {
+    "repository_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "bytes": 867394409,
+    "sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "unchanged_by_inventory": true,
+    "last_write_time_utc_after": "2026-08-30T11:14:51.4814096Z"
+  },
+  "aggregate_inventory": {
+    "entry_count": 3614,
+    "file_count": 3595,
+    "directory_count": 19,
+    "central_directory_bytes": 548019,
+    "archive_comment_bytes": 0,
+    "total_compressed_bytes": 866356173,
+    "total_uncompressed_bytes": 1791678266,
+    "maximum_entry_uncompressed_bytes": 533257912,
+    "maximum_compression_ratio_milli": 16075,
+    "compression_methods": [0, 8],
+    "top_level_components": [".bundle", "llmster.exe"],
+    "sensitive_suffix_counts": [
+      {"suffix": ".bat", "count": 4},
+      {"suffix": ".cmd", "count": 2},
+      {"suffix": ".dll", "count": 64},
+      {"suffix": ".exe", "count": 15},
+      {"suffix": ".js", "count": 15},
+      {"suffix": ".node", "count": 11},
+      {"suffix": ".ps1", "count": 1},
+      {"suffix": ".sh", "count": 2}
+    ],
+    "sensitive_paths_sha256": "76f060349072b4f5eee98f1fb8b7779a5b5a689f4d0aa40cf8313f67b07c6a43",
+    "canonical_inventory_sha256": "bea264bc3b7f2368f485a40591ad9e4ef831690aeb0f55482df5ccf15ddac3cd"
+  },
+  "operation_counts": {
+    "member_content_reads": 0,
+    "extractions": 0,
+    "files_written": 0,
+    "installations": 0,
+    "binary_executions": 0,
+    "network_requests": 0
+  },
+  "interpretation": {
+    "metadata_contract_passed": true,
+    "archive_safe_to_extract_claimed": false,
+    "authenticode_verified_claimed": false,
+    "individual_member_paths_retained": false,
+    "installation_overwrite_scope_claimed": false,
+    "runtime_health_claimed": false,
+    "model_quality_claimed": false
+  },
+  "result_gate": {
+    "inventory_v2_accepted": true,
+    "same_authorization_reusable": false,
+    "archive_extraction_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "benchmark_input_authorized": false,
+    "separate_owned_extraction_staging_decision_required": true
+  },
+  "next_action": "review_aggregate_inventory_then_design_a_separate_owned_extraction_staging_and_signature_verification_decision_without_installation_or_execution"
+}

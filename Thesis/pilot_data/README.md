@@ -56,6 +56,7 @@ python Thesis\pilot_data\validate_llmster_archive_inventory_result.py Thesis\pil
 python Thesis\pilot_data\validate_llmster_separator_canonicalization_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_decision.json
 python Thesis\pilot_data\validate_llmster_separator_canonicalization_result.py Thesis\pilot_data\review_evidence\phase6_llmster_separator_canonicalization_result.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_decision.json
+python Thesis\pilot_data\validate_llmster_archive_inventory_v2_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -84,3 +85,5 @@ Inventory result (2026-08-31): the sole authorization was consumed and rejected 
 Separator correction (2026-08-31): safe backslashes now canonicalize to `/` in generated fixtures; traversal, absolute paths, empty segments, non-NFC names, and canonical/case-folded collisions still fail closed. The real archive was not read. A fresh one-shot decision remains mandatory before another inventory.
 
 Inventory-v2 decision (2026-08-31): one fresh identity-plus-central-directory invocation is authorized only after commit and immediate revalidation. It retains zero member reads, zero path retention, and zero extraction. The authorization is consumed at entry and cannot be retried.
+
+Inventory-v2 result (2026-08-31): the consumed invocation accepted 3,614 metadata entries under `.bundle` and `llmster.exe`, with zero member reads or extraction. File-level review, Authenticode, staging, installation, and execution remain blocked.
