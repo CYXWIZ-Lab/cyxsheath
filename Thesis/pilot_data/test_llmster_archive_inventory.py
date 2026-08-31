@@ -142,7 +142,7 @@ class LlmsterArchiveInventoryTests(unittest.TestCase):
 
     def test_directory_marker_mismatch_is_rejected(self) -> None:
         with self.assertRaisesRegex(inventory.ArchiveInventoryError, "directory_marker_mismatch"):
-            inventory._safe_path("package\\", False)
+            inventory.canonicalize_member_path("package\\", False)
 
     def test_drive_path_is_rejected(self) -> None:
         self.write_archive([("C:escape.txt", b"x")])

@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_owned_extraction_staging_implemented_generated_fixtures_passed_real_extraction_blocked",
+  "recorded_at": "2026-08-31T18:24:04Z",
+  "decision_scope": "dependency_free_owned_staging_implementation_and_generated_zip_fixtures_only_without_real_archive_member_reads_or_extraction",
+  "baseline_commit": "1e7229019a946d5dc6a53fe28d4fd89b6422d7ee",
+  "reviewed_decision": {
+    "record": "phase6_llmster_extraction_staging_design_decision.json",
+    "sha256": "7ceee46dc7e0d26f449e1a2589c14f75ec4a4c1c03ece46ecd22b561e3657c64",
+    "status": "llmster_owned_extraction_staging_fixture_implementation_authorized_real_extraction_blocked"
+  },
+  "source_identity": [
+    {
+      "path": "../llmster_archive_inventory.py",
+      "bytes": 14032,
+      "lines": 344,
+      "sha256": "af47e72d65fa9c3ec7c49bbda9b5b99c245df78a5cc8d293ddeb5f51d11a8780",
+      "change": "modified_public_path_and_kind_policy_surface"
+    },
+    {
+      "path": "../test_llmster_archive_inventory.py",
+      "bytes": 9125,
+      "lines": 208,
+      "sha256": "0c71daf539b2004849e2a648d9928d4e649159da0bf3ea1307e1a7a0ce3ba887",
+      "change": "modified_public_policy_surface_test"
+    },
+    {
+      "path": "../llmster_archive_staging.py",
+      "bytes": 12729,
+      "lines": 329,
+      "sha256": "b2a57c149025cdc26cd00c576bf32bbf9205c20608d064f1de4dff1584887d55",
+      "change": "new"
+    },
+    {
+      "path": "../test_llmster_archive_staging.py",
+      "bytes": 13497,
+      "lines": 302,
+      "sha256": "a859d9888fd6bcbc368e2680cae5ad17d80b8aada4b8cbd56a986b57970b177a",
+      "change": "new"
+    }
+  ],
+  "module_boundary": {
+    "inventory_module_owns_metadata_path_and_member_kind_policy": true,
+    "staging_module_owns_exclusive_child_streamed_writes_content_evidence_and_owned_cleanup_only": true,
+    "generic_generated_fixture_entrypoint_only": true,
+    "real_archive_wrapper_added": false,
+    "authenticode_tooling_added": false,
+    "installation_or_runtime_entrypoint_added": false,
+    "process_or_network_adapter_added": false,
+    "sheath_core_changed": false,
+    "cyxcode_changed": false,
+    "new_dependency_count": 0,
+    "new_thread_count": 0
+  },
+  "frozen_contract": {
+    "staging_parent_relative_path": ".replay_cache/llmster_staging",
+    "child_name_pattern": "llmster-[0-9a-f]{32}",
+    "ownership_marker": ".cyxsheath-staging-owner.json",
+    "minimum_free_bytes_after": 4294967296,
+    "declared_real_expansion_bytes": 1791678266,
+    "minimum_free_bytes_before_real_staging": 6086645562,
+    "stream_chunk_bytes_maximum": 8388608,
+    "signature_candidate_suffixes": [".dll", ".exe", ".node", ".ps1"],
+    "automatic_retry_count_maximum": 0
+  },
+  "verified_behaviors": {
+    "exact_archive_identity_and_inventory_digest_required_before_child_creation": true,
+    "absolute_existing_non_symlink_parent_and_exclusive_child_required": true,
+    "archive_inside_staging_parent_rejected": true,
+    "frozen_storage_reserve_cannot_be_weakened": true,
+    "canonical_destination_confined_to_owned_child": true,
+    "traversal_links_special_members_and_collisions_rejected": true,
+    "existing_member_destination_never_overwritten": true,
+    "member_reads_bounded_to_frozen_chunk_size": true,
+    "written_member_and_total_sizes_verified": true,
+    "per_file_sha256_canonical_manifest_digest_and_candidate_path_digest_computed": true,
+    "source_change_during_staging_rejected": true,
+    "failure_cleanup_requires_matching_parent_name_token_and_marker": true,
+    "wrong_or_missing_marker_blocks_public_cleanup": true,
+    "successful_staging_retained_for_separate_review": true,
+    "curated_result_omits_absolute_staging_path_and_member_names": true
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 467,
+      "tests_passed": 467
+    },
+    "python_3_14": {
+      "tests_run": 467,
+      "tests_passed": 467
+    },
+    "focused_inventory_and_staging_tests": 46,
+    "focused_staging_tests": 19,
+    "implementation_result_tests": 10,
+    "generated_fixture_extraction_authorized": true,
+    "real_archive_member_content_read_count": 0,
+    "real_archive_extraction_count": 0,
+    "authenticode_tool_invocation_count": 0,
+    "binary_launch_count": 0,
+    "installer_invocation_count": 0,
+    "network_request_count": 0,
+    "benchmark_input_count": 0
+  },
+  "decision_gate": {
+    "owned_staging_implementation_complete": true,
+    "generated_fixture_gate_passed": true,
+    "real_archive_identity_or_member_read_authorized": false,
+    "real_archive_extraction_authorized": false,
+    "authenticode_tool_invocation_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "make_a_separate_validator_backed_real_staging_decision_before_any_real_archive_member_read_or_extraction"
+  }
+}

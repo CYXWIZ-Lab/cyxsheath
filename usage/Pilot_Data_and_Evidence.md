@@ -53,10 +53,11 @@ python Thesis\pilot_data\validate_llmster_separator_canonicalization_result.py T
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_decision.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_result.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_design_decision.json
+python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_implementation_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The current pilot-data suite passes 438 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The current pilot-data suite passes 467 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -86,7 +87,7 @@ The current pilot-data suite passes 438 tests on Python 3.12 and 3.14. Validatio
 - The superseding llmster download decision records the approved ignored-dependency cleanup, a fresh passing storage baseline, and one exact request authorization while keeping extraction and runtime blocked.
 - The storage-policy supersession retires that unused authorization and authorizes only the versioned policy module for one request. It preserves the 1-GiB ceiling and requires 8 GiB free afterward; extraction and runtime remain blocked.
 - The acquisition result records the sole successful request, exact archive hashes, atomic placement, final reserve, preserved identities, and consumed authorization. It grants no inventory, extraction, installation, runtime, or benchmark permission.
-- The first inventory result preserves its consumed backslash-path rejection. The corrected second inventory accepts 3,614 aggregate entries with zero member reads. A later decision freezes generated-fixture staging implementation, but real extraction and signature tooling remain blocked.
+- The first inventory result preserves its consumed backslash-path rejection. The corrected second inventory accepts 3,614 aggregate entries with zero member reads. The owned staging implementation and 19 generated-ZIP fixtures enforce source stability, storage, containment, no-overwrite, content evidence, and marker-scoped rollback; real extraction and signature tooling remain blocked.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -102,4 +103,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. Exactly one archive request is authorized through the pinned acquisition function; it is consumed when the function call begins and cannot retry automatically. Archive inventory, extraction, installation, daemon, model load, prompt, HTTP serving, CyxCode, and Docker invocation remain unauthorized, and no benchmark, candidate, replay, source-snapshot, or thesis content may enter that path. The completed cloud synthetic canary and identity-only help probe must not be repeated.
+Local validators, unit tests, generated-ZIP staging fixtures, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The one archive request and both metadata decisions are consumed. No real-staging decision exists, so real archive member reads, extraction, signature tooling, installation, daemon/model operations, prompts, HTTP serving, CyxCode benchmark invocation, and retry remain unauthorized. No benchmark, candidate, replay, source-snapshot, or thesis content may enter that path. The completed cloud synthetic canary and identity-only help probe must not be repeated.

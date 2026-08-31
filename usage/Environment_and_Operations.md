@@ -104,6 +104,7 @@ python Thesis\pilot_data\validate_llmster_separator_canonicalization_result.py T
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_decision.json
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_result.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_design_decision.json
+python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_implementation_result.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
@@ -138,9 +139,9 @@ python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned. Acquisition and two metadata decisions are consumed. The corrected inventory accepted 3,614 entries, but member extraction, installation, runtime, and retry remain unauthorized.
+These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned. Acquisition and both metadata decisions are consumed. The corrected inventory accepted 3,614 entries. The owned staging implementation passes generated fixtures only; real member reads, extraction, installation, runtime, and retry remain unauthorized.
 
-That one call has now succeeded and is consumed. The ignored archive is at `.replay_cache\llmster_acquisition\0.0.21-2-win32-x64.full.zip`; it is 867,394,409 bytes with SHA-256 `e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c` and the pinned published SHA-512. Do not rerun acquisition. The first metadata inventory failed closed; after fixture correction, one fresh inventory accepted 3,614 entries without member reads. An owned staging design exists, but only its generated-fixture implementation is authorized. Do not extract, install, or execute the real archive.
+That one call has now succeeded and is consumed. The ignored archive is at `.replay_cache\llmster_acquisition\0.0.21-2-win32-x64.full.zip`; it is 867,394,409 bytes with SHA-256 `e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c` and the pinned published SHA-512. Do not rerun acquisition. The first metadata inventory failed closed; after fixture correction, one fresh inventory accepted 3,614 entries without member reads. The marker-owned staging module and generated fixtures are implemented, but no real-staging decision exists. Do not call it with the real archive, install files, inspect signatures, or execute binaries.
 
 ## Troubleshooting
 

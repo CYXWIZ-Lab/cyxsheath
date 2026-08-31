@@ -4,7 +4,7 @@
 
 This is the master progress tracker for the Sheath thesis and paper. Detailed design remains in the linked supporting documents; this file records sequence, status, dependencies, evidence, and exit gates. Update a phase to **Complete** only when its gate is supported by versioned artifacts. **Conditional** work begins only when its stated evidence justifies the added complexity.
 
-Status as of **2026-08-24**:
+Status as of **2026-08-31**:
 
 - **Complete:** gate passed with repository evidence.
 - **Active:** source material exists and the gate is being implemented or audited.
@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The one authorized llmster request acquired and independently verified the 867,394,409-byte archive against its published SHA-512 while preserving CLI, engine, and model identities; the suite passes 341/341 on both Python versions. |
+| Last completed milestone | The dependency-free owned extraction-staging boundary and 19 generated-ZIP fixtures are implemented and source-bound; the complete Phase-6 suite passes 467/467 on both Python versions without reading members from or extracting the real archive. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Invoke the pinned acquisition function exactly once and preserve the result without archive inventory, extraction, installation, or execution. |
-| Then | If acquisition succeeds, separately review ZIP inventory, traversal safety, signatures, overwrite scope, and rollback before any extraction or installation. |
+| Next implementation slice | Create and validate a separate real-staging execution decision that rechecks source identities, archive identity, staging-parent state, and current free space. Do not execute it in the same checkpoint. |
+| Then | If that decision authorizes one staging attempt, extract once into the marker-owned ignored child, record aggregate content evidence, and stop before Authenticode tooling, installation, or execution. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -96,6 +96,7 @@ Completed work to preserve:
 - the one-download execution review is validator-backed and blocked by storage: 28,902,416,384 observed free bytes are 6,531,063,808 bytes below the frozen pre-request floor. Ten negative mutations pass; the full pilot suite is 306/306 on both Python versions with zero archive requests and no inferred cleanup.
 - the unused 32-GiB final-reserve authorization is superseded by a versioned policy module that retains the exact archive, 1-GiB ceiling, streaming/checksum controls, and one-request/no-retry boundary. Its 8-GiB final reserve is eight times the maximum write; the 21,203,013,632-byte baseline passes the 9,663,676,416-byte pre-request gate. Fifteen focused fixtures and the complete 331/331 suite pass on both Python versions with zero archive requests at decision time.
 - the single revised-policy request succeeded with HTTP 200 and 867,394,409 bytes. Independent hashing confirms SHA-256 `e6556e8...` and the pinned published SHA-512; no partial remains, the final 8-GiB reserve passes, and CLI, engine, and model identities are unchanged. The authorization is consumed, no retry is allowed, and the archive remains ignored and sealed. Ten result mutations and the complete 341/341 suite pass on both Python versions.
+- the accepted v2 inventory contains 3,614 entries and 1,791,678,266 declared uncompressed bytes with zero member reads. The dependency-free staging module now reuses the inventory path/kind policy, creates only one marker-owned child, streams in at most 8-MiB reads, rejects overwrite, verifies content sizes and digests, detects source replacement, and performs ownership-verified rollback. Nineteen generated-ZIP fixtures and ten implementation-record mutations pass; the complete suite is 467/467 on Python 3.12 and 3.14. The real archive remains sealed.
 
 The exact next slice is:
 
@@ -132,7 +133,7 @@ The exact next slice is:
 31. Completed: supersede the unconsumed 32-GiB reserve with a validator-backed 8-GiB final reserve, preserve the original content-addressed module, and authorize only the revised module for one request.
 32. Completed: invoke the revised acquisition function once, verify the exact archive and final reserve independently, preserve existing identities, and consume the no-retry authorization without inventory or execution.
 33. Completed: preserve the first rejection, fixture-verify separator canonicalization, and consume one fresh metadata invocation. The accepted aggregate inventory contains 3,614 entries under `.bundle` and `llmster.exe`, with zero member reads or extraction.
-34. Active: the owned extraction-staging design is frozen and validator-backed. Implement its dependency-free module and generated-archive fixtures for exclusive ownership, storage reserve, canonical writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
+34. Completed: implement and source-bind the dependency-free owned extraction-staging module and 19 generated-archive fixtures for exclusive ownership, source stability, storage reserve, canonical streamed writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
 35. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
 36. Replay and review the remaining 17 only after step 35 yields an operational admission path.
 37. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
@@ -167,7 +168,7 @@ Build identities and the Windows cross-target limitation are recorded in [CyxCod
 | 3 | Isolation and patch boundary | **Complete** | Verified snapshots, digest-pinned Docker execution, bounded output, canonical binary-safe patch extraction, fail-closed replay, source preservation, and cleanup pass automated and live fixtures. |
 | 4 | Generator-neutral retry pipeline | **Complete** | Typed generator proposals, single and bounded coordinators, revision feedback, fresh retry snapshots, tool-backed verification, and schema-v1.7 `attempt_contexts` are implemented. A generated two-attempt accepted record validates against the schema. |
 | 5 | Concrete CyxCode adapter | **Complete** | The concrete Python executor drives the immutable CyxCode image through the canonical bridge, deterministic provider, explicit export, trusted patch boundary, and accepted schema-v1.7 record. Prompt preservation, secret redaction, source preservation, and Docker/Windows cleanup passed. See [CyxCode_Adapter_Fixture_Evidence.md](CyxCode_Adapter_Fixture_Evidence.md). |
-| 6 | Pilot data specification | **Active — staging design frozen; real extraction blocked** | Version 1.0.0 and strict schemas are frozen. Three pinned cases pass replay and review. The corrected LLMster inventory accepts 3,614 entries with zero member reads. An owned staging design now freezes storage, containment, no-overwrite, rollback, and signature-review boundaries; implementation fixtures are next. |
+| 6 | Pilot data specification | **Active — staging fixtures passed; real extraction blocked** | Version 1.0.0 and strict schemas are frozen. Three pinned cases pass replay and review. The corrected LLMster inventory accepts 3,614 entries with zero member reads. The owned staging implementation passes 19 generated-ZIP fixtures and freezes source stability, storage, containment, no-overwrite, content evidence, and rollback; a separate real-staging decision is next. |
 | 7 | CyxWiz capability audit | **Pending** | Verify the available CyxWiz version against ingestion, graph execution, training, evaluation, and artifact-export requirements. Gate: a capability matrix and one reproducible minimal graph; missing capabilities remain narrow external adapters. |
 | 8 | Stage-0 experimental pilot | **Pending** | Run approximately 50 paired tasks across A, B, C, and D0 using frozen snapshots, budgets, randomization, hidden checks, and blinded review. Gate: stable harness, measured exclusions and infrastructure failures, annotation agreement, and variance estimates sufficient for power analysis. |
 | 9 | Sheath D1 model specification | **Conditional** | Analyze D0 errors that deterministic Sheath checks cannot settle. Freeze the residual critic's inputs, structured outputs, labels, confidence/abstention behavior, context limits, and resource budget. Gate: a documented residual task with enough reliable examples and a simple baseline that leaves measurable room for improvement. |
@@ -232,17 +233,18 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **llmster separator canonicalization:** [phase6_llmster_separator_canonicalization_result.json](pilot_data/review_evidence/phase6_llmster_separator_canonicalization_result.json) pins a fixture-only correction that maps safe `\` separators to `/`, preserves traversal and Windows-path rejection, detects post-canonicalization collisions, retains no raw names, and repairs historical source-identity validation. Twenty-seven ZIP fixtures and ten result mutations pass; the complete suite is 408/408 on Python 3.12 and 3.14. The real archive was not read in this slice.
 - **llmster inventory v2 result:** [phase6_llmster_archive_inventory_v2_result.json](pilot_data/review_evidence/phase6_llmster_archive_inventory_v2_result.json) records an accepted 3,614-entry aggregate inventory under `.bundle` and `llmster.exe`, exact archive and canonical-inventory digests, and zero member reads or extraction. Ten mutations reject identity, aggregate, operation, signature, and permission overclaims.
 - **llmster staging design:** [phase6_llmster_extraction_staging_design_decision.json](pilot_data/review_evidence/phase6_llmster_extraction_staging_design_decision.json) freezes exclusive child ownership, a 4-GiB final reserve, streamed verified writes, no overwrite or execution, marker-scoped rollback, and a later Authenticode boundary. Ten mutations reject weakened ownership, storage, cleanup, signature, dependency, and real-extraction gates.
+- **llmster staging implementation:** [phase6_llmster_extraction_staging_implementation_result.json](pilot_data/review_evidence/phase6_llmster_extraction_staging_implementation_result.json) binds the inventory-policy and owned-staging sources, 19 generated-ZIP fixtures, source-stability checks, an 8-MiB stream ceiling, exact size/content evidence, zero overwrite, and marker-verified rollback. Ten mutations reject design/source drift and weakened storage, cleanup, dependency, or real-extraction gates. The complete suite is 467/467 on Python 3.12 and 3.14; real member reads and extraction remain zero.
 
 ## Immediate Work Queue
 
-1. Implement the frozen `llmster_archive_staging` boundary and generated-archive fixtures without reading the real archive.
-2. Record source identities and review fixture evidence before considering a separate real staging decision. Installation and execution remain blocked.
-3. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
-4. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-5. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-6. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-7. Double-label and adjudicate eligible calibration cases; compute the prespecified category, severity, and action agreement measures.
-8. Add C++ repository families and valid hard negatives before scaling; complete the 100–300-case Phase-6 seed gate, then perform Phase 7 and Phase 8 before any D1 model work.
+1. Freeze a separate validator-backed real-staging decision with exact implementation/archive identities, an empty owned parent, a fresh storage measurement, one attempt, and no retry. Do not extract while creating the decision.
+2. Only if that decision passes, invoke the pinned staging function once, retain the owned child, and record aggregate content evidence without installation, signature tooling, or execution.
+3. Review Authenticode candidates through a separately designed non-executing signature boundary; unsigned, invalid, unknown, and tool-error outcomes must remain distinct.
+4. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
+5. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
+6. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+7. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+8. Double-label and adjudicate eligible calibration cases; add C++ families and hard negatives before the 100–300-case Phase-6 seed gate, then perform Phases 7–8 before D1 work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 

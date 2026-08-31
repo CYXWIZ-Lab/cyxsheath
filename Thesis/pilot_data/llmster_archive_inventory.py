@@ -144,7 +144,9 @@ def _read_eocd(source: BinaryIO, archive_bytes: int) -> _Eocd:
     )
 
 
-def _safe_path(raw_name: str, is_directory: bool) -> tuple[str, tuple[str, ...]]:
+def canonicalize_member_path(
+    raw_name: str, is_directory: bool
+) -> tuple[str, tuple[str, ...]]:
     if not raw_name or "\x00" in raw_name:
         raise ArchiveInventoryError("member_name_empty_or_nul")
     if unicodedata.normalize("NFC", raw_name) != raw_name:
@@ -176,7 +178,7 @@ def _safe_path(raw_name: str, is_directory: bool) -> tuple[str, tuple[str, ...]]
     return body, parts
 
 
-def _entry_kind(external_attr: int, is_directory: bool) -> str:
+def validate_member_kind(external_attr: int, is_directory: bool) -> str:
     mode = external_attr >> 16
     file_type = stat.S_IFMT(mode)
     if file_type == stat.S_IFLNK:
@@ -243,12 +245,12 @@ def inspect_archive(
     for info in entries:
         raw_name = info.orig_filename
         is_directory = info.is_dir()
-        safe_name, parts = _safe_path(raw_name, is_directory)
+        safe_name, parts = canonicalize_member_path(raw_name, is_directory)
         collision_key = unicodedata.normalize("NFC", safe_name).casefold()
         if collision_key in names:
             raise ArchiveInventoryError("duplicate_or_case_colliding_member_rejected")
         names.add(collision_key)
-        kind = _entry_kind(info.external_attr, is_directory)
+        kind = validate_member_kind(info.external_attr, is_directory)
         if info.flag_bits & 0x01:
             raise ArchiveInventoryError("encrypted_member_rejected")
         if info.flag_bits & ((1 << 5) | (1 << 6)):
