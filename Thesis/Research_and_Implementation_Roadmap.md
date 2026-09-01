@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The fixture-only Authenticode execution-preflight design is frozen. It separates pure plan validation from a later Windows Defender Firewall/WFP provider and runner, binds 91 calls to a 300-second operational deadline, and keeps all real host and retained-child access blocked. |
+| Last completed milestone | The minimum scientific POC protocol and three original Python repair tasks are frozen before model execution. All three defective baselines pass visible tests and fail hidden checks, providing measurable room for the paired A-versus-D0 comparison. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Implement and source-bind the pure execution-preflight policy using generated executable, firewall, one-shot, and batch observations only. |
-| Then | Separately design the Windows Defender Firewall/WFP provider and runner; only a still-later committed decision may authorize real host-state or retained-child access. |
+| Next implementation slice | Implement one paired POC runner by composing the existing CyxCode adapter, Stage-0 bounded coordinator, and network-disabled Docker verifier. |
+| Then | Fixture-test the runner, execute the three frozen pairs once, and report task-level verified success, recovery, attempts, and wall time without inferential overclaim. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -137,10 +137,11 @@ The exact next slice is:
 33. Completed: preserve the first rejection, fixture-verify separator canonicalization, and consume one fresh metadata invocation. The accepted aggregate inventory contains 3,614 entries under `.bundle` and `llmster.exe`, with zero member reads or extraction.
 34. Completed: implement and source-bind the dependency-free owned extraction-staging module and 19 generated-archive fixtures for exclusive ownership, source stability, storage reserve, canonical streamed writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
 35. Completed: commit and immediately revalidate the one-shot real-staging decision, invoke the exact call once, retain the owned result, and consume authorization without retry or signature tooling.
-36. Active: the execution-preflight design is frozen; implement and source-bind its pure policy with generated observations only. The retained child and all real host state remain untouched.
-37. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
-38. Replay and review the remaining 17 only after step 37 yields an operational admission path.
-39. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
+36. Completed and deferred to the operational backlog: freeze the execution-preflight design without implementing or invoking its firewall provider.
+37. Active: implement, fixture-test, and run the three-task minimum scientific POC comparing direct CyxCode (A) with evidence-guided Stage-0 revision (D0).
+38. Resolve the pinned local generator's contamination treatment before any genuine benchmark proposal admission.
+39. Replay and review the remaining 17 only after step 38 yields an operational admission path and the minimum POC runner is stable.
+40. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
 Phase 5 remains closed. Phase 6 remains active until the full seed set exists and satisfies the frozen quality gates.
 
@@ -248,14 +249,12 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 
 ## Immediate Work Queue
 
-1. Implement and generated-fixture test the pure execution-preflight policy for exact executable, firewall, batch, one-shot, and privacy observations.
-2. Source-bind that policy without enumerating the retained child or reading any real PowerShell, firewall, event-log, or signature-tool state.
-3. Only after another committed execution decision, run the exact bounded signature inspection once without launching targets. Preserve the retained staging child.
-4. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
-5. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-6. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-7. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-8. Double-label and adjudicate eligible calibration cases; add C++ families and hard negatives before the 100–300-case Phase-6 seed gate, then perform Phases 7–8 before D1 work.
+1. Commit the frozen minimum POC protocol and three task snapshots before any model call.
+2. Implement one reusable paired runner using the existing CyxCode adapter, Stage-0 coordinator, and network-disabled Docker verifier.
+3. Fixture-test task isolation, condition order, hidden-check exclusion, failed-check feedback, scoring, and aggregate evidence privacy.
+4. Execute each frozen A/D0 pair once with the same free model and record provider or runner failures separately from task failure.
+5. Report the task-level paired table and quality-cost observations, then decide whether to revise the harness or scale the original-task pilot.
+6. Keep Authenticode/firewall completion, additional runtime work, and benchmark admission as separate backlogs unless they block this POC.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 

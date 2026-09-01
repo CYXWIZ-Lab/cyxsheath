@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "pilot_id": "phase6-minimum-poc-v1",
+  "model": "opencode/mimo-v2.5-free",
+  "conditions": ["A", "D0"],
+  "model_timeout_seconds": 180,
+  "verification_timeout_seconds": 30,
+  "tasks": [
+    {
+      "task_id": "phase6-poc-001-range-merge",
+      "directory": "phase6_poc_001_range_merge",
+      "allowed_changed_paths": ["ranges.py"],
+      "condition_order": ["A", "D0"],
+      "source_files": {
+        "ranges.py": "cb7b6e7721944ca6709fd00e8d15373677135288b61a30b93cdfb93c56bd93b8",
+        "test_visible.py": "4d013e7115e512660ae56fd5969da8343129d47f8b64cb49ae69febc85e918d7"
+      },
+      "hidden_tests_sha256": "44a03577f32d7be72f5bb827c1dba330d34f9512ef6241ce9f6de10613c1b699",
+      "request": "Fix merge_ranges. It must accept integer endpoint pairs, normalize reversed endpoints, return a new sorted list of tuples, merge overlapping or adjacent integer ranges, return an empty list for empty input, and never mutate the input. Change only ranges.py."
+    },
+    {
+      "task_id": "phase6-poc-002-query-redaction",
+      "directory": "phase6_poc_002_query_redaction",
+      "allowed_changed_paths": ["redaction.py"],
+      "condition_order": ["D0", "A"],
+      "source_files": {
+        "redaction.py": "7ed0b2e0094579b8848fd8100958baa73ff23c2cd159409569d184cd03acb313",
+        "test_visible.py": "4a79c19e6877665c218ada75e59742f18fde5d92f0f906d6196ce5af5d9283a6"
+      },
+      "hidden_tests_sha256": "c1a2e67b13e9e240139e6d530a226fe6646d8ab1cc266cfec899c5c8054d80da",
+      "request": "Fix redact_query. Preserve URL scheme, authority, path, query-pair order, fragments, repeated keys, and blank non-sensitive values. Replace values for token, password, and api_key keys case-insensitively with [REDACTED], including percent-encoded keys. Change only redaction.py and use the Python standard library."
+    },
+    {
+      "task_id": "phase6-poc-003-retry-delays",
+      "directory": "phase6_poc_003_retry_delays",
+      "allowed_changed_paths": ["retry.py"],
+      "condition_order": ["A", "D0"],
+      "source_files": {
+        "retry.py": "2f3d7fb520bf6d3386eb3ca3b1dc8b2a7abee4e2dbc71978bd1d46453c8e5d92",
+        "test_visible.py": "bb3863eb2da49f14e6d0667f64090cfedaff607361ee8f8289105344f30f59f8"
+      },
+      "hidden_tests_sha256": "23607264870f003d4a25ce8e578421052c5cd394d21ce7be78a1b9b318316973",
+      "request": "Fix retry_delays. max_attempts includes the initial attempt, so return max_attempts - 1 delays. Require max_attempts >= 1, initial_delay > 0, multiplier >= 1, and a positive max_delay when supplied. Apply the optional cap to every returned delay and do not mutate inputs. Change only retry.py."
+    }
+  ]
+}
