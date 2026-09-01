@@ -40,9 +40,9 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The local v2 canary task, manifest, hidden-test boundary, and deny-by-default loopback CyxCode configuration are frozen and fixture-tested. The complete pilot suite passes 597/597 on both Python versions; no local model call has occurred. |
+| Last completed milestone | The local v2 task/configuration and authenticated Docker-to-loopback proxy are implemented and fixture-tested. The complete pilot suite passes 605/605 on both Python versions; no local model call has occurred. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Implement and fixture-test the one-shot LM Studio lifecycle plus host-local CyxCode runner around the now-frozen canary task. |
+| Next implementation slice | Implement and fixture-test the one-shot LM Studio lifecycle plus pinned-container CyxCode runner around the frozen canary task and proxy. |
 | Then | Execute that committed canary once; only a complete pass permits a new paired POC version. Do not repeat v1 or substitute another provider/model. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
@@ -140,7 +140,7 @@ The exact next slice is:
 35. Completed: commit and immediately revalidate the one-shot real-staging decision, invoke the exact call once, retain the owned result, and consume authorization without retry or signature tooling.
 36. Completed and deferred to the operational backlog: freeze the execution-preflight design without implementing or invoking its firewall provider.
 37. Completed: execute the immutable v1 schedule once and preserve its non-inferential result. One A proposal failed verification; five cells ended as HTTP 429 infrastructure failures, so no paired comparison is available and no retry is allowed.
-38. Active: the local-generator v2 decision, original canary task, hidden-test boundary, and deny-by-default loopback CyxCode configuration are frozen. Implement and fixture-test the one-shot host lifecycle/runner before its sole live call.
+38. Active: the local-generator v2 decision, original task, hidden-test boundary, deny-by-default CyxCode configuration, and authenticated bounded proxy are frozen. Implement and fixture-test the one-shot LM Studio lifecycle/runner before its sole live call.
 39. Replay and review the remaining 17 only after step 38 yields an operational admission path and the minimum POC runner is stable.
 40. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
@@ -256,9 +256,10 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 4. Completed: diagnose all five infrastructure cells as provider HTTP 429 and validate the privacy-minimized public result. No effectiveness claim is authorized.
 5. Completed: freeze one v2 design decision for the existing local Qwen2.5-Coder model, loopback LM Studio server, and host-local CyxCode seam; install or download nothing new.
 6. Completed: freeze and fixture-test the original one-file canary task, hidden-test boundary, exact local model/provider identity, loopback URL, and denied external tools.
-7. Implement and fixture-test the one-shot lifecycle/runner, including identity checks, call bounds, verification, and final cleanup.
-8. Run the committed generated-task canary once. If it passes generation, patch extraction, verification, and cleanup, freeze a new paired schedule; otherwise correct only the blocking seam.
-9. Keep Authenticode/firewall completion and benchmark admission separate unless they directly block this local POC.
+7. Completed: correct the unreproducible dirty host-source assumption before execution and fixture-test the authenticated bounded proxy that preserves the pinned CyxCode container and loopback-only LM Studio.
+8. Implement and fixture-test the one-shot lifecycle/runner, including identity checks, call bounds, verification, and final cleanup.
+9. Run the committed generated-task canary once. If it passes generation, patch extraction, verification, and cleanup, freeze a new paired schedule; otherwise correct only the blocking seam.
+10. Keep Authenticode/firewall completion and benchmark admission separate unless they directly block this local POC.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 

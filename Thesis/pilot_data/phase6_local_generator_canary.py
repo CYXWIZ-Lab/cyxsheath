@@ -5,13 +5,14 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import re
 
 from phase6_minimum_poc import PocTask
 
 
 PILOT_ID = "phase6-local-generator-canary-v2"
 MODEL = "lmstudio/cyxsheath-qwen25-coder-7b-q4km"
-BASE_URL = "http://127.0.0.1:1234/v1"
+BASE_URL = "http://host.docker.internal:1235/v1"
 DECISION = Path(__file__).parents[1] / "Phase6_Local_Generator_V2_Decision.md"
 
 
@@ -62,8 +63,10 @@ def load_canary(manifest_path: Path) -> PocTask:
     )
 
 
-def cyxcode_config() -> dict[str, object]:
-    """Return the exact loopback provider and deny-by-default tool policy."""
+def cyxcode_config(api_key: str) -> dict[str, object]:
+    """Return the exact authenticated proxy and deny-by-default tool policy."""
+
+    _expect(isinstance(api_key, str) and re.fullmatch(r"[0-9a-f]{64}", api_key) is not None, "proxy token invalid")
 
     return {
         "autoupdate": False,
@@ -96,7 +99,7 @@ def cyxcode_config() -> dict[str, object]:
                     }
                 },
                 "options": {
-                    "apiKey": "local-loopback-only",
+                    "apiKey": api_key,
                     "baseURL": BASE_URL,
                     "timeout": 600000,
                     "chunkTimeout": 120000,

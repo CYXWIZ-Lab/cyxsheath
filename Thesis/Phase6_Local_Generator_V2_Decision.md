@@ -13,15 +13,17 @@ No model, runtime, package, or integration source may be downloaded, installed, 
 
 ## Execution Boundary
 
-The canary runner will invoke the clean, revision-pinned CyxCode source through the existing Bun executable on the host. LM Studio will bind only to `127.0.0.1:1234`; CyxCode will use `http://127.0.0.1:1234/v1`. This supersedes the earlier container-to-host `0.0.0.0` design for this canary, so an unauthenticated non-loopback listener is never created. CORS and LM Studio MCP access remain disabled.
+Pre-implementation inspection found that the separate CyxCode development checkout contains the expected experimental bridge plus other uncommitted work. It is read-only but not a reproducible clean host executable. Therefore this decision corrects the unexecuted host-source plan: the canary will retain the already pinned CyxCode Docker image and executable used by v1.
 
-CyxCode receives an isolated temporary state root and `CYXCODE_DISABLE_STATE_CONTEXT=1`. Its permission policy allows task-local read/list/search/edit operations only. Shell execution, web fetch/search, external-directory access, subagents, skills, and MCP are denied. The local generator workspace is disposable; independent visible and hidden checks still run in the pinned network-disabled Docker verifier.
+LM Studio remains bound only to `127.0.0.1:1234`. A dependency-free, runner-owned HTTP proxy may bind `0.0.0.0:1235` only for the canary so the CyxCode container can reach it as `http://host.docker.internal:1235/v1`. The proxy requires a freshly generated 256-bit bearer token, retains no token or bodies, strips authorization before loopback forwarding, accepts only `/v1/models` and `/v1/chat/completions`, caps request/response bytes and time, emits no CORS headers, and stops before final cleanup checks. Thus LM Studio itself is never exposed beyond loopback, and the transient non-loopback seam is authenticated and narrowly allowlisted.
 
-The runner must bind the Git-clean CyxCode commit, Bun executable digest/version, bridge digest, LM Studio CLI/engine/model identities, task snapshot digest, configuration, and cleanup observations. Raw prompts, responses, and patches remain under `.replay_cache`.
+CyxCode receives an isolated temporary state root and `CYXCODE_DISABLE_STATE_CONTEXT=1`. Its permission policy allows task-local read/list/search/edit operations only. Shell execution, web fetch/search, external-directory access, subagents, skills, and MCP are denied. The generator workspace is disposable; independent visible and hidden checks still run in the pinned network-disabled Docker verifier.
+
+The runner must bind the CyxCode image/executable, proxy source, LM Studio CLI/engine/model identities, task snapshot digest, configuration, and cleanup observations. Raw prompts, responses, patches, and proxy traffic remain under `.replay_cache` or memory and never enter curated evidence.
 
 ## One-Canary Gate
 
-After the runner and generated fixture pass deterministic tests and are committed, exactly one model call is authorized. The fixture must be original, public, non-sensitive, non-benchmark Python and permit one implementation file to change. Limits remain 8,192 context tokens, 2,048 output tokens, CPU-only loading, one parallel prediction, 600-second idle TTL, and 900 seconds total.
+After the runner and generated fixture pass deterministic tests and are committed, exactly one CyxCode generation attempt is authorized. That attempt may contain the bounded internal model turns required for task-local read/edit tool use; it is not permission for a second proposal attempt. The fixture must be original, public, non-sensitive, non-benchmark Python and permit one implementation file to change. Limits remain 8,192 context tokens, 2,048 output tokens, CPU-only loading, one parallel prediction, 600-second idle TTL, and 900 seconds total.
 
 Success requires a CyxCode proposal, an allowed-path patch, passing visible and hidden checks, source preservation, model unload, stopped server/service, closed port 1234, removed temporary state, and no residual CyxCode container or process. A generation, verification, identity, resource, or cleanup failure consumes the attempt and stops the path without retry or model substitution.
 

@@ -58,18 +58,26 @@ class LocalGeneratorCanaryTests(unittest.TestCase):
         self.assertNotIn("FeatureFlagHiddenTests", prompt)
         self.assertNotIn(self.task.hidden_script, prompt)
 
-    def test_config_is_loopback_only_and_deny_by_default(self) -> None:
-        config = cyxcode_config()
+    def test_config_uses_authenticated_proxy_and_is_deny_by_default(self) -> None:
+        token = "a" * 64
+        config = cyxcode_config(token)
         provider = config["provider"]["lmstudio"]
         self.assertEqual(BASE_URL, provider["options"]["baseURL"])
+        self.assertEqual(token, provider["options"]["apiKey"])
         self.assertEqual(["lmstudio"], config["enabled_providers"])
         self.assertEqual("deny", config["permission"]["*"])
         self.assertEqual("allow", config["permission"]["edit"])
         for name in ("bash", "webfetch", "websearch", "external_directory", "task", "skill"):
             self.assertNotIn(name, {key for key, value in config["permission"].items() if value == "allow"})
         encoded = json.dumps(config)
-        self.assertNotIn("host.docker.internal", encoded)
-        self.assertNotIn("0.0.0.0", encoded)
+        self.assertIn("host.docker.internal:1235", encoded)
+        self.assertNotIn("127.0.0.1:1234", encoded)
+
+    def test_proxy_token_must_be_256_bit_lowercase_hex(self) -> None:
+        for token in ("", "a" * 63, "A" * 64, "g" * 64):
+            with self.subTest(token=token):
+                with self.assertRaisesRegex(LocalCanaryError, "proxy token invalid"):
+                    cyxcode_config(token)
 
     def test_source_mutation_is_rejected(self) -> None:
         with TemporaryDirectory(dir=Path(__file__).parent) as name:

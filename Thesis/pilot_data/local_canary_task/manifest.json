@@ -2,7 +2,7 @@
   "allowed_changed_paths": [
     "feature_flags.py"
   ],
-  "decision_sha256": "30cbef47a1e9b08c0472676742e2d83a0e462e3c3eec7da9dc93f8d3c209bda4",
+  "decision_sha256": "c14526e9087d4bdfcd111cf07b49798aff4c6e732a7dc47f2172257507516c73",
   "hidden_tests_sha256": "f0602085ed6fae46e656393e577de1482adf3e3873097902e1f5c717e6de84fc",
   "model": "lmstudio/cyxsheath-qwen25-coder-7b-q4km",
   "pilot_id": "phase6-local-generator-canary-v2",
