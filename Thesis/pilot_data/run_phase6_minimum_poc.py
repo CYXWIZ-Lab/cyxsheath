@@ -257,6 +257,7 @@ def main() -> int:
     cache = (ROOT / ".replay_cache").resolve()
     if not artifact_root.is_relative_to(cache):
         raise SystemExit("artifact root must remain under .replay_cache")
+    artifact_root.parent.mkdir(parents=True, exist_ok=True)
     store = ArtifactStore(artifact_root)
 
     record: dict[str, object] = {
