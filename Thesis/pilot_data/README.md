@@ -64,6 +64,7 @@ python Thesis\pilot_data\validate_llmster_real_staging_execution_result.py Thesi
 python Thesis\pilot_data\validate_llmster_authenticode_review_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_design_decision.json
 python Thesis\pilot_data\validate_llmster_authenticode_review_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_implementation_result.json
 python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_design_decision.json
+python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_implementation_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -104,3 +105,5 @@ Authenticode review design (2026-09-01): only a dependency-free policy module an
 Authenticode review implementation (2026-09-01): the platform-independent policy and 14 generated owned-tree fixtures now enforce the frozen admission, normalization, mutation, and aggregate-privacy contract. Ten implementation-result mutations source-bind the policy and unchanged staging ownership invariant. The complete suite passes 525/525 on both supported Python versions. The retained child and Windows signature tooling were not accessed; adapter implementation and real review still require separate decisions.
 
 Windows adapter design (2026-09-01): generated-fixture implementation is authorized for an exact identity-bound `powershell.exe -NoLogo -NoProfile -NonInteractive -File` request whose fixed script uses `Get-AuthenticodeSignature -LiteralPath`. The adapter must enforce a ten-second timeout, 4-KiB combined retention bound, strict minimal JSON, one call, and no retry. Real PowerShell discovery, hashing, invocation, retained-child access, and networking remain blocked. The complete suite passes 537/537 on both supported Python versions.
+
+Windows adapter implementation (2026-09-01): the source-bound adapter, fixed script, and 20 generated fake-transport fixtures now enforce the exact identity, argument, timeout, output, parsing, and mutation contract. Ten implementation-result mutations reject source or permission overclaims. The complete suite passes 567/567 on both supported Python versions. No real executable was discovered or hashed, no PowerShell or signature tool ran, and the retained child was untouched.

@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_windows_authenticode_adapter_implemented_generated_fixtures_passed_real_tool_blocked",
+  "recorded_at": "2026-09-01T18:08:22Z",
+  "decision_scope": "dependency_free_windows_authenticode_adapter_fixed_script_and_generated_fake_transport_fixtures_only_without_retained_child_or_real_powershell_access",
+  "baseline_commit": "722df1c66fc8471ec673fa30e04ef7a3b153021c",
+  "reviewed_decision": {
+    "record": "phase6_llmster_windows_authenticode_adapter_design_decision.json",
+    "sha256": "0e6304d385b20e8aadbe9f0b35586ff9806b4a03ce5ab077a158a2137ec1d5b4",
+    "status": "llmster_windows_authenticode_adapter_fixture_implementation_authorized_real_tool_blocked"
+  },
+  "source_identity": [
+    {
+      "path": "../cli_transport.py",
+      "bytes": 3114,
+      "lines": 90,
+      "sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+      "change": "unchanged_reused_transport"
+    },
+    {
+      "path": "../llmster_authenticode_review.py",
+      "bytes": 10973,
+      "lines": 284,
+      "sha256": "e2d7a6723b0127112c10f2cd6d76ad8dfa07285199ccf7af88c5f76991c18929",
+      "change": "unchanged_typed_observation_contract"
+    },
+    {
+      "path": "../get_authenticode_status.ps1",
+      "bytes": 449,
+      "lines": 16,
+      "sha256": "493fde84b50f1f10497b89345882962db9db912f8e54d8c992bbad5dc728d8e9",
+      "change": "new_fixed_script"
+    },
+    {
+      "path": "../llmster_windows_authenticode.py",
+      "bytes": 6678,
+      "lines": 199,
+      "sha256": "c20b48ebba324b8ce4a52dc27ba235624ebe408415cd049a2d1d374a353a2361",
+      "change": "new_adapter"
+    },
+    {
+      "path": "../test_llmster_windows_authenticode.py",
+      "bytes": 9002,
+      "lines": 182,
+      "sha256": "79987d9d607474f6b04b92597ad7f08e506f4d8e2ea9e3b5e183989a46a24648",
+      "change": "new_generated_fixture_tests"
+    },
+    {
+      "path": "../../../.gitattributes",
+      "bytes": 207,
+      "lines": 11,
+      "sha256": "798fcd050debdeaf7c7a5118e92ca25697bc329d65d1bd82cf4d2d2fadffe19c",
+      "change": "modified_force_ps1_lf"
+    }
+  ],
+  "module_boundary": {
+    "policy_module_unchanged_and_owns_tree_admission_and_aggregation": true,
+    "adapter_owns_identity_argv_transport_mapping_and_strict_response_parsing": true,
+    "fixed_script_owns_one_literal_path_cmdlet_call_and_minimal_json_output": true,
+    "cli_transport_unchanged_and_owns_shell_false_timeout_and_retention": true,
+    "real_transport_capability_present_but_not_invoked_or_authorized": true,
+    "egress_containment_not_claimed_by_adapter": true,
+    "repository_attributes_force_ps1_lf_for_stable_script_identity": true,
+    "sheath_core_changed": false,
+    "cyxcode_changed": false,
+    "new_dependency_count": 0,
+    "new_thread_count": 0
+  },
+  "verified_behaviors": {
+    "absolute_regular_non_link_powershell_named_powershell_exe_required": true,
+    "expected_powershell_sha256_and_stable_identity_required": true,
+    "fixed_script_digest_and_stable_identity_required": true,
+    "fixed_script_lf_checkout_policy_source_bound": true,
+    "absolute_regular_non_link_candidate_and_allowlisted_suffix_required": true,
+    "candidate_identity_stable_across_transport_required": true,
+    "exact_no_logo_no_profile_noninteractive_file_argv_constructed": true,
+    "candidate_path_is_one_literal_script_parameter_argument": true,
+    "script_calls_get_authenticode_signature_with_literal_path": true,
+    "script_does_not_invoke_expression_start_process_or_change_execution_policy": true,
+    "one_ten_second_four_kibibyte_transport_call_per_candidate": true,
+    "timeout_and_tool_error_remain_distinct": true,
+    "nonzero_stderr_malformed_duplicate_extra_wrong_schema_invalid_and_oversized_output_map_to_tool_error": true,
+    "utf8_bom_and_documented_or_future_bounded_status_text_supported": true,
+    "unexpected_transport_exception_is_not_concealed": true,
+    "raw_outputs_candidate_paths_and_certificate_fields_not_returned": true
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 567,
+      "tests_passed": 567
+    },
+    "python_3_14": {
+      "tests_run": 567,
+      "tests_passed": 567
+    },
+    "focused_adapter_tests": 20,
+    "implementation_result_tests": 10,
+    "generated_candidate_and_fake_executable_fixtures_authorized": true,
+    "fake_transport_only": true,
+    "retained_child_enumeration_count": 0,
+    "retained_child_content_read_count": 0,
+    "real_powershell_discovery_or_identity_read_count": 0,
+    "real_powershell_invocation_count": 0,
+    "authenticode_tool_invocation_count": 0,
+    "network_request_count": 0,
+    "installation_count": 0,
+    "target_binary_execution_count": 0,
+    "benchmark_input_count": 0
+  },
+  "decision_gate": {
+    "windows_adapter_implementation_complete": true,
+    "generated_fixture_gate_passed": true,
+    "retained_child_enumeration_or_content_read_authorized": false,
+    "real_powershell_discovery_identity_read_or_invocation_authorized": false,
+    "authenticode_tool_invocation_authorized": false,
+    "network_request_authorized": false,
+    "installation_authorized": false,
+    "target_binary_execution_authorized": false,
+    "retained_child_modification_or_removal_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "separately_design_and_fixture_test_a_real_execution_preflight_for_exact_powershell_identity_batch_deadline_and_external_zero_egress_evidence_without_retained_child_or_signature_tool_access"
+  }
+}
