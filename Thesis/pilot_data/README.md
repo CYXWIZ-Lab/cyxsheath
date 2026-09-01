@@ -69,6 +69,14 @@ python Thesis\pilot_data\validate_llmster_authenticode_execution_preflight_desig
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
+The minimum scientific POC has a separate one-shot command. Run it only from the clean committed runner baseline and only when intentionally executing the frozen six-run schedule:
+
+```powershell
+python Thesis\pilot_data\run_phase6_minimum_poc.py --recorded-at <UTC-ISO-8601>
+```
+
+It refuses an existing output record. Raw model and tool artifacts remain under `.replay_cache`; only the curated aggregate result belongs in `poc_evidence/`.
+
 The validators are dependency-free. They check strict record shapes, hashes, revisions, URIs, reason/disposition compatibility, contiguous sequence numbers, supersession chains, baseline/gold oracle behavior, report digests, privacy-minimized review evidence, conservative rights/contamination states, and admission gates. Regenerating the review artifact additionally requires the pinned replay environment because it reads Parquet with PyArrow.
 
 The non-replay artifact is reproducible after append-only ledger growth by selecting its original 23-event boundary:
@@ -110,3 +118,5 @@ Windows adapter design (2026-09-01): generated-fixture implementation is authori
 Windows adapter implementation (2026-09-01): the source-bound adapter, fixed script, and 20 generated fake-transport fixtures now enforce the exact identity, argument, timeout, output, parsing, and mutation contract. Ten implementation-result mutations reject source or permission overclaims. The complete suite passes 567/567 on both supported Python versions. No real executable was discovered or hashed, no PowerShell or signature tool ran, and the retained child was untouched.
 
 Authenticode execution-preflight design (2026-09-01): a new pure policy is authorized for generated-fixture implementation only. It will validate injected exact-PowerShell and Windows Defender Firewall/WFP observations, bind 91 calls to a 300-second operational deadline, and preserve atomic one-shot and aggregate-only semantics. Real PowerShell, firewall, event-log, retained-child, and signature-tool access remain blocked.
+
+Minimum scientific POC runner (2026-09-01): three original task snapshots and the A/D0 schedule were committed before implementation. The runner now keeps hidden tests outside model workspaces, uses identical isolated scoring for both conditions, and gives only failed-check reason codes to D0 revision. Six focused fixtures pass; the complete pilot suite is 585/585 on both supported Python versions. The frozen live schedule has not yet run.

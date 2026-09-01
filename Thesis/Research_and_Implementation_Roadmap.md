@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The minimum scientific POC protocol and three original Python repair tasks are frozen before model execution. All three defective baselines pass visible tests and fail hidden checks, providing measurable room for the paired A-versus-D0 comparison. |
+| Last completed milestone | The minimum POC runner composes the existing CyxCode, Stage-0, snapshot, artifact, and network-disabled Docker boundaries. Six focused fixtures pass, as do 585/585 pilot and 138/138 core tests on both Python versions; no model call has occurred under this protocol. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Implement one paired POC runner by composing the existing CyxCode adapter, Stage-0 bounded coordinator, and network-disabled Docker verifier. |
-| Then | Fixture-test the runner, execute the three frozen pairs once, and report task-level verified success, recovery, attempts, and wall time without inferential overclaim. |
+| Next implementation slice | Commit the runner as the immutable execution baseline, then execute the six predetermined A/D0 runs once with the pinned free CyxCode model. |
+| Then | Curate the task-level verified-success, recovery, attempts, wall-time, and infrastructure outcomes and decide whether the harness is ready to scale. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -138,7 +138,7 @@ The exact next slice is:
 34. Completed: implement and source-bind the dependency-free owned extraction-staging module and 19 generated-archive fixtures for exclusive ownership, source stability, storage reserve, canonical streamed writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
 35. Completed: commit and immediately revalidate the one-shot real-staging decision, invoke the exact call once, retain the owned result, and consume authorization without retry or signature tooling.
 36. Completed and deferred to the operational backlog: freeze the execution-preflight design without implementing or invoking its firewall provider.
-37. Active: implement, fixture-test, and run the three-task minimum scientific POC comparing direct CyxCode (A) with evidence-guided Stage-0 revision (D0).
+37. Active: the three-task minimum scientific POC runner is implemented and fixture-tested; commit it, execute the six frozen runs once, and curate the paired result.
 38. Resolve the pinned local generator's contamination treatment before any genuine benchmark proposal admission.
 39. Replay and review the remaining 17 only after step 38 yields an operational admission path and the minimum POC runner is stable.
 40. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
