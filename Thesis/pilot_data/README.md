@@ -61,6 +61,7 @@ python Thesis\pilot_data\validate_llmster_extraction_staging_design_decision.py 
 python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_implementation_result.json
 python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py --historical Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
 python Thesis\pilot_data\validate_llmster_real_staging_execution_result.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_result.json
+python Thesis\pilot_data\validate_llmster_authenticode_review_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_design_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -93,3 +94,7 @@ Inventory-v2 decision (2026-08-31): one fresh identity-plus-central-directory in
 Inventory-v2 result (2026-08-31): the consumed invocation accepted 3,614 metadata entries under `.bundle` and `llmster.exe`, with zero member reads or extraction. File-level review, Authenticode, staging, installation, and execution remain blocked.
 
 Staging design (2026-08-31): generated-fixture implementation is authorized for an exclusive marker-owned staging child with storage, containment, no-overwrite, manifest, cleanup, and rollback gates. The real archive, Authenticode tooling, installation, and execution remain blocked.
+
+Real-staging result (2026-09-01): the one authorized call succeeded and is consumed. One marker-owned ignored child retains 3,595 payload files and 91 digest-bound signature candidates. No signature tool, installer, or target binary ran, and the retained child must not be modified or removed.
+
+Authenticode review design (2026-09-01): only a dependency-free policy module and generated-fixture fake inspection are authorized. The policy must reproduce the full content manifest and exact candidate digest before inspection, normalize all documented PowerShell signature statuses plus timeout/tool error, and emit aggregate counts and a digest without retaining paths. `Valid` means syntactically valid, not publisher-trusted. Retained-child enumeration, Windows adapter implementation, signature tooling, networking, installation, execution, and cleanup remain blocked. The complete suite passes 501/501 on both supported Python versions.

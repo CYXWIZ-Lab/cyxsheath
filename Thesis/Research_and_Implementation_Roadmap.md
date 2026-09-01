@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The single authorized `stage_archive` call succeeded and is consumed: 3,595 files and 1,791,678,266 payload bytes are retained in the marker-owned child, with zero overwrite, links, execution, installation, or network activity. The suite passes 489/489 on both Python versions. |
+| Last completed milestone | The non-executing Authenticode review design is frozen and mutation-tested. It binds the retained staging result, defines exact candidate discovery and status normalization, and keeps the retained child and signature tooling untouched. The suite passes 501/501 on both Python versions. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Design and fixture-test a separate non-executing Authenticode review boundary for the 91 digest-bound candidates. Do not invoke a signature tool while creating it. |
-| Then | Only after a later committed execution decision, classify signed-valid, unsigned, invalid, unknown, and tool-error outcomes without launching targets or curating paths. |
+| Next implementation slice | Implement and fixture-test the dependency-free, platform-independent Authenticode review policy using generated owned trees and injected fake inspector outcomes only. |
+| Then | Source-bind the policy before any retained-child enumeration; implement and authorize the Windows adapter only through later separate gates with `-LiteralPath`, bounded timeouts, and external zero-egress containment. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -137,7 +137,7 @@ The exact next slice is:
 33. Completed: preserve the first rejection, fixture-verify separator canonicalization, and consume one fresh metadata invocation. The accepted aggregate inventory contains 3,614 entries under `.bundle` and `llmster.exe`, with zero member reads or extraction.
 34. Completed: implement and source-bind the dependency-free owned extraction-staging module and 19 generated-archive fixtures for exclusive ownership, source stability, storage reserve, canonical streamed writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
 35. Completed: commit and immediately revalidate the one-shot real-staging decision, invoke the exact call once, retain the owned result, and consume authorization without retry or signature tooling.
-36. Active: design and fixture-test a non-executing Authenticode review boundary for the 91 digest-bound candidates. Do not invoke a signature tool in the design checkpoint.
+36. Active: the non-executing Authenticode design is complete; implement and fixture-test only its platform-independent policy. The retained child and Windows signature tooling remain untouched.
 37. Resolve the pinned local generator's contamination treatment and admit genuine proposals only after a later synthetic local gate passes.
 38. Replay and review the remaining 17 only after step 37 yields an operational admission path.
 39. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
@@ -240,17 +240,19 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 - **llmster staging implementation:** [phase6_llmster_extraction_staging_implementation_result.json](pilot_data/review_evidence/phase6_llmster_extraction_staging_implementation_result.json) binds the inventory-policy and owned-staging sources, 19 generated-ZIP fixtures, source-stability checks, an 8-MiB stream ceiling, exact size/content evidence, zero overwrite, and marker-verified rollback. Ten mutations reject design/source drift and weakened storage, cleanup, dependency, or real-extraction gates. The complete suite is 467/467 on Python 3.12 and 3.14; real member reads and extraction remain zero.
 - **llmster real-staging decision:** [phase6_llmster_real_staging_execution_decision.json](pilot_data/review_evidence/phase6_llmster_real_staging_execution_decision.json) pins one child, one exact `stage_archive` call, the 6,086,645,562-byte preflight floor, immediate live validation, no retry, aggregate-only result evidence, and marker-scoped failure cleanup. Twelve mutation/live-state tests pass; the complete suite is 479/479 on both Python versions. No archive member was read and nothing was extracted at decision time.
 - **llmster real-staging result:** [phase6_llmster_real_staging_execution_result.json](pilot_data/review_evidence/phase6_llmster_real_staging_execution_result.json) records the consumed accepted call, exact logical bytes/counts, content-manifest and candidate-path digests, marker ownership, source stability, retained-child metadata, and passing final reserve. Ten mutations reject authorization, invocation, retry, digest, marker, and signature-tool overclaims. Sequential complete suites pass 489/489 on both Python versions; no target binary or signature tool ran.
+- **llmster Authenticode review design:** [phase6_llmster_authenticode_review_design_decision.json](pilot_data/review_evidence/phase6_llmster_authenticode_review_design_decision.json) freezes marker/manifest admission, exact 91-candidate discovery, all documented PowerShell signature statuses, separate timeout/tool-error outcomes, aggregate-only evidence, `-LiteralPath`, and a deferred zero-egress Windows adapter. Twelve mutations reject weakened bindings, semantics, privacy, and execution gates. Sequential complete suites pass 501/501 on both Python versions; the retained child and signature tooling were untouched.
 
 ## Immediate Work Queue
 
-1. Freeze a dependency-free, non-executing Authenticode review design for the 91 digest-bound candidates. Keep candidate paths local and emit only aggregate classifications and digests.
-2. Fixture-test signed-valid, unsigned, invalid, unknown, timeout, and tool-error normalization plus marker/manifest/source bindings. Do not invoke Windows signature tooling yet.
-3. Only after a separate committed execution decision, run the exact bounded signature inspection once without launching targets. Preserve the retained staging child.
-4. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
-5. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
-6. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
-7. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
-8. Double-label and adjudicate eligible calibration cases; add C++ families and hard negatives before the 100–300-case Phase-6 seed gate, then perform Phases 7–8 before D1 work.
+1. Implement the frozen dependency-free Authenticode review policy against generated owned-tree fixtures and an injected fake inspector only.
+2. Fixture-test signed-valid, unsigned, invalid, untrusted, unsupported, incompatible, unknown, timeout, and tool-error normalization plus marker/manifest/source bindings. Do not enumerate the retained child or invoke Windows signature tooling.
+3. Source-bind the policy, then separately design and fixture-test the Windows `Get-AuthenticodeSignature -LiteralPath` adapter with explicit timeout and external zero-egress requirements.
+4. Only after another committed execution decision, run the exact bounded signature inspection once without launching targets. Preserve the retained staging child.
+5. Separately authorize a zero-model lifecycle diagnostic; do not treat selection, acquisition, or installation as runtime acceptance.
+6. Only if a later complete load-health execution passes, record the authenticated non-loopback server gate with CORS and MCP disabled, then separately authorize at most one generated public non-benchmark local feasibility canary.
+7. If the local gate passes, generate and independently verify one replayed candidate proposal only after the separate contamination gate; keep blinded checks and gold artifacts outside model context.
+8. Apply the same pinned replay/review path to the remaining 17 registrations only after the one-case path is operational.
+9. Double-label and adjudicate eligible calibration cases; add C++ families and hard negatives before the 100–300-case Phase-6 seed gate, then perform Phases 7–8 before D1 work.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 

@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_authenticode_review_fixture_implementation_authorized_real_review_blocked",
+  "decision_scope": "design_and_generated_fixture_implementation_of_candidate_discovery_and_authenticode_result_normalization_without_inspecting_the_retained_llmster_child_or_invoking_signature_tooling",
+  "recorded_at": "2026-09-01T10:58:03Z",
+  "baseline_commit": "4d1b72669280198c31c20594b18668d1f21a8390",
+  "accepted_staging_result": {
+    "path": "phase6_llmster_real_staging_execution_result.json",
+    "sha256": "dd6ed24ebf12d29cb89c7586f4f84d86e30306f59557aba197f02e1e2de15b83",
+    "status": "llmster_real_archive_owned_staging_accepted_signature_installation_execution_blocked",
+    "content_manifest_sha256": "9c6600dc9a72b265d3d37abf5d499c1cd760561ac026ace2629ea452cc3b4a45",
+    "signature_candidate_count": 91,
+    "signature_candidate_paths_sha256": "d2cfc905e98305006a5f80b65951cb1927be48a7f308ae22c10d077366faa90e"
+  },
+  "module_boundary": {
+    "new_policy_module": "Thesis.pilot_data.llmster_authenticode_review",
+    "role": "platform_independent_owned_tree_admission_candidate_discovery_result_normalization_and_aggregate_evidence",
+    "staging_module_remains_ownership_and_extraction_lifecycle_owner": true,
+    "platform_adapter_deferred": true,
+    "inspector_is_injected_and_fixture_fake_only_at_this_gate": true,
+    "new_dependencies_allowed": false
+  },
+  "owned_tree_admission": {
+    "parent_repository_relative_path": ".replay_cache/llmster_staging",
+    "child_name": "llmster-f3895cbd1a6e421fa754386f2d144803",
+    "ownership_marker": ".cyxsheath-staging-owner.json",
+    "archive_sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "expected_payload_file_count": 3595,
+    "expected_payload_bytes": 1791678266,
+    "expected_content_manifest_sha256": "9c6600dc9a72b265d3d37abf5d499c1cd760561ac026ace2629ea452cc3b4a45",
+    "exact_parent_child_marker_and_archive_binding_required": true,
+    "owned_root_and_payload_must_be_regular_non_links": true,
+    "canonical_relative_paths_must_remain_under_owned_root": true,
+    "full_payload_manifest_must_match_before_any_inspector_call": true,
+    "candidate_file_identity_must_be_stable_across_each_inspector_call": true
+  },
+  "candidate_contract": {
+    "suffixes_case_insensitive": [".dll", ".exe", ".node", ".ps1"],
+    "canonical_order": "relative_posix_path_raw_utf8_bytes_ascending",
+    "path_digest_encoding": "utf8_newline_join_without_trailing_newline",
+    "expected_count": 91,
+    "expected_paths_sha256": "d2cfc905e98305006a5f80b65951cb1927be48a7f308ae22c10d077366faa90e",
+    "candidate_paths_remain_local": true
+  },
+  "normalization_contract": {
+    "Valid": "signed_valid",
+    "NotSigned": "unsigned",
+    "HashMismatch": "invalid",
+    "UnknownError": "invalid",
+    "NotTrusted": "untrusted",
+    "NotSupportedFileFormat": "unsupported",
+    "Incompatible": "incompatible",
+    "unrecognized_status": "unknown",
+    "inspector_timeout": "timeout",
+    "inspector_error": "tool_error",
+    "valid_means_syntactically_valid_not_publisher_trusted": true,
+    "raw_status_messages_certificate_details_and_paths_not_curated": true
+  },
+  "aggregate_result_contract": {
+    "one_normalized_outcome_per_candidate_required": true,
+    "outcome_counts_sum_to_candidate_count": true,
+    "classification_manifest_sha256_required": true,
+    "classification_manifest_rows_include_local_relative_path_and_normalized_outcome_before_hashing": true,
+    "classification_manifest_rows_are_not_retained": true,
+    "automatic_retry_count_maximum": 0,
+    "target_binary_launch_count_maximum": 0,
+    "installer_invocation_count_maximum": 0
+  },
+  "future_windows_adapter_contract": {
+    "planned_tool": "Get-AuthenticodeSignature",
+    "planned_parameter": "LiteralPath",
+    "windows_only": true,
+    "catalog_signature_precedes_embedded_signature_when_both_exist": true,
+    "tool_may_read_but_may_not_execute_candidate_files": true,
+    "zero_egress_must_be_established_outside_the_cmdlet_before_real_execution": true,
+    "real_tool_process_and_timeout_limits_require_separate_decision": true,
+    "official_cmdlet_reference": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature",
+    "official_status_reference": "https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.signaturestatus"
+  },
+  "fixture_requirements": {
+    "generated_owned_trees_only": true,
+    "all_documented_signature_statuses_normalized": true,
+    "unrecognized_timeout_and_tool_error_are_distinct": true,
+    "marker_manifest_candidate_count_and_candidate_digest_drift_rejected_before_inspection": true,
+    "links_special_files_and_path_escape_rejected": true,
+    "candidate_mutation_during_inspection_rejected": true,
+    "aggregate_result_contains_no_candidate_paths_or_raw_tool_messages": true,
+    "policy_module_has_no_process_network_install_or_execution_surface": true
+  },
+  "execution_gate": {
+    "policy_source_and_generated_fixture_edits_authorized": true,
+    "generated_fixture_candidate_inspection_with_fake_inspector_authorized": true,
+    "retained_child_enumeration_or_content_read_authorized": false,
+    "authenticode_tool_discovery_or_invocation_authorized": false,
+    "platform_adapter_implementation_authorized": false,
+    "network_request_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "retained_child_modification_or_removal_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "implement_and_fixture_test_the_platform_independent_review_policy_then_source_bind_it_before_any_real_candidate_enumeration_or_signature_tool_invocation"
+}
