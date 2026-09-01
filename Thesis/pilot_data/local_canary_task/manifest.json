@@ -1,0 +1,16 @@
+{
+  "allowed_changed_paths": [
+    "feature_flags.py"
+  ],
+  "decision_sha256": "30cbef47a1e9b08c0472676742e2d83a0e462e3c3eec7da9dc93f8d3c209bda4",
+  "hidden_tests_sha256": "f0602085ed6fae46e656393e577de1482adf3e3873097902e1f5c717e6de84fc",
+  "model": "lmstudio/cyxsheath-qwen25-coder-7b-q4km",
+  "pilot_id": "phase6-local-generator-canary-v2",
+  "request": "Implement normalize_feature_flags in feature_flags.py. Split the comma-separated input, trim whitespace, lowercase every non-empty flag, remove duplicates case-insensitively while preserving first-seen order, and return the normalized list. Modify only feature_flags.py.",
+  "schema_version": "1.0.0",
+  "source_files": {
+    "feature_flags.py": "7754e012c236bebbcc598a47206abf4222234be6be78f15a0b9997ce6956fbb2",
+    "test_visible.py": "6131f1340c8c40857650bc2c75c5652e14288ac24ba72df4c789a9074ea8c8ca"
+  },
+  "task_id": "phase6-local-canary-001-feature-flags"
+}
