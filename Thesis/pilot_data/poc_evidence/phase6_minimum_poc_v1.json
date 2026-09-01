@@ -1,0 +1,109 @@
+{
+  "artifact_boundary": ".replay_cache_only_for_raw_prompts_responses_patches_tool_output_and_canonical_run_records",
+  "cost_class": "free",
+  "cyxcode_executable_digest": "sha256:8c9d82ad1dc42961666470248e9a2241a45eeb1f0327fa6ec6aefe61c6c1a31e",
+  "cyxcode_image": "sha256:f0a466626dcb1f123645ea9a40e2e7ef55c046dd7b76b8726d603605751b560c",
+  "model": "opencode/mimo-v2.5-free",
+  "pilot_id": "phase6-minimum-poc-v1",
+  "protocol_sha256": "d6d851368578fab8e6296025dbdc334b4e4629ad91434a190ff2f055cf8f5f01",
+  "recorded_at": "2026-09-01T19:18:45Z",
+  "runner_commit": "7914e2288872867a2b330bddd303b06d05f6505e",
+  "runner_sha256": "352cc03d116635433e45cb34d98b6dbde181636f763670e4476ec875e7b1ed2a",
+  "runs": [
+    {
+      "attempts": 1,
+      "condition": "A",
+      "failure_reason_codes": [],
+      "record_digest": "sha256:0568cdee295d3faf04597a06c59ef31ad2065cab021f522ef9fa2eb529110b9d",
+      "recovered_after_first_attempt": false,
+      "status": "completed",
+      "task_id": "phase6-poc-001-range-merge",
+      "verdict": "revise",
+      "verified_success": false,
+      "wall_seconds": 49.171000000002095
+    },
+    {
+      "attempts": 0,
+      "condition": "D0",
+      "failure_reason_codes": [
+        "coordinator.generator_error"
+      ],
+      "record_digest": "sha256:0a67313ae5f09ce6b4dccc59af5c3ce3b6460422f4d8198b3403f4cd658b423e",
+      "recovered_after_first_attempt": false,
+      "status": "infrastructure_failure",
+      "task_id": "phase6-poc-001-range-merge",
+      "verdict": "failed",
+      "verified_success": false,
+      "wall_seconds": 16.610000000000582
+    },
+    {
+      "attempts": 0,
+      "condition": "D0",
+      "failure_reason_codes": [
+        "coordinator.generator_error"
+      ],
+      "record_digest": "sha256:1d9516cd0ab0bf24b31a085b37870300639ebfe995f904ae4feaeed460eb3d63",
+      "recovered_after_first_attempt": false,
+      "status": "infrastructure_failure",
+      "task_id": "phase6-poc-002-query-redaction",
+      "verdict": "failed",
+      "verified_success": false,
+      "wall_seconds": 16.547000000005937
+    },
+    {
+      "attempts": 0,
+      "condition": "A",
+      "failure_reason_codes": [
+        "coordinator.generator_error"
+      ],
+      "record_digest": "sha256:f15794cffb2a3898fb84e2fafa5d95293035a588318ccf3f4b419b1a55999170",
+      "recovered_after_first_attempt": false,
+      "status": "infrastructure_failure",
+      "task_id": "phase6-poc-002-query-redaction",
+      "verdict": "failed",
+      "verified_success": false,
+      "wall_seconds": 16.188000000009197
+    },
+    {
+      "attempts": 0,
+      "condition": "A",
+      "failure_reason_codes": [
+        "coordinator.generator_error"
+      ],
+      "record_digest": "sha256:995581ab369f41071bfa53373389d7525c07f29e5f714432fade9094e1f362f0",
+      "recovered_after_first_attempt": false,
+      "status": "infrastructure_failure",
+      "task_id": "phase6-poc-003-retry-delays",
+      "verdict": "failed",
+      "verified_success": false,
+      "wall_seconds": 18.547000000005937
+    },
+    {
+      "attempts": 0,
+      "condition": "D0",
+      "failure_reason_codes": [
+        "coordinator.generator_error"
+      ],
+      "record_digest": "sha256:4e7d82d9ca1f0405d8535a1f2507cf48cee625f642120c5f034fb7805dc220da",
+      "recovered_after_first_attempt": false,
+      "status": "infrastructure_failure",
+      "task_id": "phase6-poc-003-retry-delays",
+      "verdict": "failed",
+      "verified_success": false,
+      "wall_seconds": 16.985000000000582
+    }
+  ],
+  "schema_version": "1.0.0",
+  "status": "complete",
+  "summary": {
+    "A_verified_success": 0,
+    "D0_recoveries": 0,
+    "D0_verified_success": 0,
+    "inferential_claim_authorized": false,
+    "infrastructure_failures": 5,
+    "run_count": 6,
+    "task_count": 3
+  },
+  "task_manifest_sha256": "af6e34ed2ed003326d496e5dcff2b78485a3f997bf9566f5a9db13bf83218d96",
+  "verification_image": "python@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65"
+}

@@ -10,6 +10,6 @@ Hidden test files stay outside each staged source tree. At verification time the
 
 Six focused fixtures cover task/order freezing, source mutation, prompt blinding, visible-before-hidden execution, scope rejection, and public-record privacy. Complete suites pass 585/585 pilot tests and 138/138 Sheath core tests on Python 3.12 and 3.14.
 
-## Next Step
+## Result
 
-Commit this runner, verify a clean worktree, then execute the six predetermined task-condition runs once with `opencode/mimo-v2.5-free`. Provider or runner failures remain infrastructure outcomes and are not silently retried.
+The frozen schedule was committed and executed once. One direct-condition proposal failed independent verification; the remaining five cells stopped before a proposal on provider HTTP 429 responses. See [the v1 result note](2026-09-01_phase6_minimum_poc_v1_result.md). The consumed schedule will not be rerun.

@@ -77,6 +77,12 @@ python Thesis\pilot_data\run_phase6_minimum_poc.py --recorded-at <UTC-ISO-8601>
 
 It refuses an existing output record. Raw model and tool artifacts remain under `.replay_cache`; only the curated aggregate result belongs in `poc_evidence/`.
 
+The v1 schedule has been consumed and must not be invoked again. Validate its public result with:
+
+```powershell
+python Thesis\pilot_data\validate_phase6_minimum_poc_result.py Thesis\pilot_data\poc_evidence\phase6_minimum_poc_v1.json
+```
+
 The validators are dependency-free. They check strict record shapes, hashes, revisions, URIs, reason/disposition compatibility, contiguous sequence numbers, supersession chains, baseline/gold oracle behavior, report digests, privacy-minimized review evidence, conservative rights/contamination states, and admission gates. Regenerating the review artifact additionally requires the pinned replay environment because it reads Parquet with PyArrow.
 
 The non-replay artifact is reproducible after append-only ledger growth by selecting its original 23-event boundary:
@@ -119,4 +125,4 @@ Windows adapter implementation (2026-09-01): the source-bound adapter, fixed scr
 
 Authenticode execution-preflight design (2026-09-01): a new pure policy is authorized for generated-fixture implementation only. It will validate injected exact-PowerShell and Windows Defender Firewall/WFP observations, bind 91 calls to a 300-second operational deadline, and preserve atomic one-shot and aggregate-only semantics. Real PowerShell, firewall, event-log, retained-child, and signature-tool access remain blocked.
 
-Minimum scientific POC runner (2026-09-01): three original task snapshots and the A/D0 schedule were committed before implementation. The runner now keeps hidden tests outside model workspaces, uses identical isolated scoring for both conditions, and gives only failed-check reason codes to D0 revision. Six focused fixtures pass; the complete pilot suite is 585/585 on both supported Python versions. The frozen live schedule has not yet run.
+Minimum scientific POC v1 result (2026-09-01): three original task snapshots and the A/D0 schedule were committed before execution. One direct proposal completed and failed independent verification. The other five scheduled cells stopped before proposal generation on provider HTTP 429 responses. The result is complete but non-inferential, the schedule is consumed, and seven result-validator mutations pass on both supported Python versions. The complete pilot suite is 592/592. Next, freeze the existing local Qwen2.5-Coder route as v2; do not repeat v1 or start another cloud-provider comparison.

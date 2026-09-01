@@ -64,7 +64,7 @@ python Thesis\pilot_data\validate_llmster_authenticode_execution_preflight_desig
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The current pilot-data suite passes 585 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The current pilot-data suite passes 592 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 The frozen minimum POC is executed only once from its clean committed runner baseline:
 
@@ -73,6 +73,14 @@ python Thesis\pilot_data\run_phase6_minimum_poc.py --recorded-at <UTC-ISO-8601>
 ```
 
 Do not rerun automatically after a provider, bridge, Docker, or runner failure. The command keeps raw artifacts under `.replay_cache`, writes task-level public evidence under `Thesis/pilot_data/poc_evidence/`, and refuses an existing output.
+
+That v1 command has now been consumed. Its [curated result](../Thesis/pilot_data/poc_evidence/phase6_minimum_poc_v1.json) contains six scheduled rows: one completed A proposal that failed verification and five infrastructure failures. Local restricted envelopes identify all five as provider HTTP 429 responses. Therefore no A/D0 comparison or Sheath effectiveness claim is valid. Validate the public record with:
+
+```powershell
+python Thesis\pilot_data\validate_phase6_minimum_poc_result.py Thesis\pilot_data\poc_evidence\phase6_minimum_poc_v1.json
+```
+
+Do not run the v1 command again. The next approved design task is to bind the already downloaded local Qwen2.5-Coder model to a new versioned synthetic canary through CyxCode; another cloud-provider comparison is out of scope.
 
 ## Evidence Layers
 
@@ -111,6 +119,7 @@ Do not rerun automatically after a provider, bridge, Docker, or runner failure. 
 - The Windows Authenticode adapter implementation source-binds the unchanged policy/transport, fixed script, exact argument construction, strict response parser, and fake-transport fixtures. It adds real transport capability but does not authorize or claim any real invocation.
 - The Authenticode execution-preflight design freezes pure validation of injected exact-PowerShell and Windows Defender Firewall/WFP observations, a 91-call/300-second batch bound, atomic one-shot semantics, and aggregate-only output. It does not read or mutate real host state.
 - The minimum POC protocol freezes three original tasks and an A/D0 order before model output. Its runner keeps hidden test code outside CyxCode workspaces, uses the same isolated verifier for both conditions, and permits D0 at most one evidence-guided revision.
+- The minimum POC v1 result preserves the consumed schedule and separates one verified task failure from five provider-rate-limit infrastructure failures. Its validator forbids raw provider and hidden-test fields and authorizes no inference.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely

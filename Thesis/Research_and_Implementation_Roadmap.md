@@ -4,7 +4,7 @@
 
 This is the master progress tracker for the Sheath thesis and paper. Detailed design remains in the linked supporting documents; this file records sequence, status, dependencies, evidence, and exit gates. Update a phase to **Complete** only when its gate is supported by versioned artifacts. **Conditional** work begins only when its stated evidence justifies the added complexity.
 
-Status as of **2026-08-31**:
+Status as of **2026-09-01**:
 
 - **Complete:** gate passed with repository evidence.
 - **Active:** source material exists and the gate is being implemented or audited.
@@ -40,10 +40,10 @@ Stop at lean D0     Design/train D1 critic
 | Item | Resume value |
 |---|---|
 | Active phase | **Phase 6: Pilot candidate review and replay** |
-| Last completed milestone | The minimum POC runner composes the existing CyxCode, Stage-0, snapshot, artifact, and network-disabled Docker boundaries. Six focused fixtures pass, as do 585/585 pilot and 138/138 core tests on both Python versions; no model call has occurred under this protocol. |
+| Last completed milestone | The immutable minimum POC v1 schedule ran once. One A proposal failed verification; five cells stopped on provider HTTP 429 before proposal generation. The validated result is non-inferential and the schedule is consumed. |
 | Operator guide | [`../usage/README.md`](../usage/README.md) documents setup, runnable Stage-0 behavior, tests, smokes, the CyxCode boundary, pilot validation, evidence interpretation, and current safety gates. |
-| Next implementation slice | Commit the runner as the immutable execution baseline, then execute the six predetermined A/D0 runs once with the pinned free CyxCode model. |
-| Then | Curate the task-level verified-success, recovery, attempts, wall-time, and infrastructure outcomes and decide whether the harness is ready to scale. |
+| Next implementation slice | Implement and fixture-test the one-call local canary frozen in [Phase6_Local_Generator_V2_Decision.md](Phase6_Local_Generator_V2_Decision.md). |
+| Then | Execute that committed canary once; only a complete pass permits a new paired POC version. Do not repeat v1 or substitute another provider/model. |
 | Protected source | Keep any separate upstream CyxCode checkout read-only |
 | Development copy | `integrations/cyxcode` (independent and ignored), branch `sheath-integration` |
 | Pinned CyxCode identity | Commit `42676876b63ed5a18957e3318272eb0d875a95fc`, package 2.3.8, Bun 1.3.11 |
@@ -66,6 +66,7 @@ Completed work to preserve:
 - the historical benchmark runner remains pinned to the now-blocked Big Pickle route, excludes all benchmark oracles, keeps raw artifacts restricted, and stops before task access; and
 - live inspection and an independent smoke showed that Redis/fmt were not waiting on slow inference: the anonymous cloud endpoint returned HTTP 429 `FreeUsageLimitError`, which CyxCode silently retried. The corrected image fails fast, excludes resume/memory/graph/wiki state from experiment prompts, and passes populated-state cleanup;
 - a 2026-08-21 short fmt canary captured a bounded public failure record and restricted response artifact for the corrected path: the run terminated on its single 429 event, changed no files, removed isolated state, and left no container.
+- the frozen minimum POC v1 schedule ran exactly once. One A proposal completed but failed independent checks; all five later cells received provider HTTP 429 before generating a proposal. A strict public validator confirms the six-cell order, source bindings, aggregate counts, and raw-artifact exclusion. This establishes that the anonymous free route cannot support the paired pilot under the frozen schedule; it provides no Sheath effectiveness evidence;
 - the exact pinned dataset cards resolve `research_analysis` to `allowed` for Redis/fmt. Pinned supplemental official SWE-bench project evidence retains Astropy for internal analysis while preserving the exact Verified card's `NOASSERTION`; event 29 records the change. Redistribution, training, and contamination remain unresolved, and all 20 cases remain quarantined;
 - the official provider disclosure identifies Big Pickle as a stealth, unversioned model and states that free-period data may be used to improve it. Further benchmark submission is blocked in both policy evidence and the runner; the already submitted Redis/fmt prompts returned no model output, and Astropy was not submitted.
 - the capped replacement review remains the benchmark-grade provider audit: neither reviewed route is approved for benchmark input and no call was made; and
@@ -138,8 +139,8 @@ The exact next slice is:
 34. Completed: implement and source-bind the dependency-free owned extraction-staging module and 19 generated-archive fixtures for exclusive ownership, source stability, storage reserve, canonical streamed writes, content manifests, failure cleanup, and rollback. Real extraction remains blocked.
 35. Completed: commit and immediately revalidate the one-shot real-staging decision, invoke the exact call once, retain the owned result, and consume authorization without retry or signature tooling.
 36. Completed and deferred to the operational backlog: freeze the execution-preflight design without implementing or invoking its firewall provider.
-37. Active: the three-task minimum scientific POC runner is implemented and fixture-tested; commit it, execute the six frozen runs once, and curate the paired result.
-38. Resolve the pinned local generator's contamination treatment before any genuine benchmark proposal admission.
+37. Completed: execute the immutable v1 schedule once and preserve its non-inferential result. One A proposal failed verification; five cells ended as HTTP 429 infrastructure failures, so no paired comparison is available and no retry is allowed.
+38. Active: the local-generator v2 decision is frozen around the already pinned Qwen2.5-Coder weight, host-local CyxCode seam, loopback LM Studio server, denied external tools, and one synthetic canary. Implement and fixture-test that canary before its sole live call.
 39. Replay and review the remaining 17 only after step 38 yields an operational admission path and the minimum POC runner is stable.
 40. Double-label and adjudicate eligible calibration cases, then audit agreement and operational cost before scaling toward the 100–300-case Phase-6 gate.
 
@@ -249,12 +250,14 @@ The learned **Sheath D1 residual critic** begins only after Phase 8 measures err
 
 ## Immediate Work Queue
 
-1. Commit the frozen minimum POC protocol and three task snapshots before any model call.
-2. Implement one reusable paired runner using the existing CyxCode adapter, Stage-0 coordinator, and network-disabled Docker verifier.
-3. Fixture-test task isolation, condition order, hidden-check exclusion, failed-check feedback, scoring, and aggregate evidence privacy.
-4. Execute each frozen A/D0 pair once with the same free model and record provider or runner failures separately from task failure.
-5. Report the task-level paired table and quality-cost observations, then decide whether to revise the harness or scale the original-task pilot.
-6. Keep Authenticode/firewall completion, additional runtime work, and benchmark admission as separate backlogs unless they block this POC.
+1. Completed: commit the frozen minimum POC protocol and three task snapshots before any model call.
+2. Completed: implement and fixture-test the paired CyxCode/Stage-0/Docker runner.
+3. Completed: execute the six-cell v1 schedule once and preserve the consumed result without automatic retry.
+4. Completed: diagnose all five infrastructure cells as provider HTTP 429 and validate the privacy-minimized public result. No effectiveness claim is authorized.
+5. Completed: freeze one v2 design decision for the existing local Qwen2.5-Coder model, loopback LM Studio server, and host-local CyxCode seam; install or download nothing new.
+6. Implement and fixture-test the one-call local canary, including identity checks, denied external tools, bounds, verification, and final cleanup.
+7. Run the committed generated-task canary once. If it passes generation, patch extraction, verification, and cleanup, freeze a new paired schedule; otherwise correct only the blocking seam.
+8. Keep Authenticode/firewall completion and benchmark admission separate unless they directly block this local POC.
 
 CyxCode acquisition and dataset-protocol work may proceed in parallel, but dataset collection must not start before provenance, licensing, and split rules are frozen.
 
