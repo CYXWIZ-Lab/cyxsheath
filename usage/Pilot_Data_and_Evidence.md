@@ -60,10 +60,11 @@ python Thesis\pilot_data\validate_llmster_authenticode_review_design_decision.py
 python Thesis\pilot_data\validate_llmster_authenticode_review_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_implementation_result.json
 python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_design_decision.json
 python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_implementation_result.json
+python Thesis\pilot_data\validate_llmster_authenticode_execution_preflight_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_execution_preflight_design_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The current pilot-data suite passes 567 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The current pilot-data suite passes 579 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -100,6 +101,7 @@ The current pilot-data suite passes 567 tests on Python 3.12 and 3.14 when run s
 - The Authenticode review implementation source-binds the platform-independent policy and unchanged staging ownership invariant. Generated fixtures prove manifest/candidate admission, typed outcomes, mutation detection, and path-free aggregate evidence without adding a platform process surface.
 - The Windows Authenticode adapter design freezes an identity-bound executable and fixed literal-path script request, bounded transport, strict response parsing, no retry, and an external zero-egress prerequisite. It authorizes generated-fixture implementation only.
 - The Windows Authenticode adapter implementation source-binds the unchanged policy/transport, fixed script, exact argument construction, strict response parser, and fake-transport fixtures. It adds real transport capability but does not authorize or claim any real invocation.
+- The Authenticode execution-preflight design freezes pure validation of injected exact-PowerShell and Windows Defender Firewall/WFP observations, a 91-call/300-second batch bound, atomic one-shot semantics, and aggregate-only output. It does not read or mutate real host state.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely

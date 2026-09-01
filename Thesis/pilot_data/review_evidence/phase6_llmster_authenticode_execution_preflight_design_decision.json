@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_authenticode_execution_preflight_fixture_implementation_authorized_real_host_state_blocked",
+  "recorded_at": "2026-09-01T18:39:05Z",
+  "decision_scope": "design_and_generated_fixture_implementation_of_a_pure_authenticode_execution_preflight_without_retained_child_powershell_firewall_or_signature_tool_access",
+  "baseline_commit": "eacadc018060dbe44d2b62d09416b90b6113b971",
+  "accepted_inputs": {
+    "adapter_implementation": {
+      "path": "phase6_llmster_windows_authenticode_adapter_implementation_result.json",
+      "sha256": "128e37595b64adbd9d4566a6254a93e9a299ddd5a8dff340c82fdbc9b1f940f1",
+      "status": "llmster_windows_authenticode_adapter_implemented_generated_fixtures_passed_real_tool_blocked"
+    },
+    "review_policy_implementation": {
+      "path": "phase6_llmster_authenticode_review_implementation_result.json",
+      "sha256": "31c007d4f6be8b60608d3e07eee3301600e2b93fd20cb8fbf43752a980900f2b",
+      "status": "llmster_authenticode_review_policy_implemented_generated_fixtures_passed_real_review_blocked"
+    },
+    "retained_staging_result": {
+      "path": "phase6_llmster_real_staging_execution_result.json",
+      "sha256": "dd6ed24ebf12d29cb89c7586f4f84d86e30306f59557aba197f02e1e2de15b83",
+      "status": "llmster_real_archive_owned_staging_accepted_signature_installation_execution_blocked",
+      "content_manifest_sha256": "9c6600dc9a72b265d3d37abf5d499c1cd760561ac026ace2629ea452cc3b4a45",
+      "candidate_count": 91,
+      "candidate_paths_sha256": "d2cfc905e98305006a5f80b65951cb1927be48a7f308ae22c10d077366faa90e"
+    }
+  },
+  "module_boundary": {
+    "new_module": "Thesis.pilot_data.llmster_authenticode_execution_preflight",
+    "role": "pure_validation_of_injected_executable_firewall_one_shot_and_batch_observations_into_an_immutable_execution_plan",
+    "review_policy_remains_owned_tree_admission_candidate_order_and_aggregate_result_owner": true,
+    "windows_adapter_remains_single_candidate_process_and_response_owner": true,
+    "later_firewall_provider_owns_host_state_mutation_and_observation": true,
+    "later_execution_runner_owns_atomic_claim_deadline_and_cleanup": true,
+    "preflight_has_no_filesystem_process_network_firewall_or_clock_io": true,
+    "new_dependencies_allowed": false
+  },
+  "powershell_observation_contract": {
+    "absolute_path_required": true,
+    "basename_case_insensitive": "powershell.exe",
+    "regular_non_link_observed": true,
+    "positive_byte_count_required": true,
+    "lowercase_sha256_required": true,
+    "observation_source_must_be_later_source_bound_provider": true,
+    "expected_digest_is_passed_unchanged_to_windows_adapter": true,
+    "real_discovery_or_hashing_at_this_gate": false
+  },
+  "external_containment_contract": {
+    "provider": "windows_defender_firewall_windows_filtering_platform",
+    "rule_name_must_be_unique_and_bound_to_run_id": true,
+    "rule_program_path_must_equal_observed_powershell_path": true,
+    "direction": "Outbound",
+    "action": "Block",
+    "enabled": true,
+    "profiles": ["Domain", "Private", "Public"],
+    "protocol": "Any",
+    "local_and_remote_addresses": "Any",
+    "local_and_remote_ports": "Any",
+    "active_firewall_profiles_must_be_enabled": true,
+    "effective_rule_must_be_observed_before_claim_and_after_last_adapter_call": true,
+    "wfp_blocked_connection_audit_window_must_be_aggregate_only": true,
+    "rule_creation_verification_and_removal_require_later_authorization": true,
+    "removal_failure_leaves_block_rule_enabled_and_blocks_retry": true,
+    "containment_claim_is_exact_program_outbound_deny_not_machine_wide_network_absence": true
+  },
+  "batch_contract": {
+    "candidate_count": 91,
+    "maximum_adapter_calls": 91,
+    "candidate_order_owned_by_review_policy": true,
+    "individual_adapter_timeout_seconds": 10,
+    "overall_deadline_seconds": 300,
+    "minimum_remaining_seconds_before_next_adapter_call": 10,
+    "deadline_is_operational_safety_bound_not_performance_claim": true,
+    "deadline_expiry_stops_before_next_call_and_produces_normalized_incomplete_result": true,
+    "automatic_retry_count_maximum": 0,
+    "target_binary_launch_count_maximum": 0
+  },
+  "one_shot_contract": {
+    "authorization_record_must_be_committed_and_revalidated_immediately_before_execution": true,
+    "atomic_claim_created_after_preflight_and_before_retained_child_access": true,
+    "existing_claim_or_result_blocks_execution": true,
+    "maximum_runner_invocations": 1,
+    "authorization_consumed_on_claim_after_success_failure_or_interruption": true,
+    "fresh_decision_required_for_any_retry": true,
+    "automatic_retry_count_maximum": 0
+  },
+  "output_contract": {
+    "plan_is_immutable": true,
+    "plan_carries_local_absolute_powershell_path_in_memory_only": true,
+    "curated_preflight_record_excludes_absolute_paths_rule_names_raw_firewall_objects_and_events": true,
+    "curated_result_is_aggregate_only": true,
+    "success_requires_all_91_normalized_outcomes": true,
+    "incomplete_result_cannot_claim_success_or_full_classification_manifest": true
+  },
+  "fixture_requirements": {
+    "generated_paths_digests_and_observations_only": true,
+    "valid_plan_and_each_executable_firewall_batch_one_shot_and_privacy_failure_covered": true,
+    "firewall_provider_and_execution_runner_are_fake_callbacks_or_values_only": true,
+    "no_retained_child_real_powershell_firewall_event_log_process_network_or_signature_tool_access": true
+  },
+  "official_sources": {
+    "outbound_program_rule": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/configure",
+    "new_net_firewall_rule": "https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule?view=windowsserver2025-ps",
+    "wfp_event_5157": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-5157",
+    "firewall_logging": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/configure-logging"
+  },
+  "execution_gate": {
+    "preflight_source_and_generated_fixture_edits_authorized": true,
+    "generated_observation_validation_authorized": true,
+    "retained_child_enumeration_or_content_read_authorized": false,
+    "real_powershell_discovery_identity_read_or_invocation_authorized": false,
+    "firewall_state_read_create_modify_or_remove_authorized": false,
+    "event_log_read_or_audit_policy_change_authorized": false,
+    "authenticode_tool_invocation_authorized": false,
+    "network_request_authorized": false,
+    "installation_authorized": false,
+    "target_binary_execution_authorized": false,
+    "retained_child_modification_or_removal_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "implement_and_source_bind_the_pure_preflight_with_generated_observations_only_then_make_a_separate_provider_design_before_any_real_host_state_or_retained_child_access"
+}

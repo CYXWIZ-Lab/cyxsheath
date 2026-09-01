@@ -65,6 +65,7 @@ python Thesis\pilot_data\validate_llmster_authenticode_review_design_decision.py
 python Thesis\pilot_data\validate_llmster_authenticode_review_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_implementation_result.json
 python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_design_decision.json
 python Thesis\pilot_data\validate_llmster_windows_authenticode_adapter_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_windows_authenticode_adapter_implementation_result.json
+python Thesis\pilot_data\validate_llmster_authenticode_execution_preflight_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_execution_preflight_design_decision.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -107,3 +108,5 @@ Authenticode review implementation (2026-09-01): the platform-independent policy
 Windows adapter design (2026-09-01): generated-fixture implementation is authorized for an exact identity-bound `powershell.exe -NoLogo -NoProfile -NonInteractive -File` request whose fixed script uses `Get-AuthenticodeSignature -LiteralPath`. The adapter must enforce a ten-second timeout, 4-KiB combined retention bound, strict minimal JSON, one call, and no retry. Real PowerShell discovery, hashing, invocation, retained-child access, and networking remain blocked. The complete suite passes 537/537 on both supported Python versions.
 
 Windows adapter implementation (2026-09-01): the source-bound adapter, fixed script, and 20 generated fake-transport fixtures now enforce the exact identity, argument, timeout, output, parsing, and mutation contract. Ten implementation-result mutations reject source or permission overclaims. The complete suite passes 567/567 on both supported Python versions. No real executable was discovered or hashed, no PowerShell or signature tool ran, and the retained child was untouched.
+
+Authenticode execution-preflight design (2026-09-01): a new pure policy is authorized for generated-fixture implementation only. It will validate injected exact-PowerShell and Windows Defender Firewall/WFP observations, bind 91 calls to a 300-second operational deadline, and preserve atomic one-shot and aggregate-only semantics. Real PowerShell, firewall, event-log, retained-child, and signature-tool access remain blocked.
