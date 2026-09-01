@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_windows_authenticode_adapter_fixture_implementation_authorized_real_tool_blocked",
+  "decision_scope": "design_and_generated_fixture_implementation_of_a_windows_powershell_authenticode_adapter_without_retained_child_access_powershell_discovery_or_signature_tool_invocation",
+  "recorded_at": "2026-09-01T17:56:26Z",
+  "baseline_commit": "3b3034aa2201d950cd3a851b1be43fb61a29241f",
+  "accepted_policy_result": {
+    "path": "phase6_llmster_authenticode_review_implementation_result.json",
+    "sha256": "31c007d4f6be8b60608d3e07eee3301600e2b93fd20cb8fbf43752a980900f2b",
+    "status": "llmster_authenticode_review_policy_implemented_generated_fixtures_passed_real_review_blocked"
+  },
+  "module_boundary": {
+    "new_adapter_module": "Thesis.pilot_data.llmster_windows_authenticode",
+    "new_fixed_script": "Thesis/pilot_data/get_authenticode_status.ps1",
+    "role": "windows_powershell_command_construction_executable_and_script_identity_checks_and_strict_status_response_normalization",
+    "policy_module_remains_tree_admission_and_aggregate_evidence_owner": true,
+    "existing_cli_transport_reused_unchanged": true,
+    "existing_cli_transport_sha256": "9e892ff200c22f5b1c50716cbd6aa3a4dfb74cac4238dd18d9ff6e222e5bc0b5",
+    "fake_transport_only_at_this_gate": true,
+    "new_dependencies_allowed": false
+  },
+  "powershell_contract": {
+    "executable_name_case_insensitive": "powershell.exe",
+    "executable_must_be_absolute_existing_regular_non_link": true,
+    "expected_executable_sha256_required": true,
+    "executable_identity_checked_before_and_after_transport": true,
+    "arguments": ["-NoLogo", "-NoProfile", "-NonInteractive", "-File", "<fixed_absolute_script>", "-CandidatePath", "<absolute_candidate>"],
+    "shell": false,
+    "execution_policy_override_added": false,
+    "profile_loading_allowed": false,
+    "interactive_input_allowed": false,
+    "candidate_path_interpolated_into_powershell_source": false,
+    "candidate_passed_as_file_parameter_literal_string": true,
+    "script_uses_get_authenticode_signature_literal_path": true
+  },
+  "candidate_contract": {
+    "absolute_existing_regular_non_link_required": true,
+    "suffixes_case_insensitive": [".dll", ".exe", ".node", ".ps1"],
+    "candidate_identity_checked_before_and_after_transport": true,
+    "one_transport_call_per_candidate_maximum": 1,
+    "automatic_retry_count_maximum": 0
+  },
+  "transport_contract": {
+    "timeout_seconds": 10,
+    "combined_retained_output_bytes_maximum": 4096,
+    "stdout_json_bytes_maximum": 512,
+    "stderr_must_be_empty_on_success": true,
+    "numeric_exit_zero_required_for_status": true,
+    "timeout_maps_to": "timeout",
+    "transport_start_output_or_parse_failure_maps_to": "tool_error",
+    "transport_invoked_without_shell_by_existing_source_bound_transport": true,
+    "batch_maximum_candidate_calls": 91,
+    "batch_deadline_requires_later_execution_decision": true
+  },
+  "response_contract": {
+    "encoding": "utf-8-with-optional-bom",
+    "exact_json_keys": ["schema_version", "status"],
+    "schema_version": "1.0.0",
+    "duplicate_json_keys_rejected": true,
+    "status_must_be_nonempty_bounded_ascii_text": true,
+    "raw_stdout_stderr_status_messages_and_certificate_fields_not_curated": true,
+    "typed_policy_observation_returned": true
+  },
+  "network_boundary": {
+    "adapter_does_not_claim_or_measure_network_activity": true,
+    "official_cmdlet_documentation_does_not_supply_a_zero_network_guarantee": true,
+    "external_zero_egress_containment_required_before_real_invocation": true,
+    "containment_mechanism_and_evidence_require_later_decision": true
+  },
+  "official_sources": {
+    "powershell_exe": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe?view=powershell-5.1",
+    "authenticode_cmdlet": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature"
+  },
+  "fixture_requirements": {
+    "generated_candidate_files_and_fake_executable_only": true,
+    "fixed_script_read_but_not_executed": true,
+    "exact_argv_and_literal_candidate_parameter_verified": true,
+    "executable_script_and_candidate_identity_drift_rejected": true,
+    "valid_unknown_timeout_nonzero_stderr_malformed_duplicate_and_oversized_outputs_covered": true,
+    "transport_called_at_most_once_per_fixture_candidate": true,
+    "no_real_process_network_install_or_target_execution": true
+  },
+  "execution_gate": {
+    "adapter_script_and_generated_fixture_edits_authorized": true,
+    "fake_transport_calls_authorized": true,
+    "retained_child_enumeration_or_content_read_authorized": false,
+    "real_powershell_discovery_identity_read_or_invocation_authorized": false,
+    "authenticode_tool_invocation_authorized": false,
+    "network_request_authorized": false,
+    "installation_authorized": false,
+    "target_binary_execution_authorized": false,
+    "retained_child_modification_or_removal_authorized": false,
+    "benchmark_input_authorized": false
+  },
+  "next_action": "implement_and_fixture_test_the_adapter_and_fixed_script_with_generated_candidates_fake_executable_and_fake_transport_only_then_source_bind_before_any_real_tool_or_retained_child_access"
+}
