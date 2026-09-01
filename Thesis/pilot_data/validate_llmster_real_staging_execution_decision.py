@@ -256,9 +256,17 @@ def validate(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("path", type=Path)
+    parser.add_argument(
+        "--historical",
+        action="store_true",
+        help="validate the consumed decision record without requiring an empty live target",
+    )
     args = parser.parse_args()
     try:
-        record = validate(args.path)
+        record = validate(
+            args.path,
+            enforce_live_preconditions=not args.historical,
+        )
     except (
         KeyError,
         OSError,

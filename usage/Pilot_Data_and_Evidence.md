@@ -54,11 +54,12 @@ python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesi
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_result.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_design_decision.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_implementation_result.json
-python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
+python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py --historical Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
+python Thesis\pilot_data\validate_llmster_real_staging_execution_result.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The current pilot-data suite passes 479 tests on Python 3.12 and 3.14. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The current pilot-data suite passes 489 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 ## Evidence Layers
 
@@ -90,6 +91,7 @@ The current pilot-data suite passes 479 tests on Python 3.12 and 3.14. Validatio
 - The acquisition result records the sole successful request, exact archive hashes, atomic placement, final reserve, preserved identities, and consumed authorization. It grants no inventory, extraction, installation, runtime, or benchmark permission.
 - The first inventory result preserves its consumed backslash-path rejection. The corrected second inventory accepts 3,614 aggregate entries with zero member reads. The owned staging implementation and 19 generated-ZIP fixtures enforce source stability, storage, containment, no-overwrite, content evidence, and marker-scoped rollback; real extraction and signature tooling remain blocked.
 - The real-staging decision pins one empty ignored parent, one unique child, one exact staging call, a fresh passing storage baseline, immediate live validation, and no retry. It permits no signature tooling, installation, execution, network use, benchmark input, or member-path retention.
+- The real-staging result records one consumed accepted call, exact aggregate payload counts and digests, a matching ownership marker, final storage reserve, 91 digest-bound signature candidates, and a retained owned child. It grants no retry, signature-tool, installation, execution, or cleanup authority.
 - Proposal evidence records what a generator returned; only independent verification can support an effectiveness result.
 
 ## Adding Evidence Safely
@@ -105,4 +107,4 @@ Do not regenerate the non-replay evidence during ordinary validation. Regenerati
 
 ## What May Run Now
 
-Local validators, unit tests, generated-ZIP staging fixtures, source-preserving deterministic smokes, and read-only rights/exposure analysis are permitted. The archive request and both metadata decisions are consumed. After the new real-staging decision is committed and immediately revalidated, exactly one pinned `stage_archive` call may read and stage the real archive into `llmster-f3895cbd1a6e421fa754386f2d144803`; authorization is consumed at entry and cannot retry. Manual extraction, signature tooling, installation, daemon/model operations, prompts, HTTP serving, CyxCode benchmark invocation, and benchmark input remain unauthorized. The completed cloud canary and help probe must not be repeated.
+Local validators, unit tests, generated-ZIP staging fixtures, source-preserving deterministic smokes, read-only aggregate metadata audits, and rights/exposure analysis are permitted. Archive acquisition, both metadata attempts, and the sole real-staging call are consumed and cannot retry. The retained child must not be removed or modified. Signature tooling, installation, daemon/model operations, target execution, prompts, HTTP serving, CyxCode benchmark invocation, and benchmark input remain unauthorized. The completed cloud canary and help probe must not be repeated.

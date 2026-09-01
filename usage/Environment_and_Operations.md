@@ -105,7 +105,8 @@ python Thesis\pilot_data\validate_llmster_archive_inventory_v2_decision.py Thesi
 python Thesis\pilot_data\validate_llmster_archive_inventory_v2_result.py Thesis\pilot_data\review_evidence\phase6_llmster_archive_inventory_v2_result.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_design_decision.json
 python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_extraction_staging_implementation_result.json
-python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
+python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py --historical Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
+python Thesis\pilot_data\validate_llmster_real_staging_execution_result.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_result.json
 ```
 
 The first monitored attempt failed closed before daemon start because its initial NVIDIA sample was unavailable. Cleanup passed and two read-only repetitions then succeeded. The validator-backed recovery record authorizes one corrected attempt with at most three one-second GPU reads per required sample; no model or resource setting changed:
@@ -140,9 +141,9 @@ python -m unittest Thesis.pilot_data.test_cli_transport Thesis.pilot_data.test_v
 python -m unittest Thesis.pilot_data.test_monitored_process Thesis.pilot_data.test_run_local_model_load_health -v
 ```
 
-These validation commands do not repeat either consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its direct archive checksum are pinned. Acquisition and both metadata decisions are consumed. The corrected inventory accepted 3,614 entries. A separate committed and immediately revalidated decision now permits one exact owned-staging call; installation, runtime, signature tooling, and retry remain unauthorized.
+These validation commands do not repeat any consumed execution or invoke LM Studio. Running `run_local_model_load_health.py` again exits with code 2 before host access because the retained claim already exists. There is no authorized runtime command. Standalone `llmster` release `0.0.21-2` and its archive checksum are pinned. Acquisition, metadata inventory, and real staging are consumed. The retained owned child passed aggregate verification; installation, runtime, signature tooling, successful-child cleanup, and retry remain unauthorized.
 
-That one call has now succeeded and is consumed. The ignored archive is at `.replay_cache\llmster_acquisition\0.0.21-2-win32-x64.full.zip`; it is 867,394,409 bytes with SHA-256 `e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c` and the pinned published SHA-512. Do not rerun acquisition. The first metadata inventory failed closed; after fixture correction, one fresh inventory accepted 3,614 entries without member reads. The marker-owned staging module and generated fixtures are implemented. Decision `phase6_llmster_real_staging_execution_decision.json` authorizes exactly one call after commit and immediate validation, targeting `llmster-f3895cbd1a6e421fa754386f2d144803`. Do not extract manually, invoke twice, retry, install files, inspect signatures, or execute binaries.
+The ignored archive is at `.replay_cache\llmster_acquisition\0.0.21-2-win32-x64.full.zip`; acquisition and both metadata attempts are consumed. The real-staging authorization is also consumed: its exact call succeeded and retained `llmster-f3895cbd1a6e421fa754386f2d144803` with 3,595 files and 1,791,678,266 logical bytes. Do not call staging again, extract manually, retry, remove the retained child, install files, inspect signatures, or execute binaries. Historical decision validation requires `--historical` because live validation now correctly rejects the nonempty parent.
 
 ## Troubleshooting
 

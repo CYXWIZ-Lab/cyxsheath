@@ -25,7 +25,7 @@ EVIDENCE = (
 
 class LlmsterRealStagingExecutionDecisionTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.record = validate(EVIDENCE)
+        self.record = validate(EVIDENCE, enforce_live_preconditions=False)
 
     def rejected(self, record: dict, message: str) -> None:
         handle = tempfile.NamedTemporaryFile(
@@ -35,7 +35,7 @@ class LlmsterRealStagingExecutionDecisionTests(unittest.TestCase):
             json.dump(record, handle)
         self.addCleanup(Path(handle.name).unlink, missing_ok=True)
         with self.assertRaisesRegex(LlmsterRealStagingExecutionDecisionError, message):
-            validate(Path(handle.name))
+            validate(Path(handle.name), enforce_live_preconditions=False)
 
     def test_exact_one_shot_staging_is_authorized(self) -> None:
         gate = self.record["execution_gate"]

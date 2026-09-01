@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_real_archive_owned_staging_accepted_signature_installation_execution_blocked",
+  "recorded_at": "2026-09-01T06:29:54Z",
+  "decision_scope": "result_of_one_consumed_exact_stage_archive_invocation_with_aggregate_content_evidence_and_retained_owned_child_without_signature_tooling_installation_or_execution",
+  "baseline_commit": "fc03ec30c3da366a011d8ea0d89a46dafd0094b7",
+  "authorization": {
+    "record": "phase6_llmster_real_staging_execution_decision.json",
+    "sha256": "69ae9ae2b66f1b6b826978c672079bff10cbde2c0af765f9492c38383f9a2976",
+    "status": "llmster_real_archive_owned_staging_authorized_once_signature_installation_execution_blocked",
+    "validated_immediately_before_consumed_call": true,
+    "consumed": true,
+    "stage_archive_function_invocation_count": 1,
+    "automatic_retry_count": 0,
+    "further_staging_authorized": false
+  },
+  "pre_function_command_deviation": {
+    "occurred": true,
+    "code": "python_capture_command_quote_parse_error",
+    "stage_archive_function_entry_reached": false,
+    "authorization_consumed": false,
+    "owned_child_created": false,
+    "impact": "none_on_archive_or_staging_state",
+    "correction": "use_windows_safe_outer_double_quote_and_inner_single_quote_form_then_revalidate_before_the_single_function_entry"
+  },
+  "execution": {
+    "python_version": "3.12",
+    "started_at": "2026-09-01T06:27:52Z",
+    "completed_at": "2026-09-01T06:28:22Z",
+    "elapsed_seconds_rounded": 30,
+    "outcome": "accepted",
+    "normalised_error_code": null,
+    "archive_source_stability_verified": true,
+    "ownership_marker_matches": true
+  },
+  "archive": {
+    "repository_relative_path": ".replay_cache/llmster_acquisition/0.0.21-2-win32-x64.full.zip",
+    "bytes": 867394409,
+    "sha256": "e6556e8edd7240c43da28aa555bac12197ba3e2199247bba773c81c6ae94170c",
+    "sha512": "ec13183ddc2f56d68b48fc13428e0cdca84c29bfc2b87a7aa2b9befeb7b79a8cdd3ea5a7c50d6e941fcf43545c8730f8b2bf2665b030b98e5ccfab6a3d43efff",
+    "exact_identity_verified_inside_stage_archive": true,
+    "unchanged_by_staging": true
+  },
+  "owned_staging": {
+    "parent_repository_relative_path": ".replay_cache/llmster_staging",
+    "child_name": "llmster-f3895cbd1a6e421fa754386f2d144803",
+    "ownership_marker": ".cyxsheath-staging-owner.json",
+    "owned_child_present": true,
+    "owned_child_is_symlink": false,
+    "ownership_marker_present": true,
+    "ownership_marker_bytes": 190,
+    "ownership_marker_matches": true,
+    "parent_child_count": 1,
+    "successful_child_retained": true
+  },
+  "staging_result": {
+    "entry_count": 3614,
+    "file_count": 3595,
+    "explicit_directory_count": 19,
+    "total_written_bytes": 1791678266,
+    "content_manifest_sha256": "9c6600dc9a72b265d3d37abf5d499c1cd760561ac026ace2629ea452cc3b4a45",
+    "signature_candidate_count": 91,
+    "signature_candidate_paths_sha256": "d2cfc905e98305006a5f80b65951cb1927be48a7f308ae22c10d077366faa90e",
+    "existing_destination_overwrite_count": 0
+  },
+  "retained_child_metadata_audit": {
+    "observed_payload_file_count": 3595,
+    "observed_filesystem_directory_count": 256,
+    "observed_payload_bytes": 1791678266,
+    "observed_link_count": 0,
+    "observed_other_special_count": 0,
+    "member_paths_or_contents_retained_in_record": false
+  },
+  "storage_result": {
+    "free_bytes_before_call": 152506544128,
+    "free_bytes_after_call": 150707167232,
+    "observed_volume_free_delta_bytes": 1799376896,
+    "logical_payload_bytes": 1791678266,
+    "free_delta_minus_logical_payload_bytes": 7698630,
+    "delta_difference_attributed_exclusively_to_staging": false,
+    "minimum_free_bytes_after": 4294967296,
+    "final_storage_gate_passed": true
+  },
+  "operation_counts": {
+    "stage_archive_function_invocations": 1,
+    "real_archive_member_file_streams": 3595,
+    "payload_files_written": 3595,
+    "ownership_markers_written": 1,
+    "signature_tool_invocations": 0,
+    "installations": 0,
+    "binary_executions": 0,
+    "network_requests": 0,
+    "benchmark_inputs": 0,
+    "automatic_retries": 0
+  },
+  "interpretation": {
+    "exact_owned_staging_contract_passed": true,
+    "aggregate_content_evidence_complete": true,
+    "authenticode_verified_claimed": false,
+    "archive_safe_for_installation_claimed": false,
+    "runtime_health_claimed": false,
+    "model_quality_claimed": false,
+    "individual_member_paths_or_contents_curated": false
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "pre_result_tests_passed": 479,
+      "result_tests_passed": 10,
+      "post_result_tests_passed": 489
+    },
+    "python_3_14": {
+      "pre_result_tests_passed": 479,
+      "result_tests_passed": 10,
+      "post_result_tests_passed": 489
+    },
+    "validation_execution_deviation": {
+      "initial_parallel_python_3_14_full_run_passed": false,
+      "initial_parallel_python_3_14_existing_monitored_process_errors": 3,
+      "focused_sequential_monitored_process_tests_passed": 8,
+      "sequential_python_3_14_full_tests_passed": 489,
+      "staging_function_reinvoked": false,
+      "interpretation": "transient_parallel_host_contention_not_staging_or_result_regression"
+    }
+  },
+  "live_reuse_check": {
+    "decision_live_validation_after_result_passed": false,
+    "rejection_code": "live staging parent not empty",
+    "historical_decision_validation_passed": true,
+    "result_validation_passed": true
+  },
+  "result_gate": {
+    "real_staging_accepted": true,
+    "authorization_consumed": true,
+    "same_authorization_reusable": false,
+    "successful_owned_child_may_be_removed": false,
+    "authenticode_tool_invocation_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "benchmark_input_authorized": false,
+    "separate_nonexecuting_signature_review_decision_required": true,
+    "next_action": "design_and_fixture_test_a_separate_nonexecuting_authenticode_review_boundary_before_invoking_any_signature_tool"
+  }
+}
