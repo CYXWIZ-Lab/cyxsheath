@@ -62,6 +62,7 @@ python Thesis\pilot_data\validate_llmster_extraction_staging_implementation_resu
 python Thesis\pilot_data\validate_llmster_real_staging_execution_decision.py --historical Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_decision.json
 python Thesis\pilot_data\validate_llmster_real_staging_execution_result.py Thesis\pilot_data\review_evidence\phase6_llmster_real_staging_execution_result.json
 python Thesis\pilot_data\validate_llmster_authenticode_review_design_decision.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_design_decision.json
+python Thesis\pilot_data\validate_llmster_authenticode_review_implementation_result.py Thesis\pilot_data\review_evidence\phase6_llmster_authenticode_review_implementation_result.json
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
@@ -98,3 +99,5 @@ Staging design (2026-08-31): generated-fixture implementation is authorized for 
 Real-staging result (2026-09-01): the one authorized call succeeded and is consumed. One marker-owned ignored child retains 3,595 payload files and 91 digest-bound signature candidates. No signature tool, installer, or target binary ran, and the retained child must not be modified or removed.
 
 Authenticode review design (2026-09-01): only a dependency-free policy module and generated-fixture fake inspection are authorized. The policy must reproduce the full content manifest and exact candidate digest before inspection, normalize all documented PowerShell signature statuses plus timeout/tool error, and emit aggregate counts and a digest without retaining paths. `Valid` means syntactically valid, not publisher-trusted. Retained-child enumeration, Windows adapter implementation, signature tooling, networking, installation, execution, and cleanup remain blocked. The complete suite passes 501/501 on both supported Python versions.
+
+Authenticode review implementation (2026-09-01): the platform-independent policy and 14 generated owned-tree fixtures now enforce the frozen admission, normalization, mutation, and aggregate-privacy contract. Ten implementation-result mutations source-bind the policy and unchanged staging ownership invariant. The complete suite passes 525/525 on both supported Python versions. The retained child and Windows signature tooling were not accessed; adapter implementation and real review still require separate decisions.

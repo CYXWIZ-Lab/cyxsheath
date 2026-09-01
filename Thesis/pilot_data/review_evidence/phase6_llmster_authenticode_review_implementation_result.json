@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "status": "llmster_authenticode_review_policy_implemented_generated_fixtures_passed_real_review_blocked",
+  "recorded_at": "2026-09-01T11:20:01Z",
+  "decision_scope": "dependency_free_platform_independent_authenticode_review_policy_and_generated_owned_tree_fixtures_only_without_retained_child_access_or_signature_tooling",
+  "baseline_commit": "cc02e5999a507a1fe72ca8a1ad22b85bd5827b42",
+  "reviewed_decision": {
+    "record": "phase6_llmster_authenticode_review_design_decision.json",
+    "sha256": "80d20696a488b6e148da2c6e06089fdee1871db4acbbad83bcfd344c8f82c4ec",
+    "status": "llmster_authenticode_review_fixture_implementation_authorized_real_review_blocked"
+  },
+  "source_identity": [
+    {
+      "path": "../llmster_archive_staging.py",
+      "bytes": 12729,
+      "lines": 329,
+      "sha256": "b2a57c149025cdc26cd00c576bf32bbf9205c20608d064f1de4dff1584887d55",
+      "change": "unchanged_reused_ownership_invariant"
+    },
+    {
+      "path": "../llmster_authenticode_review.py",
+      "bytes": 10973,
+      "lines": 284,
+      "sha256": "e2d7a6723b0127112c10f2cd6d76ad8dfa07285199ccf7af88c5f76991c18929",
+      "change": "new"
+    },
+    {
+      "path": "../test_llmster_authenticode_review.py",
+      "bytes": 10883,
+      "lines": 230,
+      "sha256": "6e328df244039811e2e26119152515e9e464da8a2fd939c9e453e6c1e8ffab4d",
+      "change": "new"
+    }
+  ],
+  "module_boundary": {
+    "staging_module_remains_marker_and_extraction_lifecycle_owner": true,
+    "policy_module_owns_tree_admission_candidate_discovery_normalization_and_aggregate_evidence": true,
+    "frozen_staging_ownership_verifier_reused_without_source_change": true,
+    "inspector_is_injected_typed_and_fake_in_fixtures": true,
+    "windows_process_adapter_added": false,
+    "signature_tool_reference_or_invocation_added_to_policy": false,
+    "installation_or_runtime_entrypoint_added": false,
+    "sheath_core_changed": false,
+    "cyxcode_changed": false,
+    "new_dependency_count": 0,
+    "new_thread_count": 0
+  },
+  "design_refinement": {
+    "aggregate_operation_ceilings_remain_required_for_later_execution_evidence": true,
+    "policy_result_does_not_claim_adapter_network_launch_install_or_retry_counts": true,
+    "reason": "an_injected_policy_callable_cannot_observe_or_attest_to_platform_adapter_internals"
+  },
+  "verified_behaviors": {
+    "exact_owned_marker_archive_parent_child_binding_required": true,
+    "full_payload_count_bytes_and_content_manifest_verified_before_inspection": true,
+    "links_junctions_special_files_non_nfc_paths_and_casefold_collisions_rejected": true,
+    "candidate_suffix_order_count_and_path_digest_reproduced_before_inspection": true,
+    "all_seven_documented_signature_statuses_normalized": true,
+    "unrecognized_status_timeout_and_tool_error_remain_distinct": true,
+    "unexpected_inspector_exception_is_not_concealed_as_tool_error": true,
+    "candidate_identity_verified_before_and_after_each_inspector_call": true,
+    "ownership_marker_reverified_after_all_inspector_calls": true,
+    "one_outcome_required_per_candidate": true,
+    "classification_manifest_hashes_paths_locally_but_does_not_retain_rows": true,
+    "aggregate_record_omits_candidate_paths_raw_statuses_messages_and_certificates": true,
+    "valid_outcome_claim_is_limited_to_syntactic_signature_validity": true,
+    "policy_source_has_no_process_network_install_or_execution_surface": true
+  },
+  "normalization_contract": {
+    "Valid": "signed_valid",
+    "NotSigned": "unsigned",
+    "HashMismatch": "invalid",
+    "UnknownError": "invalid",
+    "NotTrusted": "untrusted",
+    "NotSupportedFileFormat": "unsupported",
+    "Incompatible": "incompatible",
+    "unrecognized_status": "unknown",
+    "inspector_timeout": "timeout",
+    "inspector_error": "tool_error"
+  },
+  "fixture_evidence": {
+    "python_3_12": {
+      "tests_run": 525,
+      "tests_passed": 525
+    },
+    "python_3_14": {
+      "tests_run": 525,
+      "tests_passed": 525
+    },
+    "focused_policy_tests": 14,
+    "implementation_result_tests": 10,
+    "generated_owned_tree_fixture_authorized": true,
+    "retained_child_enumeration_count": 0,
+    "retained_child_content_read_count": 0,
+    "authenticode_tool_discovery_count": 0,
+    "authenticode_tool_invocation_count": 0,
+    "binary_launch_count": 0,
+    "installer_invocation_count": 0,
+    "network_request_count": 0,
+    "benchmark_input_count": 0
+  },
+  "decision_gate": {
+    "platform_independent_review_policy_complete": true,
+    "generated_fixture_gate_passed": true,
+    "retained_child_enumeration_or_content_read_authorized": false,
+    "windows_adapter_implementation_authorized": false,
+    "authenticode_tool_discovery_or_invocation_authorized": false,
+    "installation_authorized": false,
+    "binary_execution_authorized": false,
+    "network_request_authorized": false,
+    "retained_child_modification_or_removal_authorized": false,
+    "benchmark_input_authorized": false,
+    "next_action": "separately_design_and_fixture_test_the_windows_literal_path_timeout_and_zero_egress_adapter_before_any_retained_child_access_or_signature_tool_invocation"
+  }
+}
