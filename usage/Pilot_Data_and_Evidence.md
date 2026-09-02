@@ -64,7 +64,7 @@ python Thesis\pilot_data\validate_llmster_authenticode_execution_preflight_desig
 python -m unittest discover -s Thesis\pilot_data -p 'test_*.py' -v
 ```
 
-The current pilot-data suite passes 605 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
+The current pilot-data suite passes 611 tests on Python 3.12 and 3.14 when run sequentially. Validation proves structural and internal consistency; it does not convert quarantined cases into admitted data or turn infrastructure output into scientific results.
 
 The frozen minimum POC is executed only once from its clean committed runner baseline:
 
@@ -80,7 +80,7 @@ That v1 command has now been consumed. Its [curated result](../Thesis/pilot_data
 python Thesis\pilot_data\validate_phase6_minimum_poc_result.py Thesis\pilot_data\poc_evidence\phase6_minimum_poc_v1.json
 ```
 
-Do not run the v1 command again. The local v2 canary task, restricted CyxCode configuration, and authenticated container-to-loopback proxy are now frozen and tested, but no executable live-run command exists yet. The next task is the one-shot LM Studio lifecycle/runner with fake-transport coverage; another cloud-provider comparison is out of scope.
+Do not run the v1 command again. The local v2 task, restricted CyxCode configuration, authenticated container-to-loopback proxy, and one-shot lifecycle are frozen and tested, but no executable live-run command exists yet. The next task is only the concrete LM Studio/CyxCode adapter behind that lifecycle; another cloud-provider comparison is out of scope.
 
 ## Evidence Layers
 
